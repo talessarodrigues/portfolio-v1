@@ -53,12 +53,12 @@
 
 /* ── Base ────────────────────────────────────────────────── */
 html {
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 body {
   min-height: 100vh;
-  overflow-x: clip;
+  overflow-x: hidden;
 }
 
 img, video {

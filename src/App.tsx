@@ -19,29 +19,64 @@ function App() {
   }, [])
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
+    const isInView = (el: Element) => {
+      const r = el.getBoundingClientRect()
+      return r.top < window.innerHeight + 80 && r.bottom > -80
+    }
+
+    const attachEl = (el: Element) => {
+      if (el.closest('.cards-row')) {
+        el.classList.add('in-view')
+        return
+      }
+      if (isInView(el)) {
+        el.classList.add('in-view')
+        return
+      }
+      ioObserver.observe(el)
+    }
+
+    const ioObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('in-view')
-            observer.unobserve(entry.target)
+            ioObserver.unobserve(entry.target)
           }
         })
       },
-      { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
+      { threshold: 0, rootMargin: '80px 0px 80px 0px' }
     )
 
-    document.querySelectorAll('[data-animate]').forEach(el => {
-      // elementos dentro de scroll horizontal nunca cruzam o viewport lateralmente:
-      // força in-view imediatamente para que não fiquem invisíveis
-      if (el.closest('.cards-row')) {
-        el.classList.add('in-view')
-      } else {
-        observer.observe(el)
-      }
-    })
+    // observa elementos existentes
+    document.querySelectorAll('[data-animate]').forEach(attachEl)
 
-    return () => observer.disconnect()
+    // MutationObserver: detecta novos [data-animate] adicionados ao DOM
+    // (ex: FAQ re-renderiza de desktop→mobile e insere os accordion items)
+    const mutObserver = new MutationObserver(mutations => {
+      mutations.forEach(m => {
+        m.addedNodes.forEach(node => {
+          if (!(node instanceof Element)) return
+          if (node.hasAttribute('data-animate')) attachEl(node)
+          node.querySelectorAll('[data-animate]').forEach(attachEl)
+        })
+      })
+    })
+    mutObserver.observe(document.body, { childList: true, subtree: true })
+
+    // fallback de scroll para iOS Safari onde IntersectionObserver pode falhar
+    const onScroll = () => {
+      document.querySelectorAll('[data-animate]:not(.in-view)').forEach(el => {
+        if (!el.closest('.cards-row') && isInView(el)) el.classList.add('in-view')
+      })
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+
+    return () => {
+      ioObserver.disconnect()
+      mutObserver.disconnect()
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [])
 
   return (
