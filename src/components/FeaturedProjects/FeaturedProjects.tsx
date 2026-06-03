@@ -1,30 +1,29 @@
 import styles from './FeaturedProjects.module.css'
 
-// TODO: replace these with local assets in src/assets/projects/
-const imgAppFitness = 'https://www.figma.com/api/mcp/asset/328bebc2-4933-460d-a5da-1a1f473d22ed'
-const imgEccomerce = 'https://www.figma.com/api/mcp/asset/780906c8-8337-4565-aa50-6268b1500fbc'
-const imgSoftwareNR1 = 'https://www.figma.com/api/mcp/asset/e5d7a65b-1933-4e3f-8e27-f4d1fa07f1b8'
-const imgDashboard = 'https://www.figma.com/api/mcp/asset/a3683e5e-1eb3-4ca5-af66-c412e79b3839'
+const imgEccomerce = 'https://www.figma.com/api/mcp/asset/6e26a836-52b4-4c6b-9d97-44399b4058bb'
+const imgSoftwareNR1 = 'https://www.figma.com/api/mcp/asset/687fa501-2f07-48f9-988c-4e0b55ecec07'
+const imgDashboard = 'https://www.figma.com/api/mcp/asset/5e46ff25-2383-45c5-81d8-d0da72964dad'
+const imgPortfolio = 'https://www.figma.com/api/mcp/asset/03782ce2-2037-4faf-a3a1-49c825f83916'
 
 const projects = [
-  { image: imgAppFitness, title: 'App Fitness', status: 'Em breve' },
-  { image: imgEccomerce, title: 'Eccomerce', status: 'Em breve' },
+  { image: imgEccomerce, title: 'Eccomerce Website', status: 'Em breve' },
   { image: imgSoftwareNR1, title: 'Software NR-1', status: 'Em breve' },
   { image: imgDashboard, title: 'Dashboard + Landing Page', status: 'Em breve' },
+  { image: imgPortfolio, title: 'Portfólio Full Stack', status: 'Em breve' },
 ]
 
 export function FeaturedProjects() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.card}>
-        <div className={styles.header}>
+        <div className={styles.header} data-animate>
           <h2 className={styles.title}>Projetos em destaque</h2>
           <p className={styles.subtitle}>Produtos criativos que serão postados em breve.</p>
         </div>
 
         <div className={styles.grid}>
-          {projects.map((project) => (
-            <div key={project.title} className={styles.projectItem}>
+          {projects.map((project, i) => (
+            <div key={project.title} className={styles.projectItem} data-animate data-delay={i + 1}>
               <div className={styles.imageWrapper}>
                 <img src={project.image} alt={project.title} className={styles.image} />
                 <div className={styles.imageBorder} />

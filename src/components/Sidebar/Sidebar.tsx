@@ -1,10 +1,16 @@
 import styles from './Sidebar.module.css'
 
-// Logo icon from Figma (brand mark)
 const imgLogo = 'https://www.figma.com/api/mcp/asset/b24a9ea4-9061-461c-989a-e25d4f6ff2c9'
 const imgArrowDown = 'https://www.figma.com/api/mcp/asset/f324d2ba-0acb-46fd-a6ec-1c2e42dafa5c'
 
-// ── Icons (inline SVG) ────────────────────────────────────────
+// ── Icons ─────────────────────────────────────────────────────
+
+const IconCollapse = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+    <path d="M9 3L4 8L9 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M13 3L8 8L13 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+)
 
 const IconHome = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -123,78 +129,97 @@ const connectLinks = [
 
 // ── Component ─────────────────────────────────────────────────
 
-export function Sidebar() {
+interface SidebarProps {
+  isOpen: boolean
+  onClose: () => void
+}
+
+export function Sidebar({ isOpen, onClose }: SidebarProps) {
   return (
-    <aside className={styles.sidebar}>
-      {/* Logo — fixed at top */}
-      <div className={styles.logo}>
-        <div className={styles.logoLink}>
-          <img src={imgLogo} alt="Logo Talessa" className={styles.logoIcon} />
-          <span className={styles.logoName}>Talessa Rodrigues</span>
+    <>
+      {/* Mobile overlay */}
+      {isOpen && (
+        <div className={styles.overlay} onClick={onClose} aria-hidden="true" />
+      )}
+
+      <aside className={`${styles.sidebar} ${isOpen ? styles.sidebarOpen : ''}`}>
+        {/* Logo — fixed at top */}
+        <div className={styles.logo}>
+          <div className={styles.logoLink}>
+            <img src={imgLogo} alt="Logo Talessa" className={styles.logoIcon} />
+            <span className={styles.logoName}>Talessa Rodrigues</span>
+            <button
+              className={styles.collapseButton}
+              onClick={onClose}
+              aria-label="Fechar menu"
+            >
+              <IconCollapse />
+            </button>
+          </div>
         </div>
-      </div>
 
-      {/* Scrollable nav */}
-      <div className={styles.scrollable}>
-        <nav className={styles.nav}>
-          {/* Main links */}
-          <div className={styles.navSection}>
-            {mainLinks.map(({ label, icon: Icon, active }) => (
-              <a
-                key={label}
-                href="#"
-                className={active ? styles.linkActive : styles.linkInactive}
-              >
-                <span className={active ? styles.iconActive : styles.iconInactive}>
-                  <Icon />
-                </span>
-                <span>{label}</span>
-              </a>
-            ))}
-          </div>
-
-          {/* Professional */}
-          <div className={styles.navSection}>
-            <span className={styles.sectionLabel}>PROFISSIONAL</span>
-            <div className={styles.sectionLinks}>
-              {professionalLinks.map(({ label, icon: Icon }) => (
-                <a key={label} href="#" className={styles.linkInactive}>
-                  <span className={styles.iconInactive}><Icon /></span>
+        {/* Scrollable nav */}
+        <div className={styles.scrollable}>
+          <nav className={styles.nav}>
+            {/* Main links */}
+            <div className={styles.navSection}>
+              {mainLinks.map(({ label, icon: Icon, active }) => (
+                <a
+                  key={label}
+                  href="#"
+                  className={active ? styles.linkActive : styles.linkInactive}
+                >
+                  <span className={active ? styles.iconActive : styles.iconInactive}>
+                    <Icon />
+                  </span>
                   <span>{label}</span>
                 </a>
               ))}
             </div>
-          </div>
 
-          {/* Connect */}
-          <div className={styles.navSection}>
-            <span className={styles.sectionLabel}>CONECTE-SE COMIGO</span>
-            <div className={styles.sectionLinks}>
-              {connectLinks.map(({ label, icon: Icon }) => (
-                <a key={label} href="#" className={styles.linkInactive}>
-                  <span className={styles.iconInactive}><Icon /></span>
-                  <span>{label}</span>
-                </a>
-              ))}
+            {/* Professional */}
+            <div className={styles.navSection}>
+              <span className={styles.sectionLabel}>PROFISSIONAL</span>
+              <div className={styles.sectionLinks}>
+                {professionalLinks.map(({ label, icon: Icon }) => (
+                  <a key={label} href="#" className={styles.linkInactive}>
+                    <span className={styles.iconInactive}><Icon /></span>
+                    <span>{label}</span>
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
-        </nav>
-      </div>
 
-      {/* Bottom — CV button + copyright */}
-      <div className={styles.bottom}>
-        <a href="#" className={styles.cvButton}>
-          <span>Baixar CV</span>
-          <img src={imgArrowDown} alt="" className={styles.cvIcon} />
-        </a>
-        <p className={styles.copyright}>
-          2026@ <br />
-          Todos os direitos reservados<br />
-          <br />
-          Design by Talessa Rodrigues<br />
-          Desenvolvido por Felipe Oliveira
-        </p>
-      </div>
-    </aside>
+            {/* Connect */}
+            <div className={styles.navSection}>
+              <span className={styles.sectionLabel}>CONECTE-SE COMIGO</span>
+              <div className={styles.sectionLinks}>
+                {connectLinks.map(({ label, icon: Icon }) => (
+                  <a key={label} href="#" className={styles.linkInactive}>
+                    <span className={styles.iconInactive}><Icon /></span>
+                    <span>{label}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </nav>
+        </div>
+
+        {/* Bottom — CV button + copyright */}
+        <div className={styles.bottom}>
+          <a href="#" className={styles.cvButton}>
+            <span>Baixar CV</span>
+            <img src={imgArrowDown} alt="" className={styles.cvIcon} />
+          </a>
+          <p className={styles.copyright}>
+            2026@ <br />
+            Todos os direitos reservados<br />
+            <br />
+            Design by Talessa Rodrigues<br />
+            Desenvolvido por Felipe Oliveira
+          </p>
+        </div>
+      </aside>
+    </>
   )
 }

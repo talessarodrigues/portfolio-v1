@@ -16,7 +16,7 @@ export function Hero() {
       <div className={styles.inner}>
 
         {/* Badge disponível */}
-        <div className={styles.topBar}>
+        <div className={styles.topBar} data-animate data-delay="0">
           <div className={styles.badge}>
             <span className={styles.greenDot} />
             <span className={styles.badgeText}>Disponível para novos projetos</span>
@@ -25,7 +25,7 @@ export function Hero() {
         </div>
 
         {/* Headings */}
-        <div className={styles.headings}>
+        <div className={styles.headings} data-animate data-delay="1">
           <div className={styles.headingRow}>
             <h1 className={styles.h1}>Olá, meu nome é Talessa Rodrigues.</h1>
           </div>
@@ -39,13 +39,13 @@ export function Hero() {
         </div>
 
         {/* Descrição */}
-        <p className={styles.description}>
+        <p className={styles.description} data-animate data-delay="2">
           Transformo problemas complexos em soluções digitais intuitivas,
           unindo estratégia, dados e experiência do usuário para gerar impacto real.
         </p>
 
         {/* CTAs */}
-        <div className={styles.ctas}>
+        <div className={styles.ctas} data-animate data-delay="3">
           <a href="#projetos" className={styles.btnSecondary}>
             Ver meus projetos
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">

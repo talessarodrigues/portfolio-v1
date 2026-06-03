@@ -2,6 +2,17 @@ import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRe
 import { createPortal } from 'react-dom'
 import styles from './FAQ.module.css'
 
+function useMobile(breakpoint = 768) {
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= breakpoint)
+  useEffect(() => {
+    const mq = window.matchMedia(`(max-width: ${breakpoint}px)`)
+    const fn = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mq.addEventListener('change', fn)
+    return () => mq.removeEventListener('change', fn)
+  }, [breakpoint])
+  return isMobile
+}
+
 const IconArrow = () => (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
     <path d="M5 15L15 5M15 5H8M15 5V12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -143,8 +154,51 @@ const MacWindow = forwardRef<MacWindowHandle, {
   )
 })
 
+// ── Mobile accordion ──────────────────────────────────────────
+function FAQMobile() {
+  const [openId, setOpenId] = useState<string | null>(null)
+
+  return (
+    <section className={styles.section}>
+      <div className={styles.left} data-animate>
+        <div className={styles.sticky}>
+          <h2 className={styles.title}>Perguntas comuns sobre meu trabalho</h2>
+          <a href="mailto:talessa@email.com" className={styles.ctaBtn}>
+            <span>Mande aqui sua dúvida</span>
+            <IconArrow />
+          </a>
+        </div>
+      </div>
+
+      <div className={styles.list}>
+        {faqs.map((faq, i) => {
+          const isOpen = openId === faq.id
+          return (
+            <div key={faq.id} className={styles.accordionItem} data-animate data-delay={i + 1}>
+              <button
+                className={`${styles.row} ${isOpen ? styles.rowActive : ''}`}
+                onClick={() => setOpenId(isOpen ? null : faq.id)}
+              >
+                <span className={styles.rowNum}>{String(i + 1).padStart(2, '0')}</span>
+                <span className={styles.rowQ}>{faq.question}</span>
+                <span className={`${styles.rowIcon} ${isOpen ? styles.rowIconOpen : ''}`}>+</span>
+              </button>
+              {isOpen && (
+                <div className={styles.accordionBody}>
+                  <p className={styles.macAnswer}>{faq.answer}</p>
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
+
 // ── Main FAQ ──────────────────────────────────────────────────
 export function FAQ() {
+  const isMobile = useMobile()
   const [windows, setWindows] = useState<WinState[]>([])
   const [topZ,    setTopZ]    = useState(9000)
   const buttonRefs    = useRef<(HTMLButtonElement | null)[]>([])
@@ -248,10 +302,12 @@ export function FAQ() {
     return () => window.removeEventListener('keydown', fn)
   }, [])
 
+  if (isMobile) return <FAQMobile />
+
   return (
     <section className={styles.section}>
       {/* Left */}
-      <div className={styles.left}>
+      <div className={styles.left} data-animate>
         <div className={styles.sticky}>
           <h2 className={styles.title}>Perguntas comuns sobre meu trabalho</h2>
           <a href="mailto:talessa@email.com" className={styles.ctaBtn}>
@@ -272,6 +328,8 @@ export function FAQ() {
               id={faq.id}
               ref={el => { buttonRefs.current[i] = el }}
               className={`${styles.row} ${isOpen ? styles.rowActive : ''}`}
+              data-animate
+              data-delay={i + 1}
               onClick={() => {
                 if (isOpen) winHandleRefs.current.get(faq.id)?.triggerClose()
                 else openWindow(faq)

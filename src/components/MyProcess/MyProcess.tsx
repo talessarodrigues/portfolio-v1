@@ -48,7 +48,7 @@ export function MyProcess() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.card}>
-        <div className={styles.header}>
+        <div className={styles.header} data-animate>
           <h2 className={styles.title}>Meu processo</h2>
           <button className={styles.badge}>
             <span className={styles.greenDot} />
@@ -57,8 +57,8 @@ export function MyProcess() {
         </div>
 
         <div className={styles.steps}>
-          {steps.map(({ icon: Icon, title, subtitle }) => (
-            <div key={title} className={styles.step}>
+          {steps.map(({ icon: Icon, title, subtitle }, i) => (
+            <div key={title} className={styles.step} data-animate data-delay={i + 1}>
               <Icon />
               <div className={styles.stepText}>
                 <span className={styles.stepTitle}>{title}</span>

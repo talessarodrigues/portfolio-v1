@@ -332,6 +332,31 @@
   margin: 0;
 }
 
+/* ── Accordion (mobile) ──────────────────────────────────────── */
+.accordionItem {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+.accordionItem:first-child {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* dentro do accordionItem o .row não duplica a borda */
+.accordionItem .row {
+  border: none;
+}
+
+.accordionBody {
+  padding: 0 0 18px 36px;
+  animation: bodyExpand 0.22s cubic-bezier(.4,0,.2,1);
+}
+
+.rowIconOpen {
+  transform: rotate(45deg);
+  display: inline-block;
+}
+
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 860px) {
   .section {

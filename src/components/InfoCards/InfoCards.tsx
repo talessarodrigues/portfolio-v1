@@ -113,7 +113,7 @@ export function InfoCards() {
     <div className={styles.wrapper}>
 
       {/* Card 1 — Sobre Mim */}
-      <div className={`${styles.card} ${styles.cardAbout}`}>
+      <div className={`${styles.card} ${styles.cardAbout}`} data-animate data-delay="1">
         <div className={styles.cardTop}>
           <div className={styles.cardHeader}>
             <h2 className={styles.cardTitle}>Sobre Mim</h2>
@@ -135,7 +135,7 @@ export function InfoCards() {
       </div>
 
       {/* Card 2 — Estatísticas */}
-      <div className={`${styles.card} ${styles.cardStats}`}>
+      <div className={`${styles.card} ${styles.cardStats}`} data-animate data-delay="2">
         <div className={styles.cardTop}>
           <div className={styles.cardHeader}>
             <h2 className={styles.cardTitle}>Estatísticas</h2>
@@ -162,7 +162,7 @@ export function InfoCards() {
       </div>
 
       {/* Card 3 — Trabalhando em */}
-      <div className={`${styles.card} ${styles.cardWorking}`}>
+      <div className={`${styles.card} ${styles.cardWorking}`} data-animate data-delay="3">
         <div className={styles.cardTop}>
           <div className={styles.cardHeader}>
             <h2 className={styles.cardTitle}>Trabalhando em:</h2>
@@ -189,7 +189,7 @@ export function InfoCards() {
       </div>
 
       {/* Card 4 — Ferramentas */}
-      <div className={`${styles.card} ${styles.cardTools}`}>
+      <div className={`${styles.card} ${styles.cardTools}`} data-animate data-delay="4">
         <div className={styles.cardTop}>
           <div className={styles.cardHeader}>
             <h2 className={styles.cardTitle}>Ferramentas que uso:</h2>

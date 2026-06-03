@@ -13,7 +13,7 @@ export function ContactBanner() {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.card}>
+      <div className={styles.card} data-animate>
         {/* Left — text */}
         <div className={styles.textCol}>
           <h2 className={styles.title}>Vamos criar algo juntos?</h2>

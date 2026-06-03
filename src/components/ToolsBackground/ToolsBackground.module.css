@@ -130,6 +130,13 @@
   white-space: nowrap;
 }
 
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .root {
+    display: none;
+  }
+}
+
 /* ── Animações ───────────────────────────────────────────────── */
 /* sobe: de 0 → -50% (a cópia embaixo é idêntica → seamless) */
 @keyframes scrollUp {

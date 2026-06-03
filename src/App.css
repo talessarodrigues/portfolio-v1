@@ -14,3 +14,31 @@
   max-width: 1440px;
   margin: 0 auto;
 }
+
+/* ── Hamburger button (mobile only) ─────────────────────────── */
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+
+  .menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 9998;
+    width: 16px;
+    height: 16px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #ffffff;
+  }
+}
