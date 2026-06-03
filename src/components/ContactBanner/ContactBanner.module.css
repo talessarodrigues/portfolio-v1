@@ -1,0 +1,134 @@
+.wrapper {
+  padding: 0 48px 48px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* ── Card ────────────────────────────────────────────────────── */
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 48px 32px;
+  background: #0b0d0e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* ── Text ────────────────────────────────────────────────────── */
+.textCol {
+  display: flex;
+  flex-direction: column;
+  gap: 3.25px;
+  flex-shrink: 0;
+}
+
+.title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 18.4px;
+  letter-spacing: -0.48px;
+  color: #ffffff;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22.5px;
+  letter-spacing: -0.3px;
+  color: #737373;
+  margin: 0;
+  white-space: nowrap;
+}
+
+/* ── Form ────────────────────────────────────────────────────── */
+.formCol {
+  width: 351px;
+  flex-shrink: 0;
+}
+
+.form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input {
+  flex: 1;
+  padding: 12px 80px 12px 24px;
+  background: rgba(11, 13, 14, 0.2);
+  border: 1px solid rgba(214, 214, 214, 0.1);
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: normal;
+  letter-spacing: -0.3px;
+  color: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.input::placeholder {
+  color: #737373;
+}
+
+.input:focus {
+  border-color: rgba(214, 214, 214, 0.25);
+}
+
+.submitBtn {
+  position: absolute;
+  right: 3.64px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 15px;
+  letter-spacing: -0.45px;
+  color: #ffffff;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.submitBtn:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 0 24px 40px;
+  }
+
+  .card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px 24px;
+    gap: 24px;
+  }
+
+  .textCol { gap: 4px; }
+
+  .title,
+  .subtitle { white-space: normal; }
+
+  .formCol {
+    width: 100%;
+  }
+}

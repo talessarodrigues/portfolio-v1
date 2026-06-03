@@ -1,0 +1,336 @@
+/* ── Wrapper ─────────────────────────────────────────────────── */
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 0 40px 24px;
+  box-sizing: border-box;
+  width: 100%;
+  gap: 12px;
+}
+
+/* ── Base card ───────────────────────────────────────────────── */
+.card {
+  background: #0b0d0e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* all cards grow equally to fill the row */
+.cardAbout,
+.cardStats,
+.cardWorking,
+.cardTools {
+  flex: 1;
+  min-width: 0;
+}
+
+/* top section fills remaining height */
+.cardTop {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ── Card header ─────────────────────────────────────────────── */
+.cardHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 24px 24px 0;
+  overflow: hidden;
+}
+
+.cardTitle {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 18.4px;
+  letter-spacing: -0.48px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.cardDesc {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22.5px;
+  letter-spacing: -0.3px;
+  color: #737373;
+  margin: 0;
+}
+
+/* ── Footer link ─────────────────────────────────────────────── */
+.cardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 8px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.cardFooter:hover {
+  opacity: 0.75;
+}
+
+.footerText {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 24px;
+  letter-spacing: -0.259px;
+  color: #737373;
+  white-space: nowrap;
+}
+
+/* ── About — info list ───────────────────────────────────────── */
+.infoList {
+  display: flex;
+  flex-direction: column;
+  padding: 0 24px 24px;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.infoText {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 22.54px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── Stats ───────────────────────────────────────────────────── */
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 12px 12px 24px;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.statNumber {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 28px;
+  color: #ffffff;
+}
+
+.statLabel {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── Working on ──────────────────────────────────────────────── */
+.projectList {
+  display: flex;
+  flex-direction: column;
+  gap: px;
+  padding: 0 12px 24px;
+}
+
+.projectRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 4px;
+  border-radius: 6px;
+  width: 100%;
+}
+
+/* 24px box, image is 26px so it slightly overflows (matching Figma inset[-4.17%]) */
+.avatarWrap {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.avatarImg {
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
+.projectText {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.projectTitle {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 22.54px;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.projectSubtitle {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 22.54px;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Tools marquee ───────────────────────────────────────────── */
+.toolsRows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 12px 24px;
+}
+
+/* one row */
+.marqueeOuter {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 72px;
+}
+
+/* scrolling strip — 3× the set so translateX(-33.33%) = exactly 1 set */
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-1 * (8 * (72px + 12px))));
+  }
+}
+
+@keyframes scrollRight {
+  from {
+    transform: translateX(calc(-1 * (8 * (72px + 12px))));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.marqueeInner {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: scrollLeft 20s linear infinite;
+}
+
+.marqueeReverse {
+  animation: scrollRight 20s linear infinite;
+}
+
+/* ── Tool icon ───────────────────────────────────────────────── */
+.toolIcon {
+  flex-shrink: 0;
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toolIconImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Fade overlays ───────────────────────────────────────────── */
+.fadeLeft,
+.fadeRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.fadeLeft {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    rgba(11, 13, 14, 0.98) 0%,
+    rgba(11, 13, 14, 0) 100%
+  );
+}
+
+.fadeRight {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    rgba(11, 13, 14, 0.98) 0%,
+    rgba(11, 13, 14, 0) 100%
+  );
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .wrapper {
+    flex-wrap: wrap;
+    padding: 0 20px 20px;
+  }
+  .cardAbout,
+  .cardStats {
+    width: calc(50% - 6px);
+    flex-shrink: 1;
+  }
+  .cardWorking,
+  .cardTools {
+    flex: 1 1 calc(50% - 6px);
+  }
+}
+
+@media (max-width: 640px) {
+  .cardAbout,
+  .cardStats,
+  .cardWorking,
+  .cardTools {
+    width: 100%;
+    flex: none;
+  }
+}

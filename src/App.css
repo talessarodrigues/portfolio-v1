@@ -1,1 +1,16 @@
-/* Estilos globais do App — adicione aqui conforme o design */
+.layout {
+  min-height: 100vh;
+}
+
+/* Tudo que vem depois da sidebar */
+.main-content {
+  margin-left: 240px;
+  min-height: 100vh;
+  background: #09090c;
+}
+
+/* Coluna centralizada — não inclui a Hero */
+.content-column {
+  max-width: 1440px;
+  margin: 0 auto;
+}
