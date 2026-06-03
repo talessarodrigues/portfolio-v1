@@ -1,4 +1,5 @@
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import styles from './FAQ.module.css'
 
 const IconArrow = () => (
@@ -290,28 +291,32 @@ export function FAQ() {
         )}
       </div>
 
-      {/* Floating windows — sorted by z so lower ones render first */}
-      {[...windows].sort((a, b) => a.z - b.z).map(win => {
-        const idx   = faqs.findIndex(f => f.id === win.id)
-        const bRef  = { current: buttonRefs.current[idx] } as React.RefObject<HTMLButtonElement | null>
-        const { style, bodyH } = getWinLayout(win)
-        return (
-          <MacWindow
-            key={win.id}
-            ref={el => { if (el) winHandleRefs.current.set(win.id, el); else winHandleRefs.current.delete(win.id) }}
-            win={win}
-            winStyle={style}
-            bodyHeight={bodyH}
-            buttonRef={bRef}
-            onClose={closeWindow}
-            onMinimize={minimizeWindow}
-            onMaximize={maximizeWindow}
-            onFocus={bringToFront}
-            onMove={moveWindow}
-            onResize={resizeWindow}
-          />
-        )
-      })}
+      {/* Floating windows rendered in document.body via portal so z-index
+          is never clipped by an ancestor stacking context */}
+      {createPortal(
+        [...windows].sort((a, b) => a.z - b.z).map(win => {
+          const idx   = faqs.findIndex(f => f.id === win.id)
+          const bRef  = { current: buttonRefs.current[idx] } as React.RefObject<HTMLButtonElement | null>
+          const { style, bodyH } = getWinLayout(win)
+          return (
+            <MacWindow
+              key={win.id}
+              ref={el => { if (el) winHandleRefs.current.set(win.id, el); else winHandleRefs.current.delete(win.id) }}
+              win={win}
+              winStyle={style}
+              bodyHeight={bodyH}
+              buttonRef={bRef}
+              onClose={closeWindow}
+              onMinimize={minimizeWindow}
+              onMaximize={maximizeWindow}
+              onFocus={bringToFront}
+              onMove={moveWindow}
+              onResize={resizeWindow}
+            />
+          )
+        }),
+        document.body
+      )}
     </section>
   )
 }

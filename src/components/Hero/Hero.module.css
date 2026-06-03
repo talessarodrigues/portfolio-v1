@@ -1,5 +1,6 @@
 .hero {
   position: relative;
+  z-index: 0;        /* confines GPU-composited children (ToolsBackground transforms) */
   width: 100%;
   min-height: 399px;
   overflow: hidden;
