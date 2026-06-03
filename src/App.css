@@ -20,6 +20,33 @@
   display: none;
 }
 
+/* ── Cards row (MyProcess + InfoCards juntos) ────────────── */
+.cards-row {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .cards-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    overflow-x: scroll;
+    overflow-y: clip;
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 24px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 12px 24px;
+    gap: 12px;
+    box-sizing: border-box;
+  }
+
+  .cards-row::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .main-content {
     margin-left: 0;

@@ -194,10 +194,23 @@ export function InfoCards() {
           <div className={styles.cardHeader}>
             <h2 className={styles.cardTitle}>Ferramentas que uso:</h2>
           </div>
+          {/* desktop: marquee rows */}
           <div className={styles.toolsRows}>
             <MarqueeRow seed={1} />
             <MarqueeRow seed={2} reverse />
             <MarqueeRow seed={3} />
+          </div>
+          {/* mobile: static 3×3 grid */}
+          <div className={styles.toolsGridMobile}>
+            {toolIcons.map((t, i) => (
+              <div
+                key={i}
+                className={`${styles.toolsGridItem} ${t.whiteBg ? styles.toolsGridItemWhite : ''}`}
+                style={{ borderRadius: t.radius }}
+              >
+                <img src={t.src} alt="" className={styles.toolIconImg} />
+              </div>
+            ))}
           </div>
         </div>
       </div>

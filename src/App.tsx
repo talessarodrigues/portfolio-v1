@@ -30,7 +30,17 @@ function App() {
       },
       { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
     )
-    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el))
+
+    document.querySelectorAll('[data-animate]').forEach(el => {
+      // elementos dentro de scroll horizontal nunca cruzam o viewport lateralmente:
+      // força in-view imediatamente para que não fiquem invisíveis
+      if (el.closest('.cards-row')) {
+        el.classList.add('in-view')
+      } else {
+        observer.observe(el)
+      }
+    })
+
     return () => observer.disconnect()
   }, [])
 
@@ -53,8 +63,10 @@ function App() {
         <Hero />
         <div className="content-column">
           <FeaturedProjects />
-          <MyProcess />
-          <InfoCards />
+          <div className="cards-row">
+            <MyProcess />
+            <InfoCards />
+          </div>
           <FAQ />
           <ContactBanner />
         </div>

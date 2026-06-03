@@ -122,7 +122,8 @@
 .statsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  row-gap: 12px;
+  column-gap: 6px;
   padding: 12px 12px 24px;
 }
 
@@ -155,7 +156,7 @@
 .projectList {
   display: flex;
   flex-direction: column;
-  gap: px;
+  gap: 12px;
   padding: 0 12px 24px;
 }
 
@@ -310,6 +311,34 @@
   );
 }
 
+/* ── Tools grid (mobile only, hidden on desktop) ─────────────── */
+.toolsGridMobile {
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 8px 12px 24px;
+}
+
+.toolsGridItem {
+  aspect-ratio: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.toolsGridItem img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.toolsGridItemWhite {
+  background: #ffffff;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
 /* ── Responsive ──────────────────────────────────────────────── */
 @media (max-width: 1100px) {
   .wrapper {
@@ -327,12 +356,49 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  /* wrapper vira transparente — os cards entram no flex pai (.cards-row) */
+  .wrapper {
+    display: contents;
+  }
+
   .cardAbout,
   .cardStats,
   .cardWorking,
   .cardTools {
-    width: 100%;
     flex: none;
+    width: min(269px, calc(100vw - 68px));
+    height: 369px;
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+
+  /* header tem padding completo no mobile (igual ao Figma: p-24px todos os lados) */
+  .cardHeader {
+    padding: 24px;
+  }
+
+  /* compensa o bottom padding do header — grid/list não precisam de top padding */
+  .statsGrid {
+    padding: 0 12px 24px;
+  }
+
+  .projectList {
+    padding: 0 12px 24px;
+  }
+
+  .cardDesc {
+    font-size: 15px;
+    line-height: 22.5px;
+  }
+
+  /* impede stretch infinito vindo do flex: 1 interno */
+  .cardTop {
+    flex: none;
+  }
+
+  /* mantém marquee animado no mobile, esconde grid estático */
+  .toolsGridMobile {
+    display: none;
   }
 }
