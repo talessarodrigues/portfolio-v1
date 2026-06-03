@@ -1,0 +1,152 @@
+/* ── Wrapper ────────────────────────────────────────────────── */
+.root {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 56%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, black 30%),
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 6%,
+      black 94%,
+      transparent 100%
+    );
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, black 30%),
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      black 6%,
+      black 94%,
+      transparent 100%
+    );
+  mask-composite: intersect;
+}
+
+/* ── Cena com perspectiva ────────────────────────────────────── */
+.scene {
+  display: flex;
+  flex-direction: row;
+  gap: 11.3px;
+  width: 100%;
+  height: 100%;
+  padding: 0 12px;
+  box-sizing: border-box;
+  margin-left: 190px;
+  transform: perspective(1000px) rotateX(35deg) rotateZ(15deg);
+  transform-origin: center 40%;
+  transform-style: preserve-3d;
+}
+
+/* ── Coluna ──────────────────────────────────────────────────── */
+.column {
+  width: 300px;
+  flex-shrink: 0;
+  /* sem overflow hidden — o .root já clippa via overflow:hidden */
+}
+
+/* ── Track ───────────────────────────────────────────────────── */
+.track {
+  display: flex;
+  flex-direction: column;
+  gap: 11.3px;
+  will-change: transform;
+}
+
+/* coluna 1: sobe — começa uma card acima do visível */
+.trackUp {
+  margin-top: -311.3px; /* 300px card + 11.3px gap */
+  animation: scrollUp 28s linear infinite;
+}
+
+/* coluna 2: desce — começa deslocada para escalonar */
+.trackDown {
+  margin-top: -622.6px; /* 2 cards acima */
+  animation: scrollDown 28s linear infinite;
+}
+
+/* ── Card ────────────────────────────────────────────────────── */
+.cardOuter {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  flex-shrink: 0;
+  border-radius: 18px;
+  background: #4b5563;
+  overflow: hidden;
+  margin-bottom: 11.3px;
+}
+
+.cardBg {
+  position: absolute;
+  inset: 4px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+  box-shadow:
+    inset 0px 10px 20px 0px rgba(255, 255, 255, 0.1),
+    inset 0px -10px 20px 0px rgba(0, 0, 0, 0.5);
+}
+
+.cardContent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.iconWrap {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  user-select: none;
+}
+
+.label {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #b3b3b3;
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* ── Animações ───────────────────────────────────────────────── */
+/* sobe: de 0 → -50% (a cópia embaixo é idêntica → seamless) */
+@keyframes scrollUp {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+/* desce: de -50% → 0 (inverso, igualmente seamless) */
+@keyframes scrollDown {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
