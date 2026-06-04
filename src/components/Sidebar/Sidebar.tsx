@@ -1,3 +1,4 @@
+import React from 'react'
 import styles from './Sidebar.module.css'
 
 const imgLogo = 'https://www.figma.com/api/mcp/asset/b24a9ea4-9061-461c-989a-e25d4f6ff2c9'
@@ -108,7 +109,7 @@ const IconInstagram = () => (
 
 type Page = 'home' | 'workspace' | 'projetos' | 'experiencias'
 
-const mainLinks: { label: string; icon: () => JSX.Element; page?: Page }[] = [
+const mainLinks: { label: string; icon: () => React.ReactElement; page?: Page }[] = [
   { label: 'Home', icon: IconHome, page: 'home' },
   { label: 'Workspace', icon: IconWorkspace, page: 'workspace' },
   { label: 'Projetos', icon: IconProjects, page: 'projetos' },

@@ -25,8 +25,6 @@ const img21 = 'https://www.figma.com/api/mcp/asset/cd68e616-dbb5-4075-8cf8-71b10
 const img22 = 'https://www.figma.com/api/mcp/asset/a8d3783c-ad8a-4095-9e00-0449c3c99209'
 const img23 = 'https://www.figma.com/api/mcp/asset/7bb48386-665f-4cb1-8f7f-5883f081826e'
 const img24 = 'https://www.figma.com/api/mcp/asset/b64f6cc0-fb8d-4f01-94aa-9f2b531c1681'
-const img25 = 'https://www.figma.com/api/mcp/asset/575dd7a2-bf64-41ea-8651-b0b3c9163445'
-
 const IconChevron = () => (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
     <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

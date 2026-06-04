@@ -8,7 +8,6 @@ const imgIconFuture  = 'https://www.figma.com/api/mcp/asset/2aa3f0eb-1ac7-4cf5-b
 const imgSparkle     = 'https://www.figma.com/api/mcp/asset/afa72523-0ee8-46e4-9c81-525d262413be'
 const imgArrowOut    = 'https://www.figma.com/api/mcp/asset/d2de173a-f14d-4f79-b352-8d9c111aa02c'
 
-type TagColor = 'default'
 type CardAccent = 'yellow' | 'violet'
 
 function Tag({ label }: { label: string }) {
