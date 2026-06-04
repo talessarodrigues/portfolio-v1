@@ -12,9 +12,10 @@ import { WorkspaceProcess } from './components/WorkspaceProcess/WorkspaceProcess
 import { WorkspaceInsight } from './components/WorkspaceInsight/WorkspaceInsight'
 import { ProjectsHero } from './components/ProjectsHero/ProjectsHero'
 import { ProjectsGrid } from './components/ProjectsGrid/ProjectsGrid'
+import { Experiencias } from './components/Experiencias/Experiencias'
 import './App.css'
 
-type Page = 'home' | 'workspace' | 'projetos'
+type Page = 'home' | 'workspace' | 'projetos' | 'experiencias'
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -133,6 +134,9 @@ function App() {
             <ProjectsGrid />
             <ContactBanner />
           </>
+        )}
+        {currentPage === 'experiencias' && (
+          <Experiencias />
         )}
         {currentPage === 'workspace' && (
           <>
