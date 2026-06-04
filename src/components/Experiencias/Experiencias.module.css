@@ -1,0 +1,461 @@
+/* ── Page wrapper ─────────────────────────────────────────── */
+.page {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #0b0d0e;
+  min-height: 100%;
+}
+
+.bgImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.29;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  z-index: 1;
+  padding: 40px 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 560px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(11, 13, 14, 0.77);
+  border-radius: 60px;
+  padding: 6px 12px;
+  width: fit-content;
+}
+
+.badge span {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #fafafa;
+  white-space: nowrap;
+}
+
+.badgeIcon {
+  width: 16px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 55.2px;
+  letter-spacing: -1.92px;
+  color: #fafafa;
+  margin: 0;
+}
+
+.subtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #d1d5db;
+  margin: 0;
+}
+
+/* ── Timeline section ─────────────────────────────────────── */
+.timelineSection {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  gap: 32px;
+  padding: 24px 40px;
+}
+
+/* ── Left column ──────────────────────────────────────────── */
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── Right column — offset 128px ─────────────────────────── */
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-top: 128px;
+}
+
+/* ── Experience card ──────────────────────────────────────── */
+.expCard {
+  background: #0b0d0e;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 32px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  backdrop-filter: blur(10px);
+  box-shadow: 8px 8px 16px 0px rgba(0, 0, 0, 0.4),
+              -4px -4px 12px 0px rgba(255, 255, 255, 0.02);
+}
+
+.expCardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.expCardIconWrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 32px;
+  background: #131313;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: inset 4px 4px 8px 0px rgba(0, 0, 0, 0.6),
+              inset -2px -2px 6px 0px rgba(255, 255, 255, 0.05);
+}
+
+.expCardIconImg {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+.expCardPeriod {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.period_yellow { color: #fde047; }
+.period_violet { color: #c4b5fd; }
+
+.expCardTitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  color: #e5e2e1;
+  margin: 12px 0 0;
+}
+
+.expCardCompany {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  margin: 0;
+}
+
+.company_yellow { color: #fde047; }
+.company_violet { color: #c4b5fd; }
+
+.expCardTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.tag {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  color: #d0c5af;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  padding: 5px 13px;
+  white-space: nowrap;
+}
+
+.expCardBody {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #d0c5af;
+  margin: 12px 0 0;
+}
+
+/* ── Screenshot card ──────────────────────────────────────── */
+.screenshotCard {
+  border-radius: 32px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  box-shadow: 8px 8px 16px 0px rgba(0, 0, 0, 0.4),
+              -4px -4px 12px 0px rgba(255, 255, 255, 0.02);
+  aspect-ratio: 16 / 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.screenshotImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Future / dashed card ─────────────────────────────────── */
+.futureCard {
+  border-radius: 32px;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  box-shadow: 8px 8px 16px 0px rgba(0, 0, 0, 0.4),
+              -4px -4px 12px 0px rgba(255, 255, 255, 0.02);
+  padding: 49px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.futureIcon {
+  width: 30px;
+  height: 24px;
+  object-fit: contain;
+  margin-bottom: 8px;
+  opacity: 0.7;
+}
+
+.futureTitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #d0c5af;
+  text-align: center;
+}
+
+.futureCompany {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: rgba(208, 197, 175, 0.5);
+  text-align: center;
+}
+
+/* ── Center timeline ──────────────────────────────────────── */
+.centerCol {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 162px;
+}
+
+.timelineLine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.04) 100%);
+  transform: translateX(-50%);
+}
+
+.dotsWrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 192px;
+  padding-top: 48px;
+}
+
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 9999px;
+  border: 2px solid #131313;
+  flex-shrink: 0;
+}
+
+.dotYellow {
+  background: #fde047;
+  box-shadow: 0 0 15px 0px rgba(242, 202, 80, 0.6);
+}
+
+.dotViolet {
+  background: #c4b5fd;
+  box-shadow: 0 0 15px 0px rgba(211, 188, 249, 0.6);
+}
+
+.dotGray {
+  background: #d0c5af;
+  opacity: 0.5;
+}
+
+/* ── Contact CTA ──────────────────────────────────────────── */
+.ctaSection {
+  position: relative;
+  z-index: 1;
+  padding: 0 40px 24px;
+}
+
+.ctaBox {
+  background: #0b0d0e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 48px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.ctaText {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  max-width: 666px;
+}
+
+.ctaTitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 18.4px;
+  letter-spacing: -0.48px;
+  color: #fafafa;
+  margin: 0;
+}
+
+.ctaSubtitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 22.5px;
+  letter-spacing: -0.3px;
+  color: #525252;
+  margin: 0;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(99deg, #c8cbd0 0%, #f4f5f6 100%);
+  border-radius: 10px;
+  padding: 12px 24px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: 0px 0.707px 0.707px -0.583px rgba(0,0,0,0.69),
+              0px 1.807px 1.807px -1.167px rgba(0,0,0,0.68),
+              0px 3.622px 3.622px -1.75px rgba(0,0,0,0.65),
+              0px 6.866px 6.866px -2.333px rgba(0,0,0,0.61),
+              0px 13.647px 13.647px -2.917px rgba(0,0,0,0.52),
+              0px 30px 30px -3.5px rgba(0,0,0,0.3),
+              inset 0px 3px 1px 0px white;
+}
+
+.ctaButton span,
+.ctaButton {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22.4px;
+  color: #0a0a0a;
+}
+
+.ctaButtonIcon {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* ── Mobile ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero {
+    padding: 32px 20px 0;
+  }
+
+  .title {
+    font-size: 32px;
+    line-height: 38px;
+    letter-spacing: -1px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+    line-height: 22.5px;
+  }
+
+  .timelineSection {
+    grid-template-columns: 1fr;
+    padding: 24px 20px;
+    gap: 20px;
+  }
+
+  .centerCol {
+    display: none;
+  }
+
+  .rightCol {
+    padding-top: 0;
+  }
+
+  .ctaSection {
+    padding: 0 20px 24px;
+  }
+
+  .ctaBox {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px 24px;
+  }
+
+  .ctaButton {
+    align-self: stretch;
+    justify-content: center;
+  }
+}
+
+/* ── Tablet ───────────────────────────────────────────────── */
+@media (max-width: 1100px) and (min-width: 769px) {
+  .timelineSection {
+    grid-template-columns: 1fr 60px 1fr;
+    padding: 24px 24px;
+  }
+
+  .title {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  .rightCol {
+    padding-top: 80px;
+  }
+
+  .dotsWrap {
+    gap: 140px;
+  }
+}

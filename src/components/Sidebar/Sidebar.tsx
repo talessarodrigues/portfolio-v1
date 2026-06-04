@@ -106,13 +106,13 @@ const IconInstagram = () => (
 
 // ── Nav data ──────────────────────────────────────────────────
 
-type Page = 'home' | 'workspace'
+type Page = 'home' | 'workspace' | 'projetos' | 'experiencias'
 
 const mainLinks: { label: string; icon: () => JSX.Element; page?: Page }[] = [
   { label: 'Home', icon: IconHome, page: 'home' },
   { label: 'Workspace', icon: IconWorkspace, page: 'workspace' },
-  { label: 'Projetos', icon: IconProjects },
-  { label: 'Experiências', icon: IconExperiences },
+  { label: 'Projetos', icon: IconProjects, page: 'projetos' },
+  { label: 'Experiências', icon: IconExperiences, page: 'experiencias' },
   { label: 'Sobre Mim', icon: IconAbout },
 ]
 
