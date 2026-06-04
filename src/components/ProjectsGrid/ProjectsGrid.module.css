@@ -1,0 +1,258 @@
+.section {
+  padding: 24px 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.container {
+  background: #0b0d0e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.header {
+  padding: 24px 24px 20px;
+}
+
+.headerTitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 18.4px;
+  letter-spacing: -0.48px;
+  color: #ffffff;
+  margin: 0;
+}
+
+/* ── Desktop Grid (4 colunas) ─────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 0 24px 24px;
+}
+
+.carousels {
+  display: none;
+}
+
+/* ── Project card (grid) ──────────────────────────────────── */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 249 / 166;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #1a1a1a;
+}
+
+.imageBlank {
+  background: #f5f5f5;
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.imageBorder {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  border: 1px solid rgba(227, 227, 227, 0.1);
+  pointer-events: none;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.metaTitle {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 14.1px;
+  line-height: 20px;
+  letter-spacing: -0.282px;
+  color: #737373;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.metaDot {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14.1px;
+  line-height: 20px;
+  color: #737373;
+  flex-shrink: 0;
+}
+
+.metaCategory {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14.1px;
+  line-height: 20px;
+  letter-spacing: -0.282px;
+  color: #737373;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Footer ───────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 8px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+}
+
+.footerText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 24px;
+  letter-spacing: -0.259px;
+  color: #737373;
+  white-space: nowrap;
+}
+
+.footerIcon {
+  display: flex;
+  align-items: center;
+  color: #737373;
+}
+
+/* ── Tablet ───────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ── Mobile: 3 marquees automáticos ──────────────────────── */
+@media (max-width: 768px) {
+  .section {
+    padding: 0;
+  }
+
+  .container {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .header {
+    padding: 20px 20px 16px;
+    text-align: center;
+  }
+
+  .grid {
+    display: none;
+  }
+
+  .carousels {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 20px;
+    overflow: hidden; /* contém as animações */
+  }
+
+  /* ── Keyframes ─────────────────────────────────────────── */
+
+  /* large: 10 items × (220px + 12px gap) = 2320px por set */
+  @keyframes scrollLarge {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(-10 * (220px + 12px))); }
+  }
+
+  /* medium: 9 items × (220px + 12px gap) = 2088px por set */
+  @keyframes scrollMedium {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(-9 * (220px + 12px))); }
+  }
+
+  @keyframes scrollLargeReverse {
+    from { transform: translateX(calc(-10 * (220px + 12px))); }
+    to   { transform: translateX(0); }
+  }
+
+  @keyframes scrollMediumReverse {
+    from { transform: translateX(calc(-9 * (220px + 12px))); }
+    to   { transform: translateX(0); }
+  }
+
+  /* ── Outer: overflow hidden por lane ──────────────────── */
+  .marqueeOuter {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  /* ── Inner: track deslizante ─────────────────────────── */
+  .marqueeInner {
+    display: flex;
+    width: max-content;
+  }
+
+  .marqueeLarge {
+    gap: 12px;
+    animation: scrollLarge 65s linear infinite;
+  }
+
+  .marqueeMedium {
+    gap: 12px;
+    animation: scrollMedium 60s linear infinite;
+  }
+
+  .marqueeReverse.marqueeLarge {
+    animation: scrollLargeReverse 65s linear infinite;
+  }
+
+  .marqueeReverse.marqueeMedium {
+    animation: scrollMediumReverse 35s linear infinite;
+  }
+
+  /* ── Cada card do marquee ─────────────────────────────── */
+  .marqueeCard {
+    position: relative;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+
+  .marqueeLarge .marqueeCard {
+    width: 220px;
+    height: 147px; /* 220 × (166/249) */
+  }
+
+  .marqueeMedium .marqueeCard {
+    width: 220px;
+    height: 147px;
+  }
+
+  .marqueeCard.imageBlank {
+    background: #f5f5f5;
+  }
+}
