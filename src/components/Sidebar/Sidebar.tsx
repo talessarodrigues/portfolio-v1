@@ -106,9 +106,11 @@ const IconInstagram = () => (
 
 // ── Nav data ──────────────────────────────────────────────────
 
-const mainLinks = [
-  { label: 'Home', icon: IconHome, active: true },
-  { label: 'Workspace', icon: IconWorkspace },
+type Page = 'home' | 'workspace'
+
+const mainLinks: { label: string; icon: () => JSX.Element; page?: Page }[] = [
+  { label: 'Home', icon: IconHome, page: 'home' },
+  { label: 'Workspace', icon: IconWorkspace, page: 'workspace' },
   { label: 'Projetos', icon: IconProjects },
   { label: 'Experiências', icon: IconExperiences },
   { label: 'Sobre Mim', icon: IconAbout },
@@ -132,9 +134,11 @@ const connectLinks = [
 interface SidebarProps {
   isOpen: boolean
   onClose: () => void
+  currentPage?: Page
+  onNavigate?: (page: Page) => void
 }
 
-export function Sidebar({ isOpen, onClose }: SidebarProps) {
+export function Sidebar({ isOpen, onClose, currentPage = 'home', onNavigate }: SidebarProps) {
   return (
     <>
       {/* Mobile overlay */}
@@ -163,18 +167,28 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <nav className={styles.nav}>
             {/* Main links */}
             <div className={styles.navSection}>
-              {mainLinks.map(({ label, icon: Icon, active }) => (
-                <a
-                  key={label}
-                  href="#"
-                  className={active ? styles.linkActive : styles.linkInactive}
-                >
-                  <span className={active ? styles.iconActive : styles.iconInactive}>
-                    <Icon />
-                  </span>
-                  <span>{label}</span>
-                </a>
-              ))}
+              {mainLinks.map(({ label, icon: Icon, page }) => {
+                const active = page === currentPage
+                return (
+                  <a
+                    key={label}
+                    href="#"
+                    className={active ? styles.linkActive : styles.linkInactive}
+                    onClick={e => {
+                      e.preventDefault()
+                      if (page && onNavigate) {
+                        onNavigate(page)
+                        onClose()
+                      }
+                    }}
+                  >
+                    <span className={active ? styles.iconActive : styles.iconInactive}>
+                      <Icon />
+                    </span>
+                    <span>{label}</span>
+                  </a>
+                )
+              })}
             </div>
 
             {/* Professional */}

@@ -6,10 +6,17 @@ import { MyProcess } from './components/MyProcess/MyProcess'
 import { InfoCards } from './components/InfoCards/InfoCards'
 import { FAQ } from './components/FAQ/FAQ'
 import { ContactBanner } from './components/ContactBanner/ContactBanner'
+import { WorkspaceHero } from './components/WorkspaceHero/WorkspaceHero'
+import { WorkspaceProjects } from './components/WorkspaceProjects/WorkspaceProjects'
+import { WorkspaceProcess } from './components/WorkspaceProcess/WorkspaceProcess'
+import { WorkspaceInsight } from './components/WorkspaceInsight/WorkspaceInsight'
 import './App.css'
+
+type Page = 'home' | 'workspace'
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [currentPage, setCurrentPage] = useState<Page>('home')
 
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 769px)')
@@ -81,7 +88,16 @@ function App() {
 
   return (
     <div className="layout">
-      <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <Sidebar
+          isOpen={sidebarOpen}
+          onClose={() => setSidebarOpen(false)}
+          currentPage={currentPage}
+          onNavigate={page => {
+            setCurrentPage(page)
+            window.scrollTo(0, 0)
+            setTimeout(() => window.dispatchEvent(new Event('scroll')), 50)
+          }}
+        />
 
       <button
         className="menu-toggle"
@@ -95,16 +111,29 @@ function App() {
       </button>
 
       <main className="main-content">
-        <Hero />
-        <div className="content-column">
-          <FeaturedProjects />
-          <div className="cards-row">
-            <MyProcess />
-            <InfoCards />
-          </div>
-          <FAQ />
-          <ContactBanner />
-        </div>
+        {currentPage === 'home' && (
+          <>
+            <Hero />
+            <div className="content-column">
+              <FeaturedProjects />
+              <div className="cards-row">
+                <MyProcess />
+                <InfoCards />
+              </div>
+              <FAQ />
+              <ContactBanner />
+            </div>
+          </>
+        )}
+        {currentPage === 'workspace' && (
+          <>
+            <WorkspaceHero />
+            <WorkspaceProjects />
+            <WorkspaceProcess />
+            <WorkspaceInsight />
+            <ContactBanner />
+          </>
+        )}
       </main>
     </div>
   )

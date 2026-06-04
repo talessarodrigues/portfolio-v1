@@ -49,7 +49,7 @@
 }
 
 .collapseButton {
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   width: 32px;
@@ -254,6 +254,10 @@
 
   .sidebarOpen {
     transform: translateX(0);
+  }
+
+  .collapseButton {
+    display: flex;
   }
 
   /* logo volta ao fluxo normal */
