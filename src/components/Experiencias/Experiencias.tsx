@@ -1,12 +1,11 @@
 import styles from './Experiencias.module.css'
 
-const imgBg          = 'https://www.figma.com/api/mcp/asset/1cd085dd-6dca-40ff-9d60-337b8ccd960c'
-const imgScreenshot  = 'https://www.figma.com/api/mcp/asset/ee5cbd01-a8ef-4a85-8029-0e4f8a341fdf'
-const imgIconRH      = 'https://www.figma.com/api/mcp/asset/fd4146e8-87b6-4316-af1c-b17cfcff6073'
-const imgIconConecta = 'https://www.figma.com/api/mcp/asset/11c46099-5c90-4e77-8d42-b7b8330a75ee'
-const imgIconFuture  = 'https://www.figma.com/api/mcp/asset/2aa3f0eb-1ac7-4cf5-b069-06eca08b67c4'
-const imgSparkle     = 'https://www.figma.com/api/mcp/asset/afa72523-0ee8-46e4-9c81-525d262413be'
-const imgArrowOut    = 'https://www.figma.com/api/mcp/asset/d2de173a-f14d-4f79-b352-8d9c111aa02c'
+const imgScreenshot  = 'https://www.figma.com/api/mcp/asset/d94b88bb-7164-4b77-8fe6-d7cc6255c888'
+const imgIconRH      = 'https://www.figma.com/api/mcp/asset/044a7fd4-f712-4434-83f0-4ced1675655a'
+const imgIconConecta = 'https://www.figma.com/api/mcp/asset/8aab280c-66a5-415a-9fd0-d3dea17b7286'
+const imgIconFuture  = 'https://www.figma.com/api/mcp/asset/6af4e91d-6cae-494a-8e93-020b71f6584b'
+const imgSparkle     = 'https://www.figma.com/api/mcp/asset/54bdd7d3-902a-420b-b0e7-3c3f7c1d3d92'
+const imgArrowOut    = 'https://www.figma.com/api/mcp/asset/f4ed0b8c-ced4-47c2-9537-b93755b7bf50'
 
 type CardAccent = 'yellow' | 'violet'
 
@@ -21,7 +20,8 @@ function ExperienceCard({
   company,
   tags,
   description,
-  accent,
+  periodAccent,
+  companyAccent,
 }: {
   icon: string
   period: string
@@ -29,7 +29,8 @@ function ExperienceCard({
   company: string
   tags: string[]
   description: string
-  accent: CardAccent
+  periodAccent: CardAccent
+  companyAccent: CardAccent
 }) {
   return (
     <div className={styles.expCard}>
@@ -37,10 +38,10 @@ function ExperienceCard({
         <div className={styles.expCardIconWrap}>
           <img src={icon} alt="" className={styles.expCardIconImg} />
         </div>
-        <span className={`${styles.expCardPeriod} ${styles[`period_${accent}`]}`}>{period}</span>
+        <span className={`${styles.expCardPeriod} ${styles[`period_${periodAccent}`]}`}>{period}</span>
       </div>
       <h3 className={styles.expCardTitle}>{title}</h3>
-      <p className={`${styles.expCardCompany} ${styles[`company_${accent}`]}`}>{company}</p>
+      <p className={`${styles.expCardCompany} ${styles[`company_${companyAccent}`]}`}>{company}</p>
       <div className={styles.expCardTags}>
         {tags.map(t => <Tag key={t} label={t} />)}
       </div>
@@ -52,11 +53,9 @@ function ExperienceCard({
 export function Experiencias() {
   return (
     <div className={styles.page}>
-      {/* Background image */}
-      <img src={imgBg} alt="" className={styles.bgImage} />
 
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <div className={styles.hero}>
+      <div className={styles.hero} data-animate data-delay="0">
         <div className={styles.badge}>
           <img src={imgSparkle} alt="" className={styles.badgeIcon} />
           <span>Jornada profissional</span>
@@ -69,54 +68,66 @@ export function Experiencias() {
       </div>
 
       {/* ── Timeline ─────────────────────────────────────────── */}
-      <div className={styles.timelineSection}>
-        {/* Left column */}
-        <div className={styles.leftCol}>
-          <ExperienceCard
-            icon={imgIconRH}
-            period="2026 - Atual"
-            title="UX/UI Lead (voluntário)"
-            company="RHRecruiter"
-            tags={['SAAS', 'DESIGN SYSTEM', 'LEADERSHIP']}
-            description="Liderança do time de design, evolução do Design System e criação de soluções centradas no usuário para plataformas de recrutamento e gestão de pessoas."
-            accent="yellow"
-          />
-          <div className={styles.screenshotCard}>
-            <img src={imgScreenshot} alt="App screenshot" className={styles.screenshotImg} />
+      <div className={styles.timelineOuter}>
+        <div className={styles.timelineSection}>
+          {/* Left column */}
+          <div className={styles.leftCol}>
+            <div data-animate data-delay="1">
+              <ExperienceCard
+                icon={imgIconRH}
+                period="2026 - Atual"
+                title="UX/UI Lead (voluntário)"
+                company="RHRecruiter"
+                tags={['SAAS', 'DESIGN SYSTEM', 'LEADERSHIP']}
+                description="Liderança do time de design, evolução do Design System e criação de soluções centradas no usuário para plataformas de recrutamento e gestão de pessoas."
+                periodAccent="yellow"
+                companyAccent="violet"
+              />
+            </div>
+            <div className={styles.screenshotCard} data-animate data-delay="2">
+              <div className={styles.screenshotInner}>
+                <div className={styles.screenshotImgWrap}>
+                  <img src={imgScreenshot} alt="App screenshot" className={styles.screenshotImg} />
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
 
-        {/* Center timeline */}
-        <div className={styles.centerCol}>
-          <div className={styles.timelineLine} />
-          <div className={styles.dotsWrap}>
-            <span className={`${styles.dot} ${styles.dotYellow}`} />
-            <span className={`${styles.dot} ${styles.dotViolet}`} />
-            <span className={`${styles.dot} ${styles.dotGray}`} />
+          {/* Center timeline */}
+          <div className={styles.centerCol}>
+            <div className={styles.timelineLine} />
+            <div className={styles.dotsWrap}>
+              <span className={`${styles.dot} ${styles.dotYellow}`} />
+              <span className={`${styles.dot} ${styles.dotViolet}`} />
+              <span className={`${styles.dot} ${styles.dotGray}`} />
+            </div>
           </div>
-        </div>
 
-        {/* Right column — offset 128px */}
-        <div className={styles.rightCol}>
-          <ExperienceCard
-            icon={imgIconConecta}
-            period="2026 - Atual"
-            title="Product Designer (voluntário)"
-            company="Conecta 360°"
-            tags={['MOBILE', 'USER RESEARCH', 'PROTOTYPING']}
-            description="Atuação estratégica em Product Design, UX Research e estruturação de plataformas alinhadas à NR-1."
-            accent="violet"
-          />
-          <div className={styles.futureCard}>
-            <img src={imgIconFuture} alt="" className={styles.futureIcon} />
-            <span className={styles.futureTitle}>UX/UI Designer</span>
-            <span className={styles.futureCompany}>Crimsom Mind Tech (2012–2025)</span>
+          {/* Right column — offset 128px */}
+          <div className={styles.rightCol}>
+            <div data-animate data-delay="2">
+              <ExperienceCard
+                icon={imgIconConecta}
+                period="2026 - Atual"
+                title="Product Designer (voluntário)"
+                company="Conecta 360°"
+                tags={['MOBILE', 'USER RESEARCH', 'PROTOTYPING']}
+                description="Atuação estratégica em Product Design, UX Research e estruturação de plataformas alinhadas à NR-1."
+                periodAccent="violet"
+                companyAccent="yellow"
+              />
+            </div>
+            <div className={styles.futureCard} data-animate data-delay="3">
+              <img src={imgIconFuture} alt="" className={styles.futureIcon} />
+              <span className={styles.futureTitle}>UX/UI Designer</span>
+              <span className={styles.futureCompany}>Crimsom Mind Tech (2012–2025)</span>
+            </div>
           </div>
         </div>
       </div>
 
       {/* ── Contact CTA ──────────────────────────────────────── */}
-      <div className={styles.ctaSection}>
+      <div className={styles.ctaSection} data-animate data-delay="4">
         <div className={styles.ctaBox}>
           <div className={styles.ctaText}>
             <h2 className={styles.ctaTitle}>Vamos criar algo incrível juntos?</h2>

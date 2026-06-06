@@ -7,6 +7,25 @@
   margin-left: 240px;
   min-height: 100vh;
   background: #09090c;
+  position: relative;
+}
+
+/* Overlay global do bg — na frente da animação, atrás do conteúdo */
+.main-content::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  left: 240px;
+  background: url('/page-bg.webp') center top / cover no-repeat;
+  opacity: 0.29;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Todo filho direto do main fica acima do overlay de bg, exceto o Hero (section) */
+.main-content > *:not(section) {
+  position: relative;
+  z-index: 2;
 }
 
 /* Coluna centralizada — não inclui a Hero */
@@ -50,6 +69,10 @@
 @media (max-width: 768px) {
   .main-content {
     margin-left: 0;
+  }
+
+  .main-content::after {
+    left: 0;
   }
 
   .menu-toggle {
