@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './Sidebar.module.css'
 
-const imgLogo = 'https://www.figma.com/api/mcp/asset/b24a9ea4-9061-461c-989a-e25d4f6ff2c9'
-const imgArrowDown = 'https://www.figma.com/api/mcp/asset/f324d2ba-0acb-46fd-a6ec-1c2e42dafa5c'
+import imgLogo from '../../assets/sidebar/logo.png'
+import imgArrowDown from '../../assets/sidebar/arrow-down.png'
 
 // ── Icons ─────────────────────────────────────────────────────
 

@@ -1,11 +1,11 @@
 import styles from './Experiencias.module.css'
 
-const imgScreenshot  = 'https://www.figma.com/api/mcp/asset/d94b88bb-7164-4b77-8fe6-d7cc6255c888'
-const imgIconRH      = 'https://www.figma.com/api/mcp/asset/044a7fd4-f712-4434-83f0-4ced1675655a'
-const imgIconConecta = 'https://www.figma.com/api/mcp/asset/8aab280c-66a5-415a-9fd0-d3dea17b7286'
-const imgIconFuture  = 'https://www.figma.com/api/mcp/asset/6af4e91d-6cae-494a-8e93-020b71f6584b'
-const imgSparkle     = 'https://www.figma.com/api/mcp/asset/54bdd7d3-902a-420b-b0e7-3c3f7c1d3d92'
-const imgArrowOut    = 'https://www.figma.com/api/mcp/asset/f4ed0b8c-ced4-47c2-9537-b93755b7bf50'
+import imgScreenshotRH      from '../../assets/exp/screenshot-rh.png'
+import imgScreenshotConecta from '../../assets/exp/screenshot-conecta.png'
+import imgIconRH      from '../../assets/exp/icon-rh.png'
+import imgIconConecta from '../../assets/exp/icon-conecta.png'
+import imgSparkle     from '../../assets/exp/sparkle.png'
+import imgArrowOut    from '../../assets/exp/arrow-out.png'
 
 type CardAccent = 'yellow' | 'violet'
 
@@ -79,7 +79,9 @@ export function Experiencias() {
                 title="UX/UI Lead (voluntário)"
                 company="RHRecruiter"
                 tags={['SAAS', 'DESIGN SYSTEM', 'LEADERSHIP']}
-                description="Liderança do time de design, evolução do Design System e criação de soluções centradas no usuário para plataformas de recrutamento e gestão de pessoas."
+                description={`Atividades: Liderança do time de UX/UI, orientando decisões de design e garantindo consistência no produto. Definição de padrões e evolução do Design System. Atuação em conjunto com times de Produto e Desenvolvimento para alinhamento estratégico e construção de soluções centradas no usuário. Participação em Product Discovery, criação de fluxos, wireframes e interfaces com foco em usabilidade, acessibilidade e escalabilidade. Apoio no desenvolvimento e alinhamento do time de design, promovendo consistência visual e eficiência nos processos.
+
+Resultados: Fortalecimento da consistência visual e da escalabilidade do produto por meio da evolução do Design System. Maior alinhamento entre design, produto e desenvolvimento, contribuindo para decisões mais estratégicas e colaborativas. Melhoria da experiência do usuário através da criação de fluxos mais intuitivos e interfaces acessíveis, aumentando a eficiência e qualidade das entregas.`}
                 periodAccent="yellow"
                 companyAccent="violet"
               />
@@ -87,7 +89,7 @@ export function Experiencias() {
             <div className={styles.screenshotCard} data-animate data-delay="2">
               <div className={styles.screenshotInner}>
                 <div className={styles.screenshotImgWrap}>
-                  <img src={imgScreenshot} alt="App screenshot" className={styles.screenshotImg} />
+                  <img src={imgScreenshotRH} alt="RHRecruiter" className={styles.screenshotImg} />
                 </div>
               </div>
             </div>
@@ -100,6 +102,8 @@ export function Experiencias() {
               <span className={`${styles.dot} ${styles.dotYellow}`} />
               <span className={`${styles.dot} ${styles.dotViolet}`} />
               <span className={`${styles.dot} ${styles.dotGray}`} />
+              <span className={`${styles.dot} ${styles.dotYellow}`} />
+              <span className={`${styles.dot} ${styles.dotViolet}`} />
             </div>
           </div>
 
@@ -110,17 +114,21 @@ export function Experiencias() {
                 icon={imgIconConecta}
                 period="2026 - Atual"
                 title="Product Designer (voluntário)"
-                company="Conecta 360°"
+                company="Conecta 360º"
                 tags={['MOBILE', 'USER RESEARCH', 'PROTOTYPING']}
-                description="Atuação estratégica em Product Design, UX Research e estruturação de plataformas alinhadas à NR-1."
+                description={`Atividades: Atuação end-to-end no desenvolvimento de soluções digitais e estruturais para RH, incluindo sites institucionais e softwares de gestão com foco em NR-1 (riscos psicossociais). Condução de Product Discovery e UX Research para levantamento de requisitos, mapeamento de jornadas (Employee Experience) e definição de fluxos. Estruturação de arquitetura da informação, user flows e interfaces (UX/UI), além da implementação e organização de processos de RH em sistemas (ATS, CRM e plataformas de gestão). Aplicação de Design Thinking e metodologias ágeis para desenvolvimento de soluções alinhadas à legislação e aos objetivos do negócio.
+
+Resultados: Estruturação de soluções digitais e processos de RH mais claros e padronizados, facilitando a gestão de riscos psicossociais conforme NR-1. Melhoria da usabilidade e organização das informações em sistemas e sites, otimizando a experiência do usuário e a tomada de decisão. Redução de retrabalho e aumento da eficiência operacional por meio da definição de fluxos e processos estruturados.`}
                 periodAccent="violet"
                 companyAccent="yellow"
               />
             </div>
-            <div className={styles.futureCard} data-animate data-delay="3">
-              <img src={imgIconFuture} alt="" className={styles.futureIcon} />
-              <span className={styles.futureTitle}>UX/UI Designer</span>
-              <span className={styles.futureCompany}>Crimsom Mind Tech (2012–2025)</span>
+            <div className={styles.screenshotCard} data-animate data-delay="3">
+              <div className={styles.screenshotInner}>
+                <div className={styles.screenshotImgWrap}>
+                  <img src={imgScreenshotConecta} alt="Conecta 360º" className={styles.screenshotImg} />
+                </div>
+              </div>
             </div>
           </div>
         </div>

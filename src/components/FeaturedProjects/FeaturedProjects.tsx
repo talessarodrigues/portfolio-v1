@@ -1,9 +1,9 @@
 import styles from './FeaturedProjects.module.css'
 
-const imgEccomerce = 'https://www.figma.com/api/mcp/asset/6e26a836-52b4-4c6b-9d97-44399b4058bb'
-const imgSoftwareNR1 = 'https://www.figma.com/api/mcp/asset/687fa501-2f07-48f9-988c-4e0b55ecec07'
-const imgDashboard = 'https://www.figma.com/api/mcp/asset/5e46ff25-2383-45c5-81d8-d0da72964dad'
-const imgPortfolio = 'https://www.figma.com/api/mcp/asset/03782ce2-2037-4faf-a3a1-49c825f83916'
+import imgEccomerce from '../../assets/projetos/img00.png'
+import imgSoftwareNR1 from '../../assets/projetos/img01.png'
+import imgDashboard from '../../assets/projetos/img02.png'
+import imgPortfolio from '../../assets/projetos/img05.png'
 
 const projects = [
   { image: imgEccomerce, title: 'Eccomerce Website', status: 'Em breve' },

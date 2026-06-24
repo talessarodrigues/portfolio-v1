@@ -1,7 +1,7 @@
 import styles from './WorkspaceProjects.module.css'
 
-const imgDashboardRH = 'https://www.figma.com/api/mcp/asset/e5b6500a-d1e0-4d67-90ca-9f179cdebde3'
-const imgPlataformaNR1 = 'https://www.figma.com/api/mcp/asset/fa6e0ada-cb1a-45c7-8ada-a369bdec0bda'
+import imgDashboardRH from '../../assets/info/avatar-rhd.png'
+import imgPlataformaNR1 from '../../assets/projetos/img01.png'
 
 const IconArrow = () => (
   <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
