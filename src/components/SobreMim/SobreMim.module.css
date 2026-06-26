@@ -10,8 +10,10 @@
 
 /* ── About card ───────────────────────────────────────────── */
 .aboutWrap {
+  flex: 1;
   padding: 40px;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
@@ -29,7 +31,7 @@
 }
 
 .photoCol {
-  flex: 1 0 0;
+  flex: 1.2 0 0;
   min-width: 0;
   border-radius: 12px;
   overflow: hidden;
