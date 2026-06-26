@@ -1,13 +1,17 @@
 import styles from './Experiencias.module.css'
 
-import imgScreenshotRH      from '../../assets/exp/screenshot-rh.png'
-import imgScreenshotConecta from '../../assets/exp/screenshot-conecta.png'
+import imgScreenshotRH           from '../../assets/exp/screenshot-rh.png'
+import imgScreenshotConecta      from '../../assets/exp/screenshot-conecta.png'
+import imgScreenshotCashControl  from '../../assets/exp/screenshot-cashcontrol.png'
+import imgScreenshotDesignSystem from '../../assets/exp/screenshot-designsystem.png'
+import imgIconFEF                from '../../assets/exp/icon-fef.png'
+import imgIconCrimsom            from '../../assets/exp/icon-crimsom.png'
 import imgIconRH      from '../../assets/exp/icon-rh.png'
 import imgIconConecta from '../../assets/exp/icon-conecta.png'
 import imgSparkle     from '../../assets/exp/sparkle.png'
 import imgArrowOut    from '../../assets/exp/arrow-out.png'
 
-type CardAccent = 'yellow' | 'violet'
+type CardAccent = 'yellow' | 'violet' | 'blue' | 'red'
 
 function Tag({ label }: { label: string }) {
   return <span className={styles.tag}>{label}</span>
@@ -93,6 +97,27 @@ Resultados: Fortalecimento da consistência visual e da escalabilidade do produt
                 </div>
               </div>
             </div>
+            <div data-animate data-delay="3">
+              <ExperienceCard
+                icon={imgIconFEF}
+                period="2025 - Atual"
+                title="UX/UI Designer (voluntário)"
+                company="Front End Fusion"
+                tags={['SAAS', 'DESIGN SYSTEM', 'LEADERSHIP']}
+                description={`Atividades: Atuação em Product Design end-to-end, desde Product Discovery até Delivery, com criação de interfaces para sites, aplicações e dashboards focadas em UX/UI e usabilidade. Estruturação de arquitetura da informação, user flows e jornadas do usuário, garantindo clareza na navegação. Desenvolvimento e manutenção de Design System com componentes reutilizáveis no Figma, promovendo consistência visual e escalabilidade. Colaboração com desenvolvedores em ambiente ágil, alinhando decisões de design à viabilidade técnica. Realização de melhorias contínuas nas interfaces com base em feedbacks e boas práticas de UX.
+
+Resultados: Melhoria da usabilidade e fluidez das interfaces por meio da otimização de fluxos e arquitetura da informação. Aumento da consistência visual entre produtos com a aplicação de Design System. Redução de retrabalho na interface devido ao alinhamento entre design e desenvolvimento. Evolução contínua das soluções com base em feedbacks, tornando as entregas mais eficientes e alinhadas ao usuário.`}
+                periodAccent="yellow"
+                companyAccent="blue"
+              />
+            </div>
+            <div className={styles.screenshotCard} data-animate data-delay="4">
+              <div className={styles.screenshotInner}>
+                <div className={styles.screenshotImgWrap}>
+                  <img src={imgScreenshotDesignSystem} alt="Design System" className={styles.screenshotImg} style={{ objectPosition: 'center center' }} />
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Center timeline */}
@@ -127,6 +152,27 @@ Resultados: Estruturação de soluções digitais e processos de RH mais claros 
               <div className={styles.screenshotInner}>
                 <div className={styles.screenshotImgWrap}>
                   <img src={imgScreenshotConecta} alt="Conecta 360º" className={styles.screenshotImg} />
+                </div>
+              </div>
+            </div>
+            <div data-animate data-delay="4">
+              <ExperienceCard
+                icon={imgIconCrimsom}
+                period="2026 - Atual"
+                title="UX/UI Designer"
+                company="Crimsom Mind Tech"
+                tags={['MOBILE', 'USER RESEARCH', 'PROTOTYPING']}
+                description={`Atividades: Atuação em Product Design end-to-end, desde análise de requisitos e regras de negócio até entrega de soluções em UX/UI para Web e Mobile. Tradução de demandas técnicas em interfaces centradas no usuário, com estruturação de arquitetura da informação, user flows e jornadas. Criação e evolução de Design System com componentização para garantir escalabilidade e consistência visual. Organização de documentação e arquivos de design, facilitando colaboração entre times. Realização de design reviews e melhorias contínuas com base em feedbacks e boas práticas de usabilidade.
+
+Resultados: Melhoria da usabilidade e redução de fricções na navegação por meio da otimização de fluxos e interfaces. Aumento da consistência visual e eficiência no desenvolvimento com a implementação de Design System. Redução de retrabalho e maior alinhamento entre design e tecnologia devido à padronização e documentação. Evolução contínua da experiência do usuário, tornando as entregas mais claras, funcionais e alinhadas aos objetivos do produto.`}
+                periodAccent="violet"
+                companyAccent="red"
+              />
+            </div>
+            <div className={styles.screenshotCard} data-animate data-delay="5">
+              <div className={styles.screenshotInner}>
+                <div className={styles.screenshotImgWrap}>
+                  <img src={imgScreenshotCashControl} alt="Cash Control" className={styles.screenshotImg} />
                 </div>
               </div>
             </div>

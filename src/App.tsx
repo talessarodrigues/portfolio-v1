@@ -13,9 +13,12 @@ import { WorkspaceInsight } from './components/WorkspaceInsight/WorkspaceInsight
 import { ProjectsHero } from './components/ProjectsHero/ProjectsHero'
 import { ProjectsGrid } from './components/ProjectsGrid/ProjectsGrid'
 import { Experiencias } from './components/Experiencias/Experiencias'
+import { SobreMim } from './components/SobreMim/SobreMim'
+import { Skills } from './components/Skills/Skills'
+import { Processos } from './components/Processos/Processos'
 import './App.css'
 
-type Page = 'home' | 'workspace' | 'projetos' | 'experiencias'
+type Page = 'home' | 'workspace' | 'projetos' | 'experiencias' | 'sobre' | 'skills' | 'processos'
 
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
@@ -137,6 +140,15 @@ function App() {
         )}
         {currentPage === 'experiencias' && (
           <Experiencias />
+        )}
+        {currentPage === 'sobre' && (
+          <SobreMim />
+        )}
+        {currentPage === 'skills' && (
+          <Skills />
+        )}
+        {currentPage === 'processos' && (
+          <Processos />
         )}
         {currentPage === 'workspace' && (
           <>

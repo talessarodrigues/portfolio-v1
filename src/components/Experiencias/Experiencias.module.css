@@ -145,6 +145,8 @@
 
 .period_yellow { color: #fde047; }
 .period_violet { color: #c4b5fd; }
+.period_blue   { color: #93c5fd; }
+.period_red    { color: #fca5a5; }
 
 .expCardTitle {
   font-family: 'Inter', sans-serif;
@@ -165,6 +167,8 @@
 
 .company_yellow { color: #fde047; }
 .company_violet { color: #c4b5fd; }
+.company_blue   { color: #2563eb; }
+.company_red    { color: #f20800; }
 
 .expCardTags {
   display: flex;
