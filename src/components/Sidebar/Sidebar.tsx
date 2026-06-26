@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './Sidebar.module.css'
 
-const imgLogo = 'https://www.figma.com/api/mcp/asset/b24a9ea4-9061-461c-989a-e25d4f6ff2c9'
-const imgArrowDown = 'https://www.figma.com/api/mcp/asset/f324d2ba-0acb-46fd-a6ec-1c2e42dafa5c'
+import imgLogo from '../../assets/sidebar/logo.png'
+import imgArrowDown from '../../assets/sidebar/arrow-down.png'
 
 // ── Icons ─────────────────────────────────────────────────────
 
@@ -63,13 +63,6 @@ const IconProcess = () => (
   </svg>
 )
 
-const IconTools = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-    <rect x="3" y="5" width="18" height="4" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-    <rect x="3" y="11" width="18" height="4" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-    <rect x="3" y="17" width="18" height="2" rx="1" stroke="currentColor" strokeWidth="1.5"/>
-  </svg>
-)
 
 const IconContact = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -107,27 +100,26 @@ const IconInstagram = () => (
 
 // ── Nav data ──────────────────────────────────────────────────
 
-type Page = 'home' | 'workspace' | 'projetos' | 'experiencias'
+type Page = 'home' | 'workspace' | 'projetos' | 'experiencias' | 'sobre' | 'skills' | 'processos'
 
 const mainLinks: { label: string; icon: () => React.ReactElement; page?: Page }[] = [
   { label: 'Home', icon: IconHome, page: 'home' },
   { label: 'Workspace', icon: IconWorkspace, page: 'workspace' },
   { label: 'Projetos', icon: IconProjects, page: 'projetos' },
   { label: 'Experiências', icon: IconExperiences, page: 'experiencias' },
-  { label: 'Sobre Mim', icon: IconAbout },
+  { label: 'Sobre Mim', icon: IconAbout, page: 'sobre' },
 ]
 
-const professionalLinks = [
-  { label: 'Skills', icon: IconSkills },
-  { label: 'Processo', icon: IconProcess },
-  { label: 'Ferramentas', icon: IconTools },
+const professionalLinks: { label: string; icon: () => React.ReactElement; page?: Page }[] = [
+  { label: 'Skills', icon: IconSkills, page: 'skills' },
+  { label: 'Processo', icon: IconProcess, page: 'processos' },
 ]
 
 const connectLinks = [
-  { label: 'Contato', icon: IconContact },
-  { label: 'Behance', icon: IconBehance },
-  { label: 'LinkedIn', icon: IconLinkedIn },
-  { label: 'Instagram', icon: IconInstagram },
+  { label: 'Contato', icon: IconContact, href: '#' },
+  { label: 'Behance', icon: IconBehance, href: '#' },
+  { label: 'LinkedIn', icon: IconLinkedIn, href: 'https://www.linkedin.com/in/talessamayara/' },
+  { label: 'Instagram', icon: IconInstagram, href: 'https://www.instagram.com/talessamayara/' },
 ]
 
 // ── Component ─────────────────────────────────────────────────
@@ -196,12 +188,26 @@ export function Sidebar({ isOpen, onClose, currentPage = 'home', onNavigate }: S
             <div className={styles.navSection}>
               <span className={styles.sectionLabel}>PROFISSIONAL</span>
               <div className={styles.sectionLinks}>
-                {professionalLinks.map(({ label, icon: Icon }) => (
-                  <a key={label} href="#" className={styles.linkInactive}>
-                    <span className={styles.iconInactive}><Icon /></span>
-                    <span>{label}</span>
-                  </a>
-                ))}
+                {professionalLinks.map(({ label, icon: Icon, page }) => {
+                  const active = page === currentPage
+                  return (
+                    <a
+                      key={label}
+                      href="#"
+                      className={active ? styles.linkActive : styles.linkInactive}
+                      onClick={e => {
+                        e.preventDefault()
+                        if (page && onNavigate) {
+                          onNavigate(page)
+                          onClose()
+                        }
+                      }}
+                    >
+                      <span className={active ? styles.iconActive : styles.iconInactive}><Icon /></span>
+                      <span>{label}</span>
+                    </a>
+                  )
+                })}
               </div>
             </div>
 
@@ -209,8 +215,10 @@ export function Sidebar({ isOpen, onClose, currentPage = 'home', onNavigate }: S
             <div className={styles.navSection}>
               <span className={styles.sectionLabel}>CONECTE-SE COMIGO</span>
               <div className={styles.sectionLinks}>
-                {connectLinks.map(({ label, icon: Icon }) => (
-                  <a key={label} href="#" className={styles.linkInactive}>
+                {connectLinks.map(({ label, icon: Icon, href }) => (
+                  <a key={label} href={href} className={styles.linkInactive}
+                    target={href !== '#' ? '_blank' : undefined}
+                    rel={href !== '#' ? 'noopener noreferrer' : undefined}>
                     <span className={styles.iconInactive}><Icon /></span>
                     <span>{label}</span>
                   </a>

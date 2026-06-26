@@ -1,13 +1,17 @@
 import styles from './Experiencias.module.css'
 
-const imgScreenshot  = 'https://www.figma.com/api/mcp/asset/d94b88bb-7164-4b77-8fe6-d7cc6255c888'
-const imgIconRH      = 'https://www.figma.com/api/mcp/asset/044a7fd4-f712-4434-83f0-4ced1675655a'
-const imgIconConecta = 'https://www.figma.com/api/mcp/asset/8aab280c-66a5-415a-9fd0-d3dea17b7286'
-const imgIconFuture  = 'https://www.figma.com/api/mcp/asset/6af4e91d-6cae-494a-8e93-020b71f6584b'
-const imgSparkle     = 'https://www.figma.com/api/mcp/asset/54bdd7d3-902a-420b-b0e7-3c3f7c1d3d92'
-const imgArrowOut    = 'https://www.figma.com/api/mcp/asset/f4ed0b8c-ced4-47c2-9537-b93755b7bf50'
+import imgScreenshotRH           from '../../assets/exp/screenshot-rh.png'
+import imgScreenshotConecta      from '../../assets/exp/screenshot-conecta.png'
+import imgScreenshotCashControl  from '../../assets/exp/screenshot-cashcontrol.png'
+import imgScreenshotDesignSystem from '../../assets/exp/screenshot-designsystem.png'
+import imgIconFEF                from '../../assets/exp/icon-fef.png'
+import imgIconCrimsom            from '../../assets/exp/icon-crimsom.png'
+import imgIconRH      from '../../assets/exp/icon-rh.png'
+import imgIconConecta from '../../assets/exp/icon-conecta.png'
+import imgSparkle     from '../../assets/exp/sparkle.png'
+import imgArrowOut    from '../../assets/exp/arrow-out.png'
 
-type CardAccent = 'yellow' | 'violet'
+type CardAccent = 'yellow' | 'violet' | 'blue' | 'red'
 
 function Tag({ label }: { label: string }) {
   return <span className={styles.tag}>{label}</span>
@@ -79,7 +83,9 @@ export function Experiencias() {
                 title="UX/UI Lead (voluntário)"
                 company="RHRecruiter"
                 tags={['SAAS', 'DESIGN SYSTEM', 'LEADERSHIP']}
-                description="Liderança do time de design, evolução do Design System e criação de soluções centradas no usuário para plataformas de recrutamento e gestão de pessoas."
+                description={`Atividades: Liderança do time de UX/UI, orientando decisões de design e garantindo consistência no produto. Definição de padrões e evolução do Design System. Atuação em conjunto com times de Produto e Desenvolvimento para alinhamento estratégico e construção de soluções centradas no usuário. Participação em Product Discovery, criação de fluxos, wireframes e interfaces com foco em usabilidade, acessibilidade e escalabilidade. Apoio no desenvolvimento e alinhamento do time de design, promovendo consistência visual e eficiência nos processos.
+
+Resultados: Fortalecimento da consistência visual e da escalabilidade do produto por meio da evolução do Design System. Maior alinhamento entre design, produto e desenvolvimento, contribuindo para decisões mais estratégicas e colaborativas. Melhoria da experiência do usuário através da criação de fluxos mais intuitivos e interfaces acessíveis, aumentando a eficiência e qualidade das entregas.`}
                 periodAccent="yellow"
                 companyAccent="violet"
               />
@@ -87,7 +93,28 @@ export function Experiencias() {
             <div className={styles.screenshotCard} data-animate data-delay="2">
               <div className={styles.screenshotInner}>
                 <div className={styles.screenshotImgWrap}>
-                  <img src={imgScreenshot} alt="App screenshot" className={styles.screenshotImg} />
+                  <img src={imgScreenshotRH} alt="RHRecruiter" className={styles.screenshotImg} />
+                </div>
+              </div>
+            </div>
+            <div data-animate data-delay="3">
+              <ExperienceCard
+                icon={imgIconFEF}
+                period="2025 - Atual"
+                title="UX/UI Designer (voluntário)"
+                company="Front End Fusion"
+                tags={['SAAS', 'DESIGN SYSTEM', 'LEADERSHIP']}
+                description={`Atividades: Atuação em Product Design end-to-end, desde Product Discovery até Delivery, com criação de interfaces para sites, aplicações e dashboards focadas em UX/UI e usabilidade. Estruturação de arquitetura da informação, user flows e jornadas do usuário, garantindo clareza na navegação. Desenvolvimento e manutenção de Design System com componentes reutilizáveis no Figma, promovendo consistência visual e escalabilidade. Colaboração com desenvolvedores em ambiente ágil, alinhando decisões de design à viabilidade técnica. Realização de melhorias contínuas nas interfaces com base em feedbacks e boas práticas de UX.
+
+Resultados: Melhoria da usabilidade e fluidez das interfaces por meio da otimização de fluxos e arquitetura da informação. Aumento da consistência visual entre produtos com a aplicação de Design System. Redução de retrabalho na interface devido ao alinhamento entre design e desenvolvimento. Evolução contínua das soluções com base em feedbacks, tornando as entregas mais eficientes e alinhadas ao usuário.`}
+                periodAccent="yellow"
+                companyAccent="blue"
+              />
+            </div>
+            <div className={styles.screenshotCard} data-animate data-delay="4">
+              <div className={styles.screenshotInner}>
+                <div className={styles.screenshotImgWrap}>
+                  <img src={imgScreenshotDesignSystem} alt="Design System" className={styles.screenshotImg} style={{ objectPosition: 'center center' }} />
                 </div>
               </div>
             </div>
@@ -100,6 +127,8 @@ export function Experiencias() {
               <span className={`${styles.dot} ${styles.dotYellow}`} />
               <span className={`${styles.dot} ${styles.dotViolet}`} />
               <span className={`${styles.dot} ${styles.dotGray}`} />
+              <span className={`${styles.dot} ${styles.dotYellow}`} />
+              <span className={`${styles.dot} ${styles.dotViolet}`} />
             </div>
           </div>
 
@@ -110,17 +139,42 @@ export function Experiencias() {
                 icon={imgIconConecta}
                 period="2026 - Atual"
                 title="Product Designer (voluntário)"
-                company="Conecta 360°"
+                company="Conecta 360º"
                 tags={['MOBILE', 'USER RESEARCH', 'PROTOTYPING']}
-                description="Atuação estratégica em Product Design, UX Research e estruturação de plataformas alinhadas à NR-1."
+                description={`Atividades: Atuação end-to-end no desenvolvimento de soluções digitais e estruturais para RH, incluindo sites institucionais e softwares de gestão com foco em NR-1 (riscos psicossociais). Condução de Product Discovery e UX Research para levantamento de requisitos, mapeamento de jornadas (Employee Experience) e definição de fluxos. Estruturação de arquitetura da informação, user flows e interfaces (UX/UI), além da implementação e organização de processos de RH em sistemas (ATS, CRM e plataformas de gestão). Aplicação de Design Thinking e metodologias ágeis para desenvolvimento de soluções alinhadas à legislação e aos objetivos do negócio.
+
+Resultados: Estruturação de soluções digitais e processos de RH mais claros e padronizados, facilitando a gestão de riscos psicossociais conforme NR-1. Melhoria da usabilidade e organização das informações em sistemas e sites, otimizando a experiência do usuário e a tomada de decisão. Redução de retrabalho e aumento da eficiência operacional por meio da definição de fluxos e processos estruturados.`}
                 periodAccent="violet"
                 companyAccent="yellow"
               />
             </div>
-            <div className={styles.futureCard} data-animate data-delay="3">
-              <img src={imgIconFuture} alt="" className={styles.futureIcon} />
-              <span className={styles.futureTitle}>UX/UI Designer</span>
-              <span className={styles.futureCompany}>Crimsom Mind Tech (2012–2025)</span>
+            <div className={styles.screenshotCard} data-animate data-delay="3">
+              <div className={styles.screenshotInner}>
+                <div className={styles.screenshotImgWrap}>
+                  <img src={imgScreenshotConecta} alt="Conecta 360º" className={styles.screenshotImg} />
+                </div>
+              </div>
+            </div>
+            <div data-animate data-delay="4">
+              <ExperienceCard
+                icon={imgIconCrimsom}
+                period="2026 - Atual"
+                title="UX/UI Designer"
+                company="Crimsom Mind Tech"
+                tags={['MOBILE', 'USER RESEARCH', 'PROTOTYPING']}
+                description={`Atividades: Atuação em Product Design end-to-end, desde análise de requisitos e regras de negócio até entrega de soluções em UX/UI para Web e Mobile. Tradução de demandas técnicas em interfaces centradas no usuário, com estruturação de arquitetura da informação, user flows e jornadas. Criação e evolução de Design System com componentização para garantir escalabilidade e consistência visual. Organização de documentação e arquivos de design, facilitando colaboração entre times. Realização de design reviews e melhorias contínuas com base em feedbacks e boas práticas de usabilidade.
+
+Resultados: Melhoria da usabilidade e redução de fricções na navegação por meio da otimização de fluxos e interfaces. Aumento da consistência visual e eficiência no desenvolvimento com a implementação de Design System. Redução de retrabalho e maior alinhamento entre design e tecnologia devido à padronização e documentação. Evolução contínua da experiência do usuário, tornando as entregas mais claras, funcionais e alinhadas aos objetivos do produto.`}
+                periodAccent="violet"
+                companyAccent="red"
+              />
+            </div>
+            <div className={styles.screenshotCard} data-animate data-delay="5">
+              <div className={styles.screenshotInner}>
+                <div className={styles.screenshotImgWrap}>
+                  <img src={imgScreenshotCashControl} alt="Cash Control" className={styles.screenshotImg} />
+                </div>
+              </div>
             </div>
           </div>
         </div>

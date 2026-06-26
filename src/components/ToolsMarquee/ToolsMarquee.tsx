@@ -1,14 +1,23 @@
 import styles from './ToolsMarquee.module.css'
 
+import toolFigma from '../../assets/tools/figma.png'
+import toolMiro from '../../assets/tools/miro.png'
+import toolChatgpt from '../../assets/tools/chatgpt.png'
+import toolFreepik from '../../assets/tools/freepik.png'
+import toolNotion from '../../assets/tools/notion.png'
+import toolPhotoshop from '../../assets/tools/photoshop.png'
+import toolMaze from '../../assets/tools/maze.png'
+import toolFramer from '../../assets/tools/framer.png'
+
 export const toolIcons = [
-  { src: 'https://www.figma.com/api/mcp/asset/034d62aa-9dff-401b-832c-212defd480f4', radius: 16,  whiteBg: false },
-  { src: 'https://www.figma.com/api/mcp/asset/1b300c65-580c-4a94-8106-86b57d4fd4dc', radius: 16,  whiteBg: false },
-  { src: 'https://www.figma.com/api/mcp/asset/79fc079c-cef3-4b90-ab09-b7321d17f9b6', radius: 22,  whiteBg: false },
-  { src: 'https://www.figma.com/api/mcp/asset/5349c451-4a35-472b-a9d2-ec3136599248', radius: 16,  whiteBg: false },
-  { src: 'https://www.figma.com/api/mcp/asset/5b463e39-4aa6-4ce2-ae86-dd9105bdf06a', radius: 16,  whiteBg: false },
-  { src: 'https://www.figma.com/api/mcp/asset/03cc9026-393e-47c4-8e75-31cc0d5458bc', radius: 16,  whiteBg: false },
-  { src: 'https://www.figma.com/api/mcp/asset/cebbe88f-8502-4761-b645-f01d9bb456fa', radius: 16,  whiteBg: true  },
-  { src: 'https://www.figma.com/api/mcp/asset/b7c92181-a43a-4cb6-bfaf-b8f04f996b89', radius: 16,  whiteBg: false },
+  { src: toolFigma,     radius: 16,  whiteBg: false },
+  { src: toolMiro,      radius: 16,  whiteBg: false },
+  { src: toolChatgpt,   radius: 22,  whiteBg: false },
+  { src: toolFreepik,   radius: 16,  whiteBg: false },
+  { src: toolNotion,    radius: 16,  whiteBg: false },
+  { src: toolPhotoshop, radius: 16,  whiteBg: false },
+  { src: toolMaze,      radius: 16,  whiteBg: true  },
+  { src: toolFramer,    radius: 16,  whiteBg: false },
 ]
 
 function seededShuffle<T>(arr: T[], seed: number): T[] {

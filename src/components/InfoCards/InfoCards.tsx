@@ -1,6 +1,10 @@
 import styles from './InfoCards.module.css'
 import { toolIcons, MarqueeRow } from '../ToolsMarquee/ToolsMarquee'
 
+import imgAvatarNR1 from '../../assets/info/avatar-nr1.png'
+import imgAvatarGabbi from '../../assets/info/avatar-gabbi.png'
+import imgAvatarRHD from '../../assets/info/avatar-rhd.png'
+
 // ── About Me icons ────────────────────────────────────────────
 const IconBriefcase = () => (
   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -38,17 +42,17 @@ const IconChevronRight = () => (
 // ── Working on — project data ─────────────────────────────────
 const projects = [
   {
-    img: 'https://www.figma.com/api/mcp/asset/e538277a-042b-4752-9677-36b276d3314c',
+    img: imgAvatarNR1,
     title: 'Plataforma NR-1',
     subtitle: 'Sistema completo de gestão',
   },
   {
-    img: 'https://www.figma.com/api/mcp/asset/29de9d8a-8e9f-40b0-8dae-4caef43f271b',
+    img: imgAvatarGabbi,
     title: 'Gabbi Ferretti',
     subtitle: 'Eccomerce BR/EUA',
   },
   {
-    img: 'https://www.figma.com/api/mcp/asset/dad522ea-afab-4999-ac64-413abddc98be',
+    img: imgAvatarRHD,
     title: 'RHDPeople',
     subtitle: 'Landing Page',
   },
