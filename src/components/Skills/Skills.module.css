@@ -10,10 +10,12 @@
 
 /* ── Hero ─────────────────────────────────────────────────── */
 .hero {
-  padding: 40px 40px 0;
+  padding: 40px 40px 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  position: relative;
+  z-index: 2;
 }
 
 .badge {
@@ -43,9 +45,9 @@
 .title {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
-  font-size: 36px;
-  line-height: 42px;
-  letter-spacing: -1.2px;
+  font-size: 48px;
+  line-height: 55.2px;
+  letter-spacing: -1.92px;
   color: #fafafa;
   margin: 0;
 }
@@ -53,8 +55,8 @@
 .subtitle {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
+  font-size: 18px;
+  line-height: 27px;
   color: #9ca3af;
   margin: 0;
   max-width: 540px;
@@ -65,7 +67,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  padding: 32px 40px;
+  padding: 24px 40px;
 }
 
 .card {
@@ -434,7 +436,7 @@
 
 @media (max-width: 768px) {
   .hero {
-    padding: 32px 20px 0;
+    padding: 32px 20px 24px;
   }
 
   .title {

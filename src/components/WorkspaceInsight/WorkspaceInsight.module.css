@@ -1,17 +1,20 @@
 .section {
   display: flex;
   flex-direction: row;
+  align-items: stretch;
   gap: 12px;
   padding: 24px 40px;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
+  z-index: 2;
 }
 
 /* ── Card ─────────────────────────────────────────────────── */
 .card {
   flex: 1;
   min-width: 0;
-  height: 363px;
+  height: 315px;
   background: #0b0d0e;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
@@ -22,7 +25,7 @@
 }
 
 .cardHeader {
-  padding: 24px 24px 0;
+  padding: 24px 24px 24px;
   flex-shrink: 0;
 }
 
@@ -41,7 +44,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 24px 24px 24px;
+  padding: 8px 24px 24px;
   flex: 1;
   justify-content: flex-start;
 }
@@ -49,9 +52,9 @@
 .quoteText {
   font-family: 'Inter', sans-serif;
   font-weight: 600;
-  font-size: 32px;
-  line-height: 40px;
-  letter-spacing: -0.64px;
+  font-size: 38px;
+  line-height: 48px;
+  letter-spacing: -0.9px;
   color: #e5e2e1;
   margin: 0;
 }

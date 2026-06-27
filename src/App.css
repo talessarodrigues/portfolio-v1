@@ -6,7 +6,7 @@
 .main-content {
   margin-left: 240px;
   min-height: 100vh;
-  background: #09090c;
+  background: #0b0d0e;
   position: relative;
 }
 
@@ -26,12 +26,6 @@
 .main-content > *:not(section) {
   position: relative;
   z-index: 2;
-}
-
-/* Coluna centralizada — não inclui a Hero */
-.content-column {
-  max-width: 1440px;
-  margin: 0 auto;
 }
 
 /* ── Hamburger button (mobile only) ─────────────────────────── */

@@ -12,7 +12,7 @@
 .hero {
   position: relative;
   z-index: 1;
-  padding: 40px 40px 0;
+  padding: 40px 40px 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -57,7 +57,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
-  color: #d1d5db;
+  color: #9ca3af;
   margin: 0;
   max-width: 506px;
 }
@@ -76,9 +76,7 @@
   grid-template-columns: minmax(0, 1fr) 80px minmax(0, 1fr);
   align-items: start;
   gap: 32px;
-  max-width: 1114px;
   width: 100%;
-  margin: 0 auto;
 }
 
 /* ── Left column ──────────────────────────────────────────── */
@@ -99,8 +97,8 @@
 /* ── Experience card ──────────────────────────────────────── */
 .expCard {
   background: #0b0d0e;
-  border: 1px solid #ffffff;
-  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
   padding: 25px;
   display: flex;
   flex-direction: column;
@@ -153,7 +151,7 @@
   font-weight: 500;
   font-size: 24px;
   line-height: 32px;
-  color: #e5e2e1;
+  color: #fafafa;
   margin: 12px 0 0;
 }
 
@@ -162,6 +160,7 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
+  color: #9ca3af;
   margin: 0;
 }
 
@@ -197,7 +196,7 @@
   font-weight: 400;
   font-size: 16px;
   line-height: 24px;
-  color: #d0c5af;
+  color: rgba(255, 255, 255, 0.8);
   margin: 12px 0 0;
   white-space: pre-line;
 }
@@ -411,10 +410,6 @@
 
   .centerCol {
     display: none;
-  }
-
-  .rightCol {
-    padding-top: 0;
   }
 
   .ctaSection {

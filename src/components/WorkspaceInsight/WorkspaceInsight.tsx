@@ -43,7 +43,7 @@ export function WorkspaceInsight() {
             Design não é só sobre como algo parece, mas sobre como{' '}
             <span className={styles.highlight}>funciona</span>
             {' '}e como faz o usuário{' '}
-            <span className={styles.highlight}>se sentir.</span>
+            <span className={styles.highlight}>se sentir."</span>
           </p>
         </div>
       </div>

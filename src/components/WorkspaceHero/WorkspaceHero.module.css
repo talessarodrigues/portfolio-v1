@@ -1,8 +1,7 @@
 .hero {
   position: relative;
   width: 100%;
-  min-height: 300px;
-  background: #09090c;
+  background: #0b0d0e;
   overflow: hidden;
 }
 
@@ -21,14 +20,12 @@
 
 .inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 12px;
-  padding: 40px 40px 48px;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 40px 40px 24px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -74,7 +71,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
-  color: #d1d5db;
+  color: #9ca3af;
   max-width: 480px;
   margin: 0;
 }

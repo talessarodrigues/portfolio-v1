@@ -26,20 +26,27 @@ export function SobreMim() {
 
             <div className={styles.body}>
               <p>
-                Sou UX/UI Designer apaixonada por transformar problemas complexos em experiências
-                digitais intuitivas e estratégicas. Tenho experiência criando interfaces para web,
-                mobile, dashboards e sistemas, atuando desde discovery e pesquisa até prototipação
-                e handoff para desenvolvimento.
+                Sou UX/UI Designer e acredito que uma boa interface começa muito antes da tela
+                final. Antes de abrir o Figma, gosto de entender o produto, o usuário, o problema
+                e o contexto por trás de cada decisão.
               </p>
               <p>
-                Ao longo da minha trajetória, desenvolvi projetos focados em usabilidade, design
-                systems, acessibilidade e alinhamento entre negócio e experiência do usuário.
-                Trabalho com Figma, componentização e processos colaborativos com times de produto
-                e tecnologia.
+                Tenho me dedicado à criação de produtos digitais com foco em experiência,
+                consistência visual e clareza. No projeto RHRecruiter, trabalhei em fluxos e
+                interfaces para uma plataforma de recrutamento e seleção, pensando em experiências
+                para empresas, recrutadores e candidatos. Foi um projeto que me fez evoluir muito
+                na forma de pensar produto, hierarquia visual, jornada do usuário e comunicação
+                entre design e desenvolvimento.
               </p>
               <p>
-                Hoje, sigo evoluindo constantemente na área de Product Design, buscando criar
-                soluções funcionais, visualmente consistentes e centradas no usuário.
+                Também estou construindo um Design System do zero no Figma, organizando foundations,
+                variáveis, componentes reutilizáveis e documentação. Esse processo tem reforçado
+                ainda mais minha visão sobre escalabilidade, consistência e maturidade em design.
+              </p>
+              <p>
+                Gosto de criar interfaces com propósito, mas também com personalidade. Para mim,
+                design é sobre resolver problemas, facilitar caminhos e traduzir ideias complexas
+                em experiências simples, bonitas e funcionais.
               </p>
             </div>
 

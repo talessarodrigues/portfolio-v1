@@ -1,7 +1,7 @@
 .hero {
   position: relative;
   width: 100%;
-  background: #09090c;
+  background: #0b0d0e;
   overflow: hidden;
 }
 
@@ -20,13 +20,11 @@
 
 .inner {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   gap: 32px;
-  padding: 40px 40px 0;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 40px 40px 24px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -115,6 +113,7 @@
   color: #d1d5db;
   max-width: 546px;
   margin: 0;
+  text-wrap: pretty;
 }
 
 /* ── Filter tabs ──────────────────────────────────────────── */

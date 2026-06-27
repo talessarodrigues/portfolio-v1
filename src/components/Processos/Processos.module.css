@@ -11,7 +11,7 @@
 .hero {
   position: relative;
   z-index: 1;
-  padding: 40px 40px 0;
+  padding: 40px 40px 24px;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -56,7 +56,7 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
-  color: #d1d5db;
+  color: #9ca3af;
   margin: 0;
   max-width: 480px;
 }

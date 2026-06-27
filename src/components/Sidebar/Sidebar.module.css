@@ -94,7 +94,7 @@
 .navSection {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 .sectionLabel {
@@ -112,7 +112,7 @@
 .sectionLinks {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
 /* ── Links ───────────────────────────────────────────────────── */
@@ -125,7 +125,7 @@
   border-radius: 8px;
   text-decoration: none;
   font-family: 'Inter', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 14px;
   line-height: 24px;
   position: relative;
@@ -148,7 +148,7 @@
 }
 
 .linkInactive {
-  background: #0b0d0e;
+  background: transparent;
   color: #ffffff;
 }
 

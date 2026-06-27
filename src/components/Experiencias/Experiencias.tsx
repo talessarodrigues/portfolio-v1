@@ -74,6 +74,7 @@ export function Experiencias() {
       {/* ── Timeline ─────────────────────────────────────────── */}
       <div className={styles.timelineOuter}>
         <div className={styles.timelineSection}>
+
           {/* Left column */}
           <div className={styles.leftCol}>
             <div data-animate data-delay="1">
@@ -132,7 +133,7 @@ Resultados: Melhoria da usabilidade e fluidez das interfaces por meio da otimiza
             </div>
           </div>
 
-          {/* Right column — offset 128px */}
+          {/* Right column — offset 80px */}
           <div className={styles.rightCol}>
             <div data-animate data-delay="2">
               <ExperienceCard
@@ -177,6 +178,7 @@ Resultados: Melhoria da usabilidade e redução de fricções na navegação por
               </div>
             </div>
           </div>
+
         </div>
       </div>
 

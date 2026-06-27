@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-between;
   align-items: stretch;
-  padding: 0 40px 24px;
+  padding: 24px 40px 0;
   box-sizing: border-box;
   width: 100%;
   gap: 12px;
@@ -36,6 +36,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  justify-content: space-between;
 }
 
 /* ── Card header ─────────────────────────────────────────────── */
@@ -99,7 +100,9 @@
 .infoList {
   display: flex;
   flex-direction: column;
-  padding: 0 24px 24px;
+  justify-content: space-evenly;
+  flex: 1;
+  padding: 16px 24px 24px;
 }
 
 .infoItem {
@@ -150,6 +153,7 @@
   font-size: 12px;
   line-height: 18px;
   color: rgba(255, 255, 255, 0.6);
+  max-width: 90px;
 }
 
 /* ── Working on ──────────────────────────────────────────────── */

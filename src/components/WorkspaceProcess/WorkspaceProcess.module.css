@@ -1,7 +1,9 @@
 .section {
-  padding: 24px 40px;
+  padding: 24px 40px 0;
   width: 100%;
   box-sizing: border-box;
+  position: relative;
+  z-index: 2;
 }
 
 /* ── Card ─────────────────────────────────────────────────── */

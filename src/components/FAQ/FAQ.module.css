@@ -3,10 +3,11 @@
   display: flex;
   gap: 26px;
   align-items: flex-start;
-  padding: 40px 48px;
+  padding: 48px 40px 28px;
   box-sizing: border-box;
   width: 100%;
-  /* windows float over the page via position:fixed — section just needs overflow visible */
+  position: relative;
+  z-index: 2;
 }
 
 /* ── Left ────────────────────────────────────────────────────── */
@@ -71,22 +72,21 @@
   min-width: 0;
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 
 .row {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 18px 0;
+  padding: 18px 20px;
   background: none;
   border: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   cursor: pointer;
   text-align: left;
   width: 100%;
   transition: opacity 0.2s;
 }
-.row:first-child { border-top: 1px solid rgba(255, 255, 255, 0.07); }
 .row:hover { opacity: 0.75; }
 
 .rowActive .rowQ { color: #ffffff; }
@@ -332,23 +332,18 @@
   margin: 0;
 }
 
-/* ── Accordion (mobile) ──────────────────────────────────────── */
+/* ── Accordion ───────────────────────────────────────────────── */
 .accordionItem {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-}
-.accordionItem:first-child {
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-/* dentro do accordionItem o .row não duplica a borda */
-.accordionItem .row {
-  border: none;
+  background: #0b0d0e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .accordionBody {
-  padding: 0 0 18px 36px;
+  padding: 0 20px 18px 20px;
   animation: bodyExpand 0.22s cubic-bezier(.4,0,.2,1);
 }
 

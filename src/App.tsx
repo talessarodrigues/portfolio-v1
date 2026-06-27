@@ -120,15 +120,13 @@ function App() {
         {currentPage === 'home' && (
           <>
             <Hero />
-            <div className="content-column">
-              <FeaturedProjects />
-              <div className="cards-row">
-                <MyProcess />
-                <InfoCards />
-              </div>
-              <FAQ />
-              <ContactBanner />
+            <FeaturedProjects />
+            <div className="cards-row">
+              <MyProcess />
+              <InfoCards />
             </div>
+            <FAQ />
+            <ContactBanner />
           </>
         )}
         {currentPage === 'projetos' && (
