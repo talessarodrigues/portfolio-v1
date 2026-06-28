@@ -5,6 +5,7 @@ import { FeaturedProjects } from './components/FeaturedProjects/FeaturedProjects
 import { MyProcess } from './components/MyProcess/MyProcess'
 import { InfoCards } from './components/InfoCards/InfoCards'
 import { FAQ } from './components/FAQ/FAQ'
+import { Recomendacoes } from './components/Recomendacoes/Recomendacoes'
 import { ContactBanner } from './components/ContactBanner/ContactBanner'
 import { WorkspaceHero } from './components/WorkspaceHero/WorkspaceHero'
 import { WorkspaceProjects } from './components/WorkspaceProjects/WorkspaceProjects'
@@ -12,6 +13,9 @@ import { WorkspaceProcess } from './components/WorkspaceProcess/WorkspaceProcess
 import { WorkspaceInsight } from './components/WorkspaceInsight/WorkspaceInsight'
 import { ProjectsHero } from './components/ProjectsHero/ProjectsHero'
 import { ProjectsGrid } from './components/ProjectsGrid/ProjectsGrid'
+import { ProjectDetail } from './components/ProjectDetail/ProjectDetail'
+import { allProjects } from './data/projects'
+import type { ProjectFull } from './components/ProjectDetail/ProjectDetail'
 import { Experiencias } from './components/Experiencias/Experiencias'
 import { SobreMim } from './components/SobreMim/SobreMim'
 import { Skills } from './components/Skills/Skills'
@@ -23,6 +27,7 @@ type Page = 'home' | 'workspace' | 'projetos' | 'experiencias' | 'sobre' | 'skil
 function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [currentPage, setCurrentPage] = useState<Page>('home')
+  const [selectedProject, setSelectedProject] = useState<ProjectFull | null>(null)
 
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 769px)')
@@ -100,6 +105,7 @@ function App() {
           currentPage={currentPage}
           onNavigate={page => {
             setCurrentPage(page)
+            setSelectedProject(null)
             window.scrollTo(0, 0)
             setTimeout(() => window.dispatchEvent(new Event('scroll')), 50)
           }}
@@ -120,21 +126,34 @@ function App() {
         {currentPage === 'home' && (
           <>
             <Hero />
-            <FeaturedProjects />
+            <FeaturedProjects
+              onSelectProject={p => { setCurrentPage('projetos'); setSelectedProject(p); window.scrollTo(0, 0) }}
+              onViewAll={() => { setCurrentPage('projetos'); window.scrollTo(0, 0) }}
+            />
             <div className="cards-row">
               <MyProcess />
               <InfoCards />
             </div>
+            <Recomendacoes />
             <FAQ />
             <ContactBanner />
           </>
         )}
         {currentPage === 'projetos' && (
-          <>
-            <ProjectsHero />
-            <ProjectsGrid />
-            <ContactBanner />
-          </>
+          selectedProject ? (
+            <ProjectDetail
+              project={selectedProject}
+              allProjects={allProjects}
+              onBack={() => { setSelectedProject(null); window.scrollTo(0, 0) }}
+              onSelect={p => { setSelectedProject(p); window.scrollTo(0, 0) }}
+            />
+          ) : (
+            <>
+              <ProjectsHero />
+              <ProjectsGrid onSelectProject={p => { setSelectedProject(p); window.scrollTo(0, 0) }} />
+              <ContactBanner />
+            </>
+          )
         )}
         {currentPage === 'experiencias' && (
           <Experiencias />

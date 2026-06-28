@@ -104,8 +104,8 @@ const professionalLinks: { label: string; icon: () => React.ReactElement; page?:
 ]
 
 const connectLinks = [
-  { label: 'Contato', icon: IconContact, href: '#' },
-  { label: 'Behance', icon: IconBehance, href: '#' },
+  { label: 'Contato', icon: IconContact, href: 'https://w.app/talessarodriguesdesign' },
+  { label: 'Behance', icon: IconBehance, href: 'https://www.behance.net/talessamayara' },
   { label: 'LinkedIn', icon: IconLinkedIn, href: 'https://www.linkedin.com/in/talessamayara/' },
   { label: 'Instagram', icon: IconInstagram, href: 'https://www.instagram.com/talessamayara/' },
 ]
@@ -218,7 +218,7 @@ export function Sidebar({ isOpen, onClose, currentPage = 'home', onNavigate }: S
 
         {/* Bottom — CV button + copyright */}
         <div className={styles.bottom}>
-          <a href="#" className={styles.cvButton}>
+          <a href="https://docs.google.com/document/d/1TBsZ4l-LQhZs2EgpU8iehlyXOeNsqRD-YYl8N_bcajo/edit?usp=drive_link" target="_blank" rel="noopener noreferrer" className={styles.cvButton}>
             <span>Baixar CV</span>
             <img src={imgArrowDown} alt="" className={styles.cvIcon} />
           </a>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import styles from './Hero.module.css'
 import { ToolsBackground } from '../ToolsBackground/ToolsBackground'
+import imgPhoto from '../../assets/sobre/photo.png'
 
 export function Hero() {
   const [showCursor, setShowCursor] = useState(true)
@@ -20,7 +21,7 @@ export function Hero() {
           <div className={styles.badge}>
             <span className={styles.greenDot} />
             <span className={styles.badgeText}>Disponível para novos projetos</span>
-            <span className={styles.avatar} />
+            <img src={imgPhoto} alt="Talessa Rodrigues" className={styles.avatar} />
           </div>
         </div>
 

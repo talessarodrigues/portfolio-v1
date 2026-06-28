@@ -1,0 +1,629 @@
+.page {
+  width: 100%;
+  min-height: 100vh;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Back button ──────────────────────────────────────────── */
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 40px 40px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14.4px;
+  color: #fafafa;
+  transition: opacity 0.2s;
+}
+.back:hover { opacity: 0.7; }
+
+/* ── Hero ─────────────────────────────────────────────────── */
+.hero {
+  padding: 16px 40px 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.heroWithBg {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 24px;
+}
+
+/* ── Hero estilo ProjectsHero (Full Stack) ────────────────── */
+.heroHome {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #0b0d0e;
+}
+
+.heroHome::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 55% 80% at 78% 60%,
+    rgba(180, 130, 60, 0.15) 0%,
+    rgba(120, 80, 30, 0.07) 45%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.heroHomeInner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 40px 40px 24px;
+  gap: 32px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.heroTopBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(11, 13, 14, 0.77);
+  border-radius: 60px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  align-self: flex-start;
+}
+
+.heroBadgeIcon {
+  display: flex;
+  align-items: center;
+  color: rgba(250, 250, 250, 0.7);
+  flex-shrink: 0;
+}
+
+.heroBadgeText {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14.4px;
+  color: #fafafa;
+  white-space: nowrap;
+}
+
+.heroHeadings {
+  display: flex;
+  flex-direction: column;
+}
+
+.heroH1 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 55.2px;
+  letter-spacing: -1.92px;
+  color: #fafafa;
+  margin: 0;
+}
+
+.heroH1Gradient {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 55.2px;
+  letter-spacing: -1.92px;
+  background: linear-gradient(92.16deg, #9e9182 0%, #f1a978 50%, #817bcd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+  display: inline-block;
+}
+
+.heroCursor {
+  -webkit-text-fill-color: #f1a978;
+  opacity: 1;
+  transition: opacity 0.1s;
+}
+
+.heroCursorHidden {
+  -webkit-text-fill-color: #f1a978;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+.heroDescription {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  color: #d1d5db;
+  max-width: 546px;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-wrap: pretty;
+}
+
+.heroFilters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.heroFilterPill {
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(255, 255, 255, 0.7);
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 25.6px;
+  white-space: nowrap;
+}
+
+.heroLeft {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.heroRight {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.titleLine1 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 55.2px;
+  letter-spacing: -1.92px;
+  color: #fafafa;
+  margin: 0;
+}
+
+.titleLine2 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 48px;
+  line-height: 55.2px;
+  letter-spacing: -1.92px;
+  margin: 0;
+}
+
+/* ── Tags ─────────────────────────────────────────────────── */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.tagItem {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  color: #9ca3af;
+}
+
+.tagSep {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Description ──────────────────────────────────────────── */
+.description {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  color: #d1d5db;
+  margin: 0;
+  max-width: 580px;
+}
+
+/* ── MacBook mockup ───────────────────────────────────────── */
+.macbookWrap {
+  padding: 0 40px 0;
+}
+
+
+.macbook {
+  width: 100%;
+  position: relative;
+  user-select: none;
+}
+
+.macbookLid {
+  width: 100%;
+  background: #1c1c1e;
+  border-radius: 10px 10px 0 0;
+  border: 1px solid #3a3a3c;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.macbookBrowser {
+  background: #1e1e1e;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+}
+
+.macbookBrowser::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #3a3a3c;
+}
+
+.macbookDots {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.macbookDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.macbookDot:nth-child(1) { background: #ff5d60; }
+.macbookDot:nth-child(2) { background: #f9c701; }
+.macbookDot:nth-child(3) { background: #33c659; }
+
+.macbookUrlBar {
+  flex: 1;
+  height: 18px;
+  background: #2c2c2c;
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.macbookScreen {
+  width: 100%;
+  height: 640px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #000;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.12) transparent;
+  cursor: ns-resize;
+}
+
+.macbookScreen::-webkit-scrollbar { width: 4px; }
+.macbookScreen::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+  border-radius: 2px;
+}
+
+.macbookScreen img {
+  width: 100%;
+  display: block;
+}
+
+.macbookBase {
+  width: 100%;
+  height: 16px;
+  background: linear-gradient(180deg, #2c2c2e 0%, #1c1c1e 100%);
+  border: 1px solid #3a3a3c;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  position: relative;
+}
+
+.macbookBase::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 4px;
+  background: #111;
+  border-radius: 0 0 3px 3px;
+}
+
+.macbookShadow {
+  margin: 0 10%;
+  height: 8px;
+  background: radial-gradient(ellipse at center, rgba(0,0,0,0.4) 0%, transparent 80%);
+  border-radius: 50%;
+}
+
+/* ── Accordion sections ───────────────────────────────────── */
+.sections {
+  padding: 0 40px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.accordionItem {
+  background: #0b0d0e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.accordionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 16px;
+}
+
+.accordionTitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: -0.4px;
+  color: #ffffff;
+}
+
+.accordionIcon {
+  font-size: 20px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.5);
+  flex-shrink: 0;
+  line-height: 1;
+  transition: transform 0.2s;
+  width: 20px;
+  text-align: center;
+}
+
+.accordionIconOpen {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.accordionBody {
+  padding: 0 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: bodyOpen 0.2s ease;
+}
+
+@keyframes bodyOpen {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.accordionText {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgba(255, 255, 255, 0.65);
+  margin: 0;
+}
+
+/* ── Live site button ─────────────────────────────────────── */
+.liveWrap {
+  padding: 32px 40px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.liveBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  border-radius: 8px;
+  background: linear-gradient(101.34deg, #c8cbd0 0%, #f4f5f6 100%);
+  color: #0b0d0e;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-decoration: none;
+  box-shadow: 0px 1px 0.5px rgba(0, 0, 0, 0.04);
+  position: relative;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.liveBtn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  border: 1px solid #ededed;
+  pointer-events: none;
+}
+.liveBtn:hover { opacity: 0.85; transform: translateY(-1px); }
+.liveBtn:active { transform: translateY(0); }
+
+/* ── Related projects (marquee) ───────────────────────────── */
+.related {
+  padding: 24px 40px 0;
+}
+
+.relatedBlock {
+  background: #0b0d0e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 24px 0 24px;
+}
+
+.relatedTitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18.4px;
+  letter-spacing: -0.48px;
+  color: #ffffff;
+  margin: 0 0 20px;
+  padding: 0 24px;
+}
+
+.marqueeOuter {
+  overflow: hidden;
+  width: 100%;
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+}
+
+.marqueeInner {
+  display: flex;
+  gap: 16px;
+  width: max-content;
+  animation: marqueeScroll 80s linear infinite;
+}
+
+.marqueeOuter:hover .marqueeInner {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.relatedCard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 260px;
+}
+
+.relatedImgWrap {
+  width: 260px;
+  height: 174px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.relatedImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+
+.relatedCard:hover .relatedImg { transform: scale(1.04); }
+
+.relatedMeta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.relatedName {
+  font-family: 'Inter', sans-serif;
+  font-size: 14.1px;
+  font-weight: 600;
+  line-height: 20px;
+  letter-spacing: -0.282px;
+  color: #737373;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.relatedDot {
+  font-size: 14.1px;
+  font-weight: 500;
+  color: #737373;
+  flex-shrink: 0;
+}
+
+.relatedCat {
+  font-family: 'Inter', sans-serif;
+  font-size: 14.1px;
+  font-weight: 400;
+  letter-spacing: -0.282px;
+  color: #737373;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.relatedFooter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  cursor: pointer;
+  transition: opacity 0.2s;
+  margin-top: 20px;
+}
+.relatedFooter:hover { opacity: 0.7; }
+
+.relatedFooterText {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: -0.259px;
+  color: #737373;
+}
+
+/* ── Mobile ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .back { padding: 24px 20px 0; }
+  .hero { padding: 16px 20px 0; }
+  .hero { grid-template-columns: 1fr; gap: 20px; }
+  .titleLine1, .titleLine2 { font-size: 32px; line-height: 38px; letter-spacing: -1.2px; }
+  .macbookWrap { padding: 20px 16px 0; }
+  .macbookScreen { height: 220px; }
+  .sections { padding: 0 20px; }
+  .related { padding: 40px 20px 0; }
+  .relatedGrid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .accordionBtn { padding: 16px 12px; }
+  .accordionBody { padding: 0 12px 16px; }
+}
