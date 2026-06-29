@@ -14,6 +14,7 @@ import { WorkspaceInsight } from './components/WorkspaceInsight/WorkspaceInsight
 import { ProjectsHero } from './components/ProjectsHero/ProjectsHero'
 import { ProjectsGrid } from './components/ProjectsGrid/ProjectsGrid'
 import { ProjectDetail } from './components/ProjectDetail/ProjectDetail'
+import { ProjectModal } from './components/ProjectModal/ProjectModal'
 import { allProjects } from './data/projects'
 import type { ProjectFull } from './components/ProjectDetail/ProjectDetail'
 import { Experiencias } from './components/Experiencias/Experiencias'
@@ -28,6 +29,17 @@ function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const [currentPage, setCurrentPage] = useState<Page>('home')
   const [selectedProject, setSelectedProject] = useState<ProjectFull | null>(null)
+  const [modalProject, setModalProject] = useState<ProjectFull | null>(null)
+
+  // Projetos com link externo (Behance/Figma) abrem um modal em vez do detalhamento
+  const handleSelectProject = (p: ProjectFull) => {
+    if (p.behanceUrl || p.figmaUrl) {
+      setModalProject(p)
+    } else {
+      setSelectedProject(p)
+      window.scrollTo(0, 0)
+    }
+  }
 
   useEffect(() => {
     const mq = window.matchMedia('(min-width: 769px)')
@@ -127,7 +139,10 @@ function App() {
           <>
             <Hero />
             <FeaturedProjects
-              onSelectProject={p => { setCurrentPage('projetos'); setSelectedProject(p); window.scrollTo(0, 0) }}
+              onSelectProject={p => {
+                if (p.behanceUrl || p.figmaUrl) { setModalProject(p) }
+                else { setCurrentPage('projetos'); setSelectedProject(p); window.scrollTo(0, 0) }
+              }}
               onViewAll={() => { setCurrentPage('projetos'); window.scrollTo(0, 0) }}
             />
             <div className="cards-row">
@@ -145,12 +160,12 @@ function App() {
               project={selectedProject}
               allProjects={allProjects}
               onBack={() => { setSelectedProject(null); window.scrollTo(0, 0) }}
-              onSelect={p => { setSelectedProject(p); window.scrollTo(0, 0) }}
+              onSelect={handleSelectProject}
             />
           ) : (
             <>
               <ProjectsHero />
-              <ProjectsGrid onSelectProject={p => { setSelectedProject(p); window.scrollTo(0, 0) }} />
+              <ProjectsGrid onSelectProject={handleSelectProject} />
               <ContactBanner />
             </>
           )
@@ -177,6 +192,10 @@ function App() {
           </>
         )}
       </main>
+
+      {modalProject && (
+        <ProjectModal project={modalProject} onClose={() => setModalProject(null)} />
+      )}
     </div>
   )
 }

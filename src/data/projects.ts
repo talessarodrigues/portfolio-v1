@@ -9,9 +9,11 @@ import img05 from '../assets/projetos/img05.png'
 import img05full from '../assets/projetos/img05-full.png'
 import img06 from '../assets/projetos/img06.png'
 import img07 from '../assets/projetos/img07.png'
+import img07full from '../assets/projetos/img07-full.jpg'
 import img09 from '../assets/projetos/img09.png'
 import img10 from '../assets/projetos/img10.png'
 import img11 from '../assets/projetos/img11.png'
+import img11full from '../assets/projetos/img11-full.jpg'
 import img12 from '../assets/projetos/img12.png'
 import img13 from '../assets/projetos/img13.png'
 import img14 from '../assets/projetos/img14.png'
@@ -20,8 +22,8 @@ import img16 from '../assets/projetos/img16.png'
 import img17 from '../assets/projetos/img17.png'
 import img18 from '../assets/projetos/img18.png'
 import img19 from '../assets/projetos/img19.png'
-import img20 from '../assets/projetos/img20.png'
 import img21 from '../assets/projetos/img21.png'
+import img21full from '../assets/projetos/img21-full.jpg'
 import img22 from '../assets/projetos/img22.png'
 import img23 from '../assets/projetos/img23.png'
 import img24 from '../assets/projetos/img24.png'
@@ -36,6 +38,12 @@ import img29 from '../assets/projetos/img29.png'
 import img29full from '../assets/projetos/img29-full.png'
 import img30 from '../assets/projetos/img30.png'
 import img30full from '../assets/projetos/img30-full.jpg'
+import img31 from '../assets/projetos/img31.png'
+import img31full from '../assets/projetos/img31-full.jpg'
+import img32 from '../assets/projetos/img32.png'
+import img32full from '../assets/projetos/img32-full.jpg'
+import img33 from '../assets/projetos/img33.jpg'
+import img33full from '../assets/projetos/img33-full.jpg'
 
 export const allProjects: ProjectFull[] = [
   { image: img00, title: 'Eccomerce Website',       category: 'Em breve',  tags: ['E-commerce', 'Website', 'UX/UI'],        description: 'Projeto de e-commerce com foco em conversão e experiência de compra intuitiva.' },
@@ -261,6 +269,64 @@ export const allProjects: ProjectFull[] = [
     ],
   },
   {
+    image: img31,
+    coverImage: img31full,
+    title: 'Astera Data Bank',
+    titleAccent: 'Dashboard',
+    accentColor: 'gradient-portfolio',
+    category: 'Dashboard',
+    tags: ['Dashboard', 'Game UI', 'UX/UI', 'Pesquisa'],
+    description: 'Criação de um dashboard de pesquisa e catalogação para um universo de caça a monstros, centralizando bestiário, materiais, equipamentos, missões e planejamento em uma experiência imersiva e organizada.',
+    sections: [
+      {
+        title: 'Problema',
+        paragraphs: [
+          'Em um universo de caça, o jogador lida com um volume enorme de informações — monstros, materiais, equipamentos, missões e recursos — normalmente espalhados e difíceis de consultar durante a jornada.',
+          'O desafio foi centralizar todo esse conhecimento em um único hub de pesquisa, claro e rápido de navegar, que ajudasse o caçador a registrar descobertas, planejar caçadas e tomar decisões sem perder a imersão no universo do jogo.',
+        ],
+      },
+      {
+        title: 'Objetivo e estratégia de UX',
+        paragraphs: [
+          'O objetivo foi criar um centro de pesquisa digital — o Astera Data Bank — capaz de organizar bestiário, materiais, equipamentos, missões e exploração em uma navegação simples e consistente.',
+          'A estratégia foi estruturar a interface em torno de uma busca central e de uma navegação lateral por categorias, destacando atalhos para as áreas mais usadas (bestiário, materiais e planner) e trazendo monstros em destaque logo na home para guiar o usuário.',
+        ],
+      },
+      {
+        title: 'Direção Visual',
+        paragraphs: [
+          'A direção visual seguiu uma estética dark e imersiva, com tons profundos, detalhes em dourado e imagens dramáticas dos monstros, reforçando a atmosfera de aventura e pesquisa do universo.',
+          'Cards, grids e blocos com baixa opacidade ajudam a organizar conteúdos densos sem quebrar a imersão, mantendo legibilidade e hierarquia mesmo sobre fundos ricos em textura.',
+        ],
+      },
+      {
+        title: 'Interface e organização',
+        paragraphs: [
+          'A interface foi pensada para dar acesso rápido ao que importa: uma busca no topo para encontrar monstros, materiais e equipamentos, uma navegação lateral clara e atalhos de destaque para bestiário, materiais e planner.',
+          'A home apresenta um resumo do progresso e uma vitrine de monstros em destaque, conduzindo o usuário para as seções de catalogação, missões e exploração de forma fluida e escaneável.',
+        ],
+      },
+      {
+        title: 'Resultados',
+        paragraphs: [
+          'O resultado foi um dashboard organizado, imersivo e fácil de navegar, que transforma um grande volume de informações em uma experiência de consulta agradável e funcional.',
+          'Além do impacto visual, o projeto demonstra capacidade de estruturar arquitetura de informação complexa, criar navegação consistente e desenhar interfaces temáticas que equilibram imersão e usabilidade.',
+        ],
+      },
+    ],
+  },
+  {
+    image: img33,
+    modalImage: img33full,
+    title: 'Aura',
+    subtitle: 'Moda que inspira, experiência que conecta',
+    status: 'Concluído',
+    category: 'E-commerce',
+    tags: ['E-commerce', 'UX/UI', 'Mobile-first', 'Moda Premium'],
+    figmaUrl: 'https://www.figma.com/design/P1DhBwJ1daMQRCCd1MMwnC/Portf%C3%B3lio-Mam%C3%A3e-Taessa?node-id=326-7392',
+    description: 'E-commerce de moda feminina com experiência de compra sofisticada, navegação intuitiva e foco em descoberta de produtos.',
+  },
+  {
     image: img30,
     coverImage: img30full,
     title: 'Cardápio Web',
@@ -310,6 +376,53 @@ export const allProjects: ProjectFull[] = [
         paragraphs: [
           'O resultado foi um cardápio web mais profissional, organizado e fácil de navegar, com uma estrutura preparada para apoiar tanto a experiência do cliente quanto a rotina administrativa do negócio.',
           'O projeto ajuda o Recheiaê a apresentar seus produtos com mais clareza, destacar promoções e combos, reduzir dependência de processos manuais e criar uma base digital mais escalável para futuras funcionalidades, como pedidos online, carrinho e integração com pagamento.',
+        ],
+      },
+    ],
+  },
+  {
+    image: img32,
+    coverImage: img32full,
+    title: 'HVEX',
+    titleAccent: 'Landing Page',
+    accentColor: 'gradient-portfolio',
+    category: 'Website',
+    tags: ['Landing Page', 'Conversão', 'UX/UI', 'Marketing Digital'],
+    description: 'Redesign estratégico de uma landing page para uma empresa do setor elétrico, unindo UX, marketing digital, arquitetura da informação e uma interface mais tecnológica, clara e orientada à conversão.',
+    sections: [
+      {
+        title: 'Problema',
+        paragraphs: [
+          'A HVEX já possuía uma presença digital, mas a comunicação visual e a estrutura da página não transmitiam todo o potencial tecnológico da empresa. O conteúdo estava distribuído de forma pouco estratégica, com oportunidades de melhoria em hierarquia, clareza, prova social e direcionamento para conversão.',
+          'O desafio foi transformar um tema técnico do setor elétrico em uma experiência mais clara, moderna e confiável, capaz de comunicar inovação, segurança e autoridade para diferentes públicos, como concessionárias, indústrias, empresas de energia e laboratórios.',
+        ],
+      },
+      {
+        title: 'Objetivo e estratégia de UX',
+        paragraphs: [
+          'O objetivo foi redesenhar a landing page da HVEX para apresentar melhor suas soluções, segmentos, diferenciais e canais de contato, criando uma jornada mais objetiva para o usuário.',
+          'A estratégia começou com análise da página atual, diagnóstico de problemas, benchmark com empresas do setor, definição de insights, arquitetura da informação e organização da navegação. A partir disso, a interface foi construída para guiar o usuário desde a proposta de valor até os serviços, provas de credibilidade, conteúdos e conversão.',
+        ],
+      },
+      {
+        title: 'Credibilidade',
+        paragraphs: [
+          'Como a HVEX atua em um setor técnico e de alta responsabilidade, a interface precisava transmitir confiança, precisão e maturidade. Para isso, foram valorizados elementos como empresas parceiras, números de impacto, anos de atuação, segmentos atendidos, conteúdos técnicos e soluções aplicadas ao setor elétrico.',
+          'Também trabalhei uma linguagem visual mais tecnológica, com dark mode, elementos em azul, imagens 3D, ícones técnicos e uma composição visual mais robusta, reforçando inovação, segurança e especialização.',
+        ],
+      },
+      {
+        title: 'Interface e conversão',
+        paragraphs: [
+          'A landing page foi pensada para conduzir o usuário de forma progressiva: primeiro apresenta a proposta de valor, depois reforça credibilidade com logos e números, explica as soluções, mostra aplicações por segmento, apresenta conteúdos e finaliza com newsletter e contato.',
+          'Os CTAs foram posicionados em pontos estratégicos, como hero, newsletter e rodapé, ajudando o usuário a avançar para uma ação sem interromper a leitura. A interface também usa cards, grids e blocos visuais para organizar conteúdos densos de forma mais escaneável.',
+        ],
+      },
+      {
+        title: 'Resultados',
+        paragraphs: [
+          'O resultado foi uma landing page mais tecnológica, organizada e estratégica, com melhor hierarquia visual, comunicação mais clara e uma jornada mais preparada para conversão.',
+          'Além da interface final, o projeto gerou uma base de decisões importantes para a evolução digital da HVEX, incluindo diagnóstico, benchmark, arquitetura da informação, estratégia de marketing digital e um style guide mais consistente para futuras páginas e materiais digitais.',
         ],
       },
     ],
@@ -423,6 +536,7 @@ export const allProjects: ProjectFull[] = [
   },
   {
     image: img07,
+    coverImage: img07full,
     title: 'Landing Page',
     titleAccent: 'Resident Evil',
     accentColor: 'gradient-portfolio',
@@ -467,7 +581,17 @@ export const allProjects: ProjectFull[] = [
       },
     ],
   },
-  { image: img11, title: 'Caffe Express',            category: 'Apps',      tags: ['Mobile', 'Apps', 'Food'],                   description: 'App de pedidos para cafeteria com interface minimalista, intuitiva e acolhedora.' },
+  {
+    image: img11,
+    modalImage: img11full,
+    title: 'Caffe Express',
+    subtitle: 'Desafio da UX Quest',
+    status: 'Concluído',
+    category: 'Apps',
+    tags: ['SaaS', 'Design System', 'Dashboard'],
+    behanceUrl: 'https://www.behance.net/gallery/243841329/Caf-Express-UXUI-Case-Study-App-de-Delivery',
+    description: 'App de pedidos para cafeteria com interface minimalista, intuitiva e acolhedora.',
+  },
   { image: img12, title: 'Essencial Perfumaria',     category: 'Dashboard', tags: ['Dashboard', 'E-commerce', 'Gestão'],         description: 'Dashboard de gestão para perfumaria com controle de estoque, vendas e indicadores de performance.' },
   { image: img14, title: 'JC Corporativas',          category: 'Logotipo',  tags: ['Logotipo', 'Branding', 'Corporativo'],      description: 'Identidade visual corporativa para a empresa JC Corporativas.' },
   { image: img15, title: 'Conecta',                  category: 'Logotipo',  tags: ['Logotipo', 'Branding'],                     description: 'Criação de marca e identidade visual para a Conecta 360°.' },
@@ -475,8 +599,17 @@ export const allProjects: ProjectFull[] = [
   { image: img17, title: 'Talessa Rodrigues',        category: 'Logotipo',  tags: ['Logotipo', 'Personal Branding'],            description: 'Marca pessoal — criação da identidade visual da Talessa Rodrigues Designer.' },
   { image: img18, title: 'Cards YU-GI-OH',           category: 'Dashboard', tags: ['Dashboard', 'Game UI', 'Colecionáveis'],    description: 'Sistema de cards interativos baseado no universo de Yu-Gi-Oh com gestão de coleção.' },
   { image: img19, title: 'Heat Game',                category: 'Apps',      tags: ['Mobile', 'Game UI', 'Apps'],                description: 'Interface de jogo mobile com foco em performance, engajamento e feedback imediato.' },
-  { image: img20, title: 'HVEX',                     category: 'Website',   tags: ['Website', 'Institucional', 'B2B'],          description: 'Website institucional moderno para a empresa HVEX.' },
-  { image: img21, title: 'Neobank',                  category: 'Apps',      tags: ['Mobile', 'Fintech', 'UX/UI'],              description: 'App de banco digital com experiência financeira simplificada para o dia a dia.' },
+  {
+    image: img21,
+    modalImage: img21full,
+    title: 'Neobank',
+    subtitle: 'Redesign de um banco digital',
+    status: 'Concluído',
+    category: 'Apps',
+    tags: ['Fintech', 'Mobile', 'UX/UI', 'Design System'],
+    figmaUrl: 'https://www.figma.com/design/TIjwYjAXTWejNw1iJmnaSP/Portif%C3%B3lio?node-id=1167-2363',
+    description: 'App de banco digital com experiência financeira simplificada para o dia a dia.',
+  },
   {
     image: img22, title: 'Redesign Itaú', category: 'Apps',
     tags: ['Mobile', 'Redesign', 'Fintech', 'Acessibilidade'],

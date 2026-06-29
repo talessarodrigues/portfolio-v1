@@ -16,6 +16,12 @@ export type ProjectFull = {
   description?: string
   sections?: ProjectSection[]
   liveUrl?: string
+  // Quando há behanceUrl/figmaUrl, o clique abre um modal (não o detalhamento)
+  subtitle?: string
+  status?: string
+  modalImage?: string
+  behanceUrl?: string
+  figmaUrl?: string
 }
 
 interface ProjectDetailProps {
