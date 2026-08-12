@@ -6,6 +6,15 @@
    ══════════════════════════════════════════════════════════════ */
 
 .app {
+  /* Unidade de escala do app inteiro: 1u == 1px numa tela de 390 de
+     largura (o iPhone 13, em que o layout foi desenhado). Toda medida
+     daqui pra baixo é um múltiplo dela, então o layout cresce junto com
+     o aparelho em vez de ficar miúdo numa tela mais larga.
+     Piso 0.95 pra caber nos Android de 360; teto 1.45 pra que no tablet
+     o app fique proporcional sem virar caricatura — de 566 de largura
+     em diante ele para de crescer e passa a centralizar (ver abaixo). */
+  --m-u: clamp(0.95px, calc(100vw / 390), 1.45px);
+
   --m-bg: #FDF6F5;
   --m-surface: #FDF6F5;
   --m-ink: #16151C;
@@ -26,7 +35,7 @@
   --m-card-bg: var(--m-bg);
   --m-card-border: #F1E9EE;
   --m-card-glow: rgba(155, 104, 242, 0.09);
-  --m-radius: 22px;
+  --m-radius: calc(22 * var(--m-u));
 
   position: relative;
   min-height: 100dvh;
@@ -34,8 +43,17 @@
   color: var(--m-ink);
   font-family: var(--font-body);
   /* espaço pro dock flutuante não cobrir o fim do conteúdo */
-  padding-bottom: calc(112px + env(safe-area-inset-bottom));
+  padding-bottom: calc(calc(112 * var(--m-u)) + env(safe-area-inset-bottom));
   overflow-x: hidden;
+
+  /* No tablet o app vira uma coluna centralizada com a largura de um
+     celular grande: o mesmo layout, na proporção certa, em vez de
+     cartões de 900 de largura com uma linha de texto cada. O
+     box-shadow pinta o entorno com a cor do fundo, para a faixa que
+     sobra dos lados não denunciar a emenda. */
+  max-width: calc(560 * var(--m-u));
+  margin-inline: auto;
+  box-shadow: 0 0 0 100vmax var(--m-bg);
 }
 
 /* Mesma paleta do desktop: claro #FDF6F5, escuro #07070C. O botão da
@@ -59,7 +77,7 @@
 }
 
 @keyframes mFade {
-  from { opacity: 0; transform: translateY(14px); }
+  from { opacity: 0; transform: translateY(calc(14 * var(--m-u))); }
   to   { opacity: 1; transform: none; }
 }
 
@@ -71,8 +89,11 @@
 .cover {
   position: relative;
   height: 46vh;
-  min-height: 300px;
-  max-height: 420px;
+  /* O mínimo em unidades de largura sozinho estourava a tela deitada:
+     num celular em paisagem (390 de altura) ele pedia 435. O `min`
+     deixa a altura da tela ter a palavra final. */
+  min-height: min(calc(300 * var(--m-u)), 62vh);
+  max-height: calc(420 * var(--m-u));
   overflow: hidden;
   background: var(--m-bg);
 }
@@ -96,7 +117,7 @@
   right: 0;
   bottom: 0;
   height: 54%;
-  background: linear-gradient(to bottom, var(--m-bg-0), var(--m-bg) calc(100% - 44px));
+  background: linear-gradient(to bottom, var(--m-bg-0), var(--m-bg) calc(100% - calc(44 * var(--m-u))));
   pointer-events: none;
 }
 
@@ -117,8 +138,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: calc(14px + env(safe-area-inset-top)) 16px 0;
-  gap: 12px;
+  padding: calc(calc(14 * var(--m-u)) + env(safe-area-inset-top)) calc(16 * var(--m-u)) 0;
+  gap: calc(12 * var(--m-u));
 }
 
 /* Só a logo, sem cápsula nem contorno — ela já tem contraste próprio
@@ -126,7 +147,7 @@
 .logoChip {
   display: grid;
   place-items: center;
-  height: 44px;
+  height: calc(44 * var(--m-u));
   padding: 0;
   border: none;
   background: none;
@@ -134,7 +155,7 @@
 }
 
 .logoChip img {
-  height: 22px;
+  height: calc(22 * var(--m-u));
   width: auto;
   object-fit: contain;
 }
@@ -142,7 +163,7 @@
 .coverActions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: calc(8 * var(--m-u));
 }
 
 /* Alternador de tema — anel fino por fora, disco com gradiente e ícone
@@ -152,10 +173,10 @@
 .themeChip {
   display: grid;
   place-items: center;
-  width: 36px;
-  height: 36px;
+  width: calc(36 * var(--m-u));
+  height: calc(36 * var(--m-u));
   flex-shrink: 0;
-  border: 1px solid var(--m-line-strong);
+  border: calc(1 * var(--m-u)) solid var(--m-line-strong);
   border-radius: 50%;
   background: none;
   cursor: pointer;
@@ -170,17 +191,17 @@
    36px, que é a medida do botão de fechar ao lado. */
 .themeChipOnCover {
   border-color: var(--m-on-cover-line);
-  width: 44px;
-  height: 44px;
+  width: calc(44 * var(--m-u));
+  height: calc(44 * var(--m-u));
 }
-.themeChipOnCover .themeChipDisc { width: 28px; height: 28px; }
-.themeChipOnCover .themeChipDisc svg { width: 18px; height: 18px; }
+.themeChipOnCover .themeChipDisc { width: calc(28 * var(--m-u)); height: calc(28 * var(--m-u)); }
+.themeChipOnCover .themeChipDisc svg { width: calc(18 * var(--m-u)); height: calc(18 * var(--m-u)); }
 
 .themeChipDisc {
   display: grid;
   place-items: center;
-  width: 26px;
-  height: 26px;
+  width: calc(26 * var(--m-u));
+  height: calc(26 * var(--m-u));
   border-radius: 50%;
   background: var(--gradient-cta);
   color: #ffffff;
@@ -194,10 +215,10 @@
   position: relative;
   z-index: 2;
   display: flow-root;
-  margin-top: -26px;
-  padding: 0 16px 4px;
+  margin-top: calc(-26 * var(--m-u));
+  padding: 0 calc(16 * var(--m-u)) calc(4 * var(--m-u));
   background: var(--m-bg);
-  border-radius: 26px 26px 0 0;
+  border-radius: calc(26 * var(--m-u)) calc(26 * var(--m-u)) 0 0;
 }
 
 /* O card monta na capa: com o topo do .profile já 26px acima do fim da
@@ -205,11 +226,11 @@
    dentro, metade fora. */
 .avatarWrap {
   position: relative;
-  width: 92px;
-  height: 92px;
-  margin-top: -20px;
-  border-radius: 26px;
-  padding: 5px;
+  width: calc(92 * var(--m-u));
+  height: calc(92 * var(--m-u));
+  margin-top: calc(-20 * var(--m-u));
+  border-radius: calc(26 * var(--m-u));
+  padding: calc(5 * var(--m-u));
   background: var(--m-bg);
 }
 
@@ -217,20 +238,20 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 20px;
+  border-radius: calc(20 * var(--m-u));
 }
 
 .nameRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-top: 14px;
+  gap: calc(12 * var(--m-u));
+  margin-top: calc(14 * var(--m-u));
 }
 
 .name {
   font-family: var(--font-heading), var(--font-body);
-  font-size: 20px;
+  font-size: calc(20 * var(--m-u));
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -239,15 +260,15 @@
 .contactBtn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: calc(6 * var(--m-u));
   flex-shrink: 0;
-  padding: 5px 20px 5px 5px;
+  padding: calc(5 * var(--m-u)) calc(20 * var(--m-u)) calc(5 * var(--m-u)) calc(5 * var(--m-u));
   border: none;
-  border-radius: 999px;
+  border-radius: calc(999 * var(--m-u));
   background: var(--gradient-cta);
   color: #fff;
   font-family: inherit;
-  font-size: 14px;
+  font-size: calc(14 * var(--m-u));
   font-weight: 500;
   cursor: pointer;
 }
@@ -259,8 +280,8 @@
 .contactBtnDisc {
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
+  width: calc(32 * var(--m-u));
+  height: calc(32 * var(--m-u));
   flex-shrink: 0;
   border-radius: 50%;
   background: #fff;
@@ -272,52 +293,52 @@
 .handleRow {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-top: 6px;
+  gap: calc(10 * var(--m-u));
+  margin-top: calc(6 * var(--m-u));
 }
 
 .handle {
-  font-size: 14px;
+  font-size: calc(14 * var(--m-u));
   color: var(--m-muted);
 }
 
 .statusPill {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 3px 10px;
-  border-radius: 999px;
+  gap: calc(6 * var(--m-u));
+  padding: calc(3 * var(--m-u)) calc(10 * var(--m-u));
+  border-radius: calc(999 * var(--m-u));
   background: rgba(34, 197, 94, 0.12);
   color: #15803D;
-  font-size: 12px;
+  font-size: calc(12 * var(--m-u));
   font-weight: 500;
 }
 
 .statusDot {
-  width: 6px;
-  height: 6px;
+  width: calc(6 * var(--m-u));
+  height: calc(6 * var(--m-u));
   border-radius: 50%;
   background: #22C55E;
 }
 
 .socialRow {
   display: flex;
-  gap: 10px;
-  margin-top: 18px;
+  gap: calc(10 * var(--m-u));
+  margin-top: calc(18 * var(--m-u));
 }
 
 .socialBtn {
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: calc(44 * var(--m-u));
+  height: calc(44 * var(--m-u));
   flex-shrink: 0;
   border-radius: 50%;
   background: var(--m-surface);
   /* Todos os ícones no mesmo tom, com ou sem endereço definido — a
      diferença de cor entre eles deixava a fileira desalinhada. */
   color: var(--m-muted);
-  border: 1px solid var(--m-line-strong);
+  border: calc(1 * var(--m-u)) solid var(--m-line-strong);
   transition: transform 0.15s, color 0.2s, background 0.2s, border-color 0.2s;
 }
 /* Hover preenche o círculo de roxo com o ícone em branco, pra deixar
@@ -338,24 +359,24 @@
    cria o degrau entre o nome e o parágrafo, sem virar um segundo
    título. */
 .tagline {
-  margin-top: 20px;
-  font-size: 15px;
+  margin-top: calc(20 * var(--m-u));
+  font-size: calc(15 * var(--m-u));
   font-weight: 700;
   line-height: 1.45;
   letter-spacing: -0.01em;
 }
 
 .bio {
-  margin-top: 10px;
-  font-size: 15px;
+  margin-top: calc(10 * var(--m-u));
+  font-size: calc(15 * var(--m-u));
   line-height: 1.62;
   color: var(--m-muted);
 }
 
 /* ── Seções ───────────────────────────────────────────────── */
 .section {
-  padding: 0 16px;
-  margin-top: 30px;
+  padding: 0 calc(16 * var(--m-u));
+  margin-top: calc(30 * var(--m-u));
 }
 
 /* Pílula do LinkedIn ao lado do título da seção — mesmo tratamento do
@@ -364,12 +385,12 @@
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  padding: 8px 14px;
-  border-radius: 999px;
+  padding: calc(8 * var(--m-u)) calc(14 * var(--m-u));
+  border-radius: calc(999 * var(--m-u));
   background: var(--gradient-cta);
   color: #fff;
   font-family: inherit;
-  font-size: 13px;
+  font-size: calc(13 * var(--m-u));
   font-weight: 600;
   white-space: nowrap;
 }
@@ -379,13 +400,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
+  gap: calc(12 * var(--m-u));
+  margin-bottom: calc(12 * var(--m-u));
 }
 
 .sectionTitle {
   font-family: var(--font-heading), var(--font-body);
-  font-size: 19px;
+  font-size: calc(19 * var(--m-u));
   font-weight: 600;
   letter-spacing: -0.01em;
 }
@@ -395,7 +416,7 @@
   background: none;
   padding: 0;
   font-family: inherit;
-  font-size: 14px;
+  font-size: calc(14 * var(--m-u));
   color: var(--m-muted);
   cursor: pointer;
 }
@@ -406,8 +427,8 @@
 }
 
 .sectionSubtitle {
-  margin: -4px 0 14px;
-  font-size: 14px;
+  margin: calc(-4 * var(--m-u)) 0 calc(14 * var(--m-u));
+  font-size: calc(14 * var(--m-u));
   line-height: 1.5;
   color: var(--m-muted);
 }
@@ -416,17 +437,17 @@
 .workList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: calc(10 * var(--m-u));
 }
 
 .workRow {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: calc(12 * var(--m-u));
   width: 100%;
-  padding: 12px;
-  border: 1px solid var(--m-card-border);
-  border-radius: 18px;
+  padding: calc(12 * var(--m-u));
+  border: calc(1 * var(--m-u)) solid var(--m-card-border);
+  border-radius: calc(18 * var(--m-u));
   background:
     radial-gradient(circle at 104% 50%, var(--m-card-glow) 0%, transparent 38%),
     var(--m-card-bg);
@@ -440,9 +461,9 @@
 
 .workThumb {
   flex-shrink: 0;
-  width: 58px;
-  height: 58px;
-  border-radius: 12px;
+  width: calc(58 * var(--m-u));
+  height: calc(58 * var(--m-u));
+  border-radius: calc(12 * var(--m-u));
   object-fit: cover;
   background: var(--m-bg);
 }
@@ -456,13 +477,13 @@
 .workTitleRow {
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: calc(8 * var(--m-u));
 }
 
 .workTitle {
   display: block;
   min-width: 0;
-  font-size: 15px;
+  font-size: calc(15 * var(--m-u));
   font-weight: 600;
   letter-spacing: -0.01em;
   white-space: nowrap;
@@ -472,13 +493,13 @@
 
 .workMeta {
   flex-shrink: 0;
-  font-size: 12px;
+  font-size: calc(12 * var(--m-u));
   color: var(--m-muted);
 }
 
 .workDesc {
-  margin-top: 3px;
-  font-size: 13px;
+  margin-top: calc(3 * var(--m-u));
+  font-size: calc(13 * var(--m-u));
   line-height: 1.45;
   color: var(--m-muted);
   display: -webkit-box;
@@ -497,31 +518,31 @@
 
 .soonTag {
   flex-shrink: 0;
-  padding: 3px 8px;
-  border-radius: 999px;
+  padding: calc(3 * var(--m-u)) calc(8 * var(--m-u));
+  border-radius: calc(999 * var(--m-u));
   background: rgba(22, 21, 28, 0.06);
   color: var(--m-muted);
-  font-size: 11px;
+  font-size: calc(11 * var(--m-u));
   font-weight: 500;
 }
 
 /* ── Aba Trabalhos ────────────────────────────────────────── */
 .tabHeader {
-  padding: calc(20px + env(safe-area-inset-top)) 16px 0;
+  padding: calc(calc(20 * var(--m-u)) + env(safe-area-inset-top)) calc(16 * var(--m-u)) 0;
 }
 
 .tabTitle {
   font-family: var(--font-heading), var(--font-body);
-  font-size: 26px;
+  font-size: calc(26 * var(--m-u));
   font-weight: 600;
   letter-spacing: -0.02em;
 }
 
 .filterBar {
   display: flex;
-  gap: 8px;
+  gap: calc(8 * var(--m-u));
   overflow-x: auto;
-  padding: 14px 16px 4px;
+  padding: calc(14 * var(--m-u)) calc(16 * var(--m-u)) calc(4 * var(--m-u));
   scrollbar-width: none;
 }
 
@@ -529,12 +550,12 @@
 
 .filterPill {
   flex-shrink: 0;
-  padding: 9px 16px;
-  border: 1px solid var(--m-line);
-  border-radius: 999px;
+  padding: calc(9 * var(--m-u)) calc(16 * var(--m-u));
+  border: calc(1 * var(--m-u)) solid var(--m-line);
+  border-radius: calc(999 * var(--m-u));
   background: var(--m-surface);
   font-family: inherit;
-  font-size: 13px;
+  font-size: calc(13 * var(--m-u));
   font-weight: 500;
   color: var(--m-muted);
   cursor: pointer;
@@ -549,15 +570,15 @@
 .projectGrid {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 18px 16px 0;
+  gap: calc(14 * var(--m-u));
+  padding: calc(18 * var(--m-u)) calc(16 * var(--m-u)) 0;
 }
 
 .projectCard {
   width: 100%;
-  padding: 10px 10px 14px;
-  border: 1px solid var(--m-line);
-  border-radius: 20px;
+  padding: calc(10 * var(--m-u)) calc(10 * var(--m-u)) calc(14 * var(--m-u));
+  border: calc(1 * var(--m-u)) solid var(--m-line);
+  border-radius: calc(20 * var(--m-u));
   background: var(--m-surface);
   text-align: left;
   font-family: inherit;
@@ -570,7 +591,7 @@
 .projectImgWrap {
   display: block;
   position: relative;
-  border-radius: 14px;
+  border-radius: calc(14 * var(--m-u));
   overflow: hidden;
   background: var(--m-bg);
   aspect-ratio: 4 / 3;
@@ -588,10 +609,10 @@
   display: grid;
   place-items: center;
   background: rgba(12, 10, 20, 0.55);
-  backdrop-filter: blur(3px);
-  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(calc(3 * var(--m-u)));
+  -webkit-backdrop-filter: blur(calc(3 * var(--m-u)));
   color: #fff;
-  font-size: 13px;
+  font-size: calc(13 * var(--m-u));
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -599,20 +620,20 @@
 
 .projectInfo {
   display: block;
-  padding: 12px 6px 0;
+  padding: calc(12 * var(--m-u)) calc(6 * var(--m-u)) 0;
 }
 
 .projectTitle {
   display: block;
-  font-size: 16px;
+  font-size: calc(16 * var(--m-u));
   font-weight: 600;
   letter-spacing: -0.01em;
 }
 
 .projectDesc {
   display: block;
-  margin-top: 4px;
-  font-size: 13px;
+  margin-top: calc(4 * var(--m-u));
+  font-size: calc(13 * var(--m-u));
   line-height: 1.5;
   color: var(--m-muted);
 }
@@ -620,16 +641,16 @@
 .tagRow {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 10px;
+  gap: calc(6 * var(--m-u));
+  margin-top: calc(10 * var(--m-u));
 }
 
 .tag {
-  padding: 4px 10px;
-  border-radius: 999px;
+  padding: calc(4 * var(--m-u)) calc(10 * var(--m-u));
+  border-radius: calc(999 * var(--m-u));
   background: rgba(138, 92, 246, 0.1);
   color: var(--accent-purple);
-  font-size: 11px;
+  font-size: calc(11 * var(--m-u));
   font-weight: 500;
 }
 
@@ -638,24 +659,24 @@
   position: fixed;
   z-index: 65;
   left: 50%;
-  bottom: calc(18px + env(safe-area-inset-bottom));
+  bottom: calc(calc(18 * var(--m-u)) + env(safe-area-inset-bottom));
   transform: translateX(-50%);
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 6px;
-  border-radius: 999px;
+  gap: calc(4 * var(--m-u));
+  padding: calc(6 * var(--m-u));
+  border-radius: calc(999 * var(--m-u));
   background: rgba(18, 16, 26, 0.86);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(calc(18 * var(--m-u)));
+  -webkit-backdrop-filter: blur(calc(18 * var(--m-u)));
+  box-shadow: 0 calc(12 * var(--m-u)) calc(34 * var(--m-u)) rgba(0, 0, 0, 0.28);
 }
 
 .dockBtn {
   display: grid;
   place-items: center;
-  width: 46px;
-  height: 46px;
+  width: calc(46 * var(--m-u));
+  height: calc(46 * var(--m-u));
   border: none;
   border-radius: 50%;
   background: transparent;
@@ -674,14 +695,14 @@
    roxo sempre visível. */
 .dockAvatarBtn {
   position: relative;
-  width: 46px;
-  height: 46px;
+  width: calc(46 * var(--m-u));
+  height: calc(46 * var(--m-u));
   border: none;
   border-radius: 50%;
-  padding: 3px;
+  padding: calc(3 * var(--m-u));
   background: none;
   cursor: pointer;
-  box-shadow: inset 0 0 0 2px var(--accent-purple-2);
+  box-shadow: inset 0 0 0 calc(2 * var(--m-u)) var(--accent-purple-2);
 }
 
 /* A arte é quadrada e o rosto fica na metade de cima dela, então num
@@ -709,10 +730,14 @@
 .dockAvatarActive img { opacity: 1; }
 
 .dockAvatarActive {
-  box-shadow: inset 0 0 0 2px var(--accent-purple-2), 0 0 14px rgba(154, 108, 229, 0.55);
+  box-shadow: inset 0 0 0 calc(2 * var(--m-u)) var(--accent-purple-2), 0 0 calc(14 * var(--m-u)) rgba(154, 108, 229, 0.55);
 }
 
 /* ── Sheet (tela cheia) ───────────────────────────────────── */
+/* Acompanha a coluna do .app: com max-width e margens automáticas, um
+   elemento fixo com left/right zerados divide a sobra dos dois lados e
+   fica centrado — senão o sheet abriria em tela cheia no tablet
+   enquanto o resto do app vive numa coluna estreita. */
 .sheet {
   position: fixed;
   inset: 0;
@@ -721,6 +746,8 @@
   flex-direction: column;
   background: var(--m-bg);
   animation: mSheetIn 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: calc(560 * var(--m-u));
+  margin-inline: auto;
 }
 
 @keyframes mSheetIn {
@@ -732,12 +759,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: calc(12px + env(safe-area-inset-top)) 14px 12px;
+  gap: calc(12 * var(--m-u));
+  padding: calc(calc(12 * var(--m-u)) + env(safe-area-inset-top)) calc(14 * var(--m-u)) calc(12 * var(--m-u));
   background: color-mix(in srgb, var(--m-bg) 90%, transparent);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--m-line);
+  backdrop-filter: blur(calc(14 * var(--m-u)));
+  -webkit-backdrop-filter: blur(calc(14 * var(--m-u)));
+  border-bottom: calc(1 * var(--m-u)) solid var(--m-line);
 }
 
 /* ── Abas de categoria do sheet de Trabalhos ──────────────────
@@ -746,7 +773,7 @@
 .catTabs {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: calc(6 * var(--m-u));
   min-width: 0;
   flex: 1;
 }
@@ -754,16 +781,16 @@
 .catTab {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: calc(8 * var(--m-u));
   flex-shrink: 0;
-  height: 40px;
-  padding: 0 12px;
-  border: 1px solid transparent;
-  border-radius: 999px;
+  height: calc(40 * var(--m-u));
+  padding: 0 calc(12 * var(--m-u));
+  border: calc(1 * var(--m-u)) solid transparent;
+  border-radius: calc(999 * var(--m-u));
   background: none;
   color: var(--m-muted);
   font-family: inherit;
-  font-size: 14px;
+  font-size: calc(14 * var(--m-u));
   font-weight: 500;
   white-space: nowrap;
   cursor: pointer;
@@ -776,23 +803,23 @@
   background: var(--gradient-cta);
   border-color: transparent;
   font-weight: 600;
-  padding: 0 16px;
+  padding: 0 calc(16 * var(--m-u));
 }
 
 .worksSheetList {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 16px;
+  gap: calc(10 * var(--m-u));
+  padding: calc(16 * var(--m-u));
 }
 
 .sheetTag {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: calc(8 * var(--m-u));
   min-width: 0;
-  padding: 0 4px;
-  font-size: 15px;
+  padding: 0 calc(4 * var(--m-u));
+  font-size: calc(15 * var(--m-u));
   font-weight: 600;
 }
 
@@ -805,7 +832,7 @@
 .sheetActions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: calc(8 * var(--m-u));
   flex-shrink: 0;
 }
 
@@ -814,16 +841,16 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: calc(12 * var(--m-u));
 }
 
 .sheetClose {
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  border: 1px solid var(--m-line-strong);
+  width: calc(36 * var(--m-u));
+  height: calc(36 * var(--m-u));
+  border: calc(1 * var(--m-u)) solid var(--m-line-strong);
   border-radius: 50%;
   background: none;
   color: var(--m-ink);
@@ -831,14 +858,14 @@
   padding: 0;
 }
 /* Mesmo tamanho óptico do ícone dentro do alternador de tema. */
-.sheetClose svg { width: 16px; height: 16px; }
+.sheetClose svg { width: calc(16 * var(--m-u)); height: calc(16 * var(--m-u)); }
 
 .sheetBody {
   flex: 1;
   overflow-y: auto;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: calc(112px + env(safe-area-inset-bottom));
+  padding-bottom: calc(calc(112 * var(--m-u)) + env(safe-area-inset-bottom));
 }
 
 /* Detalhamento do projeto reaproveita o componente desktop; aqui só
@@ -855,10 +882,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
+  padding: calc(20 * var(--m-u));
   background: rgba(10, 9, 16, 0.45);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(calc(6 * var(--m-u)));
+  -webkit-backdrop-filter: blur(calc(6 * var(--m-u)));
   animation: mFadeIn 0.24s ease both;
 }
 
@@ -870,28 +897,28 @@
 .modalCard {
   position: relative;
   width: 100%;
-  max-width: 380px;
-  padding: 26px 22px 24px;
-  border-radius: 28px;
+  max-width: calc(380 * var(--m-u));
+  padding: calc(26 * var(--m-u)) calc(22 * var(--m-u)) calc(24 * var(--m-u));
+  border-radius: calc(28 * var(--m-u));
   background: var(--m-surface);
   text-align: center;
   animation: mPop 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes mPop {
-  from { opacity: 0; transform: scale(0.94) translateY(10px); }
+  from { opacity: 0; transform: scale(0.94) translateY(calc(10 * var(--m-u))); }
   to   { opacity: 1; transform: none; }
 }
 
 .modalClose {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: calc(14 * var(--m-u));
+  right: calc(14 * var(--m-u));
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--m-line);
+  width: calc(34 * var(--m-u));
+  height: calc(34 * var(--m-u));
+  border: calc(1 * var(--m-u)) solid var(--m-line);
   border-radius: 50%;
   background: var(--m-surface);
   color: var(--m-muted);
@@ -902,21 +929,21 @@
 .modalAvatars {
   display: flex;
   justify-content: center;
-  margin-bottom: 18px;
+  margin-bottom: calc(18 * var(--m-u));
 }
 
 .modalAvatar {
   display: grid;
   place-items: center;
-  width: 96px;
-  height: 96px;
+  width: calc(96 * var(--m-u));
+  height: calc(96 * var(--m-u));
   border-radius: 50%;
-  border: 3px solid var(--m-surface);
+  border: calc(3 * var(--m-u)) solid var(--m-surface);
   overflow: hidden;
   color: #fff;
 }
 
-.modalAvatar:not(:first-child) { margin-left: -20px; }
+.modalAvatar:not(:first-child) { margin-left: calc(-20 * var(--m-u)); }
 .modalAvatar img { width: 100%; height: 100%; object-fit: cover; }
 .modalAvatarWa { background: #25D366; }
 .modalAvatarLi { background: #0A66C2; }
@@ -926,16 +953,16 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 14px;
+  gap: calc(8 * var(--m-u));
+  margin-bottom: calc(14 * var(--m-u));
 }
 
 .modalPill {
-  padding: 5px 12px;
-  border-radius: 999px;
+  padding: calc(5 * var(--m-u)) calc(12 * var(--m-u));
+  border-radius: calc(999 * var(--m-u));
   background: rgba(22, 21, 28, 0.06);
   color: var(--m-muted);
-  font-size: 12px;
+  font-size: calc(12 * var(--m-u));
   font-weight: 500;
 }
 
@@ -945,7 +972,7 @@
    medindo o texto mais longo dos três idiomas. */
 .modalTitle {
   font-family: var(--font-heading), var(--font-body);
-  font-size: min(5.4vw, 24px);
+  font-size: min(5.4vw, calc(24 * var(--m-u)));
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.02em;
@@ -953,8 +980,8 @@
 }
 
 .modalSubtitle {
-  margin-top: 10px;
-  font-size: 14px;
+  margin-top: calc(10 * var(--m-u));
+  font-size: calc(14 * var(--m-u));
   line-height: 1.5;
   color: var(--m-muted);
 }
@@ -962,10 +989,10 @@
 .statsRow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 4px;
-  margin: 8px 0 12px;
-  padding: 10px 8px;
-  border-radius: 18px;
+  gap: calc(4 * var(--m-u));
+  margin: calc(8 * var(--m-u)) 0 calc(12 * var(--m-u));
+  padding: calc(10 * var(--m-u)) calc(8 * var(--m-u));
+  border-radius: calc(18 * var(--m-u));
   background: var(--m-bg);
 }
 
@@ -973,15 +1000,15 @@
 
 .statValue {
   display: block;
-  font-size: 19px;
+  font-size: calc(19 * var(--m-u));
   font-weight: 600;
   letter-spacing: -0.01em;
 }
 
 .statLabel {
   display: block;
-  margin-top: 2px;
-  font-size: 12px;
+  margin-top: calc(2 * var(--m-u));
+  font-size: calc(12 * var(--m-u));
   color: var(--m-muted);
 }
 
@@ -992,16 +1019,16 @@
 .waBtn {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: calc(6 * var(--m-u));
   /* `fit-content` + margem automática centraliza de verdade; num
      `inline-flex` a margem auto não faria nada. */
   width: fit-content;
   margin: 0 auto;
-  padding: 5px 20px 5px 5px;
-  border-radius: 999px;
+  padding: calc(5 * var(--m-u)) calc(20 * var(--m-u)) calc(5 * var(--m-u)) calc(5 * var(--m-u));
+  border-radius: calc(999 * var(--m-u));
   background: var(--gradient-cta);
   color: #fff;
-  font-size: 14px;
+  font-size: calc(14 * var(--m-u));
   font-weight: 500;
 }
 .waBtn:active { transform: scale(0.98); }
@@ -1010,8 +1037,8 @@
 /* ── Aba Sobre ────────────────────────────────────────────── */
 .photoScroller {
   display: flex;
-  gap: 12px;
-  padding: 0 16px;
+  gap: calc(12 * var(--m-u));
+  padding: 0 calc(16 * var(--m-u));
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -1023,9 +1050,9 @@
   position: relative;
   flex-shrink: 0;
   width: 76%;
-  max-width: 300px;
+  max-width: calc(300 * var(--m-u));
   aspect-ratio: 4 / 5;
-  border-radius: 20px;
+  border-radius: calc(20 * var(--m-u));
   overflow: hidden;
   scroll-snap-align: center;
   background: var(--m-surface);
@@ -1040,7 +1067,7 @@
 .photoCaption {
   position: absolute;
   inset: auto 0 0 0;
-  padding: 34px 14px 14px;
+  padding: calc(34 * var(--m-u)) calc(14 * var(--m-u)) calc(14 * var(--m-u));
   background: linear-gradient(to top, rgba(10, 9, 16, 0.82), transparent);
   color: #fff;
   text-align: left;
@@ -1048,45 +1075,45 @@
 
 .photoCaptionTitle {
   display: block;
-  font-size: 15px;
+  font-size: calc(15 * var(--m-u));
   font-weight: 600;
 }
 
 .photoCaptionSub {
   display: block;
-  margin-top: 2px;
-  font-size: 12px;
+  margin-top: calc(2 * var(--m-u));
+  font-size: calc(12 * var(--m-u));
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.78);
 }
 
 .aboutBody p {
-  margin-bottom: 12px;
-  font-size: 15px;
+  margin-bottom: calc(12 * var(--m-u));
+  font-size: calc(15 * var(--m-u));
   line-height: 1.6;
   color: var(--m-muted);
 }
 
 .highlightCard {
-  margin-top: 6px;
-  padding: 16px 18px;
-  border-radius: 18px;
+  margin-top: calc(6 * var(--m-u));
+  padding: calc(16 * var(--m-u)) calc(18 * var(--m-u));
+  border-radius: calc(18 * var(--m-u));
   background: var(--gradient-cta);
   color: #fff;
-  font-size: 15px;
+  font-size: calc(15 * var(--m-u));
   font-weight: 500;
   line-height: 1.45;
 }
 
 .toolsLabel {
-  margin-bottom: 12px;
-  font-size: 13px;
+  margin-bottom: calc(12 * var(--m-u));
+  font-size: calc(13 * var(--m-u));
   line-height: 1.5;
   color: var(--m-muted);
 }
 
 .toolsWrap {
-  margin-top: 26px;
+  margin-top: calc(26 * var(--m-u));
   overflow: hidden;
 }
 
@@ -1094,12 +1121,12 @@
 .accordion {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: calc(10 * var(--m-u));
 }
 
 .accItem {
-  border: 1px solid var(--m-card-border);
-  border-radius: 18px;
+  border: calc(1 * var(--m-u)) solid var(--m-card-border);
+  border-radius: calc(18 * var(--m-u));
   background:
     radial-gradient(circle at 104% 50%, var(--m-card-glow) 0%, transparent 38%),
     var(--m-card-bg);
@@ -1110,9 +1137,9 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: calc(12 * var(--m-u));
   width: 100%;
-  padding: 15px 16px;
+  padding: calc(15 * var(--m-u)) calc(16 * var(--m-u));
   border: none;
   background: none;
   font-family: inherit;
@@ -1123,8 +1150,8 @@
 
 .accPeriod {
   display: block;
-  margin-bottom: 5px;
-  font-size: 11px;
+  margin-bottom: calc(5 * var(--m-u));
+  font-size: calc(11 * var(--m-u));
   font-weight: 500;
   letter-spacing: 0.04em;
   color: var(--accent-purple);
@@ -1132,7 +1159,7 @@
 
 .accTitle {
   display: block;
-  font-size: 15px;
+  font-size: calc(15 * var(--m-u));
   font-weight: 600;
   line-height: 1.35;
   letter-spacing: -0.01em;
@@ -1140,14 +1167,14 @@
 
 .accMeta {
   display: block;
-  margin-top: 3px;
-  font-size: 12px;
+  margin-top: calc(3 * var(--m-u));
+  font-size: calc(12 * var(--m-u));
   color: var(--m-muted);
 }
 
 .accToggle {
   flex-shrink: 0;
-  margin-top: 2px;
+  margin-top: calc(2 * var(--m-u));
   color: var(--m-muted);
   transition: transform 0.25s;
 }
@@ -1155,12 +1182,12 @@
 .accToggleOpen { transform: rotate(180deg); }
 
 .accBody {
-  padding: 0 16px 16px;
+  padding: 0 calc(16 * var(--m-u)) calc(16 * var(--m-u));
 }
 
 .accBody p {
-  margin-bottom: 10px;
-  font-size: 14px;
+  margin-bottom: calc(10 * var(--m-u));
+  font-size: calc(14 * var(--m-u));
   line-height: 1.6;
   color: var(--m-muted);
 }
@@ -1169,14 +1196,14 @@
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 7px;
-  margin-top: 12px;
+  gap: calc(7 * var(--m-u));
+  margin-top: calc(12 * var(--m-u));
 }
 
 .accBullets li {
   position: relative;
-  padding-left: 16px;
-  font-size: 13.5px;
+  padding-left: calc(16 * var(--m-u));
+  font-size: calc(13.5 * var(--m-u));
   line-height: 1.5;
   color: var(--m-muted);
 }
@@ -1185,9 +1212,9 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 8px;
-  width: 5px;
-  height: 5px;
+  top: calc(8 * var(--m-u));
+  width: calc(5 * var(--m-u));
+  height: calc(5 * var(--m-u));
   border-radius: 50%;
   background: var(--accent-purple);
 }
@@ -1195,14 +1222,14 @@
 /* FAQ */
 .faqQuestion {
   display: block;
-  font-size: 14.5px;
+  font-size: calc(14.5 * var(--m-u));
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: -0.01em;
 }
 
 .faqAnswer {
-  font-size: 14px;
+  font-size: calc(14 * var(--m-u));
   line-height: 1.6;
   color: var(--m-muted);
 }
@@ -1211,16 +1238,16 @@
 .certList {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: calc(8 * var(--m-u));
 }
 
 .certRow {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
-  border: 1px solid var(--m-card-border);
-  border-radius: 16px;
+  gap: calc(12 * var(--m-u));
+  padding: calc(12 * var(--m-u)) calc(14 * var(--m-u));
+  border: calc(1 * var(--m-u)) solid var(--m-card-border);
+  border-radius: calc(16 * var(--m-u));
   background:
     radial-gradient(circle at 104% 50%, var(--m-card-glow) 0%, transparent 38%),
     var(--m-card-bg);
@@ -1228,25 +1255,25 @@
 
 .certLogo {
   flex-shrink: 0;
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
+  width: calc(38 * var(--m-u));
+  height: calc(38 * var(--m-u));
+  border-radius: calc(10 * var(--m-u));
   object-fit: contain;
   background: #ffffff;
-  padding: 4px;
+  padding: calc(4 * var(--m-u));
 }
 
 .certTitle {
   display: block;
-  font-size: 13.5px;
+  font-size: calc(13.5 * var(--m-u));
   font-weight: 600;
   line-height: 1.35;
 }
 
 .certSubtitle {
   display: block;
-  margin-top: 2px;
-  font-size: 12px;
+  margin-top: calc(2 * var(--m-u));
+  font-size: calc(12 * var(--m-u));
   line-height: 1.4;
   color: var(--m-muted);
   display: -webkit-box;
@@ -1259,8 +1286,8 @@
 /* ── Recomendações ────────────────────────────────────────── */
 .recoScroller {
   display: flex;
-  gap: 12px;
-  padding: 0 16px 4px;
+  gap: calc(12 * var(--m-u));
+  padding: 0 calc(16 * var(--m-u)) calc(4 * var(--m-u));
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -1271,10 +1298,10 @@
 .recoCard {
   flex-shrink: 0;
   width: 82%;
-  max-width: 320px;
-  padding: 18px;
-  border: 1px solid var(--m-card-border);
-  border-radius: 20px;
+  max-width: calc(320 * var(--m-u));
+  padding: calc(18 * var(--m-u));
+  border: calc(1 * var(--m-u)) solid var(--m-card-border);
+  border-radius: calc(20 * var(--m-u));
   background:
     radial-gradient(circle at 104% 50%, var(--m-card-glow) 0%, transparent 38%),
     var(--m-card-bg);
@@ -1284,8 +1311,8 @@
 .recoTop {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
+  gap: calc(10 * var(--m-u));
+  margin-bottom: calc(12 * var(--m-u));
 }
 
 .recoAvatar {
@@ -1294,29 +1321,29 @@
   /* `flex-shrink: 0` porque cargos longos (ex.: "Psicóloga
      Organizacional · Gestão Estratégica de RH") espremiam o círculo
      até virar uma elipse. */
-  flex: 0 0 40px;
-  width: 40px;
-  height: 40px;
+  flex: 0 0 calc(40 * var(--m-u));
+  width: calc(40 * var(--m-u));
+  height: calc(40 * var(--m-u));
   border-radius: 50%;
   background: var(--gradient-cta);
   color: #fff;
-  font-size: 16px;
+  font-size: calc(16 * var(--m-u));
   font-weight: 600;
 }
 
 .recoName {
-  font-size: 14px;
+  font-size: calc(14 * var(--m-u));
   font-weight: 600;
 }
 
 .recoRole {
-  font-size: 12px;
+  font-size: calc(12 * var(--m-u));
   line-height: 1.35;
   color: var(--m-muted);
 }
 
 .recoText {
-  font-size: 13.5px;
+  font-size: calc(13.5 * var(--m-u));
   line-height: 1.6;
   color: var(--m-muted);
 }

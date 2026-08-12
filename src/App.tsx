@@ -10,8 +10,8 @@ import { useIsMobile } from './hooks/useIsMobile'
 import './App.css'
 
 function App() {
-  // Abaixo de 768px o site desktop dá lugar a uma experiência própria,
-  // app-like (ver components/Mobile/MobileApp).
+  // Até 1024px (celulares e tablets em retrato) o site desktop dá lugar
+  // a uma experiência própria, app-like (ver components/Mobile/MobileApp).
   const isMobile = useIsMobile()
 
   // No desktop existe uma tela só: a Hero. Tudo o mais — seções, grade de
