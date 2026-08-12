@@ -1,52 +1,55 @@
 import { useEffect, useState } from 'react'
-import { Sidebar } from './components/Sidebar/Sidebar'
 import { Hero } from './components/Hero/Hero'
-import { FeaturedProjects } from './components/FeaturedProjects/FeaturedProjects'
-import { MyProcess } from './components/MyProcess/MyProcess'
-import { InfoCards } from './components/InfoCards/InfoCards'
-import { FAQ } from './components/FAQ/FAQ'
-import { Recomendacoes } from './components/Recomendacoes/Recomendacoes'
-import { ContactBanner } from './components/ContactBanner/ContactBanner'
-import { WorkspaceHero } from './components/WorkspaceHero/WorkspaceHero'
-import { WorkspaceProjects } from './components/WorkspaceProjects/WorkspaceProjects'
-import { WorkspaceProcess } from './components/WorkspaceProcess/WorkspaceProcess'
-import { WorkspaceInsight } from './components/WorkspaceInsight/WorkspaceInsight'
-import { ProjectsHero } from './components/ProjectsHero/ProjectsHero'
-import { ProjectsGrid } from './components/ProjectsGrid/ProjectsGrid'
-import { ProjectDetail } from './components/ProjectDetail/ProjectDetail'
-import { ProjectModal } from './components/ProjectModal/ProjectModal'
-import { allProjects } from './data/projects'
-import type { ProjectFull } from './components/ProjectDetail/ProjectDetail'
-import { Experiencias } from './components/Experiencias/Experiencias'
-import { SobreMim } from './components/SobreMim/SobreMim'
-import { Skills } from './components/Skills/Skills'
-import { Processos } from './components/Processos/Processos'
+import type { HeroModal } from './components/Hero/Hero'
+import { SiteModals } from './components/Modal/SiteModals'
+import type { ProjectFilter } from './components/ProjectsHero/ProjectsHero'
+import type { Project } from './data/projects'
+import { CONTACTS } from './data/contacts'
+import { MobileApp } from './components/Mobile/MobileApp'
+import { useIsMobile } from './hooks/useIsMobile'
 import './App.css'
 
-type Page = 'home' | 'workspace' | 'projetos' | 'experiencias' | 'sobre' | 'skills' | 'processos'
-
 function App() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
-  const [currentPage, setCurrentPage] = useState<Page>('home')
-  const [selectedProject, setSelectedProject] = useState<ProjectFull | null>(null)
-  const [modalProject, setModalProject] = useState<ProjectFull | null>(null)
+  // Abaixo de 768px o site desktop dá lugar a uma experiência própria,
+  // app-like (ver components/Mobile/MobileApp).
+  const isMobile = useIsMobile()
 
-  // Projetos com link externo (Behance/Figma) abrem um modal em vez do detalhamento
-  const handleSelectProject = (p: ProjectFull) => {
-    if (p.behanceUrl || p.figmaUrl) {
-      setModalProject(p)
-    } else {
-      setSelectedProject(p)
-      window.scrollTo(0, 0)
+  // No desktop existe uma tela só: a Hero. Tudo o mais — seções, grade de
+  // projetos e case studies — acontece em modais por cima dela.
+  const [openModal, setOpenModal] = useState<HeroModal | null>(null)
+  const [projectFilter, setProjectFilter] = useState<ProjectFilter>('all')
+  const [detailSlug, setDetailSlug] = useState<string | null>(null)
+
+  // A página nunca rola: quem "rola" é a máquina de estados da Hero, e o
+  // conteúdo dos modais rola dentro do próprio painel.
+  useEffect(() => {
+    if (isMobile) return
+    document.documentElement.classList.add('no-scroll')
+    document.body.classList.add('no-scroll')
+    return () => {
+      document.documentElement.classList.remove('no-scroll')
+      document.body.classList.remove('no-scroll')
     }
+  }, [isMobile])
+
+  // Só projetos com detailSlug têm case study pronto (as outras cards
+  // ainda não têm o detalhamento construído no Figma).
+  const openProjectDetail = (project: Project) => {
+    if (!project.detailSlug) return
+    setDetailSlug(project.detailSlug)
+    setOpenModal('cases')
   }
 
-  useEffect(() => {
-    const mq = window.matchMedia('(min-width: 769px)')
-    const fn = (e: MediaQueryListEvent) => { if (e.matches) setSidebarOpen(false) }
-    mq.addEventListener('change', fn)
-    return () => mq.removeEventListener('change', fn)
-  }, [])
+  const closeModal = () => {
+    setOpenModal(null)
+    setDetailSlug(null)
+  }
+
+  // Trocar de categoria pelas abas do cabeçalho sempre devolve pra grade.
+  const changeFilter = (filter: ProjectFilter) => {
+    setProjectFilter(filter)
+    setDetailSlug(null)
+  }
 
   useEffect(() => {
     const isInView = (el: Element) => {
@@ -55,10 +58,6 @@ function App() {
     }
 
     const attachEl = (el: Element) => {
-      if (el.closest('.cards-row')) {
-        el.classList.add('in-view')
-        return
-      }
       if (isInView(el)) {
         el.classList.add('in-view')
         return
@@ -82,7 +81,7 @@ function App() {
     document.querySelectorAll('[data-animate]').forEach(attachEl)
 
     // MutationObserver: detecta novos [data-animate] adicionados ao DOM
-    // (ex: FAQ re-renderiza de desktop→mobile e insere os accordion items)
+    // (ex: abrir um modal insere as seções inteiras de uma vez)
     const mutObserver = new MutationObserver(mutations => {
       mutations.forEach(m => {
         m.addedNodes.forEach(node => {
@@ -94,108 +93,42 @@ function App() {
     })
     mutObserver.observe(document.body, { childList: true, subtree: true })
 
-    // fallback de scroll para iOS Safari onde IntersectionObserver pode falhar
+    // Fallback pra quando o IntersectionObserver não dispara. `capture`
+    // porque quem rola agora é o corpo do modal, não a janela — e eventos
+    // de scroll de elementos não sobem por bubbling.
     const onScroll = () => {
       document.querySelectorAll('[data-animate]:not(.in-view)').forEach(el => {
-        if (!el.closest('.cards-row') && isInView(el)) el.classList.add('in-view')
+        if (isInView(el)) el.classList.add('in-view')
       })
     }
-    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('scroll', onScroll, { passive: true, capture: true })
 
     return () => {
       ioObserver.disconnect()
       mutObserver.disconnect()
-      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('scroll', onScroll, { capture: true })
     }
   }, [])
 
+  if (isMobile) return <MobileApp />
+
   return (
-    <div className="layout">
-      <Sidebar
-          isOpen={sidebarOpen}
-          onClose={() => setSidebarOpen(false)}
-          currentPage={currentPage}
-          onNavigate={page => {
-            setCurrentPage(page)
-            setSelectedProject(null)
-            window.scrollTo(0, 0)
-            setTimeout(() => window.dispatchEvent(new Event('scroll')), 50)
-          }}
-        />
-
-      <button
-        className="menu-toggle"
-        onClick={() => setSidebarOpen(true)}
-        aria-label="Abrir menu"
-      >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-          <path d="M3 3L8 8L3 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M7 3L12 8L7 13" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      </button>
-
-      <main className="main-content">
-        {currentPage === 'home' && (
-          <>
-            <Hero />
-            <FeaturedProjects
-              onSelectProject={p => {
-                if (p.behanceUrl || p.figmaUrl) { setModalProject(p) }
-                else { setCurrentPage('projetos'); setSelectedProject(p); window.scrollTo(0, 0) }
-              }}
-              onViewAll={() => { setCurrentPage('projetos'); window.scrollTo(0, 0) }}
-            />
-            <div className="cards-row">
-              <MyProcess />
-              <InfoCards />
-            </div>
-            <Recomendacoes />
-            <FAQ />
-            <ContactBanner />
-          </>
-        )}
-        {currentPage === 'projetos' && (
-          selectedProject ? (
-            <ProjectDetail
-              project={selectedProject}
-              allProjects={allProjects}
-              onBack={() => { setSelectedProject(null); window.scrollTo(0, 0) }}
-              onSelect={handleSelectProject}
-            />
-          ) : (
-            <>
-              <ProjectsHero />
-              <ProjectsGrid onSelectProject={handleSelectProject} />
-              <ContactBanner />
-            </>
-          )
-        )}
-        {currentPage === 'experiencias' && (
-          <Experiencias />
-        )}
-        {currentPage === 'sobre' && (
-          <SobreMim />
-        )}
-        {currentPage === 'skills' && (
-          <Skills />
-        )}
-        {currentPage === 'processos' && (
-          <Processos />
-        )}
-        {currentPage === 'workspace' && (
-          <>
-            <WorkspaceHero />
-            <WorkspaceProjects />
-            <WorkspaceProcess />
-            <WorkspaceInsight />
-            <ContactBanner />
-          </>
-        )}
-      </main>
-
-      {modalProject && (
-        <ProjectModal project={modalProject} onClose={() => setModalProject(null)} />
-      )}
+    <div className="layout layout--fullscreen">
+      <Hero
+        scrollEnabled={openModal === null}
+        onOpenModal={setOpenModal}
+        onSelectProject={openProjectDetail}
+        onNavigateContato={() => window.open(CONTACTS.whatsapp, '_blank', 'noopener,noreferrer')}
+      />
+      <SiteModals
+        open={openModal}
+        onClose={closeModal}
+        detailSlug={detailSlug}
+        projectFilter={projectFilter}
+        onFilterChange={changeFilter}
+        onSelectProject={openProjectDetail}
+        onBackToGrid={() => setDetailSlug(null)}
+      />
     </div>
   )
 }

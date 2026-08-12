@@ -18,8 +18,9 @@
 }
 */
 
-/* ── Fonte Inter via Google Fonts ───────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+/* ── Fontes via Google Fonts + Fontshare ────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Outfit:wght@400;500;600;700&family=Aboreto&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Reenie+Beanie&family=Crimson+Pro:wght@400;600&family=Inter:wght@400;500;600&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400&display=swap');
 
 /* ── Reset ───────────────────────────────────────────────── */
 *, *::before, *::after {
@@ -29,36 +30,165 @@
 }
 
 /* ── Variáveis ───────────────────────────────────────────── */
+/* Tema CLARO (padrão — é o tema em que o Figma foi desenhado).
+   O tema escuro só redefine os tokens de superfície clara logo
+   abaixo; --bg-dark e --text-on-dark são fixos porque a ilustração
+   da Hero é escura nos dois temas. */
 :root {
-  /* Cores — ajuste conforme o Figma */
-  --color-bg: #09090c;
-  --color-text: #ffffff;
-  --color-primary: #000000;
-  --color-accent: #000000;
+  color-scheme: light;
+
+  /* Fundos */
+  --bg-dark: #07070C;
+  --bg-dark-purple: #0F0026;
+  --bg-light: #FDF6F5;
+  /* Mesma cor com alfa 0. Degradês precisam partir daqui, não de
+     `transparent`: transparent interpola por preto e deixa uma faixa
+     cinza no meio do caminho. */
+  --bg-light-0: rgba(253, 246, 245, 0);
+
+  /* Toda superfície clara da interface é #FDF6F5, nunca branco puro —
+     é a cor da marca e não cansa a vista. No tema escuro, tudo #07070C.
+     Como as duas paletas usam um tom só, quem separa card de fundo são
+     as hairlines (--surface-border / --panel-line) e o --surface-3,
+     reservado pra estados sobrepostos (hover, item ativo). */
+
+  /* Painel de destaque que algumas seções usam como bloco inteiro
+     (Experiências, Recomendações). */
+  --panel: #FDF6F5;
+  --panel-text: #1a1a1a;
+  --panel-text-muted: rgba(26, 26, 26, 0.62);
+  --panel-line: rgba(26, 26, 26, 0.10);
+  --panel-line-strong: rgba(26, 26, 26, 0.16);
+  --panel-fill: rgba(26, 26, 26, 0.028);
+
+  /* Cartão "misturado": no claro ele tem exatamente a cor do fundo, e
+     quem o faz ler como card é a borda — o branco criava uma rampa
+     branco→lilás junto com o detalhe do canto. No escuro é um tom
+     acima do fundo (ver o bloco do tema escuro). Usado em
+     formação/workshops, recomendações e nos meta do detalhamento. */
+  --card-soft-bg: var(--bg-light);
+  --card-soft-border: #F1E9EE;
+  --card-soft-glow: rgba(155, 104, 242, 0.09);
+  --exp-card-title: #9B68F2;
+  --exp-card-muted: #77727C;
+  --exp-card-tile: #FFFFFF;
+  --exp-card-tile-shadow: rgba(76, 46, 130, 0.08);
+
+  /* Superfícies claras (painéis, cards, modais) — trocam no tema escuro */
+  --surface: #FDF6F5;
+  --surface-2: #FDF6F5;
+  --surface-3: #F2E4E2;
+  --surface-border: rgba(26, 26, 26, 0.10);
+  --surface-shadow: rgba(0, 0, 0, 0.35);
+  --overlay-scrim: rgba(12, 10, 20, 0.55);
+
+  /* O coração de curtidas mantém o miolo claro nos dois temas — é um
+     elemento colorido, como um emoji, e no escuro ele sumia por
+     completo contra o card. Como o miolo é sempre claro, o aro e o
+     rosto continuam escuros nos dois temas; por isso não há versão
+     escura desses três tokens. */
+  --heart-empty: #EFE6E7;
+  --heart-outline: rgba(26, 26, 26, 0.22);
+  --heart-face: #2B2130;
+
+  /* A folha branca do card de case na Hero. Fica num token próprio
+     porque o card da Hero é escuro nos dois temas — no escuro ela
+     precisa de um tom levantado, senão some no fundo. */
+  --hero-sheet: #FDF6F5;
+
+  /* Texto */
+  --text-on-dark: #FFFFFF;
+  --text-on-dark-muted: rgba(255, 255, 255, 0.65);
+  --text-on-light: #1a1a1a;
+  --text-on-light-muted: rgba(26, 26, 26, 0.6);
+
+  /* Acentos */
+  --accent-purple: #8B5CF6;
+  --accent-purple-2: #9A6CE5;
+  --accent-cyan: #00D9FF;
+  --accent-cyan-2: #22D3EE;
+  --gradient-cta: linear-gradient(135deg, #E5B1C9 0%, #9A6CE5 100%);
+  --card-border: rgb(30, 41, 57);
 
   /* Tipografia */
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-heading: var(--font-sans);
+  --font-display: 'Abril Fatface', serif;
+  --font-heading: 'Clash Display Variable', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-label: 'Aboreto', sans-serif;
+  --font-article: 'Bricolage Grotesque', sans-serif;
+  --font-script: 'Reenie Beanie', cursive;
+  --font-serif-alt: 'Crimson Pro', serif;
+  --font-inter: 'Inter', sans-serif;
 
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   font-size: 16px;
   line-height: 1.6;
-  color: var(--color-text);
-  background: var(--color-bg);
+  color: var(--text-on-light);
+  background: var(--bg-light);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 
+/* ── Tema escuro ─────────────────────────────────────────── */
+html[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg-light: #07070C;
+  --bg-light-0: rgba(7, 7, 12, 0);
+
+  --panel: #07070C;
+  --panel-text: #FFFFFF;
+  --panel-text-muted: rgba(255, 255, 255, 0.65);
+  --panel-line: rgba(255, 255, 255, 0.08);
+  --panel-line-strong: rgba(255, 255, 255, 0.14);
+  --panel-fill: rgba(255, 255, 255, 0.028);
+
+  --card-soft-bg: rgba(255, 255, 255, 0.035);
+  --card-soft-border: rgba(255, 255, 255, 0.08);
+  --card-soft-glow: rgba(154, 108, 229, 0.1);
+  --exp-card-title: #B892FF;
+  --exp-card-muted: rgba(243, 240, 248, 0.6);
+  --exp-card-tile: #FFFFFF;
+  --exp-card-tile-shadow: rgba(0, 0, 0, 0.3);
+
+  --surface: #07070C;
+  --surface-2: #07070C;
+  --surface-3: #17171F;
+  --hero-sheet: #14141D;
+  --surface-border: rgba(255, 255, 255, 0.12);
+  --surface-shadow: rgba(0, 0, 0, 0.6);
+  --overlay-scrim: rgba(4, 3, 8, 0.7);
+
+  --text-on-light: #F3F0F8;
+  --text-on-light-muted: rgba(243, 240, 248, 0.62);
+
+  --card-border: rgba(255, 255, 255, 0.10);
+}
+
+html[data-theme='dark'] body {
+  background: var(--bg-light);
+  color: var(--text-on-light);
+}
+
 /* ── Base ────────────────────────────────────────────────── */
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 body {
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+/* Ligado pelo App enquanto a home (tela única) está no ar. */
+html.no-scroll,
+body.no-scroll {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
 }
 
 img, video {
@@ -110,6 +240,11 @@ img, video {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Compensa o Header fixo ao rolar até uma seção por âncora/id */
+[id] {
+  scroll-margin-top: 90px;
 }
 
 #root {

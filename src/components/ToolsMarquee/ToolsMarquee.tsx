@@ -6,18 +6,34 @@ import toolChatgpt from '../../assets/tools/chatgpt.png'
 import toolFreepik from '../../assets/tools/freepik.png'
 import toolNotion from '../../assets/tools/notion.png'
 import toolPhotoshop from '../../assets/tools/photoshop.png'
-import toolMaze from '../../assets/tools/maze.png'
+import toolMidjourney from '../../assets/tools/midjourney.webp'
 import toolFramer from '../../assets/tools/framer.png'
+import toolClaude from '../../assets/tools/claude.webp'
+import toolStitch from '../../assets/tools/stitch.webp'
+import toolGrok from '../../assets/tools/grok.webp'
+import toolGemini from '../../assets/tools/gemini.webp'
+import toolJira from '../../assets/tools/jira.webp'
+import toolMultica from '../../assets/tools/multica.webp'
+import toolCodex from '../../assets/tools/codex.webp'
+import toolAntigravity from '../../assets/tools/antigravity.webp'
 
 export const toolIcons = [
-  { src: toolFigma,     radius: 16,  whiteBg: false },
-  { src: toolMiro,      radius: 16,  whiteBg: false },
-  { src: toolChatgpt,   radius: 22,  whiteBg: false },
-  { src: toolFreepik,   radius: 16,  whiteBg: false },
-  { src: toolNotion,    radius: 16,  whiteBg: false },
-  { src: toolPhotoshop, radius: 16,  whiteBg: false },
-  { src: toolMaze,      radius: 16,  whiteBg: true  },
-  { src: toolFramer,    radius: 16,  whiteBg: false },
+  { src: toolFigma,       radius: 16 },
+  { src: toolMiro,        radius: 16 },
+  { src: toolChatgpt,     radius: 22 },
+  { src: toolFreepik,     radius: 16 },
+  { src: toolNotion,      radius: 16 },
+  { src: toolPhotoshop,   radius: 16 },
+  { src: toolMidjourney,  radius: 16, whiteBg: true },
+  { src: toolFramer,      radius: 16 },
+  { src: toolClaude,      radius: 16 },
+  { src: toolStitch,      radius: 16 },
+  { src: toolGrok,        radius: 16, whiteBg: true },
+  { src: toolGemini,      radius: 16, whiteBg: true },
+  { src: toolJira,        radius: 16 },
+  { src: toolMultica,     radius: 16 },
+  { src: toolCodex,       radius: 16 },
+  { src: toolAntigravity, radius: 16 },
 ]
 
 function seededShuffle<T>(arr: T[], seed: number): T[] {
@@ -40,12 +56,8 @@ export function MarqueeRow({ reverse, seed }: { reverse?: boolean; seed: number 
         {items.map((t, i) => (
           <div
             key={i}
-            className={styles.toolIcon}
-            style={{
-              borderRadius: t.radius,
-              background: t.whiteBg ? '#fff' : undefined,
-              padding: t.whiteBg ? '10px' : undefined,
-            }}
+            className={`${styles.toolIcon} ${t.whiteBg ? styles.toolIconPadded : ''}`}
+            style={{ borderRadius: t.radius }}
           >
             <img src={t.src} alt="" className={styles.toolIconImg} />
           </div>

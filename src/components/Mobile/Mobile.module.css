@@ -1,0 +1,1324 @@
+/* ══════════════════════════════════════════════════════════════
+   Experiência mobile (app-like)
+   Layout próprio, independente do site desktop: capa + cartão de
+   perfil sobreposto, lista de trabalhos, dock flutuante e sheets
+   em tela cheia. Só monta abaixo de 768px (ver useIsMobile).
+   ══════════════════════════════════════════════════════════════ */
+
+.app {
+  --m-bg: #FDF6F5;
+  --m-surface: #FDF6F5;
+  --m-ink: #16151C;
+  --m-muted: #6C6A78;
+  --m-line: rgba(22, 21, 28, 0.10);
+  /* Contorno dos botões de rede: mesma cor do ícone, só que diluída —
+     o --m-line comum ficava quase invisível ao lado deles. */
+  --m-line-strong: rgba(22, 21, 28, 0.34);
+  /* Mesma cor de --m-bg com alfa 0. Existe por causa do degradê da
+     capa: partir de `transparent` interpola por preto transparente e
+     produz uma faixa cinza no meio do caminho. */
+  --m-bg-0: rgba(253, 246, 245, 0);
+  /* Contorno dos botões que ficam por cima da capa. A ilustração clara
+     pede traço escuro; a escura, claro. */
+  --m-on-cover-line: rgba(22, 21, 28, 0.22);
+  /* Cartão "misturado", igual ao do desktop: no claro tem a cor do
+     fundo e quem o define é a borda; no escuro sobe um tom. */
+  --m-card-bg: var(--m-bg);
+  --m-card-border: #F1E9EE;
+  --m-card-glow: rgba(155, 104, 242, 0.09);
+  --m-radius: 22px;
+
+  position: relative;
+  min-height: 100dvh;
+  background: var(--m-bg);
+  color: var(--m-ink);
+  font-family: var(--font-body);
+  /* espaço pro dock flutuante não cobrir o fim do conteúdo */
+  padding-bottom: calc(112px + env(safe-area-inset-bottom));
+  overflow-x: hidden;
+}
+
+/* Mesma paleta do desktop: claro #FDF6F5, escuro #07070C. O botão da
+   lua no topo da capa alterna o mesmo `data-theme` do site. */
+:global(html[data-theme='dark']) .app {
+  --m-bg: #07070C;
+  --m-surface: #07070C;
+  --m-ink: #F3F0F8;
+  --m-muted: rgba(243, 240, 248, 0.62);
+  --m-line: rgba(255, 255, 255, 0.12);
+  --m-line-strong: rgba(243, 240, 248, 0.34);
+  --m-on-cover-line: rgba(255, 255, 255, 0.2);
+  --m-card-bg: rgba(255, 255, 255, 0.035);
+  --m-card-border: rgba(255, 255, 255, 0.08);
+  --m-card-glow: rgba(154, 108, 229, 0.1);
+  --m-bg-0: rgba(7, 7, 12, 0);
+}
+
+.fade {
+  animation: mFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes mFade {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade { animation: none; }
+}
+
+/* ── Capa ─────────────────────────────────────────────────── */
+.cover {
+  position: relative;
+  height: 46vh;
+  min-height: 300px;
+  max-height: 420px;
+  overflow: hidden;
+  background: var(--m-bg);
+}
+
+/* A ilustração é escura e o cartão de perfil é claro — sem isso o
+   encontro dos dois vira uma linha dura, como se houvesse um stroke.
+   Esse degradê dissolve a imagem na cor do fundo antes do cartão
+   começar, então os dois viram a mesma superfície. Só cobre a metade
+   de baixo, sem alcançar o logo nem os botões do topo.
+
+   O degradê precisa estar 100% opaco ANTES do topo do cartão (que sobe
+   26px sobre a capa, ver .profile). Terminando em porcentagem ele ainda
+   deixava um resto de imagem visível justamente na altura da borda do
+   cartão — e esse resto virava a linha reta cortando a ilustração. Por
+   isso o último stop é em px: sobra folga sólida acima do cartão em
+   qualquer altura de tela. */
+.cover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 54%;
+  background: linear-gradient(to bottom, var(--m-bg-0), var(--m-bg) calc(100% - 44px));
+  pointer-events: none;
+}
+
+/* As ilustrações são retrato (941×1672) num quadro quase quadrado, então
+   o corte é todo vertical — a horizontal cabe inteira. 18% puxa o
+   enquadramento pro alto, mostrando da cabeça ao quadril em vez do meio
+   do corpo. */
+.coverImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+.coverTop {
+  position: absolute;
+  inset: 0 0 auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(14px + env(safe-area-inset-top)) 16px 0;
+  gap: 12px;
+}
+
+/* Só a logo, sem cápsula nem contorno — ela já tem contraste próprio
+   sobre a capa escura. */
+.logoChip {
+  display: grid;
+  place-items: center;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.logoChip img {
+  height: 22px;
+  width: auto;
+  object-fit: contain;
+}
+
+.coverActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Alternador de tema — anel fino por fora, disco com gradiente e ícone
+   branco dentro. Aparece no topo da capa e no cabeçalho de cada sheet
+   e aba, então é menor que o seletor de idioma pra não competir com o
+   fechar nem com os títulos. */
+.themeChip {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border: 1px solid var(--m-line-strong);
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+}
+.themeChip:active { transform: scale(0.94); }
+
+/* Sobre a ilustração da capa o contorno inverte junto com a arte.
+   Ali ele fica colado no seletor de idioma, então copia as medidas
+   dele (44/28/18) — com 36/26/16 o disco enchia mais o anel e o par
+   parecia ter dois tamanhos de ícone. Nos sheets o chip continua com
+   36px, que é a medida do botão de fechar ao lado. */
+.themeChipOnCover {
+  border-color: var(--m-on-cover-line);
+  width: 44px;
+  height: 44px;
+}
+.themeChipOnCover .themeChipDisc { width: 28px; height: 28px; }
+.themeChipOnCover .themeChipDisc svg { width: 18px; height: 18px; }
+
+.themeChipDisc {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--gradient-cta);
+  color: #ffffff;
+}
+
+/* ── Cartão de perfil ─────────────────────────────────────── */
+/* `flow-root` impede que a margem negativa do avatar colapse com a
+   deste card — sem isso o avatar não sobe, ele só arrasta o card
+   inteiro junto e a sobreposição some. */
+.profile {
+  position: relative;
+  z-index: 2;
+  display: flow-root;
+  margin-top: -26px;
+  padding: 0 16px 4px;
+  background: var(--m-bg);
+  border-radius: 26px 26px 0 0;
+}
+
+/* O card monta na capa: com o topo do .profile já 26px acima do fim da
+   capa, -20px aqui deixa 46 dos 92px do avatar sobre a imagem — metade
+   dentro, metade fora. */
+.avatarWrap {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  margin-top: -20px;
+  border-radius: 26px;
+  padding: 5px;
+  background: var(--m-bg);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.name {
+  font-family: var(--font-heading), var(--font-body);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.contactBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  padding: 5px 20px 5px 5px;
+  border: none;
+  border-radius: 999px;
+  background: var(--gradient-cta);
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* Disco branco com o "»", à esquerda do texto — mesmo desenho do
+   botão "Entre em contato" do desktop. O disco é branco fixo, então o
+   ícone é escuro fixo: com `--m-ink` ele virava quase branco no tema
+   escuro e sumia dentro do próprio disco. */
+.contactBtnDisc {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #fff;
+  color: #16151C;
+}
+
+.contactBtn:active { transform: scale(0.97); }
+
+.handleRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.handle {
+  font-size: 14px;
+  color: var(--m-muted);
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.12);
+  color: #15803D;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #22C55E;
+}
+
+.socialRow {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.socialBtn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--m-surface);
+  /* Todos os ícones no mesmo tom, com ou sem endereço definido — a
+     diferença de cor entre eles deixava a fileira desalinhada. */
+  color: var(--m-muted);
+  border: 1px solid var(--m-line-strong);
+  transition: transform 0.15s, color 0.2s, background 0.2s, border-color 0.2s;
+}
+/* Hover preenche o círculo de roxo com o ícone em branco, pra deixar
+   claro que dá pra clicar. Só nas redes que têm endereço — prometer
+   clique numa que não leva a lugar nenhum seria pior que não prometer. */
+.socialBtn:not(.socialBtnPending):hover {
+  background: #7C4DEE;
+  border-color: #7C4DEE;
+  color: #ffffff;
+}
+.socialBtn:active { transform: scale(0.94); }
+
+/* Rede sem endereço ainda: aparece igual às outras, só não responde
+   ao toque (o próprio elemento já não tem href). */
+.socialBtnPending:active { transform: none; }
+
+/* Mesma medida da bio, só que em negrito e na cor do texto — é o que
+   cria o degrau entre o nome e o parágrafo, sem virar um segundo
+   título. */
+.tagline {
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+
+.bio {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1.62;
+  color: var(--m-muted);
+}
+
+/* ── Seções ───────────────────────────────────────────────── */
+.section {
+  padding: 0 16px;
+  margin-top: 30px;
+}
+
+/* Pílula do LinkedIn ao lado do título da seção — mesmo tratamento do
+   desktop. Com um botão ao lado, o alinhamento passa a ser pelo centro. */
+.linkedinBtn {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--gradient-cta);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.linkedinBtn:active { transform: scale(0.96); }
+
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  font-family: var(--font-heading), var(--font-body);
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sectionLink {
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--m-muted);
+  cursor: pointer;
+}
+
+.sectionLink b {
+  color: var(--m-ink);
+  font-weight: 600;
+}
+
+.sectionSubtitle {
+  margin: -4px 0 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--m-muted);
+}
+
+/* ── Lista de trabalhos ───────────────────────────────────── */
+.workList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.workRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--m-card-border);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 104% 50%, var(--m-card-glow) 0%, transparent 38%),
+    var(--m-card-bg);
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.workRow:active { transform: scale(0.99); }
+
+.workThumb {
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: var(--m-bg);
+}
+
+.workBody {
+  display: block;
+  flex: 1;
+  min-width: 0;
+}
+
+.workTitleRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.workTitle {
+  display: block;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.workMeta {
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--m-muted);
+}
+
+.workDesc {
+  margin-top: 3px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--m-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.workChevron {
+  flex-shrink: 0;
+  color: rgba(22, 21, 28, 0.3);
+  display: grid;
+  place-items: center;
+}
+
+.soonTag {
+  flex-shrink: 0;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(22, 21, 28, 0.06);
+  color: var(--m-muted);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* ── Aba Trabalhos ────────────────────────────────────────── */
+.tabHeader {
+  padding: calc(20px + env(safe-area-inset-top)) 16px 0;
+}
+
+.tabTitle {
+  font-family: var(--font-heading), var(--font-body);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.filterBar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 14px 16px 4px;
+  scrollbar-width: none;
+}
+
+.filterBar::-webkit-scrollbar { display: none; }
+
+.filterPill {
+  flex-shrink: 0;
+  padding: 9px 16px;
+  border: 1px solid var(--m-line);
+  border-radius: 999px;
+  background: var(--m-surface);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--m-muted);
+  cursor: pointer;
+}
+
+.filterActive {
+  background: var(--m-ink);
+  border-color: var(--m-ink);
+  color: #fff;
+}
+
+.projectGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 16px 0;
+}
+
+.projectCard {
+  width: 100%;
+  padding: 10px 10px 14px;
+  border: 1px solid var(--m-line);
+  border-radius: 20px;
+  background: var(--m-surface);
+  text-align: left;
+  font-family: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* Os wrappers são <span> (conteúdo válido dentro de <button>) — precisam
+   virar bloco pra aspect-ratio/overflow funcionarem. */
+.projectImgWrap {
+  display: block;
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--m-bg);
+  aspect-ratio: 4 / 3;
+}
+
+.projectImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.projectSoon {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(12, 10, 20, 0.55);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.projectInfo {
+  display: block;
+  padding: 12px 6px 0;
+}
+
+.projectTitle {
+  display: block;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.projectDesc {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--m-muted);
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(138, 92, 246, 0.1);
+  color: var(--accent-purple);
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* ── Dock flutuante ───────────────────────────────────────── */
+.dock {
+  position: fixed;
+  z-index: 65;
+  left: 50%;
+  bottom: calc(18px + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgba(18, 16, 26, 0.86);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.28);
+}
+
+.dockBtn {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.62);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, color 0.2s;
+}
+
+.dockBtnActive {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
+/* Fecha o dock, à direita: mesma medida dos outros itens, com o anel
+   roxo sempre visível. */
+.dockAvatarBtn {
+  position: relative;
+  width: 46px;
+  height: 46px;
+  border: none;
+  border-radius: 50%;
+  padding: 3px;
+  background: none;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 2px var(--accent-purple-2);
+}
+
+/* A arte é quadrada e o rosto fica na metade de cima dela, então num
+   círculo pequeno o enquadramento caía no colar. Este recorte aproxima
+   e desce a arte até o rosto ficar no centro do círculo — o clip
+   redondo mora aqui pra não cortar o anel do botão. */
+.dockAvatarClip {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.dockAvatarBtn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.28) translateY(16%);
+  opacity: 0.82;
+  transition: opacity 0.2s;
+}
+
+.dockAvatarActive img { opacity: 1; }
+
+.dockAvatarActive {
+  box-shadow: inset 0 0 0 2px var(--accent-purple-2), 0 0 14px rgba(154, 108, 229, 0.55);
+}
+
+/* ── Sheet (tela cheia) ───────────────────────────────────── */
+.sheet {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  background: var(--m-bg);
+  animation: mSheetIn 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes mSheetIn {
+  from { transform: translateY(3%); opacity: 0; }
+  to   { transform: none; opacity: 1; }
+}
+
+.sheetHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: calc(12px + env(safe-area-inset-top)) 14px 12px;
+  background: color-mix(in srgb, var(--m-bg) 90%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--m-line);
+}
+
+/* ── Abas de categoria do sheet de Trabalhos ──────────────────
+   Só a ativa mostra o rótulo; as demais ficam só com o ícone, pra
+   caber na largura do celular sem rolagem horizontal. */
+.catTabs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+}
+
+.catTab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: none;
+  color: var(--m-muted);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+/* Mesma pílula da grade do desktop: gradiente e texto branco. */
+.catTabActive {
+  color: #ffffff;
+  background: var(--gradient-cta);
+  border-color: transparent;
+  font-weight: 600;
+  padding: 0 16px;
+}
+
+.worksSheetList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+}
+
+.sheetTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.sheetTag span {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sheetActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Cabeçalho da aba: título à esquerda, alternador de tema à direita. */
+.tabHeaderRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sheetClose {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--m-line-strong);
+  border-radius: 50%;
+  background: none;
+  color: var(--m-ink);
+  cursor: pointer;
+  padding: 0;
+}
+/* Mesmo tamanho óptico do ícone dentro do alternador de tema. */
+.sheetClose svg { width: 16px; height: 16px; }
+
+.sheetBody {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: calc(112px + env(safe-area-inset-bottom));
+}
+
+/* Detalhamento do projeto reaproveita o componente desktop; aqui só
+   removemos o respiro lateral que ele assume ter. */
+.detailScope {
+  --detail-mobile: 1;
+}
+
+/* ── Modal de contato ─────────────────────────────────────── */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(10, 9, 16, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: mFadeIn 0.24s ease both;
+}
+
+@keyframes mFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modalCard {
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  padding: 26px 22px 24px;
+  border-radius: 28px;
+  background: var(--m-surface);
+  text-align: center;
+  animation: mPop 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes mPop {
+  from { opacity: 0; transform: scale(0.94) translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.modalClose {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--m-line);
+  border-radius: 50%;
+  background: var(--m-surface);
+  color: var(--m-muted);
+  cursor: pointer;
+  padding: 0;
+}
+
+.modalAvatars {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.modalAvatar {
+  display: grid;
+  place-items: center;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 3px solid var(--m-surface);
+  overflow: hidden;
+  color: #fff;
+}
+
+.modalAvatar:not(:first-child) { margin-left: -20px; }
+.modalAvatar img { width: 100%; height: 100%; object-fit: cover; }
+.modalAvatarWa { background: #25D366; }
+.modalAvatarLi { background: #0A66C2; }
+
+
+.modalPills {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.modalPill {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(22, 21, 28, 0.06);
+  color: var(--m-muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* O título fica numa linha só em qualquer aparelho: `nowrap` garante
+   a linha única e o tamanho acompanha a largura da tela, com teto pra
+   não crescer demais em telas grandes. O coeficiente foi calibrado
+   medindo o texto mais longo dos três idiomas. */
+.modalTitle {
+  font-family: var(--font-heading), var(--font-body);
+  font-size: min(5.4vw, 24px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.modalSubtitle {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--m-muted);
+}
+
+.statsRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  margin: 8px 0 12px;
+  padding: 10px 8px;
+  border-radius: 18px;
+  background: var(--m-bg);
+}
+
+.stat { text-align: center; }
+
+.statValue {
+  display: block;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.statLabel {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--m-muted);
+}
+
+/* Idêntico ao botão "Contato" da home: mesmas medidas, mesmo disco e
+   mesma tipografia. Deixou de ocupar a largura toda justamente porque
+   era isso que fazia o gradiente esticar e os dois parecerem
+   diferentes. `margin: auto` centraliza no card. */
+.waBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  /* `fit-content` + margem automática centraliza de verdade; num
+     `inline-flex` a margem auto não faria nada. */
+  width: fit-content;
+  margin: 0 auto;
+  padding: 5px 20px 5px 5px;
+  border-radius: 999px;
+  background: var(--gradient-cta);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+.waBtn:active { transform: scale(0.98); }
+
+
+/* ── Aba Sobre ────────────────────────────────────────────── */
+.photoScroller {
+  display: flex;
+  gap: 12px;
+  padding: 0 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.photoScroller::-webkit-scrollbar { display: none; }
+
+.photoCard {
+  position: relative;
+  flex-shrink: 0;
+  width: 76%;
+  max-width: 300px;
+  aspect-ratio: 4 / 5;
+  border-radius: 20px;
+  overflow: hidden;
+  scroll-snap-align: center;
+  background: var(--m-surface);
+}
+
+.photoCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photoCaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 34px 14px 14px;
+  background: linear-gradient(to top, rgba(10, 9, 16, 0.82), transparent);
+  color: #fff;
+  text-align: left;
+}
+
+.photoCaptionTitle {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.photoCaptionSub {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.aboutBody p {
+  margin-bottom: 12px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--m-muted);
+}
+
+.highlightCard {
+  margin-top: 6px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: var(--gradient-cta);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.toolsLabel {
+  margin-bottom: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--m-muted);
+}
+
+.toolsWrap {
+  margin-top: 26px;
+  overflow: hidden;
+}
+
+/* ── Acordeão (experiências / FAQ) ────────────────────────── */
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.accItem {
+  border: 1px solid var(--m-card-border);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 104% 50%, var(--m-card-glow) 0%, transparent 38%),
+    var(--m-card-bg);
+  overflow: hidden;
+}
+
+.accHead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 15px 16px;
+  border: none;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.accPeriod {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--accent-purple);
+}
+
+.accTitle {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.accMeta {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  color: var(--m-muted);
+}
+
+.accToggle {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--m-muted);
+  transition: transform 0.25s;
+}
+
+.accToggleOpen { transform: rotate(180deg); }
+
+.accBody {
+  padding: 0 16px 16px;
+}
+
+.accBody p {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--m-muted);
+}
+
+.accBullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 12px;
+}
+
+.accBullets li {
+  position: relative;
+  padding-left: 16px;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--m-muted);
+}
+
+.accBullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent-purple);
+}
+
+/* FAQ */
+.faqQuestion {
+  display: block;
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+
+.faqAnswer {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--m-muted);
+}
+
+/* ── Certificações / workshops ────────────────────────────── */
+.certList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.certRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--m-card-border);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 104% 50%, var(--m-card-glow) 0%, transparent 38%),
+    var(--m-card-bg);
+}
+
+.certLogo {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 4px;
+}
+
+.certTitle {
+  display: block;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.certSubtitle {
+  display: block;
+  margin-top: 2px;
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--m-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ── Recomendações ────────────────────────────────────────── */
+.recoScroller {
+  display: flex;
+  gap: 12px;
+  padding: 0 16px 4px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.recoScroller::-webkit-scrollbar { display: none; }
+
+.recoCard {
+  flex-shrink: 0;
+  width: 82%;
+  max-width: 320px;
+  padding: 18px;
+  border: 1px solid var(--m-card-border);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 104% 50%, var(--m-card-glow) 0%, transparent 38%),
+    var(--m-card-bg);
+  scroll-snap-align: center;
+}
+
+.recoTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.recoAvatar {
+  display: grid;
+  place-items: center;
+  /* `flex-shrink: 0` porque cargos longos (ex.: "Psicóloga
+     Organizacional · Gestão Estratégica de RH") espremiam o círculo
+     até virar uma elipse. */
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gradient-cta);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.recoName {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.recoRole {
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--m-muted);
+}
+
+.recoText {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--m-muted);
+}
+
+/* ── CTA final da aba Sobre ───────────────────────────────── */

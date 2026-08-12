@@ -1,61 +1,73 @@
-import { useEffect, useState } from 'react'
+import { HugeiconsIcon } from '@hugeicons/react'
+import {
+  DashboardSquare01FreeIcons,
+  LayersLogoFreeIcons,
+  PaintBoardFreeIcons,
+  UserSearch01FreeIcons,
+} from '@hugeicons/core-free-icons'
+import type { IconSvgElement } from '@hugeicons/react'
 import styles from './ProjectsHero.module.css'
+import { useTranslation } from '../../i18n/LanguageContext'
+import type { CategoryKey } from '../../data/projects'
 
-const IconSparkle = () => (
-  <svg width="16" height="20" viewBox="0 0 16 20" fill="none" aria-hidden="true">
-    <path d="M8 1L9.5 7.5L15 8L9.5 9.5L8 16L6.5 9.5L1 8L6.5 7.5L8 1Z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round" fill="none"/>
-    <circle cx="13" cy="3" r="1" fill="currentColor" opacity="0.6"/>
-    <circle cx="3" cy="15" r="0.8" fill="currentColor" opacity="0.5"/>
+export type ProjectFilter = 'all' | CategoryKey
+
+// Mesmos ícones do sheet de Cases do mobile.
+const FILTERS: { value: ProjectFilter; icon: IconSvgElement }[] = [
+  { value: 'all', icon: DashboardSquare01FreeIcons },
+  { value: 'ui-design', icon: LayersLogoFreeIcons },
+  { value: 'branding', icon: PaintBoardFreeIcons },
+  { value: 'ux-design', icon: UserSearch01FreeIcons },
+]
+
+interface ProjectsHeroProps {
+  activeFilter: ProjectFilter
+  onFilterChange: (category: ProjectFilter) => void
+}
+
+const IconHeart = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12 20.5s-7.5-4.6-10-9.3C.5 7.8 2.3 4.5 5.7 4.5c2 0 3.6 1.1 4.3 2.7C10.7 5.6 12.3 4.5 14.3 4.5c3.4 0 5.2 3.3 3.7 6.7-2.5 4.7-10 9.3-10 9.3Z" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
   </svg>
 )
 
-const filters = ['All', 'Em breve', 'Website', 'Apps', 'Dashboards', 'Ecommerce', 'Logotipo']
-
-export function ProjectsHero() {
-  const [showCursor, setShowCursor] = useState(true)
-  const [activeFilter, setActiveFilter] = useState('All')
-
-  useEffect(() => {
-    const timer = setInterval(() => setShowCursor(v => !v), 530)
-    return () => clearInterval(timer)
-  }, [])
+export function ProjectsHero({ activeFilter, onFilterChange }: ProjectsHeroProps) {
+  const { t } = useTranslation()
 
   return (
     <section className={styles.hero}>
-      <div className={styles.inner}>
-        {/* Badge */}
-        <div className={styles.topBlock} data-animate data-delay="0">
-          <div className={styles.badge}>
-            <span className={styles.badgeIcon}><IconSparkle /></span>
-            <span className={styles.badgeText}>Projetos selecionados</span>
+      <div className={styles.inner} data-animate>
+        <div className={styles.headerTop}>
+          <h1 className={styles.title}>
+            {t.featuredProjects.title} <span className={styles.highlight}>{t.featuredProjects.titleHighlight}</span> {t.featuredProjects.titleSuffix}
+          </h1>
+          <div className={styles.headerDecor}>
+            <span className={styles.waveform} aria-hidden="true">
+              {Array.from({ length: 16 }).map((_, i) => (
+                <span key={i} className={styles.waveformBar} style={{ height: `${4 + ((i * 5) % 14)}px` }} />
+              ))}
+            </span>
+            <button className={styles.heartBtn} aria-hidden="true" tabIndex={-1}><IconHeart /></button>
           </div>
-
-          {/* Heading */}
-          <div className={styles.headings}>
-            <h1 className={styles.h1}>Projetando produtos que</h1>
-            <div className={styles.h1Gradient}>
-              Moldam o futuro
-              <span className={showCursor ? styles.cursor : styles.cursorHidden}>|</span>
-            </div>
-          </div>
-
-          {/* Description */}
-          <p className={styles.description}>
-            Cada projeto representa uma combinação entre estratégia, experiência do usuário e soluções pensadas para pessoas reais.
-          </p>
         </div>
-
-        {/* Filter tabs */}
-        <div className={styles.filters} data-animate data-delay="1">
-          {filters.map(f => (
-            <button
-              key={f}
-              className={`${styles.filterBtn} ${activeFilter === f ? styles.filterActive : styles.filterDefault}`}
-              onClick={() => setActiveFilter(f)}
-            >
-              {f}
-            </button>
-          ))}
+        <div className={styles.headerBottom}>
+          <p className={styles.subtitle}>{t.featuredProjects.subtitle}</p>
+          <div className={styles.filterBar}>
+            {FILTERS.map(cat => {
+              const isActive = activeFilter === cat.value
+              const label = cat.value === 'all' ? t.projectsHero.filterTodos : t.categories[cat.value]
+              return (
+                <button
+                  key={cat.value}
+                  className={`${styles.filterPill} ${isActive ? styles.filterActive : ''}`}
+                  onClick={() => onFilterChange(cat.value)}
+                >
+                  <HugeiconsIcon icon={cat.icon} size={16} strokeWidth={1.8} />
+                  {label}
+                </button>
+              )
+            })}
+          </div>
         </div>
       </div>
     </section>

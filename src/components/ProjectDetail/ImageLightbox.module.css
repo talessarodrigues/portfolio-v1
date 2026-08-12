@@ -1,0 +1,53 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  /* Acima de tudo: sheets do mobile (60/65) e modais do desktop (100). */
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(4, 3, 8, 0.94);
+  backdrop-filter: blur(6px);
+  animation: lightboxIn 0.22s ease;
+  cursor: zoom-out;
+}
+
+@keyframes lightboxIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.image {
+  max-width: 100%;
+  /* Cabe inteira na tela; imagens muito altas rolam dentro do overlay. */
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  cursor: default;
+}
+
+.close {
+  position: absolute;
+  top: calc(14px + env(safe-area-inset-top));
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+.close:hover { background: rgba(255, 255, 255, 0.18); }
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay { animation: none; }
+}

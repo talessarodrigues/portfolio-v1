@@ -1,629 +1,400 @@
 .page {
   width: 100%;
-  min-height: 100vh;
-  animation: fadeIn 0.3s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── Back button ──────────────────────────────────────────── */
-.back {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 40px 40px 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 14.4px;
-  color: #fafafa;
-  transition: opacity 0.2s;
-}
-.back:hover { opacity: 0.7; }
-
-/* ── Hero ─────────────────────────────────────────────────── */
-.hero {
-  padding: 16px 40px 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  align-items: start;
-}
-
-.heroWithBg {
-  position: relative;
-  overflow: hidden;
-  padding-bottom: 24px;
-}
-
-/* ── Hero estilo ProjectsHero (Full Stack) ────────────────── */
-.heroHome {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background: #0b0d0e;
-}
-
-.heroHome::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    ellipse 55% 80% at 78% 60%,
-    rgba(180, 130, 60, 0.15) 0%,
-    rgba(120, 80, 30, 0.07) 45%,
-    transparent 70%
-  );
-  pointer-events: none;
-}
-
-.heroHomeInner {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 40px 40px 24px;
-  gap: 32px;
-  width: 100%;
+  background: var(--bg-light);
+  padding: 24px 0 80px;
   box-sizing: border-box;
 }
 
-.heroTopBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+.inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 24px;
+  box-sizing: border-box;
 }
 
-.heroBadge {
+/* ── Voltar ──────────────────────────────────────────────── */
+.backBtn {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 12px;
-  background: rgba(11, 13, 14, 0.77);
-  border-radius: 60px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  align-self: flex-start;
-}
-
-.heroBadgeIcon {
-  display: flex;
-  align-items: center;
-  color: rgba(250, 250, 250, 0.7);
-  flex-shrink: 0;
-}
-
-.heroBadgeText {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 14.4px;
-  color: #fafafa;
-  white-space: nowrap;
-}
-
-.heroHeadings {
-  display: flex;
-  flex-direction: column;
-}
-
-.heroH1 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 48px;
-  line-height: 55.2px;
-  letter-spacing: -1.92px;
-  color: #fafafa;
-  margin: 0;
-}
-
-.heroH1Gradient {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 48px;
-  line-height: 55.2px;
-  letter-spacing: -1.92px;
-  background: linear-gradient(92.16deg, #9e9182 0%, #f1a978 50%, #817bcd 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0;
-  display: inline-block;
-}
-
-.heroCursor {
-  -webkit-text-fill-color: #f1a978;
-  opacity: 1;
-  transition: opacity 0.1s;
-}
-
-.heroCursorHidden {
-  -webkit-text-fill-color: #f1a978;
-  opacity: 0;
-  transition: opacity 0.1s;
-}
-
-.heroDescription {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-  color: #d1d5db;
-  max-width: 546px;
-  margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-wrap: pretty;
-}
-
-.heroFilters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-
-.heroFilterPill {
-  padding: 12px 16px;
-  border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.02);
-  color: rgba(255, 255, 255, 0.7);
-  font-family: 'Inter', sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 25.6px;
-  white-space: nowrap;
-}
-
-.heroLeft {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  z-index: 1;
-}
-
-.heroRight {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  position: relative;
-  z-index: 1;
-}
-
-.titleLine1 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 48px;
-  line-height: 55.2px;
-  letter-spacing: -1.92px;
-  color: #fafafa;
-  margin: 0;
-}
-
-.titleLine2 {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 48px;
-  line-height: 55.2px;
-  letter-spacing: -1.92px;
-  margin: 0;
-}
-
-/* ── Tags ─────────────────────────────────────────────────── */
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-  margin-top: 4px;
-}
-
-.tagItem {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  line-height: 20px;
-  color: #9ca3af;
-}
-
-.tagSep {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-/* ── Description ──────────────────────────────────────────── */
-.description {
-  font-family: 'Inter', sans-serif;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 27px;
-  color: #d1d5db;
-  margin: 0;
-  max-width: 580px;
-}
-
-/* ── MacBook mockup ───────────────────────────────────────── */
-.macbookWrap {
-  padding: 0 40px 0;
-}
-
-
-.macbook {
-  width: 100%;
-  position: relative;
-  user-select: none;
-}
-
-.macbookLid {
-  width: 100%;
-  background: #1c1c1e;
-  border-radius: 10px 10px 0 0;
-  border: 1px solid #3a3a3c;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-}
-
-.macbookBrowser {
-  background: #1e1e1e;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  padding: 0 16px;
-  gap: 10px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  position: relative;
-}
-
-.macbookBrowser::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: #3a3a3c;
-}
-
-.macbookDots {
-  display: flex;
-  gap: 6px;
-  flex-shrink: 0;
-  z-index: 1;
-}
-
-.macbookDot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-.macbookDot:nth-child(1) { background: #ff5d60; }
-.macbookDot:nth-child(2) { background: #f9c701; }
-.macbookDot:nth-child(3) { background: #33c659; }
-
-.macbookUrlBar {
-  flex: 1;
-  height: 18px;
-  background: #2c2c2c;
-  border-radius: 4px;
-  z-index: 1;
-}
-
-.macbookScreen {
-  width: 100%;
-  height: 640px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  background: #000;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255,255,255,0.12) transparent;
-  cursor: ns-resize;
-}
-
-.macbookScreen::-webkit-scrollbar { width: 4px; }
-.macbookScreen::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.12);
-  border-radius: 2px;
-}
-
-.macbookScreen img {
-  width: 100%;
-  display: block;
-}
-
-.macbookBase {
-  width: 100%;
-  height: 16px;
-  background: linear-gradient(180deg, #2c2c2e 0%, #1c1c1e 100%);
-  border: 1px solid #3a3a3c;
-  border-top: none;
-  border-radius: 0 0 4px 4px;
-  position: relative;
-}
-
-.macbookBase::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 56px;
-  height: 4px;
-  background: #111;
-  border-radius: 0 0 3px 3px;
-}
-
-.macbookShadow {
-  margin: 0 10%;
-  height: 8px;
-  background: radial-gradient(ellipse at center, rgba(0,0,0,0.4) 0%, transparent 80%);
-  border-radius: 50%;
-}
-
-/* ── Accordion sections ───────────────────────────────────── */
-.sections {
-  padding: 0 40px;
-  margin-top: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.accordionItem {
-  background: #0b0d0e;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  overflow: hidden;
-}
-
-.accordionBtn {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 20px 24px;
   background: none;
   border: none;
+  color: var(--text-on-light);
+  font-family: var(--font-article);
+  font-size: 15px;
+  font-weight: 400;
   cursor: pointer;
-  text-align: left;
-  gap: 16px;
+  padding: 12px 0;
+  margin-bottom: 4px;
+}
+.backBtn:hover { opacity: 0.7; }
+
+/* Título simples pros cases que não têm o header grande no Figma
+   (só ícone+título+banner) — garante um <h1> mesmo assim. */
+.compactTitle {
+  font-family: var(--font-article);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-on-light);
+  margin: 12px 0 20px;
 }
 
-.accordionTitle {
-  font-family: 'Inter', sans-serif;
+/* ── Header (card roxo-escuro) ───────────────────────────── */
+.header {
+  background: var(--bg-dark-purple);
+  border-radius: 32px;
+  padding: 32px;
+  margin: 8px 0 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.headerTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.headerIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.06);
+}
+.headerIcon img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.headerText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.headerTitle {
+  font-family: var(--font-article);
   font-size: 18px;
-  font-weight: 500;
-  line-height: 28px;
+  font-weight: 200;
+  letter-spacing: -0.45px;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.headerTagline {
+  font-family: var(--font-article);
+  font-size: 14px;
+  font-weight: 300;
   letter-spacing: -0.4px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  line-height: 1.45;
+  max-width: 640px;
+}
+
+.headerStrip {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  line-height: 0;
+}
+.headerStrip img { width: 100%; height: auto; display: block; }
+
+.headerHero {
+  border-radius: 16px;
+  overflow: hidden;
+  line-height: 0;
+}
+.headerHero img { width: 100%; height: auto; display: block; }
+
+/* ── Meta (Cliente / Serviço / Ano) ──────────────────────── */
+.metaRow {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.metaCard {
+  background:
+    radial-gradient(circle at 104% 50%, var(--card-soft-glow) 0%, transparent 38%),
+    var(--card-soft-bg);
+  border: 1px solid var(--card-soft-border);
+  border-radius: 24px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  box-sizing: border-box;
+}
+
+/* Cartão das curtidas — mesma altura dos de meta, mas claro, pra o
+   coração colorido se destacar em vez de sumir no fundo escuro. */
+.likeCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 6px;
+  padding: 20px 26px;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 104% 50%, var(--card-soft-glow) 0%, transparent 38%),
+    var(--card-soft-bg);
+  border: 1px solid var(--card-soft-border);
+  box-sizing: border-box;
+}
+
+.likeLabel {
+  font-family: var(--font-body);
+  font-size: 12px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--text-on-light-muted);
+}
+
+.metaIcon {
+  color: var(--accent-purple-2);
+  margin-bottom: 8px;
+}
+
+.metaLabel {
+  font-family: var(--font-article);
+  font-size: 13px;
+  color: var(--text-on-light-muted);
+}
+
+.metaValue {
+  font-family: var(--font-article);
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text-on-light);
+}
+
+/* ── Artigo (card escuro, conteúdo do case study) ─────────── */
+.article {
+  background: var(--bg-dark);
+  border-radius: 32px;
+  padding: 40px 32px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.overviewLabel {
+  font-family: var(--font-article);
+  font-size: 18px;
+  font-weight: 700;
   color: #ffffff;
 }
 
-.accordionIcon {
+.h2 {
+  font-family: var(--font-article);
+  font-size: 34px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 22px 0 2px;
+  line-height: 1.2;
+}
+
+.h3 {
+  font-family: var(--font-article);
+  font-size: 24px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 14px 0 2px;
+  line-height: 1.25;
+}
+
+.h4 {
+  font-family: var(--font-article);
   font-size: 20px;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.5);
-  flex-shrink: 0;
-  line-height: 1;
-  transition: transform 0.2s;
-  width: 20px;
-  text-align: center;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 10px 0 2px;
+  line-height: 1.3;
 }
 
-.accordionIconOpen {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.accordionBody {
-  padding: 0 24px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  animation: bodyOpen 0.2s ease;
-}
-
-@keyframes bodyOpen {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.accordionText {
-  font-family: 'Inter', sans-serif;
-  font-size: 15px;
+.p {
+  font-family: var(--font-article);
+  font-size: 17px;
   font-weight: 400;
-  line-height: 24px;
-  color: rgba(255, 255, 255, 0.65);
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.65;
   margin: 0;
 }
 
-/* ── Live site button ─────────────────────────────────────── */
-.liveWrap {
-  padding: 32px 40px 0;
+.quote {
+  border-left: 2px solid var(--accent-purple-2);
+  padding-left: 16px;
+  margin: 2px 0;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 6px;
 }
-
-.liveBtn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 20px;
-  border-radius: 8px;
-  background: linear-gradient(101.34deg, #c8cbd0 0%, #f4f5f6 100%);
-  color: #0b0d0e;
-  font-family: 'Inter', sans-serif;
+.quote p {
+  font-family: var(--font-body);
   font-size: 14px;
-  font-weight: 500;
-  line-height: 24px;
-  text-decoration: none;
-  box-shadow: 0px 1px 0.5px rgba(0, 0, 0, 0.04);
-  position: relative;
-  transition: opacity 0.2s, transform 0.15s;
-}
-.liveBtn::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 8px;
-  border: 1px solid #ededed;
-  pointer-events: none;
-}
-.liveBtn:hover { opacity: 0.85; transform: translateY(-1px); }
-.liveBtn:active { transform: translateY(0); }
-
-/* ── Related projects (marquee) ───────────────────────────── */
-.related {
-  padding: 24px 40px 0;
+  font-style: italic;
+  color: #999999;
+  line-height: 1.7;
+  margin: 0;
 }
 
-.relatedBlock {
-  background: #0b0d0e;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.list {
+  margin: 0;
+  padding-left: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.list li {
+  font-family: var(--font-article);
+  font-size: 17px;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.6;
+}
+
+/* As imagens do case viraram <button> pra abrir em tela cheia — sem
+   este reset elas herdam o estilo padrão do navegador, que aparece
+   como uma moldura cinza clara em volta (bem visível no tema escuro). */
+.imageBlock,
+.zoomable {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
   border-radius: 16px;
   overflow: hidden;
-  padding: 24px 0 24px;
+  line-height: 0;
+  cursor: zoom-in;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
-.relatedTitle {
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 18.4px;
-  letter-spacing: -0.48px;
-  color: #ffffff;
-  margin: 0 0 20px;
-  padding: 0 24px;
-}
+.imageBlock { margin: 2px 0; }
 
-.marqueeOuter {
-  overflow: hidden;
-  width: 100%;
-  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
-}
+.imageBlock img { width: 100%; height: auto; display: block; }
 
-.marqueeInner {
-  display: flex;
+.gallery2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
-  width: max-content;
-  animation: marqueeScroll 80s linear infinite;
+  margin: 2px 0;
+}
+.gallery2 img { width: 100%; height: auto; border-radius: 16px; display: block; }
+
+/* ── Galeria final ───────────────────────────────────────── */
+.finalGallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+.finalGallery img { width: 100%; height: auto; border-radius: 16px; display: block; }
+
+/* ── Outros projetos (carrossel, exclui o projeto atual) ──── */
+.relatedOuter {
+  max-width: 1440px;
+  margin: 40px auto 0;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
+  padding: 0 40px;
 }
 
-.marqueeOuter:hover .marqueeInner {
+.relatedInner {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: relatedScroll 60s linear infinite;
+}
+.relatedOuter:hover .relatedInner {
   animation-play-state: paused;
 }
 
-@keyframes marqueeScroll {
+@keyframes relatedScroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
 }
 
 .relatedCard {
+  width: 300px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  cursor: pointer;
-  flex-shrink: 0;
-  width: 260px;
+  gap: 12px;
 }
 
-.relatedImgWrap {
-  width: 260px;
-  height: 174px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.08);
-}
-
-.relatedImg {
+.relatedImageWrap {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: transform 0.3s;
-}
-
-.relatedCard:hover .relatedImg { transform: scale(1.04); }
-
-.relatedMeta {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.relatedName {
-  font-family: 'Inter', sans-serif;
-  font-size: 14.1px;
-  font-weight: 600;
-  line-height: 20px;
-  letter-spacing: -0.282px;
-  color: #737373;
-  white-space: nowrap;
+  aspect-ratio: 6 / 5;
+  border-radius: 14px;
   overflow: hidden;
-  text-overflow: ellipsis;
+  background: rgba(26, 26, 26, 0.05);
+}
+.relatedImage { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.relatedTitle {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-on-light);
+  margin: 0;
 }
 
-.relatedDot {
-  font-size: 14.1px;
-  font-weight: 500;
-  color: #737373;
-  flex-shrink: 0;
-}
-
-.relatedCat {
-  font-family: 'Inter', sans-serif;
-  font-size: 14.1px;
-  font-weight: 400;
-  letter-spacing: -0.282px;
-  color: #737373;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-.relatedFooter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  padding: 16px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  cursor: pointer;
-  transition: opacity 0.2s;
-  margin-top: 20px;
-}
-.relatedFooter:hover { opacity: 0.7; }
-
-.relatedFooterText {
-  font-family: 'Inter', sans-serif;
+.relatedDesc {
+  font-family: var(--font-body);
   font-size: 13px;
-  font-weight: 500;
-  line-height: 24px;
-  letter-spacing: -0.259px;
-  color: #737373;
+  line-height: 1.5;
+  color: var(--text-on-light-muted);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* ── Mobile ───────────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .back { padding: 24px 20px 0; }
-  .hero { padding: 16px 20px 0; }
-  .hero { grid-template-columns: 1fr; gap: 20px; }
-  .titleLine1, .titleLine2 { font-size: 32px; line-height: 38px; letter-spacing: -1.2px; }
-  .macbookWrap { padding: 20px 16px 0; }
-  .macbookScreen { height: 220px; }
-  .sections { padding: 0 20px; }
-  .related { padding: 40px 20px 0; }
-  .relatedGrid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-  .accordionBtn { padding: 16px 12px; }
-  .accordionBody { padding: 0 12px 16px; }
+.relatedTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.relatedTag {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--accent-purple);
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+/* No celular os quatro cartões viram 2×2 em vez de uma coluna. */
+@media (max-width: 767px) {
+  .metaRow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .inner { padding: 0 16px; }
+  .header { padding: 20px; border-radius: 24px; }
+  .headerTop { flex-direction: column; gap: 12px; }
+  .metaRow { flex-direction: column; }
+  .article { padding: 24px 18px; border-radius: 24px; }
+  .h2 { font-size: 26px; }
+  .h3 { font-size: 20px; }
+  .h4 { font-size: 18px; }
+  .p, .list li { font-size: 15px; }
+  .gallery2 { grid-template-columns: 1fr; }
+  .relatedOuter { padding: 0 20px; margin-top: 32px; }
+  .relatedCard { width: 240px; }
 }

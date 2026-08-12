@@ -1,0 +1,10 @@
+/* As seções reaproveitadas trazem o próprio padding vertical grande
+   (foram desenhadas pra uma página que rolava). Dentro do modal isso
+   vira espaço morto, então o primeiro/último bloco perde o excesso. */
+.stack > :first-child {
+  padding-top: 24px;
+}
+
+.stack > :last-child {
+  padding-bottom: 24px;
+}

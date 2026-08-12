@@ -1,270 +1,201 @@
 .wrapper {
   width: 100%;
-  padding: 24px 40px 0;
+  background: var(--bg-light);
+  padding: 80px 40px;
   box-sizing: border-box;
-  position: relative;
-  z-index: 0;
-}
-
-.card {
-  background: #0b0d0e;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  overflow: hidden;
-  min-width: 0;
 }
 
 /* ── Header ─────────────────────────────────────────────── */
 .header {
+  max-width: 1440px;
+  margin: 0 auto 40px;
   display: flex;
   flex-direction: column;
-  gap: 1px;
-  padding: 24px 24px 24px;
+  gap: 18px;
+}
+
+.headerTop,
+.headerBottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
 }
 
 .title {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 18.4px;
-  letter-spacing: -0.48px;
-  color: #ffffff;
+  font-family: var(--font-serif-alt);
+  font-size: clamp(38px, 4.6vw, 72px);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--text-on-light);
   margin: 0;
+  max-width: 780px;
+}
+
+.highlight {
+  color: var(--accent-purple);
 }
 
 .subtitle {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 22.5px;
-  letter-spacing: -0.3px;
-  color: #737373;
+  font-family: var(--font-inter);
+  font-size: clamp(16px, 1.25vw, 18px);
+  line-height: 1.55;
+  color: var(--text-on-light-muted);
   margin: 0;
-  white-space: nowrap;
+  max-width: 480px;
 }
 
-/* ── Grid ────────────────────────────────────────────────── */
-.grid {
+.headerDecor {
   display: flex;
-  gap: 20px;
-  padding: 0 24px 24px;
-}
-
-.projectItem {
-  flex: 1 0 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-width: 0;
-}
-
-/* ── Image ───────────────────────────────────────────────── */
-.imageWrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 249 / 166;
-  border-radius: 10px;
-  overflow: hidden;
+  align-items: center;
+  gap: 16px;
   flex-shrink: 0;
 }
 
-.image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-  pointer-events: none;
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 16px;
+}
+.waveformBar {
+  width: 2px;
+  background: var(--accent-purple);
+  opacity: 0.5;
+  border-radius: 1px;
 }
 
-.imageBorder {
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgba(227, 227, 227, 0.1);
-  border-radius: 10px;
-  pointer-events: none;
-}
-
-.imageOverlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+.heartBtn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid rgba(26, 26, 26, 0.15);
+  background: none;
+  color: var(--text-on-light);
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0;
-  transition: opacity 0.2s;
-  border-radius: 10px;
-}
-.projectItem:hover .imageOverlay { opacity: 1; }
-
-.imageOverlayText {
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 500;
-  color: #ffffff;
-  letter-spacing: 0.5px;
-}
-
-/* ── Meta ────────────────────────────────────────────────── */
-.meta {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  overflow: hidden;
-}
-
-.metaTitle {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 14.1px;
-  line-height: 20px;
-  letter-spacing: -0.282px;
-  color: #737373;
-  white-space: nowrap;
-}
-
-.metaDot {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 14.1px;
-  line-height: 20px;
-  color: #737373;
   flex-shrink: 0;
 }
 
-.metaStatus {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 14.1px;
-  line-height: 20px;
-  letter-spacing: -0.282px;
-  color: #737373;
-  white-space: nowrap;
-}
-
-/* ── Divider ─────────────────────────────────────────────── */
-.divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.08);
-  margin: 0 24px 24px;
-}
-
-/* ── Locked overlay (Em breve cards) ─────────────────────── */
-.lockedOverlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  display: flex;
+.viewAllBtn {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  overflow: hidden;
-  backdrop-filter: blur(3px);
-  animation: lockedFadeIn 0.2s ease;
-}
-
-@keyframes lockedFadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-.lockedBanner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  background: #7b0d2a;
-  padding: 10px 20px;
-  transform: rotate(-12deg);
-  width: 150%;
-  box-shadow: 0 6px 32px rgba(0,0,0,0.6);
-}
-
-.lockedTexts {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-}
-
-.lockedTitle {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 900;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  border: none;
+  background: var(--gradient-cta);
   color: #ffffff;
-  letter-spacing: 3px;
-}
-
-.lockedSub {
-  font-family: 'Inter', sans-serif;
-  font-size: 7px;
+  font-family: var(--font-body);
+  font-size: 13px;
   font-weight: 600;
-  color: rgba(255,255,255,0.85);
-  letter-spacing: 2px;
-}
-
-/* ── Footer ──────────────────────────────────────────────── */
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  padding: 8px 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  overflow: hidden;
+  white-space: nowrap;
   cursor: pointer;
   transition: opacity 0.2s;
 }
+.viewAllBtn:hover { opacity: 0.88; }
 
-.footer:hover {
-  opacity: 0.75;
+/* ── Grid (masonry — colunas independentes, como no Figma:
+   a coluna do meio tem imagens um pouco mais altas, criando o
+   escalonamento entre colunas) ───────────────────────────── */
+.grid {
+  max-width: 1440px;
+  margin: 0 auto;
+  columns: 3;
+  column-gap: 28px;
 }
 
-.footerText {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
+.projectItem {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  break-inside: avoid;
+  margin-bottom: 32px;
+}
+.clickable { cursor: pointer; }
+/* No Figma a coluna do meio começa um pouco mais abaixo das outras
+   duas — o CSS multi-coluna sempre alinha o topo das colunas, então
+   esse respiro extra reproduz o primeiro item da coluna do meio.
+   Precisa ser padding (não margin): margem no topo do primeiro item
+   de uma coluna é zerada pela regra de fragmentação do CSS. */
+.offsetTop {
+  padding-top: 32px;
+}
+
+.imageWrapper {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(26, 26, 26, 0.05);
+}
+.imageWrapper.tall {
+  aspect-ratio: 6 / 5;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s;
+}
+.projectItem:hover .image { transform: scale(1.04); }
+
+.projectTitle {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-on-light);
+  margin: 0;
+}
+
+.projectDesc {
+  font-family: var(--font-body);
   font-size: 13px;
-  line-height: 24px;
-  letter-spacing: -0.259px;
-  color: #737373;
+  line-height: 1.5;
+  color: var(--text-on-light-muted);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.tag {
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--accent-purple);
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
   white-space: nowrap;
 }
 
-/* ── Responsive ──────────────────────────────────────────── */
-@media (max-width: 1100px) {
-  .grid {
-    flex-wrap: wrap;
-  }
-
-  .projectItem {
-    flex: 1 1 calc(50% - 10px);
-    min-width: 0;
-  }
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .grid { columns: 2; }
+  /* Com 2 colunas o item 3 já não é o topo da coluna do meio —
+     o respiro extra só faz sentido no layout de 3 colunas. */
+  .offsetTop { padding-top: 0; }
 }
 
-@media (max-width: 768px) {
-  .wrapper {
-    padding: 12px 24px;
-  }
-
-  .header {
-    text-align: center;
-  }
-
-  .subtitle {
-    white-space: normal;
-    text-align: center;
-  }
-
-  .grid {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .projectItem {
-    flex: none;
-    width: 100%;
-  }
+@media (max-width: 640px) {
+  .wrapper { padding: 48px 20px; }
+  .grid { columns: 1; }
+  .projectItem { margin-bottom: 28px; }
+  .title { font-size: 28px; max-width: none; }
+  .headerBottom { flex-direction: column; align-items: stretch; }
+  .viewAllBtn { justify-content: center; }
 }

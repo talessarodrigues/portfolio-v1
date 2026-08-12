@@ -1,0 +1,112 @@
+.root {
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.trigger {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  cursor: pointer;
+  background: none;
+  transition: background 0.2s;
+}
+
+/* Variante do mobile: anel fino por fora e disco com gradiente dentro,
+   com o globo branco no meio. */
+.triggerGradient {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+}
+
+/* Bandeirinha de cada idioma na lista aberta. */
+.itemFlag {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  line-height: 0;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.triggerDisc {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--gradient-cta);
+  color: #ffffff;
+}
+/* O contorno precisa virar claro no tema escuro — o painel de nav
+   fica #07070C e um traço escuro sumia nele. */
+.light .trigger { border-color: color-mix(in srgb, var(--text-on-light) 22%, transparent); color: var(--text-on-light); }
+.light .trigger:hover { background: color-mix(in srgb, var(--text-on-light) 6%, transparent); }
+.dark .trigger { border-color: rgba(255, 255, 255, 0.2); color: var(--text-on-dark); }
+.dark .trigger:hover { background: rgba(255, 255, 255, 0.08); }
+
+/* Ghost: ícone de globo já vem "assado" numa imagem de fundo (ex.: o
+   nav-panel.png do Hero) — o botão real fica invisível e só ocupa o
+   mesmo espaço clicável, igual aos outros links de nav sobre essa
+   mesma imagem. O menu que abre ao clicar continua normal/visível. */
+.ghost .trigger { border-color: transparent; color: transparent; }
+.ghost .trigger:hover { background: rgba(255, 255, 255, 0.08); }
+
+.menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 168px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.14);
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 10px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  color: var(--text-on-light);
+  transition: background 0.15s;
+}
+.item:hover { background: rgba(139, 92, 246, 0.08); }
+.itemActive { background: rgba(139, 92, 246, 0.1); }
+
+.itemShort {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: var(--accent-purple);
+  width: 22px;
+  flex-shrink: 0;
+}
+
+.itemLabel {
+  font-size: 13px;
+  font-weight: 500;
+  flex: 1;
+}
+
+.itemCheck {
+  color: var(--accent-purple);
+  display: flex;
+  flex-shrink: 0;
+}

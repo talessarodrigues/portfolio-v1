@@ -1,0 +1,33 @@
+.root {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border-radius: 999px;
+  border: 1px solid var(--surface-border);
+  background: var(--surface-3);
+}
+
+.option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: none;
+  border-radius: 999px;
+  background: none;
+  color: var(--text-on-light-muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.option:hover { color: var(--text-on-light); }
+
+.optionActive {
+  background: var(--surface);
+  color: var(--text-on-light);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}

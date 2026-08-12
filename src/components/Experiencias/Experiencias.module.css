@@ -1,456 +1,379 @@
-/* ── Page wrapper ─────────────────────────────────────────── */
-.page {
-  position: relative;
+/* O painel flutua como um card fechado. Antes ficava reto embaixo pra
+   emendar com Recomendações, que era a continuação do mesmo bloco — as
+   duas seções agora vivem em modais diferentes, então cada uma arredonda
+   os quatro cantos. Fora dele é bg claro, igual ao Hero. */
+.section {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  background: var(--bg-light);
+  padding: 10px;
+  box-sizing: border-box;
 }
 
+.outer {
+  max-width: 1440px;
+  margin: 0 auto;
+  background: var(--panel);
+  border-radius: 24px;
+  padding: 8px 32px;
+  box-sizing: border-box;
+}
 
-/* ── Hero ─────────────────────────────────────────────────── */
-.hero {
-  position: relative;
-  z-index: 1;
-  padding: 40px 40px 24px;
+/* Sem caixa própria: o conteúdo assenta direto no fundo da seção, nos
+   dois temas. Só o padding permanece, pra manter o respiro. */
+.card {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ── Experiência + Workshops lado a lado ─────────────────── */
+.sideBySide {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+}
+
+.sideCol {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .sideBySide {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+/* ── Block header ────────────────────────────────────────── */
+.blockHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.blockHeader:not(:first-child) {
+  margin-top: 16px;
+}
+
+.blockIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(139, 92, 246, 0.12);
+  color: var(--accent-purple-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.blockTitle {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--panel-text);
+  margin: 0;
+}
+
+/* ── Timeline ────────────────────────────────────────────── */
+.timeline {
+  --tl-dot: 11px;
+
   display: flex;
   flex-direction: column;
   gap: 12px;
-}
-
-.badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(11, 13, 14, 0.77);
-  border-radius: 60px;
-  padding: 6px 12px;
-  width: fit-content;
-}
-
-.badge span {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 12px;
-  color: #fafafa;
-  white-space: nowrap;
-}
-
-.badgeIcon {
-  width: 16px;
-  height: 20px;
-  flex-shrink: 0;
-}
-
-.title {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 48px;
-  line-height: 55.2px;
-  letter-spacing: -1.92px;
-  color: #fafafa;
-  margin: 0;
-}
-
-.subtitle {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-  color: #9ca3af;
-  margin: 0;
-  max-width: 506px;
-}
-
-/* ── Timeline outer ───────────────────────────────────────── */
-.timelineOuter {
   position: relative;
-  z-index: 1;
-  padding: 24px 40px;
+}
+
+.timelineRow {
+  display: flex;
+  gap: 20px;
+  position: relative;
+  padding: 14px 16px;
+  border: 1px solid var(--card-soft-border);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 102% 50%, var(--card-soft-glow) 0%, transparent 34%),
+    var(--card-soft-bg);
+}
+
+
+.timelineDot {
+  width: var(--tl-dot);
+  height: var(--tl-dot);
+  border-radius: 50%;
+  margin-top: 4px;
   flex-shrink: 0;
 }
+.dot_cyan { background: var(--accent-cyan); box-shadow: 0 0 10px rgba(0, 217, 255, 0.6); }
+.dot_purple { background: var(--accent-purple-2); }
+.dot_muted { background: var(--panel-text-muted); }
 
-/* ── Timeline grid — max 1114px, responsivo abaixo disso ──── */
-.timelineSection {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 80px minmax(0, 1fr);
-  align-items: start;
-  gap: 32px;
-  width: 100%;
-}
-
-/* ── Left column ──────────────────────────────────────────── */
-.leftCol {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-/* ── Right column — offset 128px ─────────────────────────── */
-.rightCol {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  padding-top: 128px;
-}
-
-/* ── Experience card ──────────────────────────────────────── */
-.expCard {
-  background: #0b0d0e;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  padding: 25px;
+.timelineContent {
   display: flex;
   flex-direction: column;
   gap: 4px;
-  backdrop-filter: blur(10px);
-  box-shadow: 8px 8px 16px 0px rgba(0, 0, 0, 0.4),
-              -4px -4px 12px 0px rgba(255, 255, 255, 0.02);
+  min-width: 0;
 }
 
-.expCardTop {
+.timelineHead {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+  gap: 12px;
 }
 
-.expCardIconWrap {
-  width: 48px;
-  height: 48px;
-  border-radius: 32px;
-  background: #131313;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  box-shadow: inset 4px 4px 8px 0px rgba(0, 0, 0, 0.6),
-              inset -2px -2px 6px 0px rgba(255, 255, 255, 0.05);
-}
-
-.expCardIconImg {
-  width: 20px;
-  height: 20px;
-  object-fit: contain;
-}
-
-.expCardPeriod {
-  font-family: 'Inter', sans-serif;
+.jobPeriod {
+  font-family: var(--font-body);
+  font-size: 11px;
   font-weight: 600;
-  font-size: 12px;
-  line-height: 16px;
-  white-space: nowrap;
-}
-
-.period_yellow { color: #fde047; }
-.period_violet { color: #c4b5fd; }
-.period_blue   { color: #93c5fd; }
-.period_red    { color: #fca5a5; }
-
-.expCardTitle {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 32px;
-  color: #fafafa;
-  margin: 12px 0 0;
-}
-
-.expCardCompany {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  color: #9ca3af;
-  margin: 0;
-}
-
-.company_yellow { color: #fde047; }
-.company_violet { color: #c4b5fd; }
-.company_blue   { color: #2563eb; }
-.company_red    { color: #f20800; }
-
-.expCardTags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.tag {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 10px;
-  line-height: 24px;
   letter-spacing: 0.5px;
-  color: #d0c5af;
-  text-transform: uppercase;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 9999px;
-  padding: 5px 13px;
-  white-space: nowrap;
 }
+.text_cyan { color: var(--accent-cyan); }
+.text_purple { color: var(--accent-purple-2); }
+.text_muted { color: var(--panel-text-muted); }
 
-.expCardBody {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
+.jobTitle {
+  font-family: var(--font-body);
   font-size: 16px;
-  line-height: 24px;
-  color: rgba(255, 255, 255, 0.8);
-  margin: 12px 0 0;
-  white-space: pre-line;
+  font-weight: 600;
+  color: var(--panel-text);
+  margin: 2px 0 0;
 }
 
-/* ── Screenshot card ──────────────────────────────────────── */
-.screenshotCard {
-  border-radius: 32px;
-  overflow: clip;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(10px);
-  box-shadow: 8px 8px 16px 0px rgba(0, 0, 0, 0.4),
-              -4px -4px 12px 0px rgba(255, 255, 255, 0.02);
-  height: 307px;
-  padding: 1px;
-  flex-shrink: 0;
-  width: 100%;
+.jobMeta {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--panel-text-muted);
+  margin: 0 0 6px;
+}
+
+.jobParagraph {
+  font-family: var(--font-body);
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--panel-text-muted);
+  margin: 6px 0 0;
+  max-width: 720px;
+}
+
+.jobBullets {
+  margin: 10px 0 0;
+  padding-left: 18px;
   display: flex;
   flex-direction: column;
+  gap: 4px;
+}
+.jobBullets li {
+  font-family: var(--font-body);
+  font-size: 12.5px;
+  color: var(--panel-text-muted);
 }
 
-.screenshotInner {
+/* ── Teaser / expand icon (só existem visualmente em telas com hover) ── */
+.jobTeaser {
+  display: none;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--panel-text-muted);
+  margin: 4px 0 0;
+  max-width: 480px;
+}
+
+.expandIcon {
+  display: none;
+  flex-shrink: 0;
+  color: var(--panel-text-muted);
+  margin-top: 6px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* ── Telas com mouse: linha fica recolhida (nome + data + teaser de
+   1 linha com "...") até o hover, que revela o card completo — igual
+   ao comportamento sempre-aberto em telas touch (sem hover). ── */
+@media (hover: hover) {
+  .timelineRow {
+    cursor: pointer;
+    transition: border-color 0.25s ease;
+    outline: none;
+  }
+  .timelineRow:hover,
+  .timelineRow:focus-visible {
+    border-color: var(--accent-purple-2);
+  }
+
+  .jobTeaser {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .expandIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .timelineRow:hover .expandIcon,
+  .timelineRow:focus-visible .expandIcon {
+    transform: rotate(180deg);
+    color: var(--panel-text);
+  }
+
+  .jobExpandable {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 0.35s ease, opacity 0.25s ease;
+  }
+  .jobExpandableInner {
+    overflow: hidden;
+  }
+  .timelineRow:hover .jobExpandable,
+  .timelineRow:focus-visible .jobExpandable {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+  .timelineRow:hover .jobTeaser,
+  .timelineRow:focus-visible .jobTeaser {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+  }
+}
+
+/* ── Certification grid ─────────────────────────────────────
+   2 colunas, card = logo quadrada + título/subtítulo ao lado
+   (igual ao Figma: ícone 100x100 + texto, sem badge de "recente"). */
+.certGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.certCard {
   position: relative;
-  flex: 1 0 0;
-  min-height: 1px;
-  opacity: 0.5;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 14px;
+  /* O lilás só encosta no canto direito: um círculo com o centro fora
+     do cartão, do qual só a borda entra. Nada de pintar metade. */
+  background:
+    radial-gradient(circle at 104% 50%, var(--card-soft-glow) 0%, transparent 38%),
+    var(--card-soft-bg);
+  border: 1px solid var(--card-soft-border);
+  border-radius: 20px;
   overflow: hidden;
 }
 
-.screenshotImgWrap {
-  position: absolute;
-  inset: 0;
+
+
+.certLogo {
+  flex-shrink: 0;
+  width: 76px;
+  height: 76px;
+  border-radius: 14px;
+  border: 1px solid var(--card-soft-border);
+  background: var(--exp-card-tile);
+  box-shadow: 0 2px 6px var(--exp-card-tile-shadow);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
-
-.screenshotImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
-  display: block;
-  pointer-events: none;
-}
-
-/* ── Center timeline ──────────────────────────────────────── */
-.centerCol {
-  position: relative;
-  align-self: stretch;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 162px;
-}
-
-.timelineLine {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  width: 1px;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.04) 100%);
-  transform: translateX(-50%);
-}
-
-.dotsWrap {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 192px;
-  padding-top: 48px;
-}
-
-.dot {
-  width: 16px;
-  height: 16px;
-  border-radius: 9999px;
-  border: 2px solid #131313;
-  flex-shrink: 0;
-}
-
-.dotYellow {
-  background: #fde047;
-  box-shadow: 0 0 15px 0px rgba(242, 202, 80, 0.6);
-}
-
-.dotViolet {
-  background: #c4b5fd;
-  box-shadow: 0 0 15px 0px rgba(211, 188, 249, 0.6);
-}
-
-.dotGray {
-  background: #d0c5af;
-  opacity: 0.5;
-}
-
-/* ── Contact CTA ──────────────────────────────────────────── */
-.ctaSection {
-  position: relative;
-  z-index: 1;
-  padding: 0 40px 24px;
-  margin-top: auto;
-}
-
-.ctaBox {
-  background: #0b0d0e;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 48px 32px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-.ctaText {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-  max-width: 666px;
-}
-
-.ctaTitle {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 18.4px;
-  letter-spacing: -0.48px;
-  color: #fafafa;
-  margin: 0;
-}
-
-.ctaSubtitle {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 22.5px;
-  letter-spacing: -0.3px;
-  color: #525252;
-  margin: 0;
-}
-
-.ctaButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: linear-gradient(99deg, #c8cbd0 0%, #f4f5f6 100%);
-  border-radius: 10px;
-  padding: 12px 24px;
-  text-decoration: none;
-  white-space: nowrap;
-  flex-shrink: 0;
-  box-shadow: 0px 0.707px 0.707px -0.583px rgba(0,0,0,0.69),
-              0px 1.807px 1.807px -1.167px rgba(0,0,0,0.68),
-              0px 3.622px 3.622px -1.75px rgba(0,0,0,0.65),
-              0px 6.866px 6.866px -2.333px rgba(0,0,0,0.61),
-              0px 13.647px 13.647px -2.917px rgba(0,0,0,0.52),
-              0px 30px 30px -3.5px rgba(0,0,0,0.3),
-              inset 0px 3px 1px 0px white;
-}
-
-.ctaButton span,
-.ctaButton {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 22.4px;
-  color: #0a0a0a;
-}
-
-.ctaButtonIcon {
-  width: 20px;
-  height: 20px;
+.certLogo img {
+  width: 70%;
+  height: 70%;
   object-fit: contain;
+}
+
+.certText {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.certTitle {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--exp-card-title);
+  line-height: 1.35;
+}
+
+.certSubtitle {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--exp-card-muted);
+}
+
+/* ── Workshop grid ───────────────────────────────────────── */
+.workshopGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.workshopCard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 14px;
+  /* O lilás só encosta no canto direito: um círculo com o centro fora
+     do cartão, do qual só a borda entra. Nada de pintar metade. */
+  background:
+    radial-gradient(circle at 104% 50%, var(--card-soft-glow) 0%, transparent 38%),
+    var(--card-soft-bg);
+  border: 1px solid var(--card-soft-border);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.workshopLogo {
   flex-shrink: 0;
+  width: 76px;
+  height: 76px;
+  border-radius: 14px;
+  border: 1px solid var(--card-soft-border);
+  background: var(--exp-card-tile);
+  box-shadow: 0 2px 6px var(--exp-card-tile-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.workshopLogo img {
+  width: 62%;
+  height: 62%;
+  object-fit: contain;
 }
 
-/* ── Mobile ───────────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .hero {
-    padding: 32px 20px 0;
-  }
-
-  .title {
-    font-size: 32px;
-    line-height: 38px;
-    letter-spacing: -1px;
-  }
-
-  .subtitle {
-    font-size: 15px;
-    line-height: 22.5px;
-    max-width: 100%;
-  }
-
-  .timelineOuter {
-    padding: 24px 20px;
-    overflow: visible;
-  }
-
-  .timelineSection {
-    width: 100%;
-    height: auto;
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-    gap: 20px;
-  }
-
-  .centerCol {
-    display: none;
-  }
-
-  .ctaSection {
-    padding: 0 20px 24px;
-  }
-
-  .ctaBox {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 32px 24px;
-  }
-
-  .ctaButton {
-    align-self: stretch;
-    justify-content: center;
-  }
+.workshopTitle {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--exp-card-title);
+  line-height: 1.35;
 }
 
-/* ── Tablet ───────────────────────────────────────────────── */
-@media (max-width: 1100px) and (min-width: 769px) {
-  .timelineOuter {
-    padding: 24px 24px;
-  }
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .certGrid, .workshopGrid { grid-template-columns: 1fr; }
+}
 
-  .timelineSection {
-    width: 100%;
-    height: auto;
-    grid-template-columns: 1fr 60px 1fr;
-    grid-template-rows: none;
-  }
-
-  .title {
-    font-size: 36px;
-    line-height: 42px;
-  }
-
-  .rightCol {
-    padding-top: 80px;
-  }
-
-  .dotsWrap {
-    gap: 140px;
-  }
+@media (max-width: 640px) {
+  .section { padding: 0 20px; }
+  .card { padding: 28px 20px; border-radius: 16px; }
+  .certGrid { grid-template-columns: 1fr; }
+  .workshopGrid { grid-template-columns: 1fr; }
 }

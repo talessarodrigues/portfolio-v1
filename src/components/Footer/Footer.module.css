@@ -1,0 +1,123 @@
+.footer {
+  width: 100%;
+  background: var(--bg-light);
+}
+
+.bar {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logoBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logoImg {
+  height: 22px;
+  width: auto;
+  display: block;
+}
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--gradient-cta);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: opacity 0.2s;
+}
+.ctaBtn:hover { opacity: 0.88; }
+
+.nav {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.navLink {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  color: var(--text-on-light);
+  font-family: var(--font-label);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+.navLink:hover { opacity: 1; }
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.socialBtn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(26, 26, 26, 0.12);
+  color: var(--text-on-light);
+  transition: background 0.2s, border-color 0.2s;
+}
+.socialBtn:hover {
+  background: rgba(26, 26, 26, 0.05);
+  border-color: rgba(26, 26, 26, 0.2);
+}
+
+.copyrightBar {
+  background: var(--bg-dark);
+  padding: 12px 40px;
+}
+
+.copyright {
+  max-width: 1440px;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-on-dark-muted);
+  font-family: var(--font-body);
+  font-size: 12px;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .nav { display: none; }
+}
+
+@media (max-width: 640px) {
+  .bar {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+  }
+  .ctaBtn { order: 3; }
+}

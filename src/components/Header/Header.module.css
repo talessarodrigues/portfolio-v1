@@ -1,0 +1,215 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 24px 40px 0;
+}
+
+/* .inner tem a MESMA largura/margem que o card do Hero (max-width:1360px,
+   centralizado) — assim os dois formam visualmente uma peça só, sem
+   emenda, com o header "encaixando" no topo do card. */
+.inner {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 14px 24px;
+  border-radius: 24px 24px 0 0;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.dark .inner {
+  background: rgba(7, 7, 12, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.light .inner {
+  background: rgba(253, 246, 245, 0.9);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+}
+
+.logoBtn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.logoImg {
+  height: 24px;
+  width: auto;
+  display: block;
+}
+
+/* ── Nav ─────────────────────────────────────────────────── */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navLink {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-family: var(--font-label);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: background 0.2s, opacity 0.2s;
+  opacity: 0.85;
+}
+.navLink:hover { opacity: 1; }
+
+/* No variant "dark" o texto real fica TRANSPARENTE — quem aparece
+   visualmente é o texto já desenhado na imagem de fundo (.navPanelBg,
+   exportada do Figma). O botão continua real (clicável, leitor de tela),
+   só não duplica o texto por cima da imagem. */
+.dark .navLink { color: transparent; }
+.dark .navLink:hover { background: rgba(26, 26, 26, 0.06); }
+
+.light .navLink { color: var(--text-on-light); }
+
+/* ── Actions ─────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+/* Painel atrás do globo+nav+CTA — só existe no header "dark" (Hero).
+   No dark, o "painel" É a imagem exportada do Figma (.navPanelBg),
+   com a forma/curva exata; os botões reais ficam por cima, invisíveis,
+   só para clique e leitores de tela. No header "light" (Tela Projetos)
+   não tem imagem — os botões ficam visíveis normalmente, sem painel. */
+.navPanel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+}
+
+.navPanelBg {
+  position: absolute;
+  left: -16px;
+  top: -8px;
+  height: 100px;
+  width: auto;
+  max-width: none;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+
+.nav, .ctaBtn { position: relative; z-index: 1; }
+
+.ctaBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  background: var(--gradient-cta);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.dark .ctaBtn { background: transparent; color: transparent; }
+.ctaBtn:hover { opacity: 0.9; transform: translateY(-1px); }
+
+.menuToggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+  background: none;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.dark .menuToggle { border-color: rgba(255,255,255,0.18); color: var(--text-on-dark); }
+.light .menuToggle { border-color: rgba(26,26,26,0.15); color: var(--text-on-light); }
+
+/* ── Mobile menu ─────────────────────────────────────────── */
+.mobileMenu {
+  display: none;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .nav { display: none; }
+}
+
+@media (max-width: 768px) {
+  .header { padding: 16px 20px 0; }
+  .inner { padding: 12px 16px; border-radius: 20px 20px 0 0; }
+  .ctaBtn { display: none; }
+  .menuToggle { display: flex; }
+
+  .mobileMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 12px 16px 16px;
+    border-radius: 0 0 20px 20px;
+  }
+  .dark .mobileMenu { background: rgba(7, 7, 12, 0.6); backdrop-filter: blur(14px); }
+  .light .mobileMenu { background: rgba(253, 246, 245, 0.9); backdrop-filter: blur(14px); }
+
+  .mobileLink {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 12px 8px;
+    font-family: var(--font-label);
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .dark .mobileLink { color: var(--text-on-dark); }
+  .light .mobileLink { color: var(--text-on-light); }
+
+  .mobileCta {
+    margin-top: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border-radius: 999px;
+    border: none;
+    background: var(--gradient-cta);
+    color: #ffffff;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+  }
+}

@@ -1,43 +1,10 @@
 import styles from './Recomendacoes.module.css'
+import { useTranslation } from '../../i18n/LanguageContext'
+import { semViuva } from '../../i18n/text'
 
-const recs = [
-  {
-    name: 'Natália Pires',
-    role: 'UX/UI Designer',
-    company: 'Frontend Fusion',
-    text: 'Trabalhei com a Talessa no projeto Frontend Fusion e posso dizer que ela é uma excelente parceira de equipe. Ela se adapta muito bem às mudanças do projeto, mantendo consistência, organização e qualidade nas entregas. Além disso, ela tem um senso estético muito forte, que agrega bastante valor ao resultado final do produto.',
-  },
-  {
-    name: 'Matheus Fuentes',
-    role: 'Software Engineer',
-    company: 'Node.js & TypeScript',
-    text: 'Conheço a Talessa há anos e tive a oportunidade de trabalhar com ela em diferentes projetos. Ao longo de todas essas experiências, ela sempre se destacou pela dedicação, profissionalismo e pela qualidade do seu trabalho. Como UX/UI Designer, possui uma excelente capacidade de entender problemas, organizar informações e criar interfaces que equilibram estética, funcionalidade e experiência do usuário.',
-  },
-  {
-    name: 'Felipe Marzochi',
-    role: 'Backend Java Developer',
-    company: 'Conecta 360°',
-    text: 'Trabalhando juntos no Conecta 360°, passei a valorizar uma característica da Talessa que nem sempre aparece em um portfólio: a capacidade de ouvir, interpretar diferentes pontos de vista e transformar discussões em soluções de UX/UI que fazem sentido para o produto. Essa postura, somada ao comprometimento com os prazos e ao cuidado com cada detalhe, faz dela uma profissional diferenciada.',
-  },
-  {
-    name: 'Louise Rakel',
-    role: 'Psicóloga Organizacional',
-    company: 'Gestão Estratégica de RH',
-    text: 'Como gestora, tenho a oportunidade de acompanhar de perto o trabalho da Talessa no desenvolvimento de soluções digitais para RH e NR-1. Nesse período, ela tem demonstrado sólida capacidade técnica em UX/UI Design, Product Discovery e UX Research, contribuindo de forma significativa para a construção de soluções alinhadas às necessidades do negócio.',
-  },
-  {
-    name: 'Felipe S. Oliveira',
-    role: 'Desenvolvedor Full-Stack',
-    company: 'Java · Vue · React · Node.js',
-    text: 'Tive a oportunidade de trabalhar com a Talessa Mayara em diversos projetos digitais, onde ela atuou como UX/UI Designer. Durante esse período, ela sempre demonstrou um excelente olhar para a experiência do usuário, aliando criatividade, organização e foco em entregar soluções que realmente agregavam valor ao produto.',
-  },
-  {
-    name: 'Luana Alves',
-    role: 'CEO',
-    company: 'RhRecruiter',
-    text: 'Tive a oportunidade de trabalhar com a Talessa em um momento importante de evolução da RHRecruiter e posso destacar seu comprometimento, profissionalismo e capacidade de transformar ideias em soluções bem estruturadas. Contribuiu diretamente para a construção da experiência e identidade dos nossos produtos, sempre demonstrando atenção aos detalhes.',
-  },
-]
+// Nomes reais das pessoas — não fazem parte do texto traduzido,
+// casados por índice com t.recomendacoes.testimonials.
+const names = ['Natália Pires', 'Matheus Fuentes', 'Felipe Marzochi', 'Louise Rakel', 'Felipe S. Oliveira', 'Luana Alves']
 
 const IconLinkedIn = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -45,16 +12,19 @@ const IconLinkedIn = () => (
   </svg>
 )
 
-const doubled = [...recs, ...recs]
-
 export function Recomendacoes() {
+  const { t } = useTranslation()
+  const recs = t.recomendacoes.testimonials.map((r, i) => ({ ...r, name: names[i] }))
+  const doubled = [...recs, ...recs]
+
   return (
-    <section className={styles.section} data-animate>
+    <section id="comentarios" className={styles.section} data-animate>
+      <div className={styles.outer}>
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.headerLeft}>
-            <h2 className={styles.title}>Recomendações</h2>
-            <p className={styles.subtitle}>Feedbacks de quem já trabalhou comigo em projetos reais.</p>
+            <h2 className={styles.title}>{semViuva(t.recomendacoes.title)}</h2>
+            <p className={styles.subtitle}>{t.recomendacoes.subtitle}</p>
           </div>
           <a
             href="https://www.linkedin.com/in/talessamayara/"
@@ -62,7 +32,7 @@ export function Recomendacoes() {
             rel="noopener noreferrer"
             className={styles.linkedinBtn}
           >
-            Ver LinkedIn
+            {t.recomendacoes.verLinkedin}
             <IconLinkedIn />
           </a>
         </div>
@@ -75,7 +45,7 @@ export function Recomendacoes() {
                   <div className={styles.avatar}>{rec.name.charAt(0)}</div>
                   <div>
                     <div className={styles.name}>{rec.name}</div>
-                    <div className={styles.role}>{rec.role}{rec.company ? ` · ${rec.company}` : ''}</div>
+                    <div className={styles.role}>{rec.role}</div>
                   </div>
                 </div>
                 <p className={styles.text}>"{rec.text}"</p>
@@ -83,6 +53,7 @@ export function Recomendacoes() {
             ))}
           </div>
         </div>
+      </div>
       </div>
     </section>
   )

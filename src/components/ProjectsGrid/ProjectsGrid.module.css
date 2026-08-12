@@ -1,142 +1,57 @@
 .section {
-  padding: 24px 40px;
   width: 100%;
+  background: var(--bg-light);
+  padding: 24px 40px 80px;
   box-sizing: border-box;
-  position: relative;
-  z-index: 2;
 }
 
-.container {
-  background: #0b0d0e;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 16px;
-  overflow: hidden;
-  width: 100%;
-}
-
-/* ── Header ───────────────────────────────────────────────── */
-.header {
-  padding: 24px 24px 20px;
-}
-
-.headerTitle {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 18.4px;
-  letter-spacing: -0.48px;
-  color: #ffffff;
-  margin: 0;
-}
-
-/* ── Desktop Grid (4 colunas) ─────────────────────────────── */
+/* ── Grid (masonry — mesmo tratamento do bloco de destaques da
+   home: colunas independentes, a do meio começando mais abaixo e
+   imagens de alturas alternadas) ─────────────────────────── */
 .grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  padding: 0 24px 24px;
+  max-width: 1440px;
+  margin: 0 auto;
+  columns: 3;
+  column-gap: 28px;
 }
 
-.carousels {
-  display: none;
+.item {
+  break-inside: avoid;
+  margin-bottom: 32px;
 }
 
-/* ── Project card (grid) ──────────────────────────────────── */
+/* Multi-coluna sempre alinha o topo das colunas — esse respiro extra
+   é o que escalona a do meio. Precisa ser padding (não margin):
+   margem no topo do primeiro item de uma coluna é zerada pela regra
+   de fragmentação do CSS. */
+.offsetTop {
+  padding-top: 40px;
+}
+
+/* ── Card ────────────────────────────────────────────────── */
 .card {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   width: 100%;
 }
+.clickable { cursor: pointer; }
 
 .imageWrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 249 / 166;
-  border-radius: 10px;
+  aspect-ratio: 4 / 3;
+  border-radius: 14px;
   overflow: hidden;
-  background: #1a1a1a;
+  background: rgba(26, 26, 26, 0.05);
 }
 
-.imageOverlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.2s;
+.imageWrap.tall {
+  aspect-ratio: 6 / 5;
 }
-.card:hover .imageOverlay { opacity: 1; }
-
-/* ── Locked overlay ── */
-.lockedOverlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  overflow: hidden;
-  backdrop-filter: blur(3px);
-  animation: lockedFadeIn 0.2s ease;
-}
-
-@keyframes lockedFadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-.lockedBanner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 24px;
-  background: #7b0d2a;
-  padding: 18px 32px;
-  transform: rotate(-12deg);
-  width: 150%;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.7);
-}
-
-.lockedTexts {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-}
-
-.lockedTitle {
-  font-family: 'Inter', sans-serif;
-  font-size: 22px;
-  font-weight: 900;
-  color: #ffffff;
-  letter-spacing: 4px;
-}
-
-.lockedSub {
-  font-family: 'Inter', sans-serif;
-  font-size: 9px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.85);
-  letter-spacing: 3px;
-}
-.imageOverlayText {
-  font-family: 'Inter', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  color: #ffffff;
-  padding: 6px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.25);
-  background: rgba(255,255,255,0.08);
-}
-
 
 .imageBlank {
-  background: #f5f5f5;
+  background: rgba(26, 26, 26, 0.04);
 }
 
 .image {
@@ -146,186 +61,70 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.4s;
 }
+.card:hover .image { transform: scale(1.04); }
 
-.imageBorder {
-  position: absolute;
-  inset: 0;
-  border-radius: 10px;
-  border: 1px solid rgba(227, 227, 227, 0.1);
-  pointer-events: none;
-}
-
-.meta {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  overflow: hidden;
-}
-
-.metaTitle {
-  font-family: 'Inter', sans-serif;
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 22px;
   font-weight: 600;
-  font-size: 14.1px;
-  line-height: 20px;
-  letter-spacing: -0.282px;
-  color: #737373;
-  white-space: nowrap;
+  color: var(--text-on-light);
+  margin: 0;
+  min-width: 0;
+}
+
+.cardDesc {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--text-on-light-muted);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
-.metaDot {
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 14.1px;
-  line-height: 20px;
-  color: #737373;
-  flex-shrink: 0;
-}
-
-.metaCategory {
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 14.1px;
-  line-height: 20px;
-  letter-spacing: -0.282px;
-  color: #737373;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-/* ── Footer ───────────────────────────────────────────────── */
-.footer {
+/* Título à esquerda, curtida encostada na direita. */
+.cardHead {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 2px;
-  padding: 8px 24px;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  cursor: pointer;
+  justify-content: space-between;
+  gap: 12px;
 }
 
-.footerText {
-  font-family: 'Inter', sans-serif;
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.tag {
+  padding: 7px 16px;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.06);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  color: var(--accent-purple);
+  font-family: var(--font-body);
+  font-size: 12px;
   font-weight: 500;
-  font-size: 13px;
-  line-height: 24px;
-  letter-spacing: -0.259px;
-  color: #737373;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
   white-space: nowrap;
 }
 
-.footerIcon {
-  display: flex;
-  align-items: center;
-  color: #737373;
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .grid { columns: 2; }
+  /* Com 2 colunas o item escolhido já não abre a coluna do meio —
+     o respiro extra só faz sentido no layout de 3 colunas. */
+  .offsetTop { padding-top: 0; }
 }
 
-/* ── Tablet ───────────────────────────────────────────────── */
-@media (max-width: 1100px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* ── Mobile: 3 marquees automáticos ──────────────────────── */
-@media (max-width: 768px) {
-  .section {
-    padding: 12px 16px;
-  }
-
-  .header {
-    padding: 20px 20px 16px;
-    text-align: center;
-  }
-
-  .grid {
-    display: none;
-  }
-
-  .carousels {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-bottom: 20px;
-    overflow: hidden; /* contém as animações */
-  }
-
-  /* ── Keyframes ─────────────────────────────────────────── */
-
-  /* large: 10 items × (220px + 12px gap) = 2320px por set */
-  @keyframes scrollLarge {
-    from { transform: translateX(0); }
-    to   { transform: translateX(calc(-10 * (220px + 12px))); }
-  }
-
-  /* medium: 9 items × (220px + 12px gap) = 2088px por set */
-  @keyframes scrollMedium {
-    from { transform: translateX(0); }
-    to   { transform: translateX(calc(-9 * (220px + 12px))); }
-  }
-
-  @keyframes scrollLargeReverse {
-    from { transform: translateX(calc(-10 * (220px + 12px))); }
-    to   { transform: translateX(0); }
-  }
-
-  @keyframes scrollMediumReverse {
-    from { transform: translateX(calc(-9 * (220px + 12px))); }
-    to   { transform: translateX(0); }
-  }
-
-  /* ── Outer: overflow hidden por lane ──────────────────── */
-  .marqueeOuter {
-    overflow: hidden;
-    width: 100%;
-  }
-
-  /* ── Inner: track deslizante ─────────────────────────── */
-  .marqueeInner {
-    display: flex;
-    width: max-content;
-  }
-
-  .marqueeLarge {
-    gap: 12px;
-    animation: scrollLarge 65s linear infinite;
-  }
-
-  .marqueeMedium {
-    gap: 12px;
-    animation: scrollMedium 60s linear infinite;
-  }
-
-  .marqueeReverse.marqueeLarge {
-    animation: scrollLargeReverse 65s linear infinite;
-  }
-
-  .marqueeReverse.marqueeMedium {
-    animation: scrollMediumReverse 35s linear infinite;
-  }
-
-  /* ── Cada card do marquee ─────────────────────────────── */
-  .marqueeCard {
-    position: relative;
-    flex-shrink: 0;
-    border-radius: 10px;
-    overflow: hidden;
-    background: #1a1a1a;
-  }
-
-  .marqueeLarge .marqueeCard {
-    width: 220px;
-    height: 147px; /* 220 × (166/249) */
-  }
-
-  .marqueeMedium .marqueeCard {
-    width: 220px;
-    height: 147px;
-  }
-
-  .marqueeCard.imageBlank {
-    background: #f5f5f5;
-  }
+@media (max-width: 640px) {
+  .section { padding: 16px 20px 48px; }
+  .grid { columns: 1; }
+  .item { margin-bottom: 28px; }
 }

@@ -1,78 +1,66 @@
+import { useState } from 'react'
 import styles from './SobreMim.module.css'
 import { MarqueeRow } from '../ToolsMarquee/ToolsMarquee'
-import { ContactBanner } from '../ContactBanner/ContactBanner'
+import imgEssaSouEu from '../../assets/sobre/essa-sou-eu.webp'
+import imgSlot2 from '../../assets/sobre/slot-2.webp'
+import imgSlot3 from '../../assets/sobre/slot-3.webp'
+import imgSlot4 from '../../assets/sobre/slot-4.webp'
+import { useTranslation } from '../../i18n/LanguageContext'
+import { semViuva } from '../../i18n/text'
 
-import imgPhoto   from '../../assets/sobre/photo.png'
-import imgSparkle from '../../assets/exp/sparkle.png'
+const PHOTOS = [imgEssaSouEu, imgSlot2, imgSlot3, imgSlot4]
 
 export function SobreMim() {
-  return (
-    <div className={styles.page}>
+  const { t } = useTranslation()
+  const [activeIndex, setActiveIndex] = useState(0)
 
-      {/* ── About card ───────────────────────────────────────── */}
-      <div className={styles.aboutWrap}>
-        <div className={styles.aboutCard} data-animate data-delay="0">
-          <div className={styles.photoCol}>
-            <img src={imgPhoto} alt="Talessa Rodrigues" className={styles.photo} />
+  return (
+    <section id="sobre-mim" className={styles.section}>
+      <div className={styles.grid}>
+        <div className={styles.textCol} data-animate>
+          <span className={styles.eyebrow}>{t.sobreMim.eyebrow}</span>
+          <h2 className={styles.title}>{semViuva(t.sobreMim.title)}</h2>
+
+          <div className={styles.body}>
+            {t.sobreMim.body.map((p, i) => <p key={i}>{p}</p>)}
           </div>
 
-          <div className={styles.contentCol}>
-            <div className={styles.badge}>
-              <img src={imgSparkle} alt="" className={styles.badgeIcon} />
-              <span>Quem é Talessa?</span>
-            </div>
+          <p className={styles.highlight}>{t.sobreMim.highlight}</p>
+        </div>
 
-            <h1 className={styles.title}>Sobre Mim:</h1>
-
-            <div className={styles.body}>
-              <p>
-                Sou UX/UI Designer e acredito que uma boa interface começa muito antes da tela
-                final. Antes de abrir o Figma, gosto de entender o produto, o usuário, o problema
-                e o contexto por trás de cada decisão.
-              </p>
-              <p>
-                Tenho me dedicado à criação de produtos digitais com foco em experiência,
-                consistência visual e clareza. No projeto RHRecruiter, trabalhei em fluxos e
-                interfaces para uma plataforma de recrutamento e seleção, pensando em experiências
-                para empresas, recrutadores e candidatos. Foi um projeto que me fez evoluir muito
-                na forma de pensar produto, hierarquia visual, jornada do usuário e comunicação
-                entre design e desenvolvimento.
-              </p>
-              <p>
-                Também estou construindo um Design System do zero no Figma, organizando foundations,
-                variáveis, componentes reutilizáveis e documentação. Esse processo tem reforçado
-                ainda mais minha visão sobre escalabilidade, consistência e maturidade em design.
-              </p>
-              <p>
-                Gosto de criar interfaces com propósito, mas também com personalidade. Para mim,
-                design é sobre resolver problemas, facilitar caminhos e traduzir ideias complexas
-                em experiências simples, bonitas e funcionais.
-              </p>
-            </div>
-
-            <div className={styles.actions}>
-              <a href="#" className={styles.btnPrimary}>
-                Entrar em contato
-              </a>
-              <a href="#" className={styles.btnSecondary}>Redes Sociais</a>
-            </div>
+        <div className={styles.photoCol} data-animate data-delay="1">
+          <div className={styles.gallery}>
+            {PHOTOS.map((src, i) => {
+              const caption = t.sobreMim.photos[i]
+              const active = i === activeIndex
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  className={`${styles.slot} ${active ? styles.slotActive : ''}`}
+                  style={{ flexGrow: active ? 4.3 : 1 }}
+                  onMouseEnter={() => setActiveIndex(i)}
+                  onFocus={() => setActiveIndex(i)}
+                  onClick={() => setActiveIndex(i)}
+                  aria-pressed={active}
+                  aria-label={caption.title}
+                >
+                  <img src={src} alt="" className={styles.slotImg} />
+                  <span className={styles.slotCaption}>
+                    <span className={styles.slotCaptionTitle}>{caption.title}</span>
+                    {caption.subtitle && <span className={styles.slotCaptionSubtitle}>{caption.subtitle}</span>}
+                  </span>
+                </button>
+              )
+            })}
           </div>
         </div>
       </div>
 
-      {/* ── Stack ────────────────────────────────────────────── */}
-      <div className={styles.stackSection} data-animate data-delay="1">
-        <div className={styles.stackHeading}>
-          <h2 className={styles.stackTitle}>Stack</h2>
-          <p className={styles.stackSubtitle}>
-            Software que uso diariamente e que recomendo vivamente.
-          </p>
-        </div>
+      <div className={styles.toolsWrap} data-animate data-delay="3">
+        <p className={styles.toolsLabel}>{t.sobreMim.toolsLabel}</p>
         <MarqueeRow seed={4} />
       </div>
-
-      {/* ── Contact CTA ──────────────────────────────────────── */}
-      <ContactBanner />
-    </div>
+    </section>
   )
 }
