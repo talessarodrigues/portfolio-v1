@@ -9,7 +9,14 @@ import { useEffect, useState } from 'react'
 // ele encolhia tudo até ficar ilegível. Nessas larguras o app-like é a
 // experiência certa — ele agora escala junto com a tela (--m-u) em vez
 // de ficar preso ao tamanho de um celular.
-export const MOBILE_QUERY = '(max-width: 1024px)'
+//
+// A segunda condição existe porque largura sozinha não separa tablet de
+// notebook: um tablet em paisagem, ou com "versão para desktop" ligada
+// no navegador, passa fácil dos 1024 e caía no layout de mouse.
+// `pointer: coarse` é o dedo — só aparelho de toque casa com ela, e o
+// teto de 1366 (o maior iPad) evita pegar monitor com tela sensível.
+export const MOBILE_QUERY =
+  '(max-width: 1024px), (pointer: coarse) and (max-width: 1366px)'
 
 export function useIsMobile() {
   const [isMobile, setIsMobile] = useState(

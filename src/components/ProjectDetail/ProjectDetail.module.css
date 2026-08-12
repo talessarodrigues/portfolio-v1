@@ -379,8 +379,11 @@
 }
 
 /* ── Responsive ──────────────────────────────────────────── */
-/* No celular os quatro cartões viram 2×2 em vez de uma coluna. */
-@media (max-width: 767px) {
+/* No celular os quatro cartões viram 2×2 em vez de uma coluna.
+   Até 1024 porque daí pra baixo o case abre dentro do sheet do app
+   mobile, numa coluna estreita — a régua do desktop só vale acima
+   disso (ver useIsMobile). */
+@media (max-width: 1024px) {
   .metaRow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 

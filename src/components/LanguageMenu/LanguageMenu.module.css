@@ -18,10 +18,14 @@
 }
 
 /* Variante do mobile: anel fino por fora e disco com gradiente dentro,
-   com o globo branco no meio. */
+   com o globo branco no meio.
+   As medidas seguem a escala do app mobile (--m-u), senão este botão
+   fica nos 44px fixos enquanto o alternador de tema ao lado cresce com
+   a tela — e o par aparece com dois tamanhos diferentes. O fallback de
+   1px preserva o desktop, onde --m-u não existe. */
 .triggerGradient {
-  width: 44px;
-  height: 44px;
+  width: calc(44 * var(--m-u, 1px));
+  height: calc(44 * var(--m-u, 1px));
   padding: 0;
 }
 
@@ -38,11 +42,17 @@
 .triggerDisc {
   display: grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
+  width: calc(28 * var(--m-u, 1px));
+  height: calc(28 * var(--m-u, 1px));
   border-radius: 50%;
   background: var(--gradient-cta);
   color: #ffffff;
+}
+/* O <svg> do globo vem com 18px cravados no atributo; sem isto ele é o
+   único pedaço do par que não acompanha a escala. */
+.triggerDisc svg {
+  width: calc(18 * var(--m-u, 1px));
+  height: calc(18 * var(--m-u, 1px));
 }
 /* O contorno precisa virar claro no tema escuro — o painel de nav
    fica #07070C e um traço escuro sumia nele. */
