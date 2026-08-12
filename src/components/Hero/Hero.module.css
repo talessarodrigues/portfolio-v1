@@ -112,15 +112,21 @@
 }
 .navLink:hover { background: color-mix(in srgb, var(--text-on-light) 8%, transparent); }
 
+/* Mesma tipografia dos links ao lado (Aboreto em caixa alta): o botão
+   mora dentro do painel de nav, então segue a régua de lá, não a dos
+   CTAs do corpo da página. Peso normal porque a Aboreto só tem 400 —
+   pedir 600 faria o navegador engrossar o traço na marra. */
 .navCta {
   display: flex;
   align-items: center;
   border: none;
   background: var(--gradient-cta);
   color: #ffffff;
-  font-family: var(--font-body);
-  font-size: calc(19 * var(--u));
-  font-weight: 600;
+  font-family: var(--font-label);
+  font-size: calc(17 * var(--u));
+  font-weight: 400;
+  letter-spacing: calc(0.7 * var(--u));
+  text-transform: uppercase;
   cursor: pointer;
   white-space: nowrap;
   transition: opacity 0.2s, transform 0.15s;
@@ -146,6 +152,12 @@
   border-radius: 999px;
   padding: calc(9 * var(--u)) var(--cta-pad) calc(9 * var(--u))
     calc(var(--cta-inset) + var(--cta-disc) + var(--cta-gap));
+  /* Com o disco fora do fluxo a altura passou a vir só do texto, e o
+     botão encolhia até quase o tamanho do disco (pior no "Contato",
+     que tem fonte menor). Esta é a altura que o disco garantia quando
+     ainda ocupava lugar: ele mais a folga de cima e de baixo. */
+  box-sizing: border-box;
+  min-height: calc(var(--cta-disc) + var(--cta-inset) * 2);
 }
 
 /* O "»" dentro de um disco translúcido, como no Figma. */
@@ -310,9 +322,13 @@
     #B98FE0 80%,
     #E5B1C9 100%
   );
-  /* Fura o miolo pra sobrar só o aro. */
-  -webkit-mask: radial-gradient(circle, transparent calc(50% - 1.8 * var(--u)), #000 calc(50% - 1.8 * var(--u)));
-  mask: radial-gradient(circle, transparent calc(50% - 1.8 * var(--u)), #000 calc(50% - 1.8 * var(--u)));
+  /* Fura o miolo pra sobrar só o aro. `closest-side` é obrigatório: sem
+     ele o raio do gradiente vai até o canto do quadrado (a diagonal),
+     os stops caem antes da borda do disco e o que era pra ser um fio
+     de 1,8u vira uma faixa grossa e borrada. Com closest-side, 100% é
+     exatamente o raio do círculo. */
+  -webkit-mask: radial-gradient(circle closest-side, transparent calc(100% - 2.2 * var(--u)), #000 calc(100% - 2.2 * var(--u)));
+  mask: radial-gradient(circle closest-side, transparent calc(100% - 2.2 * var(--u)), #000 calc(100% - 2.2 * var(--u)));
 }
 
 /* ── Card do case (canto inferior esquerdo) ───────────────────

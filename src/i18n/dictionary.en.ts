@@ -24,7 +24,7 @@ export const en: Dictionary = {
   },
 
   hero: {
-    contato: 'Contact',
+    contato: 'Get in touch',
     statLabel: 'Industry Experience',
     processTitle: 'Process:',
     processSteps: ['Discover', 'Define', 'Develop', 'Deliver'],

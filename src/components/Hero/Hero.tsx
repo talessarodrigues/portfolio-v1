@@ -145,7 +145,7 @@ export function Hero({ scrollEnabled, onOpenModal, onSelectProject, onNavigateCo
             <span className={styles.ctaChevron}>
               <HugeiconsIcon icon={ArrowRightDoubleFreeIcons} size={14} strokeWidth={2} />
             </span>
-            <span className={styles.ctaLabel}>{t.header.contato}</span>
+            <span className={styles.ctaLabel}>{t.hero.contato}</span>
           </button>
         </div>
 
