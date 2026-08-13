@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  O site é uma página só: cases, perfil e contato abrem em modais e sheets
+  sobre ela, sem mudar a URL. Por isso o sitemap tem uma entrada única — é
+  a página que existe de verdade para quem rastreia.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.talessarodriguesdesign.com.br/</loc>
+    <lastmod>2026-08-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

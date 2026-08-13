@@ -1,0 +1,5 @@
+# Portfólio de Talessa Rodrigues — tudo é público e pode ser indexado.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.talessarodriguesdesign.com.br/sitemap.xml

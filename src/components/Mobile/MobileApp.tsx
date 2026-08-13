@@ -25,6 +25,7 @@ import { MobileProjectSheet } from './MobileProjectSheet'
 import { MobileWorksSheet } from './MobileWorksSheet'
 import { MobileWorkRow } from './MobileWorkRow'
 import { LINKS, PROFILE } from './links'
+import { trackCase, trackContato } from '../../analytics'
 import {
   IconChat, IconGrid, IconHome,
 } from './MobileIcons'
@@ -84,16 +85,17 @@ export function MobileApp() {
 
   const openProject = (p: Project) => {
     if (!p.detailSlug) return
+    trackCase(p.detailSlug)
     setDetailSlug(p.detailSlug)
   }
 
   // Ordem: Behance, LinkedIn, GitHub, E-mail.
   // WhatsApp continua no botão "Contato" e no dock.
   const SOCIALS = [
-    { href: LINKS.behance, icon: Behance02FreeIcons, label: 'Behance' },
-    { href: LINKS.linkedin, icon: Linkedin02FreeIcons, label: 'LinkedIn' },
-    { href: LINKS.github, icon: Github01FreeIcons, label: 'GitHub' },
-    { href: LINKS.email ? `mailto:${LINKS.email}` : '', icon: Mail01FreeIcons, label: 'E-mail' },
+    { href: LINKS.behance, icon: Behance02FreeIcons, label: 'Behance', canal: 'behance' as const },
+    { href: LINKS.linkedin, icon: Linkedin02FreeIcons, label: 'LinkedIn', canal: 'linkedin' as const },
+    { href: LINKS.github, icon: Github01FreeIcons, label: 'GitHub', canal: 'github' as const },
+    { href: LINKS.email ? `mailto:${LINKS.email}` : '', icon: Mail01FreeIcons, label: 'E-mail', canal: 'email' as const },
   ]
 
   const featured = featuredTitles
@@ -124,7 +126,7 @@ export function MobileApp() {
 
             <div className={styles.nameRow}>
               <h1 className={styles.name}>{PROFILE.name}</h1>
-              <button className={styles.contactBtn} onClick={() => setContactOpen(true)}>
+              <button className={styles.contactBtn} onClick={() => { trackContato('whatsapp', 'mobile-perfil'); setContactOpen(true) }}>
                 <span className={styles.contactBtnDisc} aria-hidden="true">
                   <HugeiconsIcon icon={ArrowRightDoubleFreeIcons} size={16} strokeWidth={2.2} />
                 </span>
@@ -152,6 +154,7 @@ export function MobileApp() {
                   aria-disabled={social.href ? undefined : true}
                   className={`${styles.socialBtn} ${social.href ? '' : styles.socialBtnPending}`}
                   aria-label={social.label}
+                  onClick={() => social.href && trackContato(social.canal, 'mobile-redes')}
                 >
                   <HugeiconsIcon icon={social.icon} size={20} strokeWidth={1.7} />
                 </a>

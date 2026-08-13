@@ -4,6 +4,7 @@ import imgAvatar from '../../assets/sobre/essa-sou-eu.webp'
 import { allProjects } from '../../data/projects'
 import { useTranslation } from '../../i18n/LanguageContext'
 import { LINKS } from './links'
+import { trackContato } from '../../analytics'
 import { IconClose } from './MobileIcons'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { ArrowRightDoubleFreeIcons, Linkedin02FreeIcons, WhatsappFreeIcons } from '@hugeicons/core-free-icons'
@@ -64,7 +65,7 @@ export function MobileContactSheet({ onClose }: MobileContactSheetProps) {
           ))}
         </div>
 
-        <a href={LINKS.whatsapp} target="_blank" rel="noopener noreferrer" className={styles.waBtn}>
+        <a href={LINKS.whatsapp} target="_blank" rel="noopener noreferrer" className={styles.waBtn} onClick={() => trackContato('whatsapp', 'mobile-contato')}>
           <span className={styles.contactBtnDisc} aria-hidden="true">
             <HugeiconsIcon icon={ArrowRightDoubleFreeIcons} size={16} strokeWidth={2.2} />
           </span>

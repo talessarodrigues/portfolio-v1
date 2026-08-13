@@ -7,6 +7,7 @@ import type { Project } from './data/projects'
 import { CONTACTS } from './data/contacts'
 import { MobileApp } from './components/Mobile/MobileApp'
 import { useIsMobile } from './hooks/useIsMobile'
+import { trackCase } from './analytics'
 import './App.css'
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
   // ainda não têm o detalhamento construído no Figma).
   const openProjectDetail = (project: Project) => {
     if (!project.detailSlug) return
+    trackCase(project.detailSlug)
     setDetailSlug(project.detailSlug)
     setOpenModal('cases')
   }

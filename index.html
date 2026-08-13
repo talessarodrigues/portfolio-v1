@@ -2,21 +2,137 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Talessa Rodrigues | Product Designer</title>
-    <meta name="description" content="Portfólio de Talessa Rodrigues — Product Designer especialista em UX/UI. Transformo problemas complexos em soluções digitais intuitivas." />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <!-- As fontes vêm do Google (ver src/index.css). Abrir a conexão aqui,
+         antes do CSS ser lido, tira ~300ms do primeiro texto na tela. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <title>Talessa Rodrigues | Product Designer UX/UI</title>
+    <meta
+      name="description"
+      content="Product Designer com foco em UX/UI. Transformo problemas complexos em produtos digitais claros, com estratégia, pesquisa e dados. Veja os cases e fale comigo pelo WhatsApp."
+    />
     <meta name="author" content="Talessa Rodrigues" />
-    <meta name="keywords" content="Talessa Rodrigues, Product Designer, UX Designer, UI Designer, Portfólio, Design System" />
-    <link rel="canonical" href="https://www.talessarodriguesdesign.com.br" />
-    <meta property="og:title" content="Talessa Rodrigues | Product Designer" />
-    <meta property="og:description" content="Transformo problemas complexos em soluções digitais intuitivas, unindo estratégia, dados e experiência do usuário." />
+    <meta
+      name="keywords"
+      content="Talessa Rodrigues, product designer, UX designer, UI designer, designer de produto, design de interface, design system, portfólio de UX, freelancer UX UI, design de produto digital Brasil"
+    />
+
+    <!-- max-image-preview:large libera a miniatura grande nos resultados do
+         Google, que é o que faz o card do portfólio se destacar na busca. -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <link rel="canonical" href="https://www.talessarodriguesdesign.com.br/" />
+
+    <!-- Cor da barra do navegador no celular, por tema. -->
+    <meta name="theme-color" content="#FDF6F5" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#07070C" media="(prefers-color-scheme: dark)" />
+
+    <!-- Cartão de compartilhamento (WhatsApp, LinkedIn, Instagram, Slack).
+         A imagem é 1200×630, a medida que todas essas plataformas cortam
+         sem estragar — com o favicon o card saía minúsculo e sem contexto. -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.talessarodriguesdesign.com.br" />
-    <meta property="og:image" content="https://www.talessarodriguesdesign.com.br/favicon.png" />
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Talessa Rodrigues | Product Designer" />
-    <meta name="twitter:description" content="Portfólio de Talessa Rodrigues — Product Designer." />
+    <meta property="og:site_name" content="Talessa Rodrigues · Product Designer" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:url" content="https://www.talessarodriguesdesign.com.br/" />
+    <meta property="og:title" content="Talessa Rodrigues | Product Designer UX/UI" />
+    <meta
+      property="og:description"
+      content="Estratégia, dados e experiência do usuário em produtos digitais. Veja os cases e fale comigo."
+    />
+    <meta property="og:image" content="https://www.talessarodriguesdesign.com.br/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta
+      property="og:image:alt"
+      content="Talessa Rodrigues, Product Designer — ilustração da designer trabalhando cercada de telas de interface."
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Talessa Rodrigues | Product Designer UX/UI" />
+    <meta
+      name="twitter:description"
+      content="Estratégia, dados e experiência do usuário em produtos digitais. Veja os cases e fale comigo."
+    />
+    <meta name="twitter:image" content="https://www.talessarodriguesdesign.com.br/og-image.jpg" />
+
+    <!-- Dados estruturados: é o que permite ao Google entender que a página
+         é o perfil profissional de uma pessoa e que ela presta um serviço,
+         em vez de tratar tudo como texto solto. Alimenta o painel de
+         conhecimento e as buscas por nome. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://www.talessarodriguesdesign.com.br/#talessa",
+            "name": "Talessa Rodrigues",
+            "givenName": "Talessa",
+            "familyName": "Rodrigues",
+            "jobTitle": "Product Designer",
+            "description": "Product Designer especializada em UX/UI, com foco em transformar problemas complexos em produtos digitais claros e úteis.",
+            "url": "https://www.talessarodriguesdesign.com.br/",
+            "image": "https://www.talessarodriguesdesign.com.br/og-image.jpg",
+            "email": "mailto:talessaamayaraah15@gmail.com",
+            "telephone": "+5535998074669",
+            "knowsLanguage": ["pt-BR", "en", "es"],
+            "knowsAbout": [
+              "Product Design",
+              "UX Design",
+              "UI Design",
+              "Design System",
+              "Pesquisa com usuários",
+              "Prototipagem",
+              "Design de interface"
+            ],
+            "sameAs": [
+              "https://www.linkedin.com/in/talessamayara/",
+              "https://www.behance.net/talessamayara",
+              "https://github.com/talessarodrigues"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://www.talessarodriguesdesign.com.br/#site",
+            "url": "https://www.talessarodriguesdesign.com.br/",
+            "name": "Talessa Rodrigues · Product Designer",
+            "inLanguage": "pt-BR",
+            "publisher": { "@id": "https://www.talessarodriguesdesign.com.br/#talessa" }
+          },
+          {
+            "@type": "ProfilePage",
+            "@id": "https://www.talessarodriguesdesign.com.br/#pagina",
+            "url": "https://www.talessarodriguesdesign.com.br/",
+            "name": "Portfólio de Talessa Rodrigues",
+            "isPartOf": { "@id": "https://www.talessarodriguesdesign.com.br/#site" },
+            "about": { "@id": "https://www.talessarodriguesdesign.com.br/#talessa" },
+            "primaryImageOfPage": "https://www.talessarodriguesdesign.com.br/og-image.jpg"
+          },
+          {
+            "@type": "ProfessionalService",
+            "@id": "https://www.talessarodriguesdesign.com.br/#servico",
+            "name": "Design de produto digital (UX/UI) — Talessa Rodrigues",
+            "description": "Projeto de produtos digitais de ponta a ponta: descoberta, pesquisa com usuários, fluxos, interface, design system e acompanhamento da entrega.",
+            "url": "https://www.talessarodriguesdesign.com.br/",
+            "image": "https://www.talessarodriguesdesign.com.br/og-image.jpg",
+            "provider": { "@id": "https://www.talessarodriguesdesign.com.br/#talessa" },
+            "areaServed": { "@type": "Country", "name": "Brasil" },
+            "availableLanguage": ["pt-BR", "en", "es"],
+            "telephone": "+5535998074669",
+            "email": "mailto:talessaamayaraah15@gmail.com",
+            "priceRange": "$$"
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

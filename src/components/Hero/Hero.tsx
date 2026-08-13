@@ -19,6 +19,7 @@ import { LanguageMenu } from '../LanguageMenu/LanguageMenu'
 import { heroSlideProjects } from '../../data/projects'
 import type { Project } from '../../data/projects'
 import { CONTACTS } from '../../data/contacts'
+import { trackContato } from '../../analytics'
 
 // Quanto tempo a troca de slide fica travada depois de um gesto. Trackpad
 // dispara dezenas de eventos de wheel por gesto — sem essa trava o usuário
@@ -114,10 +115,10 @@ export function Hero({ scrollEnabled, onOpenModal, onSelectProject, onNavigateCo
 
   // Behance fica por último porque é o item destacado no Figma.
   const SOCIALS = [
-    { href: CONTACTS.linkedin, icon: Linkedin02FreeIcons, label: 'LinkedIn' },
-    { href: CONTACTS.whatsapp, icon: WhatsappFreeIcons, label: 'WhatsApp' },
-    { href: CONTACTS.email ? `mailto:${CONTACTS.email}` : '', icon: Mail01FreeIcons, label: 'E-mail' },
-    { href: CONTACTS.behance, icon: Behance02FreeIcons, label: 'Behance', highlighted: true },
+    { href: CONTACTS.linkedin, icon: Linkedin02FreeIcons, label: 'LinkedIn', canal: 'linkedin' as const },
+    { href: CONTACTS.whatsapp, icon: WhatsappFreeIcons, label: 'WhatsApp', canal: 'whatsapp' as const },
+    { href: CONTACTS.email ? `mailto:${CONTACTS.email}` : '', icon: Mail01FreeIcons, label: 'E-mail', canal: 'email' as const },
+    { href: CONTACTS.behance, icon: Behance02FreeIcons, label: 'Behance', highlighted: true, canal: 'behance' as const },
   ]
 
   return (
@@ -141,7 +142,7 @@ export function Hero({ scrollEnabled, onOpenModal, onSelectProject, onNavigateCo
             ))}
           </nav>
 
-          <button className={styles.navCta} onClick={onNavigateContato}>
+          <button className={styles.navCta} onClick={() => { trackContato('whatsapp', 'hero-nav'); onNavigateContato() }}>
             <span className={styles.ctaChevron}>
               <HugeiconsIcon icon={ArrowRightDoubleFreeIcons} size={14} strokeWidth={2} />
             </span>
@@ -173,6 +174,7 @@ export function Hero({ scrollEnabled, onOpenModal, onSelectProject, onNavigateCo
               rel={social.href ? 'noreferrer noopener' : undefined}
               aria-label={social.label}
               aria-disabled={social.href ? undefined : true}
+              onClick={() => social.href && trackContato(social.canal, 'hero-dock')}
             >
               <HugeiconsIcon icon={social.icon} size={22} strokeWidth={1.6} />
             </a>
@@ -215,22 +217,28 @@ export function Hero({ scrollEnabled, onOpenModal, onSelectProject, onNavigateCo
           <span className={styles.eyebrowLine} />
         </div>
 
-        <h1 className={styles.heading} key={`heading-${active}`}>
+        {/* O h1 da página é o nome, não o título do slide: quem procura
+            por "Talessa Rodrigues" precisa achar isso no topo da
+            hierarquia. O título grande da Hero troca a cada estado, então
+            virou h2 — mesma classe, mesmo visual. */}
+        <h1 className="sr-only">Talessa Rodrigues — Product Designer UX/UI</h1>
+
+        <h2 className={styles.heading} key={`heading-${active}`}>
           {titleLines.map((line, i) => (
             <span key={i} className={styles.headingLine}>{line}</span>
           ))}
-        </h1>
+        </h2>
 
         <p className={styles.description} key={`desc-${active}`}>{slide.description}</p>
 
         <div className={styles.ctas}>
-          <a className={styles.btnSecondary} href={CONTACTS.agenda} target="_blank" rel="noreferrer noopener">
+          <a className={styles.btnSecondary} href={CONTACTS.agenda} target="_blank" rel="noreferrer noopener" onClick={() => trackContato('agenda', 'hero-cta')}>
             <span className={styles.ctaChevron}>
               <HugeiconsIcon icon={ArrowRightDoubleFreeIcons} size={14} strokeWidth={2} />
             </span>
             <span className={styles.ctaLabel}>{t.hero.ctaSecondary}</span>
           </a>
-          <a className={styles.btnPrimary} href={CONTACTS.whatsapp} target="_blank" rel="noreferrer noopener">
+          <a className={styles.btnPrimary} href={CONTACTS.whatsapp} target="_blank" rel="noreferrer noopener" onClick={() => trackContato('whatsapp', 'hero-cta')}>
             <span className={styles.ctaChevron}>
               <HugeiconsIcon icon={ArrowRightDoubleFreeIcons} size={14} strokeWidth={2} />
             </span>

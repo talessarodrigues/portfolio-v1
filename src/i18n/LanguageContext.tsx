@@ -10,6 +10,28 @@ const dictionaries: Record<Lang, Dictionary> = { pt, en, es }
 
 const STORAGE_KEY = 'talessa-lang'
 
+// Título e descrição da página por idioma. Ficam aqui, e não nos
+// dicionários de interface, porque não são texto de tela: são o que
+// aparece na aba do navegador, no resultado de busca e na prévia do
+// link quando alguém compartilha o portfólio.
+const PAGINA: Record<Lang, { title: string; description: string }> = {
+  pt: {
+    title: 'Talessa Rodrigues | Product Designer UX/UI',
+    description:
+      'Product Designer com foco em UX/UI. Transformo problemas complexos em produtos digitais claros, com estratégia, pesquisa e dados. Veja os cases e fale comigo pelo WhatsApp.',
+  },
+  en: {
+    title: 'Talessa Rodrigues | Product Designer UX/UI',
+    description:
+      'Product Designer focused on UX/UI. I turn complex problems into clear digital products, grounded in strategy, research and data. See the case studies and get in touch.',
+  },
+  es: {
+    title: 'Talessa Rodrigues | Product Designer UX/UI',
+    description:
+      'Product Designer especializada en UX/UI. Convierto problemas complejos en productos digitales claros, con estrategia, investigación y datos. Mira los proyectos y hablemos.',
+  },
+}
+
 interface LanguageContextValue {
   lang: Lang
   setLang: (lang: Lang) => void
@@ -34,6 +56,15 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     document.documentElement.lang = lang
+    // Título e descrição acompanham o idioma escolhido. O index.html
+    // nasce em pt-BR (é o que os buscadores leem, já que a página é
+    // servida estática); isto atende quem troca de idioma na tela — a
+    // aba do navegador e o que é copiado ao compartilhar o link.
+    const { title, description } = PAGINA[lang]
+    document.title = title
+    document.querySelector('meta[name="description"]')?.setAttribute('content', description)
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', title)
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', description)
   }, [lang])
 
   const value = useMemo<LanguageContextValue>(() => ({ lang, setLang, t: dictionaries[lang] }), [lang])

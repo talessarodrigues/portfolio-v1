@@ -253,3 +253,19 @@ a {
   min-height: 100vh;
   width: 100%;
 }
+
+/* Conteúdo só para leitores de tela e buscadores: sai da tela sem ser
+   escondido (display:none seria ignorado pelos dois). Usado no h1 da
+   home — o título grande da Hero muda a cada slide, então sozinho ele
+   nunca diria ao Google de quem é este site. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

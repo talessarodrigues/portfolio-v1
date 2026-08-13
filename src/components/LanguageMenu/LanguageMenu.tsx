@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type ReactElement } from 'react'
 import styles from './LanguageMenu.module.css'
 import { useTranslation, type Lang } from '../../i18n/LanguageContext'
 import { FlagBR, FlagES, FlagUS } from '../Mobile/MobileIcons'
+import { trackIdioma } from '../../analytics'
 
 const LANGS: { code: Lang; label: string; short: string; Flag: () => ReactElement }[] = [
   { code: 'pt', label: 'Português', short: 'PT', Flag: FlagBR },
@@ -72,7 +73,7 @@ export function LanguageMenu({ variant = 'light', gradient = false }: LanguageMe
               role="menuitemradio"
               aria-checked={lang === l.code}
               className={`${styles.item} ${lang === l.code ? styles.itemActive : ''}`}
-              onClick={() => { setLang(l.code); setOpen(false) }}
+              onClick={() => { trackIdioma(l.code); setLang(l.code); setOpen(false) }}
             >
               <span className={styles.itemFlag}><l.Flag /></span>
               <span className={styles.itemShort}>{l.short}</span>

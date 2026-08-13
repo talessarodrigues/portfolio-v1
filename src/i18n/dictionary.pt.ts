@@ -5,7 +5,7 @@ export const pt: Dictionary = {
 
   nav: {
     sobre: 'Sobre',
-    cases: 'Cases',
+    cases: 'Trabalhos',
     servicos: 'FAQ',
     perfil: 'Perfil',
   },
@@ -81,7 +81,7 @@ export const pt: Dictionary = {
     temaEscuro: 'Escuro',
     sobreTitulo: 'Sobre mim',
     sobreSubtitulo: 'Minha história, experiências profissionais e formações',
-    casesTitulo: 'Cases',
+    casesTitulo: 'Trabalhos',
     casesSubtitulo: 'Projetos que ganharam forma por aqui',
     faqTitulo: 'FAQ',
     faqSubtitulo: 'Dúvidas frequentes e o que dizem sobre meu trabalho',
@@ -288,7 +288,7 @@ export const pt: Dictionary = {
     role: 'Product Designer',
     disponivel: 'Disponível',
     tagline: 'Design é escuta, empatia e intenção.',
-    trabalhos: 'Cases',
+    trabalhos: 'Trabalhos',
     trabalhosSubtitle: 'Cada projeto carrega intenção, estratégia e um pouco da minha essência.',
     verTodos: 'Ver todos',
     sobreTitle: 'Sobre mim',
@@ -304,7 +304,7 @@ export const pt: Dictionary = {
     fotosLabel: 'Um pouco de mim',
     tabs: {
       inicio: 'Início',
-      trabalhos: 'Cases',
+      trabalhos: 'Trabalhos',
       sobre: 'Sobre',
       contato: 'Contato',
     },
