@@ -164,6 +164,10 @@ export interface Dictionary {
   }
   projectsHero: {
     filterTodos: string
+    /** Card que leva pro site publicado em vez de abrir um case study. */
+    verSite: string
+    /** Aviso nos sites feitos só pra celular. */
+    somenteMobile: string
   }
   // Textos exclusivos da experiência mobile (app-like) — o desktop não
   // usa nenhuma dessas chaves.

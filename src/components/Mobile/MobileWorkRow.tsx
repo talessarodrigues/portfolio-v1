@@ -12,12 +12,17 @@ interface MobileWorkRowProps {
 export function MobileWorkRow({ project, onOpen }: MobileWorkRowProps) {
   const { t } = useTranslation()
   const text = t.projects[project.title]
-  const clickable = Boolean(project.detailSlug)
+  const externo = Boolean(project.externalUrl)
+  const clickable = externo || Boolean(project.detailSlug)
+  const abrir = () => {
+    if (project.externalUrl) window.open(project.externalUrl, '_blank', 'noopener,noreferrer')
+    else onOpen(project)
+  }
 
   return (
     <button
       className={styles.workRow}
-      onClick={clickable ? () => onOpen(project) : undefined}
+      onClick={clickable ? abrir : undefined}
       disabled={!clickable}
     >
       <img src={project.image} alt="" className={styles.workThumb} loading="lazy" />
@@ -28,9 +33,11 @@ export function MobileWorkRow({ project, onOpen }: MobileWorkRowProps) {
         </span>
         {text?.description && <span className={styles.workDesc}>{text.description}</span>}
       </span>
-      {clickable
-        ? <span className={styles.workChevron}><IconChevron /></span>
-        : <span className={styles.soonTag}>{t.mobile.emBreve}</span>}
+      {externo
+        ? <span className={styles.workTag}>{project.mobileOnly ? t.projectsHero.somenteMobile : t.projectsHero.verSite}</span>
+        : clickable
+          ? <span className={styles.workChevron}><IconChevron /></span>
+          : <span className={styles.soonTag}>{t.mobile.emBreve}</span>}
     </button>
   )
 }

@@ -13,6 +13,8 @@ import imgJornadasCorporativas from '../assets/projetos/figma/jornadas-corporati
 import imgGestaoEasyCar from '../assets/projetos/figma/gestao-easy-car.webp'
 import imgGestaoConecta360 from '../assets/projetos/figma/gestao-conecta-360.webp'
 import imgJornadaJunior from '../assets/projetos/figma/jornada-junior.webp'
+import imgCatalogoThaysa from '../assets/projetos/externos/catalogo-thaysa.webp'
+import imgRhRecruiter from '../assets/projetos/externos/rhrecruiter.webp'
 
 export type CategoryKey = 'ui-design' | 'branding' | 'ux-design'
 
@@ -23,6 +25,13 @@ export interface Project {
   title: string
   categoryKey: CategoryKey
   detailSlug?: string
+  /**
+   * Projetos que estão no ar: o card leva direto pro site em vez de
+   * abrir um case study. Quem tem `externalUrl` não tem `detailSlug`.
+   */
+  externalUrl?: string
+  /** Sites feitos só pra celular — o card avisa antes de abrir. */
+  mobileOnly?: boolean
 }
 
 export const allProjects: Project[] = [
@@ -41,6 +50,8 @@ export const allProjects: Project[] = [
   { image: imgGestaoEasyCar, title: 'Gestão Easy Car', categoryKey: 'ux-design' },
   { image: imgGestaoConecta360, title: 'Gestão Conecta 360º', categoryKey: 'ux-design', detailSlug: 'conecta-360-ux' },
   { image: imgJornadaJunior, title: 'Jornada Júnior', categoryKey: 'ux-design', detailSlug: 'jornada-junior-ux' },
+  { image: imgRhRecruiter, title: 'RHRecruiter', categoryKey: 'ui-design', externalUrl: 'https://rhrecruiter.com.br' },
+  { image: imgCatalogoThaysa, title: 'Catálogo Thaysa Ribeiro', categoryKey: 'ui-design', externalUrl: 'https://catalogo-thaysa.vercel.app', mobileOnly: true },
 ]
 
 // Cada um dos 5 estados da Hero mostra uma prova de trabalho no card do

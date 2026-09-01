@@ -282,6 +282,8 @@ export const es: Dictionary = {
 
   projectsHero: {
     filterTodos: 'Todos',
+    verSite: 'Ver sitio',
+    somenteMobile: 'Hecho para móvil',
   },
 
   mobile: {
@@ -317,6 +319,14 @@ export const es: Dictionary = {
   },
 
   projects: {
+    'Catálogo Thaysa Ribeiro': {
+      description: 'Catálogo de servicios mobile-first para un estudio de uñas, con agenda directa por WhatsApp e instalable en la pantalla de inicio.',
+      tags: ['ui design', 'mobile'],
+    },
+    'RHRecruiter': {
+      description: 'Landing page de la plataforma de reclutamiento con IA, pensada para explicar el producto y convertir empresas en pruebas.',
+      tags: ['ui design', 'saas'],
+    },
     'Redesign Natva': {
       description: 'Rediseño de e-commerce enfocado en destacar los productos, facilitar la compra y crear una experiencia más vibrante y conectada con la marca.',
       tags: ['ui design', 'e-commerce'],

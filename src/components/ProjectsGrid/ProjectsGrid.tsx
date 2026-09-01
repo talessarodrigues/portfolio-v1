@@ -11,11 +11,12 @@ interface ProjectsGridProps {
   onSelectProject: (p: Project) => void
 }
 
-function ProjectCard({ project, text, tall, likeLabel, onClick }: { project: Project; text: Dictionary['projects'][string] | undefined; tall?: boolean; likeLabel: string; onClick?: () => void }) {
+function ProjectCard({ project, text, tall, likeLabel, badge, onClick }: { project: Project; text: Dictionary['projects'][string] | undefined; tall?: boolean; likeLabel: string; badge?: string; onClick?: () => void }) {
   return (
     <div className={`${styles.card} ${onClick ? styles.clickable : ''}`} onClick={onClick}>
       <div className={`${styles.imageWrap} ${tall ? styles.tall : ''} ${!project.image ? styles.imageBlank : ''}`}>
         {project.image && <img src={project.image} alt={project.title} className={styles.image} />}
+        {badge && <span className={styles.badge}>{badge}</span>}
       </div>
       <div className={styles.cardHead}>
         <h3 className={styles.cardTitle}>{project.title}</h3>
@@ -35,6 +36,14 @@ function ProjectCard({ project, text, tall, likeLabel, onClick }: { project: Pro
 
 export function ProjectsGrid({ activeFilter, onSelectProject }: ProjectsGridProps) {
   const { t } = useTranslation()
+
+  // Projeto no ar abre o site; projeto com case study abre o
+  // detalhamento; sem nenhum dos dois o card não é clicável.
+  const abrirProjeto = (p: Project) => {
+    if (p.externalUrl) return () => window.open(p.externalUrl, '_blank', 'noopener,noreferrer')
+    if (p.detailSlug) return () => onSelectProject(p)
+    return undefined
+  }
   const filtered = activeFilter === 'all'
     ? allProjects
     : allProjects.filter(p => p.categoryKey === activeFilter)
@@ -61,7 +70,8 @@ export function ProjectsGrid({ activeFilter, onSelectProject }: ProjectsGridProp
               text={t.projects[p.title]}
               tall={i % 5 === 1 || i % 5 === 3}
               likeLabel={t.likes.curtir}
-              onClick={p.detailSlug ? () => onSelectProject(p) : undefined}
+              badge={p.externalUrl ? (p.mobileOnly ? t.projectsHero.somenteMobile : t.projectsHero.verSite) : undefined}
+              onClick={abrirProjeto(p)}
             />
           </div>
         ))}
