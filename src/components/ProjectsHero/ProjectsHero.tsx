@@ -3,7 +3,6 @@ import {
   DashboardSquare01FreeIcons,
   LayersLogoFreeIcons,
   PaintBoardFreeIcons,
-  UserSearch01FreeIcons,
 } from '@hugeicons/core-free-icons'
 import type { IconSvgElement } from '@hugeicons/react'
 import styles from './ProjectsHero.module.css'
@@ -15,9 +14,8 @@ export type ProjectFilter = 'all' | CategoryKey
 // Mesmos ícones do sheet de Cases do mobile.
 const FILTERS: { value: ProjectFilter; icon: IconSvgElement }[] = [
   { value: 'all', icon: DashboardSquare01FreeIcons },
-  { value: 'ui-design', icon: LayersLogoFreeIcons },
+  { value: 'ux-ui-design', icon: LayersLogoFreeIcons },
   { value: 'branding', icon: PaintBoardFreeIcons },
-  { value: 'ux-design', icon: UserSearch01FreeIcons },
 ]
 
 interface ProjectsHeroProps {

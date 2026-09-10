@@ -39,6 +39,22 @@
   margin: 12px 0 20px;
 }
 
+/* Link pro protótipo navegável, nos cases que têm um. */
+.protoBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--card-soft-border);
+  border-radius: 999px;
+  padding: 10px 18px;
+  margin: 0 0 20px;
+  color: var(--text-on-light);
+  font-family: var(--font-article);
+  font-size: 14px;
+  text-decoration: none;
+}
+.protoBtn:hover { opacity: 0.7; }
+
 /* ── Header (card roxo-escuro) ───────────────────────────── */
 .header {
   background: var(--bg-dark-purple);

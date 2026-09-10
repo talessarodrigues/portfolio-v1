@@ -13,10 +13,17 @@ import imgJornadasCorporativas from '../assets/projetos/figma/jornadas-corporati
 import imgGestaoEasyCar from '../assets/projetos/figma/gestao-easy-car.webp'
 import imgGestaoConecta360 from '../assets/projetos/figma/gestao-conecta-360.webp'
 import imgJornadaJunior from '../assets/projetos/figma/jornada-junior.webp'
+import imgCertify from '../assets/projetos/figma/certify.webp'
+import imgLeanLearn from '../assets/projetos/figma/lean-learn.webp'
+import imgAtelieDiane from '../assets/projetos/figma/atelie-diane-almeida.webp'
+import imgMidnightHeist from '../assets/projetos/figma/midnight-heist.webp'
+import imgMarionIa from '../assets/projetos/figma/marion-ia.webp'
+import imgSocialMatch from '../assets/projetos/figma/social-match.webp'
+import imgUsfit from '../assets/projetos/figma/usfit.webp'
 import imgCatalogoThaysa from '../assets/projetos/externos/catalogo-thaysa.webp'
 import imgRhRecruiter from '../assets/projetos/externos/rhrecruiter.webp'
 
-export type CategoryKey = 'ui-design' | 'branding' | 'ux-design'
+export type CategoryKey = 'ux-ui-design' | 'branding'
 
 // Título fica igual nos 3 idiomas (nome do projeto) — é a chave usada
 // pra buscar description/tags traduzidos em t.projects[title].
@@ -34,24 +41,33 @@ export interface Project {
   mobileOnly?: boolean
 }
 
+// Ordem intercalada de propósito: no filtro "Todos" os cases de UX/UI e
+// os de branding se alternam, em vez de aparecerem em blocos separados.
 export const allProjects: Project[] = [
-  { image: imgRedesignNatva, title: 'Redesign Natva', categoryKey: 'ui-design', detailSlug: 'redesign-natva-ui' },
-  { image: imgResidentEvil, title: 'Resident Evil', categoryKey: 'ui-design', detailSlug: 'resident-evil-ui' },
-  { image: imgDrakorysArcane, title: 'Drakorys Arcane', categoryKey: 'ui-design', detailSlug: 'drakorys-arcane-ui' },
-  { image: imgAsteraDataBank, title: 'Astera Data Bank', categoryKey: 'ui-design', detailSlug: 'astera-data-bank-ui' },
-  { image: imgIronBank, title: 'Iron Bank', categoryKey: 'ui-design', detailSlug: 'iron-bank-ui' },
-  { image: imgOrchardTreasure, title: 'Orchard Treasure', categoryKey: 'ui-design', detailSlug: 'orchard-treasure-ui' },
+  { image: imgGestaoConecta360, title: 'Gestão Conecta 360º', categoryKey: 'ux-ui-design', detailSlug: 'conecta-360-ux' },
+  { image: imgUsfit, title: 'USFit', categoryKey: 'ux-ui-design', detailSlug: 'usfit-home-dieta-ux' },
+  { image: imgCertify, title: 'Certify', categoryKey: 'ux-ui-design', detailSlug: 'certify-ux' },
   { image: imgConecta360, title: 'Conecta 360º', categoryKey: 'branding', detailSlug: 'conecta-360-branding' },
-  { image: imgEasyCar, title: 'Easy Car', categoryKey: 'branding', detailSlug: 'easy-car-branding' },
-  { image: imgVigimolVetores, title: 'Vigimol Vetores', categoryKey: 'branding', detailSlug: 'vigimol-vetores-branding' },
+  { image: imgJornadaJunior, title: 'Jornada Júnior', categoryKey: 'ux-ui-design', detailSlug: 'jornada-junior-ux' },
+  { image: imgLeanLearn, title: 'LeanLearn', categoryKey: 'ux-ui-design', detailSlug: 'lean-learn-ui' },
+  { image: imgGestaoEasyCar, title: 'Gestão Easy Car', categoryKey: 'ux-ui-design', detailSlug: 'gestao-easy-car-ux' },
   { image: imgTalessaRodrigues, title: 'Talessa Rodrigues', categoryKey: 'branding', detailSlug: 'talessa-rodrigues-branding' },
+  { image: imgMidnightHeist, title: 'Midnight Heist', categoryKey: 'ux-ui-design', detailSlug: 'midnight-heist-ui' },
+  { image: imgSocialMatch, title: 'Social Match', categoryKey: 'ux-ui-design', detailSlug: 'social-match-ux' },
+  { image: imgRedesignNatva, title: 'Redesign Natva', categoryKey: 'ux-ui-design', detailSlug: 'redesign-natva-ui' },
+  { image: imgEasyCar, title: 'Easy Car', categoryKey: 'branding', detailSlug: 'easy-car-branding' },
+  { image: imgAtelieDiane, title: 'Ateliê Diane Almeida', categoryKey: 'ux-ui-design', detailSlug: 'atelie-diane-almeida-ui' },
+  { image: imgMarionIa, title: 'Marion IA', categoryKey: 'ux-ui-design', detailSlug: 'marion-ia-ui' },
+  { image: imgAsteraDataBank, title: 'Astera Data Bank', categoryKey: 'ux-ui-design', detailSlug: 'astera-data-bank-ui' },
   { image: imgCatchupTech, title: 'CatchUp Tech', categoryKey: 'branding', detailSlug: 'catchup-tech-branding' },
+  { image: imgResidentEvil, title: 'Resident Evil', categoryKey: 'ux-ui-design', detailSlug: 'resident-evil-ui' },
+  { image: imgDrakorysArcane, title: 'Drakorys Arcane', categoryKey: 'ux-ui-design', detailSlug: 'drakorys-arcane-ui' },
+  { image: imgIronBank, title: 'Iron Bank', categoryKey: 'ux-ui-design', detailSlug: 'iron-bank-ui' },
+  { image: imgVigimolVetores, title: 'Vigimol Vetores', categoryKey: 'branding', detailSlug: 'vigimol-vetores-branding' },
+  { image: imgOrchardTreasure, title: 'Orchard Treasure', categoryKey: 'ux-ui-design', detailSlug: 'orchard-treasure-ui' },
+  { image: imgRhRecruiter, title: 'RHRecruiter', categoryKey: 'ux-ui-design', externalUrl: 'https://rhrecruiter.com.br' },
   { image: imgJornadasCorporativas, title: 'Jornadas Corporativas', categoryKey: 'branding', detailSlug: 'jornadas-corporativas-branding' },
-  { image: imgGestaoEasyCar, title: 'Gestão Easy Car', categoryKey: 'ux-design' },
-  { image: imgGestaoConecta360, title: 'Gestão Conecta 360º', categoryKey: 'ux-design', detailSlug: 'conecta-360-ux' },
-  { image: imgJornadaJunior, title: 'Jornada Júnior', categoryKey: 'ux-design', detailSlug: 'jornada-junior-ux' },
-  { image: imgRhRecruiter, title: 'RHRecruiter', categoryKey: 'ui-design', externalUrl: 'https://rhrecruiter.com.br' },
-  { image: imgCatalogoThaysa, title: 'Catálogo Thaysa Ribeiro', categoryKey: 'ui-design', externalUrl: 'https://catalogo-thaysa.vercel.app', mobileOnly: true },
+  { image: imgCatalogoThaysa, title: 'Catálogo Thaysa Ribeiro', categoryKey: 'ux-ui-design', externalUrl: 'https://catalogo-thaysa.vercel.app', mobileOnly: true },
 ]
 
 // Cada um dos 5 estados da Hero mostra uma prova de trabalho no card do

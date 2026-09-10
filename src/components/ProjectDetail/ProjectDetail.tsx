@@ -4,6 +4,14 @@ import { ImageLightbox } from './ImageLightbox'
 import { conecta360HeaderImages, conecta360Gallery, conecta360BlockShapes } from '../../data/conecta360Structure'
 import type { DetailBlockShape } from '../../data/conecta360Structure'
 import { jornadaJuniorHeaderImages, jornadaJuniorGallery, jornadaJuniorBlockShapes } from '../../data/jornadaJuniorStructure'
+import { certifyHeaderImages, certifyGallery, certifyBlockShapes } from '../../data/certifyStructure'
+import { leanLearnHeaderImages, leanLearnGallery, leanLearnBlockShapes } from '../../data/leanLearnStructure'
+import { atelieDianeHeaderImages, atelieDianeGallery, atelieDianeBlockShapes } from '../../data/atelieDianeStructure'
+import { midnightHeistHeaderImages, midnightHeistGallery, midnightHeistBlockShapes } from '../../data/midnightHeistStructure'
+import { marionIaHeaderImages, marionIaGallery, marionIaBlockShapes } from '../../data/marionIaStructure'
+import { socialMatchHeaderImages, socialMatchGallery, socialMatchBlockShapes } from '../../data/socialMatchStructure'
+import { gestaoEasyCarHeaderImages, gestaoEasyCarGallery, gestaoEasyCarBlockShapes } from '../../data/gestaoEasyCarStructure'
+import { usfitHeaderImages, usfitGallery, usfitBlockShapes } from '../../data/usfitStructure'
 import { residentEvilHeaderImages, residentEvilGallery, residentEvilBlockShapes } from '../../data/residentEvilStructure'
 import { redesignNatvaHeaderImages, redesignNatvaGallery, redesignNatvaBlockShapes } from '../../data/redesignNatvaStructure'
 import { drakorysArcaneHeaderImages, drakorysArcaneGallery, drakorysArcaneBlockShapes } from '../../data/drakorysArcaneStructure'
@@ -20,6 +28,7 @@ import { allProjects } from '../../data/projects'
 import { HugeiconsIcon } from '@hugeicons/react'
 import {
   ArrowLeft01FreeIcons,
+  ArrowUpRight01FreeIcons,
   Briefcase01FreeIcons,
   Building03FreeIcons,
   Calendar03FreeIcons,
@@ -51,6 +60,55 @@ const detailRegistry = {
     gallery: jornadaJuniorGallery,
     blockShapes: jornadaJuniorBlockShapes,
     dictKey: 'jornadaJunior' as const,
+  },
+  'certify-ux': {
+    headerImages: certifyHeaderImages,
+    gallery: certifyGallery,
+    blockShapes: certifyBlockShapes,
+    dictKey: 'certify' as const,
+  },
+  'lean-learn-ui': {
+    headerImages: leanLearnHeaderImages,
+    gallery: leanLearnGallery,
+    blockShapes: leanLearnBlockShapes,
+    dictKey: 'leanLearn' as const,
+  },
+  'atelie-diane-almeida-ui': {
+    headerImages: atelieDianeHeaderImages,
+    gallery: atelieDianeGallery,
+    blockShapes: atelieDianeBlockShapes,
+    dictKey: 'atelieDiane' as const,
+  },
+  'midnight-heist-ui': {
+    headerImages: midnightHeistHeaderImages,
+    gallery: midnightHeistGallery,
+    blockShapes: midnightHeistBlockShapes,
+    dictKey: 'midnightHeist' as const,
+  },
+  'marion-ia-ui': {
+    headerImages: marionIaHeaderImages,
+    gallery: marionIaGallery,
+    blockShapes: marionIaBlockShapes,
+    dictKey: 'marionIa' as const,
+  },
+  'social-match-ux': {
+    headerImages: socialMatchHeaderImages,
+    gallery: socialMatchGallery,
+    blockShapes: socialMatchBlockShapes,
+    dictKey: 'socialMatch' as const,
+    protoUrl: 'https://www.figma.com/proto/JaTCUXJNYPgSuFPJALmi6f/Desafio-Social-Match?node-id=24-240&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
+  },
+  'gestao-easy-car-ux': {
+    headerImages: gestaoEasyCarHeaderImages,
+    gallery: gestaoEasyCarGallery,
+    blockShapes: gestaoEasyCarBlockShapes,
+    dictKey: 'gestaoEasyCar' as const,
+  },
+  'usfit-home-dieta-ux': {
+    headerImages: usfitHeaderImages,
+    gallery: usfitGallery,
+    blockShapes: usfitBlockShapes,
+    dictKey: 'usfit' as const,
   },
   'resident-evil-ui': {
     headerImages: residentEvilHeaderImages,
@@ -228,6 +286,13 @@ export function ProjectDetail({ currentSlug, onBack, hideBack = false }: Project
 
         {!entry.headerImages && (
           <h1 className={styles.compactTitle}>{text.metaClienteValue}</h1>
+        )}
+
+        {'protoUrl' in entry && text.protoBtn && (
+          <a className={styles.protoBtn} href={entry.protoUrl} target="_blank" rel="noreferrer">
+            <HugeiconsIcon icon={ArrowUpRight01FreeIcons} size={16} strokeWidth={1.8} />
+            {text.protoBtn}
+          </a>
         )}
 
         <div className={styles.metaRow}>

@@ -4,7 +4,6 @@ import {
   DashboardSquare01FreeIcons,
   LayersLogoFreeIcons,
   PaintBoardFreeIcons,
-  UserSearch01FreeIcons,
 } from '@hugeicons/core-free-icons'
 import type { IconSvgElement } from '@hugeicons/react'
 import styles from './Mobile.module.css'
@@ -21,8 +20,7 @@ import { MobileThemeToggle } from './MobileThemeToggle'
 // celular sem rolagem horizontal.
 const CATEGORIES: { value: ProjectFilter; icon: IconSvgElement }[] = [
   { value: 'all', icon: DashboardSquare01FreeIcons },
-  { value: 'ux-design', icon: UserSearch01FreeIcons },
-  { value: 'ui-design', icon: LayersLogoFreeIcons },
+  { value: 'ux-ui-design', icon: LayersLogoFreeIcons },
   { value: 'branding', icon: PaintBoardFreeIcons },
 ]
 

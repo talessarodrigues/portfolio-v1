@@ -197,13 +197,20 @@ export interface Dictionary {
     }
   }
   categories: {
-    'ui-design': string
+    'ux-ui-design': string
     branding: string
-    'ux-design': string
   }
   projects: Record<string, ProjectText>
   conecta360: CaseStudyText
   jornadaJunior: CaseStudyText
+  certify: CaseStudyText
+  leanLearn: CaseStudyText
+  atelieDiane: CaseStudyText
+  midnightHeist: CaseStudyText
+  marionIa: CaseStudyText
+  socialMatch: CaseStudyText
+  gestaoEasyCar: CaseStudyText
+  usfit: CaseStudyText
   residentEvil: CaseStudyText
   redesignNatva: CaseStudyText
   drakorysArcane: CaseStudyText
@@ -235,5 +242,7 @@ export interface CaseStudyText {
   metaAnoValue: string
   backBtn: string
   overviewLabel: string
+  /** Só nos cases que têm protótipo navegável publicado. */
+  protoBtn?: string
   blocks: DetailTextBlock[]
 }
