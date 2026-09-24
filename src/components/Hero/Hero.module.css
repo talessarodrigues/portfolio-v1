@@ -88,6 +88,16 @@
   border: calc(1 * var(--u)) solid var(--surface-border);
   border-radius: 999px;
   box-shadow: 0 calc(13 * var(--u)) calc(40 * var(--u)) var(--surface-shadow);
+
+  /* O seletor de idioma mede o gatilho em --m-u (a escala do mobile);
+     aqui ele passa a seguir a da Hero, senão fica em 44px cravados
+     enquanto o resto do painel cresce. A lista que abre é em px fixos e
+     acompanha pelo --site-zoom (ver useSiteZoom). */
+  --m-u: var(--u);
+}
+
+.navPanel [role="menu"] {
+  zoom: var(--site-zoom, 1);
 }
 
 .nav {

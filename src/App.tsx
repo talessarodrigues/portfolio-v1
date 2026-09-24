@@ -7,6 +7,7 @@ import type { Project } from './data/projects'
 import { CONTACTS } from './data/contacts'
 import { MobileApp } from './components/Mobile/MobileApp'
 import { useIsMobile } from './hooks/useIsMobile'
+import { useSiteZoom } from './hooks/useSiteZoom'
 import { trackCase } from './analytics'
 import './App.css'
 
@@ -14,6 +15,7 @@ function App() {
   // Até 1024px (celulares e tablets em retrato) o site desktop dá lugar
   // a uma experiência própria, app-like (ver components/Mobile/MobileApp).
   const isMobile = useIsMobile()
+  useSiteZoom(!isMobile)
 
   // No desktop existe uma tela só: a Hero. Tudo o mais — seções, grade de
   // projetos e case studies — acontece em modais por cima dela.

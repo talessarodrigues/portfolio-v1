@@ -9,6 +9,8 @@
   background: var(--overlay-scrim);
   backdrop-filter: blur(10px);
   animation: overlayIn 0.28s ease;
+  /* Acompanha a escala da Hero em telas acima de 1920 (ver useSiteZoom). */
+  zoom: var(--site-zoom, 1);
 }
 
 @keyframes overlayIn {

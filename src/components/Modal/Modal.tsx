@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useRef, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { Cancel01FreeIcons } from '@hugeicons/core-free-icons'
@@ -16,34 +16,11 @@ interface ModalProps {
   children: ReactNode
 }
 
-// Mesma régua da Hero (`--u` em Hero.module.css): 1920×1020 é a tela de
-// referência. O conteúdo dos modais é todo em px fixos, então acima dela
-// o painel travava em 1440px com letra miúda enquanto a Hero continuava
-// crescendo — num monitor 4K ou com o zoom do navegador reduzido ele
-// virava uma tira estreita no meio da tela. Abaixo da referência nada
-// muda (o layout já cabe); acima, o overlay inteiro cresce junto.
-function getModalZoom() {
-  return Math.max(1, Math.min(window.innerWidth / 1920, window.innerHeight / 1020))
-}
-
-function useModalZoom(active: boolean) {
-  const [zoom, setZoom] = useState(getModalZoom)
-  useEffect(() => {
-    if (!active) return
-    const update = () => setZoom(getModalZoom())
-    update()
-    window.addEventListener('resize', update)
-    return () => window.removeEventListener('resize', update)
-  }, [active])
-  return zoom
-}
-
 export function Modal({ open, title, subtitle, scrollResetKey, onClose, children }: ModalProps) {
   const { t } = useTranslation()
   const panelRef = useRef<HTMLDivElement>(null)
   const bodyRef = useRef<HTMLDivElement>(null)
   const closeRef = useRef<HTMLButtonElement>(null)
-  const zoom = useModalZoom(open)
 
   useEffect(() => {
     if (!open) return
@@ -91,7 +68,6 @@ export function Modal({ open, title, subtitle, scrollResetKey, onClose, children
     <div
       className={styles.overlay}
       role="presentation"
-      style={zoom > 1 ? { zoom } : undefined}
       onMouseDown={e => { if (e.target === e.currentTarget) onClose() }}>
       <div
         className={styles.panel}
