@@ -318,7 +318,7 @@ export const pt: Dictionary = {
     curriculo: 'Currículo',
     curriculoPdf: '/curriculo/Talessa-Rodrigues-Curriculo-PT.pdf',
     saudacao: 'Talessa Rodrigues :)',
-    bio: 'Product Designer UX/UI com 4+ anos de experiência. Gosto de pegar uma ideia com o stakeholder, entender o problema e transformar tudo em um produto que faça sentido de verdade para quem vai usar.',
+    bio: 'Product Designer & AI Engineer com 4+ anos de experiência. Levo produtos do discovery ao ar, unindo UX/UI e desenvolvimento com IA, sempre partindo de quem vai usar.',
     trabalhoRecente: 'Trabalho mais recente',
     agendarChamada: 'Agendar chamada',
     links: 'Links',
@@ -333,6 +333,8 @@ export const pt: Dictionary = {
     sobreTitulo: 'Sobre mim',
     paginaNaoEncontrada: 'Esse case não existe (ou mudou de endereço).',
     voltarInicio: 'Voltar para o início',
+    seoCase: 'Case de {categoria}',
+    seoSobre: 'Trajetória, experiências, formação e recomendações de Talessa Rodrigues, Product Designer & AI Engineer que une UX/UI e desenvolvimento com IA.',
   },
 
   categories: {

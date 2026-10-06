@@ -193,6 +193,10 @@ export interface Dictionary {
     sobreTitulo: string
     paginaNaoEncontrada: string
     voltarInicio: string
+    /** SEO: rótulo do case no título da aba/busca. {categoria} vira a categoria. */
+    seoCase: string
+    /** SEO: descrição da página /sobre. */
+    seoSobre: string
   }
   // Textos exclusivos da experiência mobile (app-like) — o desktop não
   // usa nenhuma dessas chaves.
