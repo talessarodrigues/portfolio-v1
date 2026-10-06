@@ -66,6 +66,7 @@ export const detailRegistry = {
     gallery: atelieDianeGallery,
     blockShapes: atelieDianeBlockShapes,
     dictKey: 'atelieDiane' as const,
+    protoUrl: 'https://atelie-diane-almeida.vercel.app',
   },
   'midnight-heist-ui': {
     headerImages: midnightHeistHeaderImages,
