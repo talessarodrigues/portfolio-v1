@@ -169,6 +169,31 @@ export interface Dictionary {
     /** Aviso nos sites feitos só pra celular. */
     somenteMobile: string
   }
+  // Desktop em páginas: home que rola, /sobre e /cases/<slug>.
+  site: {
+    projetos: string
+    sobreMim: string
+    curriculo: string
+    /** PDF do currículo no idioma da página (em public/curriculo). */
+    curriculoPdf: string
+    saudacao: string
+    bio: string
+    trabalhoRecente: string
+    agendarChamada: string
+    links: string
+    contato: string
+    copiado: string
+    copiarEmail: string
+    voltarProjetos: string
+    exploreMais: string
+    /** Aba do índice do case quando o texto começa sem título. */
+    visaoGeral: string
+    galeria: string
+    verPrototipo: string
+    sobreTitulo: string
+    paginaNaoEncontrada: string
+    voltarInicio: string
+  }
   // Textos exclusivos da experiência mobile (app-like) — o desktop não
   // usa nenhuma dessas chaves.
   mobile: {
@@ -211,6 +236,7 @@ export interface Dictionary {
   socialMatch: CaseStudyText
   gestaoEasyCar: CaseStudyText
   usfit: CaseStudyText
+  essencialPerfumaria: CaseStudyText
   residentEvil: CaseStudyText
   redesignNatva: CaseStudyText
   drakorysArcane: CaseStudyText

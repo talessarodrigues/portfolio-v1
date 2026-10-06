@@ -1,0 +1,191 @@
+/* Página de case: coluna de leitura de 900px, no padrão da referência —
+   cabeçalho, capa na moldura degradê, metadados em 4 colunas e o texto
+   cortado em seções separadas por uma linha fina. */
+
+.page {
+  position: relative;
+  width: min(900px, 100% - 96px);
+  margin: 0 auto;
+  padding-top: 120px;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.eyebrow {
+  font: 500 15px/1.4 var(--font-body);
+  color: var(--site-accent);
+}
+
+.title {
+  font: 500 44px/1.1 var(--font-article);
+  letter-spacing: -0.01em;
+  color: var(--site-accent);
+}
+
+.summary {
+  max-width: 680px;
+  margin-top: 6px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--site-muted);
+}
+
+.cover {
+  margin-top: 40px;
+  padding: 7% 8%;
+  border-radius: 28px;
+  overflow: hidden;
+}
+.cover img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: var(--site-shot-shadow), 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+.meta {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 40px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--site-line);
+}
+.metaItem dt {
+  font: 600 15px/1.3 var(--font-body);
+  color: var(--site-accent);
+}
+/* "curtidas" vem em minúscula do dicionário (é usado no meio de frase). */
+.metaItem dt::first-letter { text-transform: uppercase; }
+.metaItem dd {
+  margin-top: 8px;
+  font-size: 15px;
+  color: var(--site-muted);
+}
+
+.proto {
+  grid-column: 1 / -1;
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 12px;
+  background: var(--site-chip);
+  font: 500 14px/1 var(--font-body);
+  color: var(--site-ink);
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.proto:hover { background: var(--site-chip-hover); }
+
+.section {
+  padding: 56px 0;
+  border-bottom: 1px solid var(--site-line);
+  /* Pulo pelo índice: para logo abaixo da cápsula fixa. */
+  scroll-margin-top: 72px;
+}
+
+.sectionLabel {
+  font: 600 15px/1.3 var(--font-body);
+  color: var(--site-accent);
+}
+
+.sectionBody {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 24px;
+}
+
+.subhead {
+  margin-top: 12px;
+  font: 600 18px/1.35 var(--font-body);
+  color: var(--site-ink);
+}
+
+.p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--site-muted);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-left: 20px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--site-muted);
+}
+.list li::marker { color: var(--site-accent); }
+
+.quote {
+  margin: 8px 0;
+  padding: 4px 0 4px 20px;
+  border-left: 2px solid var(--site-accent);
+  font: 400 19px/1.55 var(--font-body);
+  color: var(--site-ink);
+}
+.quote p + p { margin-top: 8px; }
+
+.shot {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 0;
+  border: 1px solid var(--site-line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--surface);
+  cursor: zoom-in;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.shot img { width: 100%; }
+.shot:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -20px rgba(30, 14, 60, 0.35);
+}
+
+.video {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  border: 1px solid var(--site-line);
+  border-radius: 16px;
+  background: #000;
+}
+
+.pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 16px;
+}
+.pair .shot { margin: 0; }
+
+.more {
+  padding-top: 64px;
+}
+.moreTitle {
+  margin-bottom: 28px;
+  font: 500 26px/1.2 var(--font-article);
+  color: var(--site-accent);
+}
+
+.notFound {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  width: min(900px, 100% - 96px);
+  margin: 0 auto;
+  padding: 200px 0 40px;
+  font-size: 18px;
+  color: var(--site-muted);
+}

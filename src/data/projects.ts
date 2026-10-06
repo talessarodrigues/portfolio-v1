@@ -20,6 +20,7 @@ import imgMidnightHeist from '../assets/projetos/figma/midnight-heist.webp'
 import imgMarionIa from '../assets/projetos/figma/marion-ia.webp'
 import imgSocialMatch from '../assets/projetos/figma/social-match.webp'
 import imgUsfit from '../assets/projetos/figma/usfit.webp'
+import imgEssencialPerfumaria from '../assets/projetos/figma/essencial-perfumaria.webp'
 import imgCatalogoThaysa from '../assets/projetos/externos/catalogo-thaysa.webp'
 import imgRhRecruiter from '../assets/projetos/externos/rhrecruiter.webp'
 
@@ -44,6 +45,7 @@ export interface Project {
 // Ordem intercalada de propósito: no filtro "Todos" os cases de UX/UI e
 // os de branding se alternam, em vez de aparecerem em blocos separados.
 export const allProjects: Project[] = [
+  { image: imgEssencialPerfumaria, title: 'Essencial Perfumaria', categoryKey: 'ux-ui-design', detailSlug: 'essencial-perfumaria' },
   { image: imgGestaoConecta360, title: 'Gestão Conecta 360º', categoryKey: 'ux-ui-design', detailSlug: 'conecta-360-ux' },
   { image: imgUsfit, title: 'USFit', categoryKey: 'ux-ui-design', detailSlug: 'usfit-home-dieta-ux' },
   { image: imgCertify, title: 'Certify', categoryKey: 'ux-ui-design', detailSlug: 'certify-ux' },

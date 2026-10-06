@@ -1,0 +1,434 @@
+/* ── Casca do site (desktop) ─────────────────────────────────
+   Página clara que rola, conteúdo numa coluna central de 1152px.
+   Tudo em tokens do index.css, então o tema escuro vem de graça. */
+
+.site {
+  --site-width: 1152px;
+  --site-gutter: 48px;
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg-light);
+  color: var(--site-ink);
+  overflow-x: clip;
+}
+
+/* Brilho pastel no canto de cima, com as cores da marca. Fica atrás de
+   tudo e não rouba clique. */
+.glow {
+  position: absolute;
+  top: -260px;
+  right: -180px;
+  width: 980px;
+  height: 680px;
+  pointer-events: none;
+  background:
+    radial-gradient(closest-side at 30% 45%, rgba(229, 177, 201, 0.55), transparent),
+    radial-gradient(closest-side at 62% 40%, rgba(154, 108, 229, 0.42), transparent),
+    radial-gradient(closest-side at 82% 62%, rgba(34, 211, 238, 0.28), transparent);
+  filter: blur(40px);
+  opacity: 0.9;
+}
+:global(html[data-theme='dark']) .glow { opacity: 0.35; }
+
+.main {
+  position: relative;
+  width: min(var(--site-width), 100% - var(--site-gutter) * 2);
+  margin: 0 auto;
+  padding-top: 112px;
+}
+
+/* ── Navegação: cápsula fixa no topo ─────────────────────── */
+
+.nav {
+  position: fixed;
+  z-index: 50;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  max-width: min(860px, 100vw - 240px);
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--site-nav-bg);
+  border: 1px solid var(--site-line);
+  box-shadow: 0 8px 24px -12px rgba(30, 14, 60, 0.18);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+}
+
+.navItem,
+.navBack {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  padding: 0 14px;
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  font: 500 14px/1 var(--font-body);
+  color: var(--site-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s;
+}
+.navItem:hover,
+.navBack:hover { color: var(--site-ink); }
+.navItem[aria-current='true'] {
+  color: var(--site-accent);
+  background: var(--surface);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 0 0 1px var(--site-line);
+}
+.navBack { color: var(--site-accent); }
+
+.navDivider {
+  flex-shrink: 0;
+  width: 1px;
+  height: 20px;
+  margin: 0 6px;
+  background: var(--site-line);
+}
+
+/* Índice do case: rola de lado quando não cabe, sem barra visível. */
+.navTabs {
+  display: flex;
+  gap: 2px;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+  mask-image: linear-gradient(90deg, transparent, #000 12px, #000 calc(100% - 12px), transparent);
+}
+.navTabs::-webkit-scrollbar { display: none; }
+
+.navTools {
+  position: fixed;
+  z-index: 50;
+  top: 20px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.themeBtn {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--text-on-light) 22%, transparent);
+  background: var(--site-nav-bg);
+  color: var(--site-ink);
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  transition: background 0.2s;
+}
+.themeBtn:hover { background: var(--site-chip-hover); }
+.navTools :global(button[aria-haspopup='menu']) {
+  background: var(--site-nav-bg);
+  backdrop-filter: blur(16px);
+}
+
+/* ── Home: apresentação ──────────────────────────────────── */
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 24px 0 8px;
+}
+
+.introAvatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  object-fit: cover;
+  box-shadow: 0 6px 18px -8px rgba(52, 24, 98, 0.45);
+}
+
+.introName {
+  margin-top: 24px;
+  font: 500 48px/1.1 var(--font-article);
+  letter-spacing: -0.01em;
+  color: var(--site-accent);
+}
+
+.introBio {
+  margin-top: 16px;
+  max-width: 540px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--site-muted);
+}
+
+.introCtas {
+  display: flex;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.btnPrimary,
+.btnSoft {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 20px;
+  border-radius: 12px;
+  font: 500 15px/1 var(--font-body);
+  text-decoration: none;
+  transition: transform 0.2s, background 0.2s, opacity 0.2s;
+}
+.btnPrimary {
+  background: var(--site-ink);
+  color: var(--bg-light);
+}
+.btnPrimary:hover { opacity: 0.88; }
+.btnSoft {
+  background: var(--site-chip);
+  color: var(--site-ink);
+}
+.btnSoft:hover { background: var(--site-chip-hover); }
+.btnPrimary:active,
+.btnSoft:active { transform: scale(0.98); }
+
+/* ── Home: grade de cases ────────────────────────────────── */
+
+.work {
+  margin-top: 72px;
+  /* A cápsula fixa cobre o topo quando o link "Projetos" rola até aqui. */
+  scroll-margin-top: 88px;
+}
+
+.filters {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 24px;
+}
+
+.filter {
+  height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--site-line);
+  background: none;
+  font: 500 14px/1 var(--font-body);
+  color: var(--site-muted);
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+.filter:hover { color: var(--site-ink); background: var(--site-chip); }
+.filter[aria-selected='true'] {
+  color: var(--site-accent);
+  border-color: color-mix(in srgb, var(--site-accent) 35%, transparent);
+  background: color-mix(in srgb, var(--site-accent) 8%, transparent);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 56px 36px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Moldura degradê com o print "flutuando" dentro, como uma tela. */
+.frame {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 3;
+  padding: 7% 8%;
+  border-radius: 24px;
+  overflow: hidden;
+  isolation: isolate;
+}
+/* Véu claro por cima do degradê, mais forte no alto — dá o efeito de
+   vidro fosco das molduras da referência sem precisar de imagem. */
+.frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(120% 80% at 20% 0%, var(--frame-glow), transparent 60%),
+    linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.04));
+}
+
+.shot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: var(--site-shot-shadow), 0 0 0 1px rgba(255, 255, 255, 0.35);
+  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.card:hover .shot { transform: translateY(-6px) scale(1.015); }
+
+.badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  background: var(--site-nav-bg);
+  backdrop-filter: blur(10px);
+  font: 500 12px/1 var(--font-body);
+  color: var(--site-ink);
+}
+
+.caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  font-size: 15px;
+}
+.captionTitle {
+  font-weight: 500;
+  color: var(--site-ink);
+  transition: color 0.2s;
+}
+.card:hover .captionTitle { color: var(--site-accent); }
+.captionMeta {
+  flex-shrink: 0;
+  font-size: 14px;
+  color: var(--site-muted);
+}
+
+/* ── Sobre ───────────────────────────────────────────────── */
+
+/* As seções do Sobre foram desenhadas pro modal, com o próprio respiro
+   lateral. Aqui elas só ganham o espaço entre uma e outra. */
+.aboutStack {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+/* No modal o fundo opaco da SobreMim separava a seção do painel; aqui
+   ele só recortava o brilho do topo num retângulo. */
+.aboutStack :global(#sobre-mim) { background: none; }
+
+/* ── Rodapé ──────────────────────────────────────────────── */
+
+.footer {
+  position: relative;
+  width: min(var(--site-width), 100% - var(--site-gutter) * 2);
+  margin: 120px auto 0;
+  padding: 56px 0 32px;
+  border-top: 1px solid var(--site-line);
+}
+
+.footerInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px;
+}
+
+.footerName {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font: 500 20px/1.2 var(--font-article);
+  color: var(--site-accent);
+  text-decoration: none;
+}
+.footerAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.footerBio {
+  margin-top: 14px;
+  max-width: 400px;
+  font-size: 15px;
+  color: var(--site-muted);
+}
+
+.footerCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.footerLabel {
+  margin-bottom: 4px;
+  font: 600 13px/1 var(--font-body);
+  color: var(--site-accent);
+}
+.footerLink {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: 400 15px/1.4 var(--font-body);
+  color: var(--site-ink);
+  opacity: 0.8;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s, color 0.2s;
+}
+.footerLink:hover { opacity: 1; color: var(--site-accent); }
+
+.copied {
+  position: absolute;
+  left: calc(100% + 8px);
+  font-size: 13px;
+  color: var(--site-accent);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.copied[data-show='true'] { opacity: 1; }
+
+.footerSocials {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+.footerSocial {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--site-chip);
+  color: var(--site-ink);
+  transition: background 0.2s, color 0.2s;
+}
+.footerSocial:hover { background: var(--site-chip-hover); color: var(--site-accent); }
+
+.copyright {
+  margin-top: 48px;
+  font-size: 13px;
+  color: var(--site-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shot,
+  .card:hover .shot { transition: none; transform: none; }
+}

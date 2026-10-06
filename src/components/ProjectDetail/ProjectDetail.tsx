@@ -1,30 +1,9 @@
 import { useState } from 'react'
 import styles from './ProjectDetail.module.css'
 import { ImageLightbox } from './ImageLightbox'
-import { conecta360HeaderImages, conecta360Gallery, conecta360BlockShapes } from '../../data/conecta360Structure'
 import type { DetailBlockShape } from '../../data/conecta360Structure'
-import { jornadaJuniorHeaderImages, jornadaJuniorGallery, jornadaJuniorBlockShapes } from '../../data/jornadaJuniorStructure'
-import { certifyHeaderImages, certifyGallery, certifyBlockShapes } from '../../data/certifyStructure'
-import { leanLearnHeaderImages, leanLearnGallery, leanLearnBlockShapes } from '../../data/leanLearnStructure'
-import { atelieDianeHeaderImages, atelieDianeGallery, atelieDianeBlockShapes } from '../../data/atelieDianeStructure'
-import { midnightHeistHeaderImages, midnightHeistGallery, midnightHeistBlockShapes } from '../../data/midnightHeistStructure'
-import { marionIaHeaderImages, marionIaGallery, marionIaBlockShapes } from '../../data/marionIaStructure'
-import { socialMatchHeaderImages, socialMatchGallery, socialMatchBlockShapes } from '../../data/socialMatchStructure'
-import { gestaoEasyCarHeaderImages, gestaoEasyCarGallery, gestaoEasyCarBlockShapes } from '../../data/gestaoEasyCarStructure'
-import { usfitHeaderImages, usfitGallery, usfitBlockShapes } from '../../data/usfitStructure'
-import { residentEvilHeaderImages, residentEvilGallery, residentEvilBlockShapes } from '../../data/residentEvilStructure'
-import { redesignNatvaHeaderImages, redesignNatvaGallery, redesignNatvaBlockShapes } from '../../data/redesignNatvaStructure'
-import { drakorysArcaneHeaderImages, drakorysArcaneGallery, drakorysArcaneBlockShapes } from '../../data/drakorysArcaneStructure'
-import { asteraDataBankHeaderImages, asteraDataBankGallery, asteraDataBankBlockShapes } from '../../data/asteraDataBankStructure'
-import { ironBankHeaderImages, ironBankGallery, ironBankBlockShapes } from '../../data/ironBankStructure'
-import { orchardTreasureHeaderImages, orchardTreasureGallery, orchardTreasureBlockShapes } from '../../data/orchardTreasureStructure'
-import { conecta360BrandingHeaderImages, conecta360BrandingGallery, conecta360BrandingBlockShapes } from '../../data/conecta360BrandingStructure'
-import { easyCarHeaderImages, easyCarGallery, easyCarBlockShapes } from '../../data/easyCarStructure'
-import { jornadasCorporativasHeaderImages, jornadasCorporativasGallery, jornadasCorporativasBlockShapes } from '../../data/jornadasCorporativasStructure'
-import { talessaRodriguesHeaderImages, talessaRodriguesGallery, talessaRodriguesBlockShapes } from '../../data/talessaRodriguesStructure'
-import { catchupTechHeaderImages, catchupTechGallery, catchupTechBlockShapes } from '../../data/catchupTechStructure'
-import { vigimolVetoresHeaderImages, vigimolVetoresGallery, vigimolVetoresBlockShapes } from '../../data/vigimolVetoresStructure'
 import { allProjects } from '../../data/projects'
+import { detailRegistry } from '../../data/caseStudies'
 import { HugeiconsIcon } from '@hugeicons/react'
 import {
   ArrowLeft01FreeIcons,
@@ -43,145 +22,6 @@ interface ProjectDetailProps {
   // No mobile o case study abre dentro de um sheet que já tem o botão
   // de fechar no header — aí o "Voltar" interno fica redundante.
   hideBack?: boolean
-}
-
-// Registro de detalhamentos disponíveis — cada entrada casa a estrutura
-// (imagens + tipo do bloco, mesma para todo idioma) com a chave do
-// dicionário que traz o texto (t.conecta360 / t.jornadaJunior).
-const detailRegistry = {
-  'conecta-360-ux': {
-    headerImages: conecta360HeaderImages,
-    gallery: conecta360Gallery,
-    blockShapes: conecta360BlockShapes,
-    dictKey: 'conecta360' as const,
-  },
-  'jornada-junior-ux': {
-    headerImages: jornadaJuniorHeaderImages,
-    gallery: jornadaJuniorGallery,
-    blockShapes: jornadaJuniorBlockShapes,
-    dictKey: 'jornadaJunior' as const,
-  },
-  'certify-ux': {
-    headerImages: certifyHeaderImages,
-    gallery: certifyGallery,
-    blockShapes: certifyBlockShapes,
-    dictKey: 'certify' as const,
-  },
-  'lean-learn-ui': {
-    headerImages: leanLearnHeaderImages,
-    gallery: leanLearnGallery,
-    blockShapes: leanLearnBlockShapes,
-    dictKey: 'leanLearn' as const,
-  },
-  'atelie-diane-almeida-ui': {
-    headerImages: atelieDianeHeaderImages,
-    gallery: atelieDianeGallery,
-    blockShapes: atelieDianeBlockShapes,
-    dictKey: 'atelieDiane' as const,
-  },
-  'midnight-heist-ui': {
-    headerImages: midnightHeistHeaderImages,
-    gallery: midnightHeistGallery,
-    blockShapes: midnightHeistBlockShapes,
-    dictKey: 'midnightHeist' as const,
-  },
-  'marion-ia-ui': {
-    headerImages: marionIaHeaderImages,
-    gallery: marionIaGallery,
-    blockShapes: marionIaBlockShapes,
-    dictKey: 'marionIa' as const,
-  },
-  'social-match-ux': {
-    headerImages: socialMatchHeaderImages,
-    gallery: socialMatchGallery,
-    blockShapes: socialMatchBlockShapes,
-    dictKey: 'socialMatch' as const,
-    protoUrl: 'https://www.figma.com/proto/JaTCUXJNYPgSuFPJALmi6f/Desafio-Social-Match?node-id=24-240&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
-  },
-  'gestao-easy-car-ux': {
-    headerImages: gestaoEasyCarHeaderImages,
-    gallery: gestaoEasyCarGallery,
-    blockShapes: gestaoEasyCarBlockShapes,
-    dictKey: 'gestaoEasyCar' as const,
-  },
-  'usfit-home-dieta-ux': {
-    headerImages: usfitHeaderImages,
-    gallery: usfitGallery,
-    blockShapes: usfitBlockShapes,
-    dictKey: 'usfit' as const,
-  },
-  'resident-evil-ui': {
-    headerImages: residentEvilHeaderImages,
-    gallery: residentEvilGallery,
-    blockShapes: residentEvilBlockShapes,
-    dictKey: 'residentEvil' as const,
-  },
-  'redesign-natva-ui': {
-    headerImages: redesignNatvaHeaderImages,
-    gallery: redesignNatvaGallery,
-    blockShapes: redesignNatvaBlockShapes,
-    dictKey: 'redesignNatva' as const,
-  },
-  'drakorys-arcane-ui': {
-    headerImages: drakorysArcaneHeaderImages,
-    gallery: drakorysArcaneGallery,
-    blockShapes: drakorysArcaneBlockShapes,
-    dictKey: 'drakorysArcane' as const,
-  },
-  'astera-data-bank-ui': {
-    headerImages: asteraDataBankHeaderImages,
-    gallery: asteraDataBankGallery,
-    blockShapes: asteraDataBankBlockShapes,
-    dictKey: 'asteraDataBank' as const,
-  },
-  'iron-bank-ui': {
-    headerImages: ironBankHeaderImages,
-    gallery: ironBankGallery,
-    blockShapes: ironBankBlockShapes,
-    dictKey: 'ironBank' as const,
-  },
-  'orchard-treasure-ui': {
-    headerImages: orchardTreasureHeaderImages,
-    gallery: orchardTreasureGallery,
-    blockShapes: orchardTreasureBlockShapes,
-    dictKey: 'orchardTreasure' as const,
-  },
-  'conecta-360-branding': {
-    headerImages: conecta360BrandingHeaderImages,
-    gallery: conecta360BrandingGallery,
-    blockShapes: conecta360BrandingBlockShapes,
-    dictKey: 'conecta360Branding' as const,
-  },
-  'easy-car-branding': {
-    headerImages: easyCarHeaderImages,
-    gallery: easyCarGallery,
-    blockShapes: easyCarBlockShapes,
-    dictKey: 'easyCar' as const,
-  },
-  'jornadas-corporativas-branding': {
-    headerImages: jornadasCorporativasHeaderImages,
-    gallery: jornadasCorporativasGallery,
-    blockShapes: jornadasCorporativasBlockShapes,
-    dictKey: 'jornadasCorporativas' as const,
-  },
-  'talessa-rodrigues-branding': {
-    headerImages: talessaRodriguesHeaderImages,
-    gallery: talessaRodriguesGallery,
-    blockShapes: talessaRodriguesBlockShapes,
-    dictKey: 'talessaRodrigues' as const,
-  },
-  'catchup-tech-branding': {
-    headerImages: catchupTechHeaderImages,
-    gallery: catchupTechGallery,
-    blockShapes: catchupTechBlockShapes,
-    dictKey: 'catchupTech' as const,
-  },
-  'vigimol-vetores-branding': {
-    headerImages: vigimolVetoresHeaderImages,
-    gallery: vigimolVetoresGallery,
-    blockShapes: vigimolVetoresBlockShapes,
-    dictKey: 'vigimolVetores' as const,
-  },
 }
 
 function Block({ shape, text, onZoom }: { shape: DetailBlockShape; text: DetailTextBlock; onZoom: (src: string) => void }) {
@@ -221,6 +61,10 @@ function Block({ shape, text, onZoom }: { shape: DetailBlockShape; text: DetailT
         <button type="button" className={styles.imageBlock} onClick={() => onZoom(shape.src)}>
           <img src={shape.src} alt="" loading="lazy" />
         </button>
+      )
+    case 'video':
+      return (
+        <video className={styles.video} src={shape.src} poster={shape.poster} controls muted loop playsInline preload="metadata" />
       )
     case 'gallery2':
       return (

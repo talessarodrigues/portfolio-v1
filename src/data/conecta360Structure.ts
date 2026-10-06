@@ -42,6 +42,7 @@ export type DetailBlockShape =
   | { type: 'h2' | 'h3' | 'h4' | 'p' | 'quote' | 'list' }
   | { type: 'image'; src: string }
   | { type: 'gallery2'; src: [string, string] }
+  | { type: 'video'; src: string; poster?: string }
 
 export const conecta360BlockShapes: DetailBlockShape[] = [
   { type: 'h3' },
