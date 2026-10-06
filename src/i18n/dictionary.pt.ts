@@ -928,7 +928,6 @@ export const pt: Dictionary = {
       ['O processo teve quatro etapas: referências (mockups e inspirações levantados com a cliente), Figma (layout fiel, peça por peça), código (Next.js, banco de dados e painel) e lapidação, com ajustes finos em cada tela.', 'Cada tela do painel partiu de uma referência aprovada e chegou ao produto no ar sem perder o cuidado visual do site.'],
       null,
       null,
-      null,
       'A home',
       ['A abertura mostra o produto em uso, e não em catálogo: as peças aparecem vestidas, no clima do evento, com a promessa dita em uma frase e dois caminhos claros — ver o catálogo ou agendar atendimento.', 'Logo abaixo vem a seleção de modelos, com filtro por ocasião (noivas, festa, madrinhas, debutantes), para que cada visitante encontre rápido o que veio procurar.'],
       null,

@@ -1,6 +1,5 @@
 import type { DetailBlockShape } from './conecta360Structure'
 
-import imgBlock01 from '../assets/projetos/detalhe-atelie-diane/block-01.webp'
 import imgBlock02 from '../assets/projetos/detalhe-atelie-diane/block-02.webp'
 import imgBlock03 from '../assets/projetos/detalhe-atelie-diane/block-03.webp'
 import imgBlock04 from '../assets/projetos/detalhe-atelie-diane/block-04.webp'
@@ -39,7 +38,6 @@ export const atelieDianeBlockShapes: DetailBlockShape[] = [
   { type: 'h2' },
   { type: 'p' },
   { type: 'image', src: imgProcesso },
-  { type: 'image', src: imgBlock01 },
   { type: 'gallery2', src: [imgReferenciaPainel, imgPainel] },
   // Site: home, quem faz, prova social, atendimento
   { type: 'h2' },

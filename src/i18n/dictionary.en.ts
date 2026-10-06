@@ -978,7 +978,6 @@ export const en: Dictionary = {
       ['The process had four stages: references (mockups and inspiration gathered with the client), Figma (a faithful layout, piece by piece), code (Next.js, database and dashboard) and polish, with fine adjustments on every screen.', 'Every dashboard screen started from an approved reference and reached the live product without losing the visual care of the website.'],
       null,
       null,
-      null,
       'The home page',
       ['The opening shows the product in use rather than in a catalogue: the pieces appear worn, in the mood of the event, with the promise said in one sentence and two clear paths — see the catalogue or book a fitting.', 'Right below comes the selection of models, filtered by occasion (brides, party, bridesmaids, debutantes), so each visitor quickly finds what they came for.'],
       null,
