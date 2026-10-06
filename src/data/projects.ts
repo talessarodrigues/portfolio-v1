@@ -42,10 +42,13 @@ export interface Project {
   mobileOnly?: boolean
 }
 
-// Ordem intercalada de propósito: no filtro "Todos" os cases de UX/UI e
+// Os dois primeiros são os projetos mais recentes e completos (produto
+// desenhado e construído de ponta a ponta), em destaque de propósito.
+// Depois, ordem intercalada de propósito: no filtro "Todos" os cases de UX/UI e
 // os de branding se alternam, em vez de aparecerem em blocos separados.
 export const allProjects: Project[] = [
   { image: imgEssencialPerfumaria, title: 'Essencial Perfumaria', categoryKey: 'ux-ui-design', detailSlug: 'essencial-perfumaria' },
+  { image: imgAtelieDiane, title: 'Ateliê Diane Almeida', categoryKey: 'ux-ui-design', detailSlug: 'atelie-diane-almeida-ui' },
   { image: imgGestaoConecta360, title: 'Gestão Conecta 360º', categoryKey: 'ux-ui-design', detailSlug: 'conecta-360-ux' },
   { image: imgUsfit, title: 'USFit', categoryKey: 'ux-ui-design', detailSlug: 'usfit-home-dieta-ux' },
   { image: imgCertify, title: 'Certify', categoryKey: 'ux-ui-design', detailSlug: 'certify-ux' },
@@ -58,7 +61,6 @@ export const allProjects: Project[] = [
   { image: imgSocialMatch, title: 'Social Match', categoryKey: 'ux-ui-design', detailSlug: 'social-match-ux' },
   { image: imgRedesignNatva, title: 'Redesign Natva', categoryKey: 'ux-ui-design', detailSlug: 'redesign-natva-ui' },
   { image: imgEasyCar, title: 'Easy Car', categoryKey: 'branding', detailSlug: 'easy-car-branding' },
-  { image: imgAtelieDiane, title: 'Ateliê Diane Almeida', categoryKey: 'ux-ui-design', detailSlug: 'atelie-diane-almeida-ui' },
   { image: imgMarionIa, title: 'Marion IA', categoryKey: 'ux-ui-design', detailSlug: 'marion-ia-ui' },
   { image: imgAsteraDataBank, title: 'Astera Data Bank', categoryKey: 'ux-ui-design', detailSlug: 'astera-data-bank-ui' },
   { image: imgCatchupTech, title: 'CatchUp Tech', categoryKey: 'branding', detailSlug: 'catchup-tech-branding' },

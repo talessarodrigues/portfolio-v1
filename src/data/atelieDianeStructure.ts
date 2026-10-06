@@ -66,6 +66,9 @@ export const atelieDianeBlockShapes: DetailBlockShape[] = [
   { type: 'p' },
   { type: 'gallery2', src: [imgFinanceiro, imgAlugueis] },
   { type: 'image', src: imgMobilePainel },
+  // Growth e conversão
+  { type: 'h2' },
+  { type: 'p' },
   // Teste com usuários na loja
   { type: 'h2' },
   { type: 'p' },

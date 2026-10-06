@@ -44,6 +44,9 @@ export const essencialPerfumariaBlockShapes: DetailBlockShape[] = [
   { type: 'gallery2', src: [imgNovaVenda, imgFinanceiro] },
   { type: 'h2' },
   { type: 'p' },
+  // Growth: funil até o WhatsApp, testes A/B e SEO.
+  { type: 'h2' },
+  { type: 'p' },
   // Teste com usuários: o que foi testado, o que apareceu e o porquê.
   { type: 'h2' },
   { type: 'p' },
