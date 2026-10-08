@@ -3,7 +3,7 @@ import { allProjects } from '../../data/projects'
 import type { Project } from '../../data/projects'
 import { useTranslation } from '../../i18n/LanguageContext'
 
-const featuredTitles = ['Redesign Natva', 'Resident Evil', 'Drakorys Arcane', 'Astera Data Bank', 'Iron Bank', 'Orchard Treasure']
+const featuredTitles = ['Redesign Natva', 'Resident Evil', 'Drakorys Arcane', 'Astera Data Bank', 'Iron Bank']
 
 interface FeaturedProjectsProps {
   onViewAll: () => void

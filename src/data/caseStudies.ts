@@ -7,9 +7,7 @@ import { jornadaJuniorHeaderImages, jornadaJuniorGallery, jornadaJuniorBlockShap
 import { certifyHeaderImages, certifyGallery, certifyBlockShapes } from './certifyStructure'
 import { leanLearnHeaderImages, leanLearnGallery, leanLearnBlockShapes } from './leanLearnStructure'
 import { atelieDianeHeaderImages, atelieDianeGallery, atelieDianeBlockShapes } from './atelieDianeStructure'
-import { midnightHeistHeaderImages, midnightHeistGallery, midnightHeistBlockShapes } from './midnightHeistStructure'
 import { marionIaHeaderImages, marionIaGallery, marionIaBlockShapes } from './marionIaStructure'
-import { socialMatchHeaderImages, socialMatchGallery, socialMatchBlockShapes } from './socialMatchStructure'
 import { gestaoEasyCarHeaderImages, gestaoEasyCarGallery, gestaoEasyCarBlockShapes } from './gestaoEasyCarStructure'
 import { usfitHeaderImages, usfitGallery, usfitBlockShapes } from './usfitStructure'
 import { essencialPerfumariaHeaderImages, essencialPerfumariaGallery, essencialPerfumariaBlockShapes } from './essencialPerfumariaStructure'
@@ -18,7 +16,6 @@ import { redesignNatvaHeaderImages, redesignNatvaGallery, redesignNatvaBlockShap
 import { drakorysArcaneHeaderImages, drakorysArcaneGallery, drakorysArcaneBlockShapes } from './drakorysArcaneStructure'
 import { asteraDataBankHeaderImages, asteraDataBankGallery, asteraDataBankBlockShapes } from './asteraDataBankStructure'
 import { ironBankHeaderImages, ironBankGallery, ironBankBlockShapes } from './ironBankStructure'
-import { orchardTreasureHeaderImages, orchardTreasureGallery, orchardTreasureBlockShapes } from './orchardTreasureStructure'
 
 // Registro de detalhamentos disponíveis — cada entrada casa a estrutura
 // (imagens + tipo do bloco, mesma para todo idioma) com a chave do
@@ -62,24 +59,11 @@ export const detailRegistry = {
     dictKey: 'atelieDiane' as const,
     protoUrl: 'https://atelie-diane-almeida.vercel.app',
   },
-  'midnight-heist-ui': {
-    headerImages: midnightHeistHeaderImages,
-    gallery: midnightHeistGallery,
-    blockShapes: midnightHeistBlockShapes,
-    dictKey: 'midnightHeist' as const,
-  },
   'marion-ia-ui': {
     headerImages: marionIaHeaderImages,
     gallery: marionIaGallery,
     blockShapes: marionIaBlockShapes,
     dictKey: 'marionIa' as const,
-  },
-  'social-match-ux': {
-    headerImages: socialMatchHeaderImages,
-    gallery: socialMatchGallery,
-    blockShapes: socialMatchBlockShapes,
-    dictKey: 'socialMatch' as const,
-    protoUrl: 'https://www.figma.com/proto/JaTCUXJNYPgSuFPJALmi6f/Desafio-Social-Match?node-id=24-240&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1',
   },
   'gestao-easy-car-ux': {
     headerImages: gestaoEasyCarHeaderImages,
@@ -122,12 +106,6 @@ export const detailRegistry = {
     gallery: ironBankGallery,
     blockShapes: ironBankBlockShapes,
     dictKey: 'ironBank' as const,
-  },
-  'orchard-treasure-ui': {
-    headerImages: orchardTreasureHeaderImages,
-    gallery: orchardTreasureGallery,
-    blockShapes: orchardTreasureBlockShapes,
-    dictKey: 'orchardTreasure' as const,
   },
 }
 

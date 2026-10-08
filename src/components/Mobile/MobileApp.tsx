@@ -41,7 +41,7 @@ import {
 type MobileTab = 'inicio' | 'sobre'
 
 // Mesma seleção de destaques da home desktop.
-const featuredTitles = ['Redesign Natva', 'Resident Evil', 'Drakorys Arcane', 'Astera Data Bank', 'Iron Bank', 'Orchard Treasure']
+const featuredTitles = ['Redesign Natva', 'Resident Evil', 'Drakorys Arcane', 'Astera Data Bank', 'Iron Bank']
 
 export function MobileApp() {
   const { t } = useTranslation()

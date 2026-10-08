@@ -244,9 +244,7 @@ export interface Dictionary {
   certify: CaseStudyText
   leanLearn: CaseStudyText
   atelieDiane: CaseStudyText
-  midnightHeist: CaseStudyText
   marionIa: CaseStudyText
-  socialMatch: CaseStudyText
   gestaoEasyCar: CaseStudyText
   usfit: CaseStudyText
   essencialPerfumaria: CaseStudyText
@@ -255,7 +253,6 @@ export interface Dictionary {
   drakorysArcane: CaseStudyText
   asteraDataBank: CaseStudyText
   ironBank: CaseStudyText
-  orchardTreasure: CaseStudyText
 }
 
 // Formato compartilhado por todo detalhamento de projeto (case study)
