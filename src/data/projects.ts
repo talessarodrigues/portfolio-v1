@@ -14,6 +14,7 @@ import imgUsfit from '../assets/projetos/figma/usfit.webp'
 import imgEssencialPerfumaria from '../assets/projetos/figma/essencial-perfumaria.webp'
 import imgEssencialPerfumariaPainel from '../assets/projetos/figma/essencial-perfumaria-painel.webp'
 import imgCatalogoThaysa from '../assets/projetos/externos/catalogo-thaysa.webp'
+import imgCatalogoThaysaInicio from '../assets/projetos/externos/catalogo-thaysa-inicio.webp'
 import imgRhRecruiter from '../assets/projetos/externos/rhrecruiter.webp'
 
 // Desde 2026-10-08 o portfólio só tem cases de UX/UI (os de branding saíram).
@@ -47,6 +48,7 @@ export interface Project {
 // desenhado e construído de ponta a ponta), em destaque de propósito.
 export const allProjects: Project[] = [
   { image: imgEssencialPerfumaria, hoverImage: imgEssencialPerfumariaPainel, title: 'Essencial Perfumaria', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard', 'ecommerce'], detailSlug: 'essencial-perfumaria' },
+  { image: imgCatalogoThaysa, hoverImage: imgCatalogoThaysaInicio, title: 'Catálogo Thaysa Ribeiro', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://catalogo-thaysa.vercel.app', mobileOnly: true },
   { image: imgAtelieDiane, title: 'Ateliê Diane Almeida', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], detailSlug: 'atelie-diane-almeida-ui' },
   { image: imgGestaoConecta360, title: 'Gestão Conecta 360º', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'conecta-360-ux' },
   { image: imgUsfit, title: 'USFit', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'usfit-home-dieta-ux' },
@@ -61,5 +63,4 @@ export const allProjects: Project[] = [
   { image: imgDrakorysArcane, title: 'Drakorys Arcane', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'drakorys-arcane-ui' },
   { image: imgIronBank, title: 'Iron Bank', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'iron-bank-ui' },
   { image: imgRhRecruiter, title: 'RHRecruiter', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://rhrecruiter.com.br' },
-  { image: imgCatalogoThaysa, title: 'Catálogo Thaysa Ribeiro', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://catalogo-thaysa.vercel.app', mobileOnly: true },
 ]
