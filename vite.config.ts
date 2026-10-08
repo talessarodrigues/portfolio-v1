@@ -2,7 +2,9 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join, resolve } from 'node:path'
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
-import { pt } from './src/i18n/dictionary.pt'
+// O site abre em inglês para todo mundo, então o HTML estático (o que
+// buscadores e prévias de link leem) também sai em inglês.
+import { en } from './src/i18n/dictionary.en'
 import { caseSeo, sobreSeo } from './src/i18n/seo'
 import { readProjects } from './scripts/projects-meta.mjs'
 
@@ -59,7 +61,7 @@ function renderPage(base: string, page: SeoPage) {
       description: page.description,
       url,
       image: page.image,
-      inLanguage: 'pt-BR',
+      inLanguage: 'en',
       creator: { '@id': `${SITE}/#talessa` },
       isPartOf: { '@id': `${SITE}/#site` },
     }
@@ -87,7 +89,7 @@ function seoPages(): Plugin {
       const base = readFileSync(join(outDir, 'index.html'), 'utf8')
       const pages: SeoPage[] = [{
         path: '/sobre',
-        ...sobreSeo(pt),
+        ...sobreSeo(en),
         image: `${SITE}/og-image.jpg`,
         imageAlt: 'Talessa Rodrigues, Product Designer & AI Engineer',
         type: 'website',
@@ -96,9 +98,9 @@ function seoPages(): Plugin {
         if (!p.slug) continue
         pages.push({
           path: `/cases/${p.slug}`,
-          ...caseSeo(pt, p as { title: string; categoryKey: keyof typeof pt.categories }),
+          ...caseSeo(en, p as { title: string; categoryKey: keyof typeof en.categories }),
           image: `${SITE}/og/${p.slug}.jpg`,
-          imageAlt: `${p.title}, case de ${pt.categories[p.categoryKey as keyof typeof pt.categories]} por Talessa Rodrigues`,
+          imageAlt: `${p.title}, ${en.categories[p.categoryKey as keyof typeof en.categories]} case study by Talessa Rodrigues`,
           type: 'article',
         })
       }

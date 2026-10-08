@@ -316,7 +316,7 @@ export const es: Dictionary = {
     projetos: 'Proyectos',
     sobreMim: 'Sobre mí',
     curriculo: 'Currículum',
-    curriculoPdf: '/curriculo/Talessa-Rodrigues-Resume-EN.pdf',
+    curriculoPdf: '/curriculo/Talessa-Rodrigues-Resume.pdf',
     saudacao: 'Talessa Rodrigues :)',
     bio: 'Product Designer & AI Engineer con más de 4 años de experiencia. Llevo productos del discovery al lanzamiento, uniendo UX/UI y desarrollo con IA, siempre partiendo de quien los va a usar.',
     trabalhoRecente: 'Trabajo más reciente',

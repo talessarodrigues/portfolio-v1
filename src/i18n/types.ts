@@ -174,7 +174,7 @@ export interface Dictionary {
     projetos: string
     sobreMim: string
     curriculo: string
-    /** PDF do currículo no idioma da página (em public/curriculo). */
+    /** PDF do currículo (em public/curriculo); hoje é o mesmo nos 3 idiomas. */
     curriculoPdf: string
     saudacao: string
     bio: string

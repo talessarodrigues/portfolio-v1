@@ -29,9 +29,10 @@ const CHROME = [
 ].find(p => p && existsSync(p))
 if (!CHROME) throw new Error('Chrome não encontrado — defina CHROME_PATH')
 
-// O texto dos cases vem do próprio dicionário (via Vite, que sabe ler TS).
+// O texto dos cases vem do próprio dicionário (via Vite, que sabe ler TS),
+// em inglês, que é o idioma em que o site abre.
 const vite = await createServer({ root: ROOT, logLevel: 'error', server: { middlewareMode: true } })
-const { pt } = await vite.ssrLoadModule('/src/i18n/dictionary.pt.ts')
+const { en } = await vite.ssrLoadModule('/src/i18n/dictionary.en.ts')
 const { getCase } = await vite.ssrLoadModule('/src/data/caseStudies.ts')
 await vite.close()
 
@@ -81,13 +82,13 @@ function homeHtml(projects) {
     <img src="${AVATAR}" style="width:112px; height:112px; border-radius:30px; object-fit:cover; box-shadow:0 14px 30px -14px rgba(52,24,98,.55)">
     <h1 class="display" style="margin-top:26px; font-size:68px; font-weight:600; line-height:1; color:#B892FF">Talessa Rodrigues</h1>
     <p class="display" style="margin-top:14px; font-size:34px; font-weight:500; color:#F3F0F8">Product Designer &amp; AI Engineer</p>
-    <p style="margin-top:18px; font-size:22px; color:rgba(243,240,248,.62)">UX/UI · Design Systems · Produtos construídos com IA</p>
+    <p style="margin-top:18px; font-size:22px; color:rgba(243,240,248,.62)">UX/UI · Design Systems · AI-built products</p>
     <p class="url" style="margin-top:34px">talessarodriguesdesign.com.br</p>
   </div>`
 }
 
 function caseHtml(p, text, desc, index) {
-  const eyebrow = ['Case', pt.categories[p.categoryKey], text?.metaAnoValue].filter(Boolean).join(' · ')
+  const eyebrow = ['Case', en.categories[p.categoryKey], text?.metaAnoValue].filter(Boolean).join(' · ')
   const long = p.title.length > 18
   return `<!doctype html><meta charset="utf-8">${BASE}
   <div class="glow"></div>
@@ -129,7 +130,7 @@ mkdirSync(join(ROOT, 'public/og'), { recursive: true })
 await shoot(homeHtml(cases), join(ROOT, 'public/og-image.jpg'))
 for (const p of cases) {
   const entry = getCase(p.slug)
-  const text = entry ? pt[entry.dictKey] : null
-  const desc = pt.projects[p.title]?.description ?? ''
+  const text = entry ? en[entry.dictKey] : null
+  const desc = en.projects[p.title]?.description ?? ''
   await shoot(caseHtml(p, text, desc, projects.indexOf(p)), join(ROOT, `public/og/${p.slug}.jpg`))
 }
