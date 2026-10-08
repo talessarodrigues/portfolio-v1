@@ -1,9 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { HugeiconsIcon } from '@hugeicons/react'
-import { ArrowLeft01FreeIcons, Moon02FreeIcons, Sun03FreeIcons } from '@hugeicons/core-free-icons'
+import { ArrowLeft01FreeIcons } from '@hugeicons/core-free-icons'
 import styles from './Site.module.css'
 import { useTranslation } from '../../i18n/LanguageContext'
-import { useTheme } from '../../theme/ThemeContext'
 import { LanguageMenu } from '../LanguageMenu/LanguageMenu'
 import { SiteLink } from './SiteLink'
 
@@ -24,8 +23,6 @@ interface SiteNavProps {
 // marcando a seção que está na tela.
 export function SiteNav({ page, sections, activeSection }: SiteNavProps) {
   const { t } = useTranslation()
-  const { theme, toggleTheme } = useTheme()
-  const isDark = theme === 'dark'
   const tabsRef = useRef<HTMLDivElement>(null)
 
   // Índice comprido rola na horizontal dentro da cápsula; a aba ativa
@@ -83,14 +80,6 @@ export function SiteNav({ page, sections, activeSection }: SiteNavProps) {
 
       <div className={styles.navTools}>
         <LanguageMenu variant="light" />
-        <button
-          type="button"
-          className={styles.themeBtn}
-          onClick={toggleTheme}
-          aria-label={isDark ? t.hero.temaClaroAria : t.hero.temaEscuroAria}
-        >
-          <HugeiconsIcon icon={isDark ? Sun03FreeIcons : Moon02FreeIcons} size={18} strokeWidth={1.6} />
-        </button>
       </div>
     </>
   )

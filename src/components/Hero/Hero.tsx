@@ -6,15 +6,12 @@ import {
   Behance02FreeIcons,
   Linkedin02FreeIcons,
   Mail01FreeIcons,
-  Moon02FreeIcons,
-  Sun03FreeIcons,
   WhatsappFreeIcons,
 } from '@hugeicons/core-free-icons'
 import styles from './Hero.module.css'
 import imgIllustration from '../../assets/illustration/hero-bg.png'
 import imgLogo from '../../assets/header/logo.svg'
 import { useTranslation } from '../../i18n/LanguageContext'
-import { useTheme } from '../../theme/ThemeContext'
 import { LanguageMenu } from '../LanguageMenu/LanguageMenu'
 import { heroSlideProjects } from '../../data/projects'
 import type { Project } from '../../data/projects'
@@ -39,8 +36,6 @@ interface HeroProps {
 
 export function Hero({ scrollEnabled, onOpenModal, onSelectProject, onNavigateContato }: HeroProps) {
   const { t } = useTranslation()
-  const { theme, toggleTheme } = useTheme()
-  const isDark = theme === 'dark'
   const slides = t.hero.slides
 
   const [active, setActive] = useState(0)
@@ -150,18 +145,10 @@ export function Hero({ scrollEnabled, onOpenModal, onSelectProject, onNavigateCo
           </button>
         </div>
 
-        {/* ── Dock lateral: tema + redes sociais ───────────────────────── */}
+        {/* ── Dock lateral: redes sociais ───────────────────────── */}
         <div className={styles.dock}>
           {/* Cápsula um tom mais clara atrás das 3 redes, como no Figma. */}
           <span className={styles.dockGroup} aria-hidden="true" />
-
-          <button
-            className={styles.dockBtn}
-            onClick={toggleTheme}
-            aria-label={isDark ? t.hero.temaClaroAria : t.hero.temaEscuroAria}
-          >
-            <HugeiconsIcon icon={isDark ? Sun03FreeIcons : Moon02FreeIcons} size={22} strokeWidth={1.6} />
-          </button>
 
           {SOCIALS.map(social => (
             <a

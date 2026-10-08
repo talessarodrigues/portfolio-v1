@@ -30,7 +30,6 @@ import {
   IconChat, IconGrid, IconHome,
 } from './MobileIcons'
 import { useTheme } from '../../theme/ThemeContext'
-import { MobileThemeToggle } from './MobileThemeToggle'
 import { HugeiconsIcon } from '@hugeicons/react'
 import {
   ArrowRightDoubleFreeIcons,
@@ -114,7 +113,6 @@ export function MobileApp() {
               </button>
               <div className={styles.coverActions}>
                 <LanguageMenu variant={isDark ? 'dark' : 'light'} gradient />
-                <MobileThemeToggle onCover />
               </div>
             </div>
           </div>

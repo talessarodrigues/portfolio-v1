@@ -4,7 +4,6 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import { Cancel01FreeIcons } from '@hugeicons/core-free-icons'
 import styles from './Modal.module.css'
 import { useTranslation } from '../../i18n/LanguageContext'
-import { ThemeSwitch } from '../../theme/ThemeSwitch'
 
 interface ModalProps {
   open: boolean
@@ -85,7 +84,6 @@ export function Modal({ open, title, subtitle, scrollResetKey, onClose, children
           </div>
 
           <div className={styles.headerRight}>
-            <ThemeSwitch />
             <button ref={closeRef} className={styles.close} onClick={onClose} aria-label={t.modais.fechar}>
               <HugeiconsIcon icon={Cancel01FreeIcons} size={22} strokeWidth={1.8} />
             </button>

@@ -114,20 +114,6 @@
   gap: 8px;
 }
 
-.themeBtn {
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--text-on-light) 22%, transparent);
-  background: var(--site-nav-bg);
-  color: var(--site-ink);
-  cursor: pointer;
-  backdrop-filter: blur(16px);
-  transition: background 0.2s;
-}
-.themeBtn:hover { background: var(--site-chip-hover); }
 .navTools :global(button[aria-haspopup='menu']) {
   background: var(--site-nav-bg);
   backdrop-filter: blur(16px);

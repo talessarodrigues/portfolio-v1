@@ -13,7 +13,6 @@ import type { ProjectFilter } from '../ProjectsHero/ProjectsHero'
 import { useTranslation } from '../../i18n/LanguageContext'
 import { IconClose } from './MobileIcons'
 import { MobileWorkRow } from './MobileWorkRow'
-import { MobileThemeToggle } from './MobileThemeToggle'
 
 // Cada categoria vira uma pílula no topo do sheet. Só a ativa mostra o
 // rótulo; as outras ficam só com o ícone, pra caber na largura do
@@ -69,7 +68,6 @@ export function MobileWorksSheet({ filter, onFilterChange, onOpenProject, onClos
         </div>
 
         <div className={styles.sheetActions}>
-          <MobileThemeToggle />
           <button className={styles.sheetClose} onClick={onClose} aria-label={t.mobile.fechar}>
             <IconClose />
           </button>

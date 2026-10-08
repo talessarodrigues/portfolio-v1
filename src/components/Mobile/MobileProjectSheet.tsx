@@ -4,7 +4,6 @@ import { ProjectDetail } from '../ProjectDetail/ProjectDetail'
 import { allProjects } from '../../data/projects'
 import { useTranslation } from '../../i18n/LanguageContext'
 import { IconClose } from './MobileIcons'
-import { MobileThemeToggle } from './MobileThemeToggle'
 
 interface MobileProjectSheetProps {
   slug: string
@@ -28,7 +27,6 @@ export function MobileProjectSheet({ slug, onClose }: MobileProjectSheetProps) {
           <span>{project?.title}</span>
         </span>
         <div className={styles.sheetActions}>
-          <MobileThemeToggle />
           <button className={styles.sheetClose} onClick={onClose} aria-label={t.mobile.fechar}>
             <IconClose />
           </button>

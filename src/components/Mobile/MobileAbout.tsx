@@ -16,7 +16,6 @@ import { useTranslation } from '../../i18n/LanguageContext'
 import { semViuva } from '../../i18n/text'
 import { LINKS } from './links'
 import { IconChevronDown } from './MobileIcons'
-import { MobileThemeToggle } from './MobileThemeToggle'
 
 const PHOTOS = [imgEssaSouEu, imgSlot2, imgSlot3, imgSlot4]
 
@@ -43,7 +42,6 @@ export function MobileAbout() {
       <div className={styles.tabHeader}>
         <div className={styles.tabHeaderRow}>
           <h1 className={styles.tabTitle}>{t.mobile.sobreTitle}</h1>
-          <MobileThemeToggle />
         </div>
       </div>
 

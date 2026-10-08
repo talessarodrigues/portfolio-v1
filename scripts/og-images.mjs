@@ -38,11 +38,13 @@ await vite.close()
 const url = p => pathToFileURL(p).href
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 const AVATAR = url(join(ROOT, 'src/assets/sobre/perfil-talessa.webp'))
+// Mesmas molduras e cores do site, que é só escuro (tokens do tema escuro
+// em src/index.css).
 const FRAMES = [
-  'linear-gradient(140deg, #EFE6FD 0%, #C7AEF4 48%, #8E5CE6 100%)',
-  'linear-gradient(140deg, #FBEAF1 0%, #EBBBD1 46%, #A57BE3 100%)',
-  'linear-gradient(140deg, #E2F8FC 0%, #A9E6F2 45%, #8A9FF0 100%)',
-  'linear-gradient(160deg, #FFF1EA 0%, #F2C3D5 50%, #C3A2F3 100%)',
+  'linear-gradient(140deg, #2A1D47 0%, #4B2C8A 50%, #7A4FD6 100%)',
+  'linear-gradient(140deg, #2E1B2C 0%, #6B3A62 50%, #8A5BD0 100%)',
+  'linear-gradient(140deg, #10283A 0%, #1F5B78 50%, #5868C9 100%)',
+  'linear-gradient(160deg, #2E2220 0%, #6A3A55 50%, #6F4FB8 100%)',
 ]
 
 const BASE = `
@@ -50,17 +52,17 @@ const BASE = `
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { width: ${W}px; height: ${H}px; overflow: hidden; }
-  body { position: relative; background: #FDF6F5; font-family: 'Outfit', sans-serif; color: #1a1a1a; }
-  .glow { position: absolute; inset: 0; background:
+  body { position: relative; background: #07070C; font-family: 'Outfit', sans-serif; color: #F3F0F8; }
+  .glow { position: absolute; inset: 0; opacity: .45; background:
     radial-gradient(420px 300px at 88% 8%, rgba(154,108,229,.32), transparent 70%),
     radial-gradient(380px 280px at 70% -4%, rgba(229,177,201,.45), transparent 70%),
     radial-gradient(360px 260px at 100% 40%, rgba(34,211,238,.18), transparent 70%),
     radial-gradient(420px 300px at 0% 105%, rgba(229,177,201,.35), transparent 70%); }
   .display { font-family: 'Bricolage Grotesque', sans-serif; letter-spacing: -0.02em; }
-  .frame { border-radius: 28px; padding: 6.5% 7.5%; box-shadow: 0 30px 60px -30px rgba(52,24,98,.45); }
+  .frame { border-radius: 28px; padding: 6.5% 7.5%; box-shadow: 0 30px 60px -30px rgba(0,0,0,.8); }
   .frame img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top center;
     border-radius: 12px; box-shadow: 0 18px 40px -18px rgba(52,24,98,.5), 0 0 0 1px rgba(255,255,255,.4); }
-  .url { font-size: 20px; font-weight: 500; color: rgba(26,26,26,.55); letter-spacing: .01em; }
+  .url { font-size: 20px; font-weight: 500; color: rgba(243,240,248,.55); letter-spacing: .01em; }
 </style>`
 
 // Home: tudo que importa fica no centro, porque o WhatsApp corta a prévia
@@ -77,9 +79,9 @@ function homeHtml(projects) {
   ${side(b, 1, 'right:-150px; top:250px; transform:rotate(6deg)')}
   <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; gap:0">
     <img src="${AVATAR}" style="width:112px; height:112px; border-radius:30px; object-fit:cover; box-shadow:0 14px 30px -14px rgba(52,24,98,.55)">
-    <h1 class="display" style="margin-top:26px; font-size:68px; font-weight:600; line-height:1; color:#7443D6">Talessa Rodrigues</h1>
-    <p class="display" style="margin-top:14px; font-size:34px; font-weight:500; color:#1a1a1a">Product Designer &amp; AI Engineer</p>
-    <p style="margin-top:18px; font-size:22px; color:rgba(26,26,26,.62)">UX/UI · Design Systems · Produtos construídos com IA</p>
+    <h1 class="display" style="margin-top:26px; font-size:68px; font-weight:600; line-height:1; color:#B892FF">Talessa Rodrigues</h1>
+    <p class="display" style="margin-top:14px; font-size:34px; font-weight:500; color:#F3F0F8">Product Designer &amp; AI Engineer</p>
+    <p style="margin-top:18px; font-size:22px; color:rgba(243,240,248,.62)">UX/UI · Design Systems · Produtos construídos com IA</p>
     <p class="url" style="margin-top:34px">talessarodriguesdesign.com.br</p>
   </div>`
 }
@@ -90,14 +92,14 @@ function caseHtml(p, text, desc, index) {
   return `<!doctype html><meta charset="utf-8">${BASE}
   <div class="glow"></div>
   <div style="position:absolute; left:64px; top:0; bottom:0; width:470px; display:flex; flex-direction:column; justify-content:center">
-    <p style="font-size:20px; font-weight:600; color:#7443D6; letter-spacing:.02em">${esc(eyebrow)}</p>
-    <h1 class="display" style="margin-top:14px; font-size:${long ? 50 : 62}px; font-weight:600; line-height:1.04; color:#1a1a1a">${esc(p.title)}</h1>
-    <p style="margin-top:20px; font-size:22px; line-height:1.45; color:rgba(26,26,26,.66)">${esc(desc)}</p>
+    <p style="font-size:20px; font-weight:600; color:#B892FF; letter-spacing:.02em">${esc(eyebrow)}</p>
+    <h1 class="display" style="margin-top:14px; font-size:${long ? 50 : 62}px; font-weight:600; line-height:1.04; color:#F3F0F8">${esc(p.title)}</h1>
+    <p style="margin-top:20px; font-size:22px; line-height:1.45; color:rgba(243,240,248,.66)">${esc(desc)}</p>
     <div style="margin-top:36px; display:flex; align-items:center; gap:14px">
       <img src="${AVATAR}" style="width:48px; height:48px; border-radius:50%; object-fit:cover">
       <div>
-        <p style="font-size:19px; font-weight:600; color:#7443D6">Talessa Rodrigues</p>
-        <p style="font-size:16px; color:rgba(26,26,26,.6)">Product Designer &amp; AI Engineer</p>
+        <p style="font-size:19px; font-weight:600; color:#B892FF">Talessa Rodrigues</p>
+        <p style="font-size:16px; color:rgba(243,240,248,.6)">Product Designer &amp; AI Engineer</p>
       </div>
     </div>
   </div>

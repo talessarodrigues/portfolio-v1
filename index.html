@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,9 +26,11 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <link rel="canonical" href="https://www.talessarodriguesdesign.com.br/" />
 
-    <!-- Cor da barra do navegador no celular, por tema. -->
-    <meta name="theme-color" content="#FDF6F5" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#07070C" media="(prefers-color-scheme: dark)" />
+    <!-- O site é só escuro: a barra do navegador no celular acompanha, e o
+         data-theme do <html> já liga os tokens escuros antes do JS rodar
+         (sem flash de tela clara). -->
+    <meta name="theme-color" content="#07070C" />
+    <meta name="color-scheme" content="dark" />
 
     <!-- Cartão de compartilhamento (WhatsApp, LinkedIn, Instagram, Slack).
          A imagem é 1200×630 e é gerada por scripts/og-images.mjs; o que
