@@ -1,0 +1,94 @@
+/* Cursor personalizado: mesmo visual da versão "v3" do site da Rodrigues
+   Design (anel lilás com brilho, pílula com rótulo, bolha que deforma no
+   clique). O cursor do sistema só some quando o JS liga html.has-cursor. */
+
+.cursor {
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  display: none;
+}
+:global(html.has-cursor) .cursor { display: block; }
+:global(html.has-cursor),
+:global(html.has-cursor *) { cursor: none !important; }
+:global(html.has-cursor) input:not([type='file']),
+:global(html.has-cursor) textarea,
+:global(html.has-cursor) select { cursor: auto !important; }
+
+.dot,
+.ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  background: radial-gradient(circle at 35% 35%, #c9a4f2, #8a55e0);
+  box-shadow: 0 0 8px 1px rgba(154, 108, 229, 0.5);
+  transform: translate3d(var(--x, -100px), var(--y, -100px), 0) translate(-50%, -50%);
+  transition: opacity 0.2s, width 0.25s, height 0.25s;
+}
+
+.ring {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid rgba(178, 138, 228, 0.8);
+  background: radial-gradient(circle, rgba(229, 177, 201, 0.14), rgba(192, 142, 215, 0.06) 70%);
+  box-shadow: 0 0 14px -3px rgba(192, 142, 215, 0.5);
+  transform: translate3d(var(--rx, -100px), var(--ry, -100px), 0) translate(-50%, -50%);
+  transition:
+    width 0.35s var(--ease), height 0.35s var(--ease), border-radius 0.35s var(--ease),
+    background 0.3s, box-shadow 0.3s, border-color 0.3s, opacity 0.3s;
+}
+
+.label {
+  font: 500 15px/1 var(--font-body);
+  font-style: normal;
+  color: #3a2860;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+/* Link / botão */
+.isLink .ring {
+  width: 58px;
+  height: 58px;
+  border-color: rgba(214, 150, 214, 0.9);
+  background: radial-gradient(circle, rgba(229, 177, 201, 0.3), rgba(229, 177, 201, 0.05) 70%);
+  box-shadow: 0 0 24px -2px rgba(229, 177, 201, 0.65);
+}
+.isLink .dot { width: 7px; height: 7px; }
+
+/* Rótulo (data-cursor): o anel vira pílula */
+.hasLabel .ring {
+  width: auto;
+  min-width: 138px;
+  height: 62px;
+  padding: 0 22px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
+  background: linear-gradient(100deg, rgba(244, 214, 236, 0.96), rgba(212, 188, 246, 0.96));
+  box-shadow: 0 0 30px -4px rgba(192, 142, 215, 0.7), 0 10px 26px -12px rgba(120, 70, 200, 0.5);
+}
+.hasLabel .label { opacity: 1; }
+.hasLabel .dot { opacity: 0; }
+
+/* Clique: a bolha se deforma */
+.isDown:not(.hasLabel) .ring {
+  width: 46px;
+  height: 38px;
+  border-radius: 58% 42% 63% 37% / 45% 60% 40% 55%;
+  background: radial-gradient(circle, rgba(229, 177, 201, 0.22), rgba(192, 142, 215, 0.06) 70%);
+}
+
+/* Campos de texto e fora da janela: some */
+.isText .ring,
+.isText .dot,
+.isHidden .ring,
+.isHidden .dot { opacity: 0; }

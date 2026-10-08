@@ -46,11 +46,11 @@ export function CaseCard({ project, eager = false }: CaseCardProps) {
   // Projeto no ar abre o site; projeto com case abre a página dele.
   if (project.externalUrl) {
     return (
-      <a className={styles.card} href={project.externalUrl} target="_blank" rel="noopener noreferrer">
+      <a className={styles.card} href={project.externalUrl} target="_blank" rel="noopener noreferrer" data-cursor={t.site.cursorSite}>
         {content}
       </a>
     )
   }
-  if (href) return <SiteLink to={href} className={styles.card}>{content}</SiteLink>
+  if (href) return <SiteLink to={href} className={styles.card} data-cursor={t.site.cursorVer}>{content}</SiteLink>
   return <div className={styles.card}>{content}</div>
 }

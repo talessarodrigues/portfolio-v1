@@ -333,6 +333,8 @@ export const es: Dictionary = {
     sobreTitulo: 'Sobre mí',
     paginaNaoEncontrada: 'Este case no existe (o cambió de dirección).',
     voltarInicio: 'Volver al inicio',
+    cursorVer: 'Ver proyecto',
+    cursorSite: 'Ver sitio',
     seoCase: 'Case de {categoria}',
     seoSobre: 'Trayectoria, experiencia, formación y recomendaciones de Talessa Rodrigues, Product Designer & AI Engineer que une UX/UI y desarrollo con IA.',
   },

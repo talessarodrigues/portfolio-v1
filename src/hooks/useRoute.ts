@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { scrollToTarget } from './smoothScroll'
 
 // O desktop virou um site de páginas de verdade: home com a grade de
 // cases, /sobre e um endereço por case (/cases/<slug>), pra cada case
@@ -60,16 +61,14 @@ export function applyPendingScroll() {
   const next = pending
   pending = null
   if (!next) return
-  // 'instant' e não 'auto': o html tem scroll-behavior: smooth, e 'auto'
-  // herdaria a animação — trocar de página não deve "rolar" até o topo.
+  // Trocar de página não "rola" até o topo: vai direto. Só a âncora na
+  // mesma página anima (scrollToTarget passa pelo Lenis quando ele está ligado).
   if (next.kind === 'restore') {
-    window.scrollTo({ top: next.y, behavior: 'instant' })
+    scrollToTarget(next.y, { smooth: false })
     return
   }
-  const behavior = next.smooth ? 'smooth' : 'instant'
   const target = next.kind === 'anchor' ? document.getElementById(next.id) : null
-  if (target) target.scrollIntoView({ behavior, block: 'start' })
-  else window.scrollTo({ top: 0, behavior })
+  scrollToTarget(target ?? 0, { smooth: next.smooth })
 }
 
 export function useRoute(): Route {

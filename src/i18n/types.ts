@@ -193,6 +193,9 @@ export interface Dictionary {
     sobreTitulo: string
     paginaNaoEncontrada: string
     voltarInicio: string
+    /** Rótulo do cursor sobre um card de case / de site publicado. */
+    cursorVer: string
+    cursorSite: string
     /** SEO: rótulo do case no título da aba/busca. {categoria} vira a categoria. */
     seoCase: string
     /** SEO: descrição da página /sobre. */

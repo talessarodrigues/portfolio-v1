@@ -5,6 +5,7 @@ import styles from './Site.module.css'
 import { useTranslation } from '../../i18n/LanguageContext'
 import { LanguageMenu } from '../LanguageMenu/LanguageMenu'
 import { SiteLink } from './SiteLink'
+import { scrollToTarget } from '../../hooks/smoothScroll'
 
 export interface NavSection {
   id: string
@@ -36,7 +37,8 @@ export function SiteNav({ page, sections, activeSection }: SiteNavProps) {
   }, [activeSection])
 
   const goToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    const el = document.getElementById(id)
+    if (el) scrollToTarget(el, { smooth: true })
   }
 
   return (

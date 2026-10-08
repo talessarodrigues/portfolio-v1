@@ -1,6 +1,8 @@
 import { useEffect, useLayoutEffect } from 'react'
+import 'lenis/dist/lenis.css'
 import styles from './Site.module.css'
 import { applyPendingScroll, useRoute } from '../../hooks/useRoute'
+import { startSmoothScroll } from '../../hooks/smoothScroll'
 import { useTranslation } from '../../i18n/LanguageContext'
 import { allProjects } from '../../data/projects'
 import { PAGINA, setPageMeta } from '../../i18n/pageMeta'
@@ -10,6 +12,7 @@ import { SiteFooter } from './SiteFooter'
 import { HomePage } from './HomePage'
 import { AboutPage } from './AboutPage'
 import { CasePage } from './CasePage'
+import { SiteCursor } from './SiteCursor'
 
 // Desktop: site de páginas que rolam — home com a grade de cases,
 // /sobre e uma página por case. O mobile continua no app próprio
@@ -17,6 +20,9 @@ import { CasePage } from './CasePage'
 export function Site() {
   const route = useRoute()
   const { t, lang } = useTranslation()
+
+  // Rolagem com inércia (Lenis) enquanto o site desktop está montado.
+  useEffect(() => startSmoothScroll(), [])
 
   // Página nova montada: agora dá pra ir até a âncora, voltar ao topo ou
   // devolver a posição de antes (ver applyPendingScroll).
@@ -40,6 +46,7 @@ export function Site() {
   return (
     <div className={styles.site}>
       <span className={styles.glow} aria-hidden="true" />
+      <SiteCursor />
       {route.page === 'case' ? (
         // A página de case monta a própria cápsula, com o índice dela.
         <CasePage key={route.slug} slug={route.slug} />
