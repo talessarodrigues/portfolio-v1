@@ -310,6 +310,7 @@
 .card:focus-visible { outline: 2px solid var(--site-accent); outline-offset: 3px; }
 
 .media {
+  position: relative;
   display: block;
   aspect-ratio: 1.28;
 }
@@ -321,6 +322,17 @@
   transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 .card:hover .media img { transform: scale(1.03); }
+
+/* Segunda imagem (ex.: painel da Essencial) por cima da capa: aparece no
+   hover e some ao tirar o mouse. */
+.media img.mediaHover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.card:hover .media img.mediaHover,
+.card:focus-visible .media img.mediaHover { opacity: 1; }
 
 /* Nome e tipo/ano por cima da imagem, embaixo, ao passar o mouse. */
 .overlay {

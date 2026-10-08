@@ -28,6 +28,9 @@ export function CaseCard({ project, eager = false }: CaseCardProps) {
     <>
       <span className={styles.media}>
         <img src={project.image} alt={project.title} loading={eager ? 'eager' : 'lazy'} />
+        {project.hoverImage && (
+          <img className={styles.mediaHover} src={project.hoverImage} alt="" loading="lazy" aria-hidden="true" />
+        )}
       </span>
       {badge && (
         <span className={styles.badge}>

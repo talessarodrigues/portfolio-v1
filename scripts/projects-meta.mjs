@@ -18,7 +18,7 @@ export function readProjects(root) {
   }
 
   const projects = []
-  for (const m of src.matchAll(/^\s*\{ image: (\w+), title: '([^']+)', categoryKey: '([\w-]+)'(.*)\},?$/gm)) {
+  for (const m of src.matchAll(/^\s*\{ image: (\w+), (?:hoverImage: \w+, )?title: '([^']+)', categoryKey: '([\w-]+)'(.*)\},?$/gm)) {
     const slug = m[4].match(/detailSlug: '([\w-]+)'/)?.[1] ?? null
     projects.push({ title: m[2], categoryKey: m[3], slug, image: images.get(m[1]) })
   }

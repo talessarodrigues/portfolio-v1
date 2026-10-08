@@ -12,6 +12,7 @@ import imgAtelieDiane from '../assets/projetos/figma/atelie-diane-almeida.webp'
 import imgMarionIa from '../assets/projetos/figma/marion-ia.webp'
 import imgUsfit from '../assets/projetos/figma/usfit.webp'
 import imgEssencialPerfumaria from '../assets/projetos/figma/essencial-perfumaria.webp'
+import imgEssencialPerfumariaPainel from '../assets/projetos/figma/essencial-perfumaria-painel.webp'
 import imgCatalogoThaysa from '../assets/projetos/externos/catalogo-thaysa.webp'
 import imgRhRecruiter from '../assets/projetos/externos/rhrecruiter.webp'
 
@@ -27,6 +28,8 @@ export const PROJECT_KINDS: ProjectKind[] = ['website', 'app', 'dashboard', 'eco
 // pra buscar description/tags traduzidos em t.projects[title].
 export interface Project {
   image: string
+  /** Segunda imagem do card da grade: aparece no hover e some ao tirar o mouse. */
+  hoverImage?: string
   title: string
   categoryKey: CategoryKey
   kinds: ProjectKind[]
@@ -43,7 +46,7 @@ export interface Project {
 // Os dois primeiros são os projetos mais recentes e completos (produto
 // desenhado e construído de ponta a ponta), em destaque de propósito.
 export const allProjects: Project[] = [
-  { image: imgEssencialPerfumaria, title: 'Essencial Perfumaria', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard', 'ecommerce'], detailSlug: 'essencial-perfumaria' },
+  { image: imgEssencialPerfumaria, hoverImage: imgEssencialPerfumariaPainel, title: 'Essencial Perfumaria', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard', 'ecommerce'], detailSlug: 'essencial-perfumaria' },
   { image: imgAtelieDiane, title: 'Ateliê Diane Almeida', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], detailSlug: 'atelie-diane-almeida-ui' },
   { image: imgGestaoConecta360, title: 'Gestão Conecta 360º', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'conecta-360-ux' },
   { image: imgUsfit, title: 'USFit', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'usfit-home-dieta-ux' },
