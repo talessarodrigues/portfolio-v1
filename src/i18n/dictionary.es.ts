@@ -348,6 +348,10 @@ export const es: Dictionary = {
       description: 'Portafolio de un ingeniero de software full stack, en tema oscuro con acento rojo. Colaboré en el diseño de la interfaz.',
       tags: ['UX/UI Design', 'portfolio'],
     },
+    'Aura': {
+      description: 'App de e-commerce de moda: vitrina de novedades, página de producto y bolsa de compras.',
+      tags: ['UX/UI Design', 'mobile'],
+    },
     'RHRecruiter': {
       description: 'Landing page de la plataforma de reclutamiento con IA, pensada para explicar el producto y convertir empresas en pruebas.',
       tags: ['UX/UI Design', 'saas'],
