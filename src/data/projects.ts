@@ -16,6 +16,7 @@ import imgEssencialPerfumariaPainel from '../assets/projetos/figma/essencial-per
 import imgCatalogoThaysa from '../assets/projetos/externos/catalogo-thaysa.webp'
 import imgCatalogoThaysaInicio from '../assets/projetos/externos/catalogo-thaysa-inicio.webp'
 import imgRhRecruiter from '../assets/projetos/externos/rhrecruiter.webp'
+import imgRhRecruiterSite from '../assets/projetos/externos/rhrecruiter-site.webp'
 
 // Desde 2026-10-08 o portfólio só tem cases de UX/UI (os de branding saíram).
 export type CategoryKey = 'ux-ui-design'
@@ -64,7 +65,7 @@ export const allProjects: Project[] = [
   { image: imgResidentEvil, title: 'Resident Evil', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'resident-evil-ui', hidden: true },
   { image: imgDrakorysArcane, title: 'Drakorys Arcane', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'drakorys-arcane-ui', hidden: true },
   { image: imgIronBank, title: 'Iron Bank', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'iron-bank-ui', hidden: true },
-  { image: imgRhRecruiter, title: 'RHRecruiter', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://rhrecruiter.com.br', hidden: true },
+  { image: imgRhRecruiter, hoverImage: imgRhRecruiterSite, title: 'RHRecruiter', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://rhrecruiter.com.br' },
 ]
 
 // Lista que o site mostra: tira os projetos escondidos. `allProjects` segue
