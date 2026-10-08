@@ -10,6 +10,7 @@ import imgGestaoEasyCar from '../assets/projetos/figma/gestao-easy-car.webp'
 import imgGestaoConecta360 from '../assets/projetos/figma/gestao-conecta-360.webp'
 import imgGestaoConecta360Detalhe from '../assets/projetos/figma/gestao-conecta-360-detalhe.webp'
 import imgJornadaJunior from '../assets/projetos/figma/jornada-junior.webp'
+import imgJornadaJuniorDS from '../assets/projetos/figma/jornada-junior-design-system.webp'
 import imgCertify from '../assets/projetos/figma/certify.webp'
 import imgLeanLearn from '../assets/projetos/figma/lean-learn.webp'
 import imgAtelieDiane from '../assets/projetos/figma/atelie-diane-almeida.webp'
@@ -64,7 +65,7 @@ export const allProjects: Project[] = [
   { image: imgGestaoConecta360, hoverImage: imgGestaoConecta360Detalhe, title: 'Gestão Conecta 360º', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'conecta-360-ux' },
   { image: imgUsfit, title: 'USFit', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'usfit-home-dieta-ux', hidden: true },
   { image: imgCertify, title: 'Certify', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'certify-ux', hidden: true },
-  { image: imgJornadaJunior, title: 'Jornada Júnior', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], detailSlug: 'jornada-junior-ux', hidden: true },
+  { image: imgJornadaJunior, hoverImage: imgJornadaJuniorDS, title: 'Jornada Júnior', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], detailSlug: 'jornada-junior-ux' },
   { image: imgLeanLearn, title: 'LeanLearn', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'lean-learn-ui', hidden: true },
   { image: imgGestaoEasyCar, title: 'Gestão Easy Car', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'gestao-easy-car-ux', hidden: true },
   { image: imgRedesignNatva, title: 'Redesign Natva', categoryKey: 'ux-ui-design', kinds: ['website', 'ecommerce'], detailSlug: 'redesign-natva-ui', hidden: true },
