@@ -2,6 +2,7 @@ import imgRedesignNatva from '../assets/projetos/figma/redesign-natva.webp'
 import imgResidentEvil from '../assets/projetos/figma/resident-evil.webp'
 import imgDrakorysArcane from '../assets/projetos/figma/drakorys-arcane.webp'
 import imgAsteraDataBank from '../assets/projetos/figma/astera-data-bank.webp'
+import imgAsteraDataBankBestiario from '../assets/projetos/figma/astera-data-bank-bestiario.webp'
 import imgIronBank from '../assets/projetos/figma/iron-bank.webp'
 import imgGestaoEasyCar from '../assets/projetos/figma/gestao-easy-car.webp'
 import imgGestaoConecta360 from '../assets/projetos/figma/gestao-conecta-360.webp'
@@ -62,7 +63,7 @@ export const allProjects: Project[] = [
   { image: imgGestaoEasyCar, title: 'Gestão Easy Car', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'gestao-easy-car-ux', hidden: true },
   { image: imgRedesignNatva, title: 'Redesign Natva', categoryKey: 'ux-ui-design', kinds: ['website', 'ecommerce'], detailSlug: 'redesign-natva-ui', hidden: true },
   { image: imgMarionIa, title: 'Marion IA', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'marion-ia-ui', hidden: true },
-  { image: imgAsteraDataBank, title: 'Astera Data Bank', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'astera-data-bank-ui', hidden: true },
+  { image: imgAsteraDataBank, hoverImage: imgAsteraDataBankBestiario, title: 'Astera Data Bank', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'astera-data-bank-ui' },
   { image: imgResidentEvil, title: 'Resident Evil', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'resident-evil-ui', hidden: true },
   { image: imgDrakorysArcane, title: 'Drakorys Arcane', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'drakorys-arcane-ui', hidden: true },
   { image: imgIronBank, title: 'Iron Bank', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'iron-bank-ui', hidden: true },
