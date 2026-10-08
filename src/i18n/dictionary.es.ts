@@ -344,6 +344,10 @@ export const es: Dictionary = {
       description: 'Catálogo de servicios mobile-first para un estudio de uñas, con agenda directa por WhatsApp e instalable en la pantalla de inicio.',
       tags: ['UX/UI Design', 'mobile'],
     },
+    'Crimson Mind Tech': {
+      description: 'Portafolio de un ingeniero de software full stack, en tema oscuro con acento rojo. Colaboré en el diseño de la interfaz.',
+      tags: ['UX/UI Design', 'portfolio'],
+    },
     'RHRecruiter': {
       description: 'Landing page de la plataforma de reclutamiento con IA, pensada para explicar el producto y convertir empresas en pruebas.',
       tags: ['UX/UI Design', 'saas'],

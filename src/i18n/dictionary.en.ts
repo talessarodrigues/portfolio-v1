@@ -344,6 +344,10 @@ export const en: Dictionary = {
       description: 'Mobile-first service catalogue for a nail studio, with booking straight through WhatsApp and installable on the home screen.',
       tags: ['UX/UI Design', 'mobile'],
     },
+    'Crimson Mind Tech': {
+      description: 'Portfolio site for a full stack software engineer, in a dark theme with a red accent. I helped with the interface design.',
+      tags: ['UX/UI Design', 'portfolio'],
+    },
     'RHRecruiter': {
       description: 'Landing page for the AI recruitment platform, built to explain the product and turn companies into trials.',
       tags: ['UX/UI Design', 'saas'],

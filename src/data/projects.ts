@@ -19,6 +19,8 @@ import imgCatalogoThaysa from '../assets/projetos/externos/catalogo-thaysa.webp'
 import imgCatalogoThaysaInicio from '../assets/projetos/externos/catalogo-thaysa-inicio.webp'
 import imgRhRecruiter from '../assets/projetos/externos/rhrecruiter.webp'
 import imgRhRecruiterSite from '../assets/projetos/externos/rhrecruiter-site.webp'
+import imgCrimson from '../assets/projetos/externos/crimson-mind-tech.webp'
+import imgCrimsonExperiencia from '../assets/projetos/externos/crimson-mind-tech-experiencia.webp'
 
 // Desde 2026-10-08 o portfólio só tem cases de UX/UI (os de branding saíram).
 export type CategoryKey = 'ux-ui-design'
@@ -68,6 +70,7 @@ export const allProjects: Project[] = [
   { image: imgDrakorysArcane, title: 'Drakorys Arcane', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'drakorys-arcane-ui', hidden: true },
   { image: imgIronBank, title: 'Iron Bank', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'iron-bank-ui', hidden: true },
   { image: imgRhRecruiter, hoverImage: imgRhRecruiterSite, title: 'RHRecruiter', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://rhrecruiter.com.br' },
+  { image: imgCrimson, hoverImage: imgCrimsonExperiencia, title: 'Crimson Mind Tech', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://felipe-s-oliver.vercel.app' },
 ]
 
 // Lista que o site mostra: tira os projetos escondidos. `allProjects` segue
