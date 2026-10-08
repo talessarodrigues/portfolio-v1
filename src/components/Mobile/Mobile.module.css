@@ -781,45 +781,6 @@
   border-bottom: calc(1 * var(--m-u)) solid var(--m-line);
 }
 
-/* ── Abas de categoria do sheet de Trabalhos ──────────────────
-   Só a ativa mostra o rótulo; as demais ficam só com o ícone, pra
-   caber na largura do celular sem rolagem horizontal. */
-.catTabs {
-  display: flex;
-  align-items: center;
-  gap: calc(6 * var(--m-u));
-  min-width: 0;
-  flex: 1;
-}
-
-.catTab {
-  display: inline-flex;
-  align-items: center;
-  gap: calc(8 * var(--m-u));
-  flex-shrink: 0;
-  height: calc(40 * var(--m-u));
-  padding: 0 calc(12 * var(--m-u));
-  border: calc(1 * var(--m-u)) solid transparent;
-  border-radius: calc(999 * var(--m-u));
-  background: none;
-  color: var(--m-muted);
-  font-family: inherit;
-  font-size: calc(14 * var(--m-u));
-  font-weight: 500;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-}
-
-/* Mesma pílula da grade do desktop: gradiente e texto branco. */
-.catTabActive {
-  color: #ffffff;
-  background: var(--gradient-cta);
-  border-color: transparent;
-  font-weight: 600;
-  padding: 0 calc(16 * var(--m-u));
-}
-
 .worksSheetList {
   display: flex;
   flex-direction: column;

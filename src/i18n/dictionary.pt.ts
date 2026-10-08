@@ -339,7 +339,6 @@ export const pt: Dictionary = {
 
   categories: {
     'ux-ui-design': 'UX/UI Design',
-    branding: 'Branding',
   },
 
   projects: {
@@ -374,30 +373,6 @@ export const pt: Dictionary = {
     'Orchard Treasure': {
       description: 'Redesign de e-commerce premium criado para destacar produtos naturais, facilitar a descoberta e transmitir qualidade, cuidado e confiança.',
       tags: ['UX/UI Design', 'gaming'],
-    },
-    'Conecta 360º': {
-      description: 'Identidade visual criada para uma plataforma de gestão de riscos psicossociais, unindo tecnologia, cuidado e conexão humana.',
-      tags: ['branding', 'saúde corporativa'],
-    },
-    'Easy Car': {
-      description: 'Sistema de marca desenvolvido para uma solução de gestão de veículos, transmitindo movimento, controle e confiança.',
-      tags: ['branding', 'automotiva'],
-    },
-    'Vigimol Vetores': {
-      description: 'Identidade visual criada para um banco genético de vigilância de vetores, conectando ciência, pesquisa e biodiversidade.',
-      tags: ['branding', 'identidade científica'],
-    },
-    'Talessa Rodrigues': {
-      description: 'Construção da minha identidade autoral, combinando estratégia, criatividade e uma linguagem visual moderna e reconhecível.',
-      tags: ['branding', 'design ux/ui'],
-    },
-    'CatchUp Tech': {
-      description: 'Identidade tecnológica desenvolvida para comunicar inovação, crescimento e soluções digitais de forma forte e consistente.',
-      tags: ['branding', 'tecnologia'],
-    },
-    'Jornadas Corporativas': {
-      description: 'Identidade elegante e acolhedora para experiências corporativas que conectam pessoas, propósito e transformação.',
-      tags: ['branding', 'eventos corporativos'],
     },
     'Gestão Easy Car': {
       description: 'Plataforma interna para gestão de concessionárias, centralizando veículos, vendas, custos, simulações e operações em um único ambiente.',
@@ -1094,92 +1069,5 @@ export const pt: Dictionary = {
       'Resultado',
       ['O resultado é uma interface de e-commerce mais clara, premium e convidativa, com boa hierarquia visual e uma jornada de compra mais fluida.', 'O redesign equilibra conteúdo comercial e institucional, destacando os produtos enquanto reforça os valores de qualidade, naturalidade, segurança e cuidado da marca.'],
     ],
-  },
-
-  easyCar: {
-    headerTitle: '',
-    headerTagline: '',
-    metaCliente: 'Cliente',
-    metaServico: 'Serviço',
-    metaAno: 'Ano',
-    metaClienteValue: 'Easy Car',
-    metaServicoValue: 'Branding',
-    metaAnoValue: '2026',
-    backBtn: 'Voltar',
-    overviewLabel: 'Overview:',
-    blocks: [
-      'Visão geral',
-      ['A Easy Car precisava de uma identidade visual que transmitisse tecnologia, movimento e confiança, sem perder a proximidade com as pessoas. O projeto transformou esses valores em um sistema de marca completo, preparado para aplicações digitais, institucionais e para a rotina de gestão de veículos.'],
-    ],
-  },
-
-  conecta360Branding: {
-    headerTitle: '',
-    headerTagline: '',
-    metaCliente: 'Cliente',
-    metaServico: 'Serviço',
-    metaAno: 'Ano',
-    metaClienteValue: 'Conecta 360º',
-    metaServicoValue: 'Branding',
-    metaAnoValue: '2026',
-    backBtn: 'Voltar',
-    overviewLabel: 'Overview:',
-    blocks: [],
-  },
-
-  jornadasCorporativas: {
-    headerTitle: '',
-    headerTagline: '',
-    metaCliente: 'Cliente',
-    metaServico: 'Serviço',
-    metaAno: 'Ano',
-    metaClienteValue: 'Jussara Ribeiro',
-    metaServicoValue: 'Branding',
-    metaAnoValue: '2024',
-    backBtn: 'Voltar',
-    overviewLabel: 'Overview:',
-    blocks: [],
-  },
-
-  talessaRodrigues: {
-    headerTitle: '',
-    headerTagline: '',
-    metaCliente: 'Cliente',
-    metaServico: 'Serviço',
-    metaAno: 'Ano',
-    metaClienteValue: 'Talessa Rodrigues',
-    metaServicoValue: 'Branding',
-    metaAnoValue: '2022',
-    backBtn: 'Voltar',
-    overviewLabel: 'Overview:',
-    blocks: [],
-  },
-
-  catchupTech: {
-    headerTitle: '',
-    headerTagline: '',
-    metaCliente: 'Cliente',
-    metaServico: 'Serviço',
-    metaAno: 'Ano',
-    metaClienteValue: 'CatchUp Tech',
-    metaServicoValue: 'Branding',
-    metaAnoValue: '2025',
-    backBtn: 'Voltar',
-    overviewLabel: 'Overview:',
-    blocks: [],
-  },
-
-  vigimolVetores: {
-    headerTitle: '',
-    headerTagline: '',
-    metaCliente: 'Cliente',
-    metaServico: 'Serviço',
-    metaAno: 'Ano',
-    metaClienteValue: 'Vigimol Vetores',
-    metaServicoValue: 'Branding',
-    metaAnoValue: '2026',
-    backBtn: 'Voltar',
-    overviewLabel: 'Overview:',
-    blocks: [],
   },
 }

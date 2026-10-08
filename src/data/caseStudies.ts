@@ -19,12 +19,6 @@ import { drakorysArcaneHeaderImages, drakorysArcaneGallery, drakorysArcaneBlockS
 import { asteraDataBankHeaderImages, asteraDataBankGallery, asteraDataBankBlockShapes } from './asteraDataBankStructure'
 import { ironBankHeaderImages, ironBankGallery, ironBankBlockShapes } from './ironBankStructure'
 import { orchardTreasureHeaderImages, orchardTreasureGallery, orchardTreasureBlockShapes } from './orchardTreasureStructure'
-import { conecta360BrandingHeaderImages, conecta360BrandingGallery, conecta360BrandingBlockShapes } from './conecta360BrandingStructure'
-import { easyCarHeaderImages, easyCarGallery, easyCarBlockShapes } from './easyCarStructure'
-import { jornadasCorporativasHeaderImages, jornadasCorporativasGallery, jornadasCorporativasBlockShapes } from './jornadasCorporativasStructure'
-import { talessaRodriguesHeaderImages, talessaRodriguesGallery, talessaRodriguesBlockShapes } from './talessaRodriguesStructure'
-import { catchupTechHeaderImages, catchupTechGallery, catchupTechBlockShapes } from './catchupTechStructure'
-import { vigimolVetoresHeaderImages, vigimolVetoresGallery, vigimolVetoresBlockShapes } from './vigimolVetoresStructure'
 
 // Registro de detalhamentos disponíveis — cada entrada casa a estrutura
 // (imagens + tipo do bloco, mesma para todo idioma) com a chave do
@@ -134,42 +128,6 @@ export const detailRegistry = {
     gallery: orchardTreasureGallery,
     blockShapes: orchardTreasureBlockShapes,
     dictKey: 'orchardTreasure' as const,
-  },
-  'conecta-360-branding': {
-    headerImages: conecta360BrandingHeaderImages,
-    gallery: conecta360BrandingGallery,
-    blockShapes: conecta360BrandingBlockShapes,
-    dictKey: 'conecta360Branding' as const,
-  },
-  'easy-car-branding': {
-    headerImages: easyCarHeaderImages,
-    gallery: easyCarGallery,
-    blockShapes: easyCarBlockShapes,
-    dictKey: 'easyCar' as const,
-  },
-  'jornadas-corporativas-branding': {
-    headerImages: jornadasCorporativasHeaderImages,
-    gallery: jornadasCorporativasGallery,
-    blockShapes: jornadasCorporativasBlockShapes,
-    dictKey: 'jornadasCorporativas' as const,
-  },
-  'talessa-rodrigues-branding': {
-    headerImages: talessaRodriguesHeaderImages,
-    gallery: talessaRodriguesGallery,
-    blockShapes: talessaRodriguesBlockShapes,
-    dictKey: 'talessaRodrigues' as const,
-  },
-  'catchup-tech-branding': {
-    headerImages: catchupTechHeaderImages,
-    gallery: catchupTechGallery,
-    blockShapes: catchupTechBlockShapes,
-    dictKey: 'catchupTech' as const,
-  },
-  'vigimol-vetores-branding': {
-    headerImages: vigimolVetoresHeaderImages,
-    gallery: vigimolVetoresGallery,
-    blockShapes: vigimolVetoresBlockShapes,
-    dictKey: 'vigimolVetores' as const,
   },
 }
 

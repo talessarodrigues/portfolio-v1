@@ -16,7 +16,6 @@ import imgLogoOnDark from '../../assets/header/logo.svg'
 import imgLogoOnLight from '../../assets/header/logo-light.svg'
 import { allProjects } from '../../data/projects'
 import type { Project } from '../../data/projects'
-import type { ProjectFilter } from '../ProjectsHero/ProjectsHero'
 import { LanguageMenu } from '../LanguageMenu/LanguageMenu'
 import { useTranslation } from '../../i18n/LanguageContext'
 import { MobileAbout } from './MobileAbout'
@@ -51,7 +50,6 @@ export function MobileApp() {
   const imgCover = isDark ? imgCoverDark : imgCoverLight
   const imgLogo = isDark ? imgLogoOnDark : imgLogoOnLight
   const [tab, setTab] = useState<MobileTab>('inicio')
-  const [filter, setFilter] = useState<ProjectFilter>('all')
   const [contactOpen, setContactOpen] = useState(false)
   const [detailSlug, setDetailSlug] = useState<string | null>(null)
   const [worksOpen, setWorksOpen] = useState(false)
@@ -220,8 +218,6 @@ export function MobileApp() {
 
       {worksOpen && (
         <MobileWorksSheet
-          filter={filter}
-          onFilterChange={setFilter}
           onOpenProject={openProject}
           onClose={() => setWorksOpen(false)}
         />

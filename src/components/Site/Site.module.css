@@ -189,30 +189,6 @@
   scroll-margin-top: 88px;
 }
 
-.filters {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 24px;
-}
-
-.filter {
-  height: 34px;
-  padding: 0 14px;
-  border-radius: 999px;
-  border: 1px solid var(--site-line);
-  background: none;
-  font: 500 14px/1 var(--font-body);
-  color: var(--site-muted);
-  cursor: pointer;
-  transition: color 0.2s, background 0.2s, border-color 0.2s;
-}
-.filter:hover { color: var(--site-ink); background: var(--site-chip); }
-.filter[aria-selected='true'] {
-  color: var(--site-accent);
-  border-color: color-mix(in srgb, var(--site-accent) 35%, transparent);
-  background: color-mix(in srgb, var(--site-accent) 8%, transparent);
-}
-
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

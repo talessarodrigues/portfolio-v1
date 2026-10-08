@@ -227,7 +227,6 @@ export interface Dictionary {
   }
   categories: {
     'ux-ui-design': string
-    branding: string
   }
   projects: Record<string, ProjectText>
   conecta360: CaseStudyText
@@ -247,12 +246,6 @@ export interface Dictionary {
   asteraDataBank: CaseStudyText
   ironBank: CaseStudyText
   orchardTreasure: CaseStudyText
-  conecta360Branding: CaseStudyText
-  easyCar: CaseStudyText
-  jornadasCorporativas: CaseStudyText
-  talessaRodrigues: CaseStudyText
-  catchupTech: CaseStudyText
-  vigimolVetores: CaseStudyText
 }
 
 // Formato compartilhado por todo detalhamento de projeto (case study)

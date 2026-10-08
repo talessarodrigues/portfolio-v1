@@ -339,7 +339,6 @@ export const en: Dictionary = {
 
   categories: {
     'ux-ui-design': 'UX/UI Design',
-    branding: 'Branding',
   },
 
   projects: {
@@ -374,30 +373,6 @@ export const en: Dictionary = {
     'Orchard Treasure': {
       description: 'A premium e-commerce redesign created to highlight natural products, make discovery easier, and convey quality, care, and trust.',
       tags: ['UX/UI Design', 'gaming'],
-    },
-    'Conecta 360º': {
-      description: 'A visual identity created for a psychosocial risk management platform, bringing together technology, care, and human connection.',
-      tags: ['branding', 'corporate health'],
-    },
-    'Easy Car': {
-      description: 'A brand system developed for a vehicle management solution, conveying motion, control, and trust.',
-      tags: ['branding', 'automotive'],
-    },
-    'Vigimol Vetores': {
-      description: 'A visual identity created for a genetic bank for vector surveillance, connecting science, research, and biodiversity.',
-      tags: ['branding', 'scientific identity'],
-    },
-    'Talessa Rodrigues': {
-      description: 'Building my own personal brand, combining strategy, creativity, and a modern, recognizable visual language.',
-      tags: ['branding', 'ux/ui design'],
-    },
-    'CatchUp Tech': {
-      description: 'A tech identity developed to communicate innovation, growth, and digital solutions in a strong, consistent way.',
-      tags: ['branding', 'technology'],
-    },
-    'Jornadas Corporativas': {
-      description: 'An elegant, welcoming identity for corporate experiences that connect people, purpose, and transformation.',
-      tags: ['branding', 'corporate events'],
     },
     'Gestão Easy Car': {
       description: 'An internal platform for dealership management, bringing vehicles, sales, costs, simulations, and operations together in a single environment.',
@@ -1140,92 +1115,5 @@ export const en: Dictionary = {
       null,
       ['Design created in Figma, with assets organized for development.'],
     ],
-  },
-
-  easyCar: {
-    headerTitle: '',
-    headerTagline: '',
-    metaCliente: 'Client',
-    metaServico: 'Service',
-    metaAno: 'Year',
-    metaClienteValue: 'Easy Car',
-    metaServicoValue: 'Branding',
-    metaAnoValue: '2026',
-    backBtn: 'Back',
-    overviewLabel: 'Overview:',
-    blocks: [
-      'Overview',
-      ['Easy Car needed a visual identity that conveyed technology, movement, and trust, without losing closeness with people. The project turned these values into a complete brand system, ready for digital and institutional applications and for the day-to-day routine of vehicle fleet management.'],
-    ],
-  },
-
-  conecta360Branding: {
-    headerTitle: '',
-    headerTagline: '',
-    metaCliente: 'Client',
-    metaServico: 'Service',
-    metaAno: 'Year',
-    metaClienteValue: 'Conecta 360º',
-    metaServicoValue: 'Branding',
-    metaAnoValue: '2026',
-    backBtn: 'Back',
-    overviewLabel: 'Overview:',
-    blocks: [],
-  },
-
-  jornadasCorporativas: {
-    headerTitle: '',
-    headerTagline: '',
-    metaCliente: 'Client',
-    metaServico: 'Service',
-    metaAno: 'Year',
-    metaClienteValue: 'Jussara Ribeiro',
-    metaServicoValue: 'Branding',
-    metaAnoValue: '2024',
-    backBtn: 'Back',
-    overviewLabel: 'Overview:',
-    blocks: [],
-  },
-
-  talessaRodrigues: {
-    headerTitle: '',
-    headerTagline: '',
-    metaCliente: 'Client',
-    metaServico: 'Service',
-    metaAno: 'Year',
-    metaClienteValue: 'Talessa Rodrigues',
-    metaServicoValue: 'Branding',
-    metaAnoValue: '2022',
-    backBtn: 'Back',
-    overviewLabel: 'Overview:',
-    blocks: [],
-  },
-
-  catchupTech: {
-    headerTitle: '',
-    headerTagline: '',
-    metaCliente: 'Client',
-    metaServico: 'Service',
-    metaAno: 'Year',
-    metaClienteValue: 'CatchUp Tech',
-    metaServicoValue: 'Branding',
-    metaAnoValue: '2025',
-    backBtn: 'Back',
-    overviewLabel: 'Overview:',
-    blocks: [],
-  },
-
-  vigimolVetores: {
-    headerTitle: '',
-    headerTagline: '',
-    metaCliente: 'Client',
-    metaServico: 'Service',
-    metaAno: 'Year',
-    metaClienteValue: 'Vigimol Vetores',
-    metaServicoValue: 'Branding',
-    metaAnoValue: '2026',
-    backBtn: 'Back',
-    overviewLabel: 'Overview:',
-    blocks: [],
   },
 }
