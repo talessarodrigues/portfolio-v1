@@ -184,64 +184,170 @@
 /* ── Home: grade de cases ────────────────────────────────── */
 
 .work {
+  --bleed: min(100vw - var(--sbw, 0px) - 40px, 1880px);
   margin-top: 72px;
+  margin-inline: calc((100% - var(--bleed)) / 2);
   /* A cápsula fixa cobre o topo quando o link "Projetos" rola até aqui. */
   scroll-margin-top: 88px;
 }
 
+/* Filtros + busca da grade: pílulas no mesmo desenho da cápsula do menu;
+   a ativa ganha o lilás do site. Em telas mais estreitas a busca desce
+   para a linha de baixo e ocupa a largura toda. */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+  margin-bottom: 28px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter {
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--site-line);
+  background: var(--site-chip);
+  font: 500 14px/1 var(--font-body);
+  color: var(--site-muted);
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+.filter:hover { color: var(--site-ink); background: var(--site-chip-hover); }
+.filter[aria-pressed='true'] {
+  color: var(--site-accent);
+  border-color: color-mix(in srgb, var(--site-accent) 45%, transparent);
+  background: color-mix(in srgb, var(--site-accent) 14%, transparent);
+  box-shadow: 0 0 18px -6px color-mix(in srgb, var(--site-accent) 60%, transparent);
+}
+.filter:focus-visible { outline: 2px solid var(--site-accent); outline-offset: 2px; }
+
+.search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 1 360px;
+  height: 44px;
+  padding: 0 14px 0 16px;
+  border-radius: 999px;
+  border: 1px solid var(--site-line);
+  background: var(--site-chip);
+  color: var(--site-muted);
+  transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.search:focus-within {
+  border-color: color-mix(in srgb, var(--site-accent) 55%, transparent);
+  background: var(--site-chip-hover);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--site-accent) 14%, transparent);
+}
+.searchIcon { flex-shrink: 0; }
+.search input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  background: none;
+  font: 400 15px/1 var(--font-body);
+  color: var(--site-ink);
+}
+.search input::placeholder { color: var(--site-muted); }
+/* o X nativo do type=search some; usamos o nosso, no desenho do site */
+.search input::-webkit-search-cancel-button { display: none; }
+.searchClear {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--site-chip-hover);
+  color: var(--site-ink);
+  cursor: pointer;
+}
+
+.empty {
+  padding: 64px 0;
+  text-align: center;
+  font-size: 16px;
+  color: var(--site-muted);
+}
+
+@media (max-width: 1180px) {
+  .search { flex: 1 1 100%; }
+}
+
+/* Grade de projetos no formato da referência: duas colunas de imagem de
+   ponta a ponta, espaço pequeno entre elas e o nome só aparece por cima
+   da imagem ao passar o mouse. */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 56px 36px;
+  gap: 8px;
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  color: inherit;
-  text-decoration: none;
-}
-
-/* Moldura degradê com o print "flutuando" dentro, como uma tela. */
-.frame {
   position: relative;
   display: block;
-  aspect-ratio: 4 / 3;
-  padding: 7% 8%;
-  border-radius: 24px;
+  border-radius: 14px;
   overflow: hidden;
+  background: var(--site-chip);
+  color: inherit;
+  text-decoration: none;
   isolation: isolate;
 }
-/* Véu claro por cima do degradê, mais forte no alto — dá o efeito de
-   vidro fosco das molduras da referência sem precisar de imagem. */
-.frame::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background:
-    radial-gradient(120% 80% at 20% 0%, var(--frame-glow), transparent 60%),
-    linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.04));
-}
+.card:focus-visible { outline: 2px solid var(--site-accent); outline-offset: 3px; }
 
-.shot {
+.media {
   display: block;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  overflow: hidden;
-  background: var(--surface);
-  box-shadow: var(--site-shot-shadow), 0 0 0 1px rgba(255, 255, 255, 0.35);
-  transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+  aspect-ratio: 1.28;
 }
-.shot img {
+.media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top center;
+  object-position: center;
+  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.card:hover .shot { transform: translateY(-6px) scale(1.015); }
+.card:hover .media img { transform: scale(1.03); }
+
+/* Nome e tipo/ano por cima da imagem, embaixo, ao passar o mouse. */
+.overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  padding: 56px 22px 18px;
+  background: linear-gradient(to top, rgba(7, 7, 12, 0.78), rgba(7, 7, 12, 0));
+  font: 600 12px/1.3 var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s, transform 0.35s;
+}
+.card:hover .overlay,
+.card:focus-visible .overlay { opacity: 1; transform: none; }
+.captionTitle { min-width: 0; }
+.overlayMeta {
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.72);
+}
+/* Telas de toque (sem hover) mostram o nome sempre. */
+@media (hover: none) {
+  .overlay { opacity: 1; transform: none; }
+}
 
 .badge {
   position: absolute;
@@ -257,25 +363,6 @@
   backdrop-filter: blur(10px);
   font: 500 12px/1 var(--font-body);
   color: var(--site-ink);
-}
-
-.caption {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 16px;
-  font-size: 15px;
-}
-.captionTitle {
-  font-weight: 500;
-  color: var(--site-ink);
-  transition: color 0.2s;
-}
-.card:hover .captionTitle { color: var(--site-accent); }
-.captionMeta {
-  flex-shrink: 0;
-  font-size: 14px;
-  color: var(--site-muted);
 }
 
 /* ── Sobre ───────────────────────────────────────────────── */
@@ -391,6 +478,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .shot,
-  .card:hover .shot { transition: none; transform: none; }
+  .media img,
+  .card:hover .media img { transition: none; transform: none; }
 }

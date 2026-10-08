@@ -21,12 +21,18 @@ import imgRhRecruiter from '../assets/projetos/externos/rhrecruiter.webp'
 // Desde 2026-10-08 o portfólio só tem cases de UX/UI (os de branding saíram).
 export type CategoryKey = 'ux-ui-design'
 
+// Tipo de produto, para os filtros da home. Um projeto pode ter vários
+// (a Essencial é site, painel e e-commerce ao mesmo tempo).
+export type ProjectKind = 'website' | 'app' | 'dashboard' | 'ecommerce'
+export const PROJECT_KINDS: ProjectKind[] = ['website', 'app', 'dashboard', 'ecommerce']
+
 // Título fica igual nos 3 idiomas (nome do projeto) — é a chave usada
 // pra buscar description/tags traduzidos em t.projects[title].
 export interface Project {
   image: string
   title: string
   categoryKey: CategoryKey
+  kinds: ProjectKind[]
   detailSlug?: string
   /**
    * Projetos que estão no ar: o card leva direto pro site em vez de
@@ -40,23 +46,23 @@ export interface Project {
 // Os dois primeiros são os projetos mais recentes e completos (produto
 // desenhado e construído de ponta a ponta), em destaque de propósito.
 export const allProjects: Project[] = [
-  { image: imgEssencialPerfumaria, title: 'Essencial Perfumaria', categoryKey: 'ux-ui-design', detailSlug: 'essencial-perfumaria' },
-  { image: imgAtelieDiane, title: 'Ateliê Diane Almeida', categoryKey: 'ux-ui-design', detailSlug: 'atelie-diane-almeida-ui' },
-  { image: imgGestaoConecta360, title: 'Gestão Conecta 360º', categoryKey: 'ux-ui-design', detailSlug: 'conecta-360-ux' },
-  { image: imgUsfit, title: 'USFit', categoryKey: 'ux-ui-design', detailSlug: 'usfit-home-dieta-ux' },
-  { image: imgCertify, title: 'Certify', categoryKey: 'ux-ui-design', detailSlug: 'certify-ux' },
-  { image: imgJornadaJunior, title: 'Jornada Júnior', categoryKey: 'ux-ui-design', detailSlug: 'jornada-junior-ux' },
-  { image: imgLeanLearn, title: 'LeanLearn', categoryKey: 'ux-ui-design', detailSlug: 'lean-learn-ui' },
-  { image: imgGestaoEasyCar, title: 'Gestão Easy Car', categoryKey: 'ux-ui-design', detailSlug: 'gestao-easy-car-ux' },
-  { image: imgMidnightHeist, title: 'Midnight Heist', categoryKey: 'ux-ui-design', detailSlug: 'midnight-heist-ui' },
-  { image: imgSocialMatch, title: 'Social Match', categoryKey: 'ux-ui-design', detailSlug: 'social-match-ux' },
-  { image: imgRedesignNatva, title: 'Redesign Natva', categoryKey: 'ux-ui-design', detailSlug: 'redesign-natva-ui' },
-  { image: imgMarionIa, title: 'Marion IA', categoryKey: 'ux-ui-design', detailSlug: 'marion-ia-ui' },
-  { image: imgAsteraDataBank, title: 'Astera Data Bank', categoryKey: 'ux-ui-design', detailSlug: 'astera-data-bank-ui' },
-  { image: imgResidentEvil, title: 'Resident Evil', categoryKey: 'ux-ui-design', detailSlug: 'resident-evil-ui' },
-  { image: imgDrakorysArcane, title: 'Drakorys Arcane', categoryKey: 'ux-ui-design', detailSlug: 'drakorys-arcane-ui' },
-  { image: imgIronBank, title: 'Iron Bank', categoryKey: 'ux-ui-design', detailSlug: 'iron-bank-ui' },
-  { image: imgOrchardTreasure, title: 'Orchard Treasure', categoryKey: 'ux-ui-design', detailSlug: 'orchard-treasure-ui' },
-  { image: imgRhRecruiter, title: 'RHRecruiter', categoryKey: 'ux-ui-design', externalUrl: 'https://rhrecruiter.com.br' },
-  { image: imgCatalogoThaysa, title: 'Catálogo Thaysa Ribeiro', categoryKey: 'ux-ui-design', externalUrl: 'https://catalogo-thaysa.vercel.app', mobileOnly: true },
+  { image: imgEssencialPerfumaria, title: 'Essencial Perfumaria', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard', 'ecommerce'], detailSlug: 'essencial-perfumaria' },
+  { image: imgAtelieDiane, title: 'Ateliê Diane Almeida', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], detailSlug: 'atelie-diane-almeida-ui' },
+  { image: imgGestaoConecta360, title: 'Gestão Conecta 360º', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'conecta-360-ux' },
+  { image: imgUsfit, title: 'USFit', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'usfit-home-dieta-ux' },
+  { image: imgCertify, title: 'Certify', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'certify-ux' },
+  { image: imgJornadaJunior, title: 'Jornada Júnior', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], detailSlug: 'jornada-junior-ux' },
+  { image: imgLeanLearn, title: 'LeanLearn', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'lean-learn-ui' },
+  { image: imgGestaoEasyCar, title: 'Gestão Easy Car', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'gestao-easy-car-ux' },
+  { image: imgMidnightHeist, title: 'Midnight Heist', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'midnight-heist-ui' },
+  { image: imgSocialMatch, title: 'Social Match', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'social-match-ux' },
+  { image: imgRedesignNatva, title: 'Redesign Natva', categoryKey: 'ux-ui-design', kinds: ['website', 'ecommerce'], detailSlug: 'redesign-natva-ui' },
+  { image: imgMarionIa, title: 'Marion IA', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'marion-ia-ui' },
+  { image: imgAsteraDataBank, title: 'Astera Data Bank', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'astera-data-bank-ui' },
+  { image: imgResidentEvil, title: 'Resident Evil', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'resident-evil-ui' },
+  { image: imgDrakorysArcane, title: 'Drakorys Arcane', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'drakorys-arcane-ui' },
+  { image: imgIronBank, title: 'Iron Bank', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'iron-bank-ui' },
+  { image: imgOrchardTreasure, title: 'Orchard Treasure', categoryKey: 'ux-ui-design', kinds: ['website', 'ecommerce'], detailSlug: 'orchard-treasure-ui' },
+  { image: imgRhRecruiter, title: 'RHRecruiter', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://rhrecruiter.com.br' },
+  { image: imgCatalogoThaysa, title: 'Catálogo Thaysa Ribeiro', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://catalogo-thaysa.vercel.app', mobileOnly: true },
 ]

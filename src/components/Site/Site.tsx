@@ -24,6 +24,19 @@ export function Site() {
   // Rolagem com inércia (Lenis) enquanto o site desktop está montado.
   useEffect(() => startSmoothScroll(), [])
 
+  // Largura da barra de rolagem (--sbw): a grade de projetos ocupa a tela
+  // toda menos uma margem, e o 100vw do CSS conta a barra no Windows.
+  useEffect(() => {
+    const html = document.documentElement
+    const update = () => html.style.setProperty('--sbw', `${window.innerWidth - html.clientWidth}px`)
+    update()
+    window.addEventListener('resize', update)
+    return () => {
+      window.removeEventListener('resize', update)
+      html.style.removeProperty('--sbw')
+    }
+  }, [])
+
   // Página nova montada: agora dá pra ir até a âncora, voltar ao topo ou
   // devolver a posição de antes (ver applyPendingScroll).
   useLayoutEffect(() => {

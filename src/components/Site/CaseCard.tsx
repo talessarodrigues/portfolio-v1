@@ -4,7 +4,7 @@ import styles from './Site.module.css'
 import type { Project } from '../../data/projects'
 import { useTranslation } from '../../i18n/LanguageContext'
 import { SiteLink } from './SiteLink'
-import { caseHref, projectFrame, projectYear } from './projectInfo'
+import { caseHref, projectYear } from './projectInfo'
 
 interface CaseCardProps {
   project: Project
@@ -12,12 +12,13 @@ interface CaseCardProps {
   eager?: boolean
 }
 
-// Card da grade: o print do projeto dentro de uma moldura degradê, e
-// embaixo o nome à esquerda e "categoria • ano" à direita.
+// Card da grade no formato da referência: a imagem do projeto de ponta a
+// ponta e, ao passar o mouse, o nome à esquerda e "(tipos · ano)" à
+// direita, por cima da imagem.
 export function CaseCard({ project, eager = false }: CaseCardProps) {
   const { t } = useTranslation()
   const year = projectYear(project, t)
-  const meta = [t.categories[project.categoryKey], year].filter(Boolean).join(' • ')
+  const meta = [...project.kinds.map(k => t.site.filtros[k]), year].filter(Boolean).join(' · ')
   const href = caseHref(project)
   const badge = project.externalUrl
     ? (project.mobileOnly ? t.projectsHero.somenteMobile : t.projectsHero.verSite)
@@ -25,20 +26,18 @@ export function CaseCard({ project, eager = false }: CaseCardProps) {
 
   const content = (
     <>
-      <span className={styles.frame} style={{ background: projectFrame(project) }}>
-        <span className={styles.shot}>
-          <img src={project.image} alt={project.title} loading={eager ? 'eager' : 'lazy'} />
-        </span>
-        {badge && (
-          <span className={styles.badge}>
-            {badge}
-            <HugeiconsIcon icon={ArrowUpRight01FreeIcons} size={14} strokeWidth={2} />
-          </span>
-        )}
+      <span className={styles.media}>
+        <img src={project.image} alt={project.title} loading={eager ? 'eager' : 'lazy'} />
       </span>
-      <span className={styles.caption}>
+      {badge && (
+        <span className={styles.badge}>
+          {badge}
+          <HugeiconsIcon icon={ArrowUpRight01FreeIcons} size={14} strokeWidth={2} />
+        </span>
+      )}
+      <span className={styles.overlay}>
         <span className={styles.captionTitle}>{project.title}</span>
-        <span className={styles.captionMeta}>{meta}</span>
+        <span className={styles.overlayMeta}>({meta})</span>
       </span>
     </>
   )

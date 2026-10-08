@@ -196,6 +196,10 @@ export interface Dictionary {
     /** Rótulo do cursor sobre um card de case / de site publicado. */
     cursorVer: string
     cursorSite: string
+    /** Filtros da grade de projetos (home). */
+    filtros: { all: string; website: string; app: string; dashboard: string; ecommerce: string }
+    buscarProjeto: string
+    nenhumProjeto: string
     /** SEO: rótulo do case no título da aba/busca. {categoria} vira a categoria. */
     seoCase: string
     /** SEO: descrição da página /sobre. */
