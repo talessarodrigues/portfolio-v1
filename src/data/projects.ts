@@ -1,5 +1,6 @@
 import imgRedesignNatva from '../assets/projetos/figma/redesign-natva.webp'
 import imgResidentEvil from '../assets/projetos/figma/resident-evil.webp'
+import imgResidentEvilPersonagens from '../assets/projetos/figma/resident-evil-personagens.webp'
 import imgDrakorysArcane from '../assets/projetos/figma/drakorys-arcane.webp'
 import imgDrakorysArcanePersonagens from '../assets/projetos/figma/drakorys-arcane-personagens.webp'
 import imgAsteraDataBank from '../assets/projetos/figma/astera-data-bank.webp'
@@ -69,7 +70,7 @@ export const allProjects: Project[] = [
   { image: imgRedesignNatva, title: 'Redesign Natva', categoryKey: 'ux-ui-design', kinds: ['website', 'ecommerce'], detailSlug: 'redesign-natva-ui', hidden: true },
   { image: imgMarionIa, title: 'Marion IA', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'marion-ia-ui', hidden: true },
   { image: imgAsteraDataBank, hoverImage: imgAsteraDataBankBestiario, title: 'Astera Data Bank', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'astera-data-bank-ui' },
-  { image: imgResidentEvil, title: 'Resident Evil', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'resident-evil-ui', hidden: true },
+  { image: imgResidentEvil, hoverImage: imgResidentEvilPersonagens, title: 'Resident Evil', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'resident-evil-ui' },
   { image: imgDrakorysArcane, hoverImage: imgDrakorysArcanePersonagens, title: 'Drakorys Arcane', categoryKey: 'ux-ui-design', kinds: ['website'] },
   { image: imgIronBank, title: 'Iron Bank', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'iron-bank-ui', hidden: true },
   { image: imgRhRecruiter, hoverImage: imgRhRecruiterSite, title: 'RHRecruiter', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://rhrecruiter.com.br' },
