@@ -5,6 +5,11 @@
 .site {
   --site-width: 1152px;
   --site-gutter: 48px;
+  /* Largura da home: a tela toda menos a barra de rolagem (--sbw, medida
+     pelo Site) e uma margem que cresce com a tela, com teto em 1880px para
+     não esticar demais em monitores muito largos. */
+  --gutter: clamp(20px, 2.6vw, 48px);
+  --site-wide: min(100vw - var(--sbw, 0px) - var(--gutter) * 2, 1880px);
   position: relative;
   min-height: 100vh;
   background: var(--bg-light);
@@ -32,7 +37,7 @@
 
 .main {
   position: relative;
-  width: min(var(--site-width), 100% - var(--site-gutter) * 2);
+  width: var(--site-wide);
   margin: 0 auto;
   padding-top: 112px;
 }
@@ -184,9 +189,7 @@
 /* ── Home: grade de cases ────────────────────────────────── */
 
 .work {
-  --bleed: min(100vw - var(--sbw, 0px) - 40px, 1880px);
   margin-top: 72px;
-  margin-inline: calc((100% - var(--bleed)) / 2);
   /* A cápsula fixa cobre o topo quando o link "Projetos" rola até aqui. */
   scroll-margin-top: 88px;
 }
@@ -370,6 +373,8 @@
 /* As seções do Sobre foram desenhadas pro modal, com o próprio respiro
    lateral. Aqui elas só ganham o espaço entre uma e outra. */
 .aboutStack {
+  width: min(var(--site-width), 100%);
+  margin-inline: auto;
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -382,7 +387,7 @@
 
 .footer {
   position: relative;
-  width: min(var(--site-width), 100% - var(--site-gutter) * 2);
+  width: var(--site-wide);
   margin: 120px auto 0;
   padding: 56px 0 32px;
   border-top: 1px solid var(--site-line);
