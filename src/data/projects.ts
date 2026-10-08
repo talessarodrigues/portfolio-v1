@@ -50,7 +50,7 @@ export interface Project {
 // desenhado e construído de ponta a ponta), em destaque de propósito.
 export const allProjects: Project[] = [
   { image: imgEssencialPerfumaria, hoverImage: imgEssencialPerfumariaPainel, title: 'Essencial Perfumaria', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard', 'ecommerce'], externalUrl: 'https://essencial-perfumaria.vercel.app' },
-  { image: imgCatalogoThaysa, hoverImage: imgCatalogoThaysaInicio, title: 'Catálogo Thaysa Ribeiro', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://catalogo-thaysa.vercel.app', mobileOnly: true },
+  { image: imgCatalogoThaysa, hoverImage: imgCatalogoThaysaInicio, title: 'Catálogo Thaysa Ribeiro', categoryKey: 'ux-ui-design', kinds: ['app'], externalUrl: 'https://catalogo-thaysa.vercel.app', mobileOnly: true },
   { image: imgAtelieDiane, title: 'Ateliê Diane Almeida', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], detailSlug: 'atelie-diane-almeida-ui', hidden: true },
   { image: imgGestaoConecta360, title: 'Gestão Conecta 360º', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'conecta-360-ux', hidden: true },
   { image: imgUsfit, title: 'USFit', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'usfit-home-dieta-ux', hidden: true },
