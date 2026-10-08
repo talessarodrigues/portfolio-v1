@@ -9,6 +9,8 @@ export interface Job {
   meta?: string
   paragraphs: string[]
   bullets?: string[]
+  /** Linha de competências (como no LinkedIn). */
+  skills?: string
 }
 
 // Certification e Workshop têm o mesmo formato no Figma (logo + título +
@@ -134,6 +136,7 @@ export interface Dictionary {
     blockFormacao: string
     blockWorkshops: string
     jobs: Job[]
+    skillsLabel: string
     certifications: Certification[]
     workshops: Workshop[]
     recente: string

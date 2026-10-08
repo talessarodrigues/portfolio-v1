@@ -109,6 +109,9 @@ export function MobileAbout() {
                         {job.bullets.map(b => <li key={b}>{b}</li>)}
                       </ul>
                     )}
+                    {job.skills && (
+                      <p><strong>{t.experiencias.skillsLabel}</strong> {job.skills}</p>
+                    )}
                   </div>
                 )}
               </div>

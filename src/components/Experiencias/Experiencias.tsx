@@ -94,6 +94,11 @@ export function Experiencias() {
                               {job.bullets.map((b, k) => <li key={k}>{b}</li>)}
                             </ul>
                           )}
+                          {job.skills && (
+                            <p className={styles.jobParagraph}>
+                              <strong>{t.experiencias.skillsLabel}</strong> {job.skills}
+                            </p>
+                          )}
                         </div>
                       </div>
                     </div>
