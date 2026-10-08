@@ -82,10 +82,4 @@
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://www.talessarodriguesdesign.com.br/cases/iron-bank-ui</loc>
-    <lastmod>2026-10-05</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
-  </url>
 </urlset>

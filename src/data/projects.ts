@@ -6,6 +6,7 @@ import imgDrakorysArcanePersonagens from '../assets/projetos/figma/drakorys-arca
 import imgAsteraDataBank from '../assets/projetos/figma/astera-data-bank.webp'
 import imgAsteraDataBankBestiario from '../assets/projetos/figma/astera-data-bank-bestiario.webp'
 import imgIronBank from '../assets/projetos/figma/iron-bank.webp'
+import imgIronBankHome from '../assets/projetos/figma/iron-bank-home.webp'
 import imgGestaoEasyCar from '../assets/projetos/figma/gestao-easy-car.webp'
 import imgGestaoConecta360 from '../assets/projetos/figma/gestao-conecta-360.webp'
 import imgGestaoConecta360Detalhe from '../assets/projetos/figma/gestao-conecta-360-detalhe.webp'
@@ -74,7 +75,7 @@ export const allProjects: Project[] = [
   { image: imgAsteraDataBank, hoverImage: imgAsteraDataBankBestiario, title: 'Astera Data Bank', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'astera-data-bank-ui' },
   { image: imgResidentEvil, hoverImage: imgResidentEvilPersonagens, title: 'Resident Evil', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'resident-evil-ui' },
   { image: imgDrakorysArcane, hoverImage: imgDrakorysArcanePersonagens, title: 'Drakorys Arcane', categoryKey: 'ux-ui-design', kinds: ['website'] },
-  { image: imgIronBank, title: 'Iron Bank', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'iron-bank-ui', hidden: true },
+  { image: imgIronBank, hoverImage: imgIronBankHome, title: 'Iron Bank', categoryKey: 'ux-ui-design', kinds: ['app'] },
   { image: imgRhRecruiter, hoverImage: imgRhRecruiterSite, title: 'RHRecruiter', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://rhrecruiter.com.br' },
   { image: imgCrimson, hoverImage: imgCrimsonExperiencia, title: 'Crimson Mind Tech', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://felipe-s-oliver.vercel.app' },
   { image: imgAura, hoverImage: imgAuraHome, title: 'Aura', categoryKey: 'ux-ui-design', kinds: ['app', 'ecommerce'] },
