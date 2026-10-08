@@ -5,6 +5,7 @@ import imgAsteraDataBank from '../assets/projetos/figma/astera-data-bank.webp'
 import imgIronBank from '../assets/projetos/figma/iron-bank.webp'
 import imgGestaoEasyCar from '../assets/projetos/figma/gestao-easy-car.webp'
 import imgGestaoConecta360 from '../assets/projetos/figma/gestao-conecta-360.webp'
+import imgGestaoConecta360Detalhe from '../assets/projetos/figma/gestao-conecta-360-detalhe.webp'
 import imgJornadaJunior from '../assets/projetos/figma/jornada-junior.webp'
 import imgCertify from '../assets/projetos/figma/certify.webp'
 import imgLeanLearn from '../assets/projetos/figma/lean-learn.webp'
@@ -53,7 +54,7 @@ export const allProjects: Project[] = [
   { image: imgEssencialPerfumaria, hoverImage: imgEssencialPerfumariaPainel, title: 'Essencial Perfumaria', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard', 'ecommerce'], externalUrl: 'https://essencial-perfumaria.vercel.app' },
   { image: imgCatalogoThaysa, hoverImage: imgCatalogoThaysaInicio, title: 'Catálogo Thaysa Ribeiro', categoryKey: 'ux-ui-design', kinds: ['app'], externalUrl: 'https://catalogo-thaysa.vercel.app', mobileOnly: true },
   { image: imgAtelieDiane, title: 'Ateliê Diane Almeida', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], detailSlug: 'atelie-diane-almeida-ui', hidden: true },
-  { image: imgGestaoConecta360, title: 'Gestão Conecta 360º', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'conecta-360-ux', hidden: true },
+  { image: imgGestaoConecta360, hoverImage: imgGestaoConecta360Detalhe, title: 'Gestão Conecta 360º', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'conecta-360-ux' },
   { image: imgUsfit, title: 'USFit', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'usfit-home-dieta-ux', hidden: true },
   { image: imgCertify, title: 'Certify', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'certify-ux', hidden: true },
   { image: imgJornadaJunior, title: 'Jornada Júnior', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], detailSlug: 'jornada-junior-ux', hidden: true },
