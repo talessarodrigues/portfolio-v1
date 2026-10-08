@@ -3,7 +3,7 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import { Cancel01FreeIcons, Search01FreeIcons } from '@hugeicons/core-free-icons'
 import styles from './Site.module.css'
 import imgAvatar from '../../assets/sobre/perfil-talessa.webp'
-import { allProjects, PROJECT_KINDS } from '../../data/projects'
+import { visibleProjects, PROJECT_KINDS } from '../../data/projects'
 import type { ProjectKind } from '../../data/projects'
 import { useTranslation } from '../../i18n/LanguageContext'
 import { pt } from '../../i18n/dictionary.pt'
@@ -30,14 +30,16 @@ const searchText = (title: string, kinds: ProjectKind[]) =>
 
 export function HomePage() {
   const { t } = useTranslation()
-  const latest = latestCase(t)
+  // Sem nenhum case com ano entre os visíveis, o botão leva ao primeiro projeto (que pode ser um site no ar).
+  const latest = latestCase(t) ?? visibleProjects[0] ?? null
   const latestHref = latest ? caseHref(latest) : null
+  const latestExternal = latest?.externalUrl ?? null
   const [filter, setFilter] = useState<Filter>('all')
   const [query, setQuery] = useState('')
 
   const projects = useMemo(() => {
     const terms = normalize(query).split(/\s+/).filter(Boolean)
-    return allProjects.filter(p => {
+    return visibleProjects.filter(p => {
       if (filter !== 'all' && !p.kinds.includes(filter)) return false
       if (terms.length === 0) return true
       const haystack = searchText(p.title, p.kinds)
@@ -52,8 +54,10 @@ export function HomePage() {
         <h1 className={styles.introName}>{t.site.saudacao}</h1>
         <p className={styles.introBio}>{t.site.bio}</p>
         <div className={styles.introCtas}>
-          {latestHref && (
+          {latestHref ? (
             <SiteLink to={latestHref} className={styles.btnPrimary}>{t.site.trabalhoRecente}</SiteLink>
+          ) : latestExternal && (
+            <a className={styles.btnPrimary} href={latestExternal} target="_blank" rel="noopener noreferrer">{t.site.trabalhoRecente}</a>
           )}
           <a
             className={styles.btnSoft}

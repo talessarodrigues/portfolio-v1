@@ -3,7 +3,7 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import { ArrowUpRight01FreeIcons } from '@hugeicons/core-free-icons'
 import styles from './CasePage.module.css'
 import siteStyles from './Site.module.css'
-import { allProjects } from '../../data/projects'
+import { allProjects, visibleProjects } from '../../data/projects'
 import { getCase } from '../../data/caseStudies'
 import type { DetailBlockShape } from '../../data/conecta360Structure'
 import type { DetailTextBlock } from '../../i18n/types'
@@ -174,8 +174,8 @@ export function CasePage({ slug }: { slug: string }) {
   ].filter(m => m.value)
 
   // "Explore mais": os dois projetos que vêm depois deste na lista geral.
-  const index = allProjects.indexOf(project)
-  const more = [1, 2].map(n => allProjects[(index + n) % allProjects.length])
+  const others = visibleProjects.filter(p => p !== project)
+  const more = others.slice(0, 2)
 
   return (
     <>

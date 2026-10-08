@@ -2,7 +2,7 @@ import { useState } from 'react'
 import styles from './ProjectDetail.module.css'
 import { ImageLightbox } from './ImageLightbox'
 import type { DetailBlockShape } from '../../data/conecta360Structure'
-import { allProjects } from '../../data/projects'
+import { allProjects, visibleProjects } from '../../data/projects'
 import { detailRegistry } from '../../data/caseStudies'
 import { HugeiconsIcon } from '@hugeicons/react'
 import {
@@ -86,7 +86,7 @@ export function ProjectDetail({ currentSlug, onBack, hideBack = false }: Project
   const entry = detailRegistry[currentSlug as keyof typeof detailRegistry]
   const text: CaseStudyText = t[entry.dictKey]
 
-  const otherProjects = allProjects.filter(p => p.detailSlug !== currentSlug)
+  const otherProjects = visibleProjects.filter(p => p.detailSlug !== currentSlug)
   const marqueeProjects = [...otherProjects, ...otherProjects]
   // Mesma chave usada pelos cards da grade, pra curtida ser a mesma nos
   // dois lugares.

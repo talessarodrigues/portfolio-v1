@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import styles from './Mobile.module.css'
-import { allProjects } from '../../data/projects'
+import { visibleProjects } from '../../data/projects'
 import type { Project } from '../../data/projects'
 import { useTranslation } from '../../i18n/LanguageContext'
 import { IconClose } from './MobileIcons'
@@ -38,7 +38,7 @@ export function MobileWorksSheet({ onOpenProject, onClose }: MobileWorksSheetPro
 
       <div className={styles.sheetBody}>
         <div className={styles.worksSheetList}>
-          {allProjects.map((p, i) => (
+          {visibleProjects.map((p, i) => (
             <MobileWorkRow key={p.title + i} project={p} onOpen={onOpenProject} />
           ))}
         </div>

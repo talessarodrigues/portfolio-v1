@@ -14,7 +14,7 @@ import imgDockAvatar from '../../assets/illustration/dock-avatar.webp'
 // tem o traço em #1a1a1a, pra capa clara.
 import imgLogoOnDark from '../../assets/header/logo.svg'
 import imgLogoOnLight from '../../assets/header/logo-light.svg'
-import { allProjects } from '../../data/projects'
+import { visibleProjects } from '../../data/projects'
 import type { Project } from '../../data/projects'
 import { LanguageMenu } from '../LanguageMenu/LanguageMenu'
 import { useTranslation } from '../../i18n/LanguageContext'
@@ -96,7 +96,7 @@ export function MobileApp() {
   ]
 
   const featured = featuredTitles
-    .map(title => allProjects.find(p => p.title === title))
+    .map(title => visibleProjects.find(p => p.title === title))
     .filter(Boolean) as Project[]
 
   return (
@@ -165,7 +165,7 @@ export function MobileApp() {
             <div className={styles.sectionHead}>
               <h2 className={styles.sectionTitle}>{t.mobile.trabalhos}</h2>
               <button className={styles.sectionLink} onClick={() => setWorksOpen(true)}>
-                {t.mobile.verTodos} <b>({allProjects.length})</b>
+                {t.mobile.verTodos} <b>({visibleProjects.length})</b>
               </button>
             </div>
             <div className={styles.workList}>

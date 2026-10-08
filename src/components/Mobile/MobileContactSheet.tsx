@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import styles from './Mobile.module.css'
 import imgAvatar from '../../assets/sobre/essa-sou-eu.webp'
-import { allProjects } from '../../data/projects'
+import { visibleProjects } from '../../data/projects'
 import { useTranslation } from '../../i18n/LanguageContext'
 import { LINKS } from './links'
 import { trackContato } from '../../analytics'
@@ -23,7 +23,7 @@ export function MobileContactSheet({ onClose }: MobileContactSheetProps) {
   }, [onClose])
 
   const stats = [
-    { value: `+${allProjects.length}`, label: t.mobile.statProjetos },
+    { value: `+${visibleProjects.length}`, label: t.mobile.statProjetos },
     { value: t.mobile.statAnosValue, label: t.mobile.statAnos },
     { value: t.mobile.statFormatoValue, label: t.mobile.statFormato },
   ]

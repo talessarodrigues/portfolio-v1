@@ -1,4 +1,4 @@
-import { allProjects } from '../../data/projects'
+import { allProjects, visibleProjects } from '../../data/projects'
 import type { Project } from '../../data/projects'
 import { getCase } from '../../data/caseStudies'
 import type { CaseStudyText, Dictionary } from '../../i18n/types'
@@ -29,7 +29,7 @@ export function caseHref(project: Project): string | null {
 export function latestCase(t: Dictionary): Project | null {
   let best: Project | null = null
   let bestYear = -Infinity
-  for (const p of allProjects) {
+  for (const p of visibleProjects) {
     const year = Number(projectYear(p, t))
     if (Number.isFinite(year) && year > bestYear) {
       best = p

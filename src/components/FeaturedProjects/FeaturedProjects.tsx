@@ -1,5 +1,5 @@
 import styles from './FeaturedProjects.module.css'
-import { allProjects } from '../../data/projects'
+import { visibleProjects } from '../../data/projects'
 import type { Project } from '../../data/projects'
 import { useTranslation } from '../../i18n/LanguageContext'
 
@@ -25,7 +25,7 @@ const IconArrow = () => (
 export function FeaturedProjects({ onViewAll, onSelectProject }: FeaturedProjectsProps) {
   const { t } = useTranslation()
   const featured = featuredTitles
-    .map(title => allProjects.find(p => p.title === title))
+    .map(title => visibleProjects.find(p => p.title === title))
     .filter(Boolean) as Project[]
 
   return (
