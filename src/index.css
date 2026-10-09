@@ -123,11 +123,6 @@
   --site-shot-shadow: 0 18px 40px -18px rgba(52, 24, 98, 0.45);
   /* Molduras dos cases: degradês só com as cores da marca (lilás,
      rosa do --gradient-cta e o ciano), alternados pela posição. */
-  --frame-1: linear-gradient(140deg, #EFE6FD 0%, #C7AEF4 48%, #8E5CE6 100%);
-  --frame-2: linear-gradient(140deg, #FBEAF1 0%, #EBBBD1 46%, #A57BE3 100%);
-  --frame-3: linear-gradient(140deg, #E2F8FC 0%, #A9E6F2 45%, #8A9FF0 100%);
-  --frame-4: linear-gradient(160deg, #FFF1EA 0%, #F2C3D5 50%, #C3A2F3 100%);
-  --frame-glow: rgba(253, 246, 245, 0.55);
 
   /* Tipografia */
   --font-display: 'Abril Fatface', serif;
@@ -193,11 +188,6 @@ html[data-theme='dark'] {
   --site-chip-hover: rgba(255, 255, 255, 0.11);
   --site-nav-bg: rgba(20, 20, 29, 0.72);
   --site-shot-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.7);
-  --frame-1: linear-gradient(140deg, #2A1D47 0%, #4B2C8A 50%, #7A4FD6 100%);
-  --frame-2: linear-gradient(140deg, #2E1B2C 0%, #6B3A62 50%, #8A5BD0 100%);
-  --frame-3: linear-gradient(140deg, #10283A 0%, #1F5B78 50%, #5868C9 100%);
-  --frame-4: linear-gradient(160deg, #2E2220 0%, #6A3A55 50%, #6F4FB8 100%);
-  --frame-glow: rgba(255, 255, 255, 0.08);
 }
 
 html[data-theme='dark'] body {

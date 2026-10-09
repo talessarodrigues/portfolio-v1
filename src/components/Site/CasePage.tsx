@@ -15,7 +15,6 @@ import { SiteNav } from './SiteNav'
 import type { NavSection } from './SiteNav'
 import { SiteLink } from './SiteLink'
 import { CaseCard } from './CaseCard'
-import { projectFrame } from './projectInfo'
 
 interface Block {
   shape: DetailBlockShape
@@ -188,7 +187,7 @@ export function CasePage({ slug }: { slug: string }) {
           {summary && <p className={styles.summary}>{summary}</p>}
         </header>
 
-        <div className={styles.cover} style={{ background: projectFrame(project) }}>
+        <div className={styles.cover}>
           <img src={project.image} alt={project.title} />
         </div>
 

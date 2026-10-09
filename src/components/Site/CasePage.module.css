@@ -34,16 +34,15 @@
   color: var(--site-muted);
 }
 
+/* Só a imagem do projeto, sem moldura de fundo: as capas já são arte pronta. */
 .cover {
   margin-top: 40px;
-  padding: 7% 8%;
   border-radius: 28px;
   overflow: hidden;
 }
 .cover img {
+  display: block;
   width: 100%;
-  border-radius: 12px;
-  box-shadow: var(--site-shot-shadow), 0 0 0 1px rgba(255, 255, 255, 0.35);
 }
 
 .meta {
