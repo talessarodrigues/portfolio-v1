@@ -348,6 +348,10 @@ export const en: Dictionary = {
       description: 'Portfolio site for a full stack software engineer, in a dark theme with a red accent. I helped with the interface design.',
       tags: ['UX/UI Design', 'portfolio'],
     },
+    'Nexo': {
+      description: 'UX case for a fintech: corporate card management, with usage rules, limits and request approvals.',
+      tags: ['UX/UI Design', 'fintech'],
+    },
     'Orbit Creators': {
       description: 'Dashboard for content creators to manage campaigns, delivery calendar, contracts and finances in one place.',
       tags: ['UX/UI Design', 'saas'],

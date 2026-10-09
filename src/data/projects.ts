@@ -21,6 +21,8 @@ import imgMarionIa from '../assets/projetos/figma/marion-ia.webp'
 import imgUsfit from '../assets/projetos/figma/usfit.webp'
 import imgEssencialPerfumaria from '../assets/projetos/figma/essencial-perfumaria.webp'
 import imgEssencialPerfumariaPainel from '../assets/projetos/figma/essencial-perfumaria-painel.webp'
+import imgNexo from '../assets/projetos/figma/nexo.webp'
+import imgNexoSolicitacoes from '../assets/projetos/figma/nexo-solicitacoes.webp'
 import imgOrbit from '../assets/projetos/figma/orbit-creators.webp'
 import imgOrbitCalendario from '../assets/projetos/figma/orbit-creators-calendario.webp'
 import imgAura from '../assets/projetos/figma/aura.webp'
@@ -83,6 +85,7 @@ export const allProjects: Project[] = [
   { image: imgCrimson, hoverImage: imgCrimsonExperiencia, title: 'Crimson Mind Tech', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://felipe-s-oliver.vercel.app' },
   { image: imgAura, hoverImage: imgAuraHome, title: 'Aura', categoryKey: 'ux-ui-design', kinds: ['app', 'ecommerce'] },
   { image: imgOrbit, hoverImage: imgOrbitCalendario, title: 'Orbit Creators', categoryKey: 'ux-ui-design', kinds: ['dashboard'] },
+  { image: imgNexo, hoverImage: imgNexoSolicitacoes, title: 'Nexo', categoryKey: 'ux-ui-design', kinds: ['dashboard'] },
 ]
 
 // Lista que o site mostra: tira os projetos escondidos. `allProjects` segue
