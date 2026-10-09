@@ -21,6 +21,8 @@ import imgMarionIa from '../assets/projetos/figma/marion-ia.webp'
 import imgUsfit from '../assets/projetos/figma/usfit.webp'
 import imgEssencialPerfumaria from '../assets/projetos/figma/essencial-perfumaria.webp'
 import imgEssencialPerfumariaPainel from '../assets/projetos/figma/essencial-perfumaria-painel.webp'
+import imgMeuCaixa from '../assets/projetos/figma/meu-caixa.webp'
+import imgMeuCaixaCaixa from '../assets/projetos/figma/meu-caixa-caixa.webp'
 import imgNexo from '../assets/projetos/figma/nexo.webp'
 import imgNexoSolicitacoes from '../assets/projetos/figma/nexo-solicitacoes.webp'
 import imgOrbit from '../assets/projetos/figma/orbit-creators.webp'
@@ -92,6 +94,7 @@ export const allProjects: Project[] = [
   { image: imgAura, hoverImage: imgAuraHome, title: 'Aura', categoryKey: 'ux-ui-design', kinds: ['app', 'ecommerce'], segments: ['b2c'] },
   { image: imgOrbit, hoverImage: imgOrbitCalendario, title: 'Orbit Creators', categoryKey: 'ux-ui-design', kinds: ['dashboard'] },
   { image: imgNexo, hoverImage: imgNexoSolicitacoes, title: 'Nexo', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['fintech', 'b2b'] },
+  { image: imgMeuCaixa, hoverImage: imgMeuCaixaCaixa, title: 'Meu Caixa', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['b2b'], detailSlug: 'meu-caixa-ux' },
 ]
 
 // Lista que o site mostra: tira os projetos escondidos. `allProjects` segue

@@ -248,6 +248,7 @@ export interface Dictionary {
   gestaoEasyCar: CaseStudyText
   usfit: CaseStudyText
   essencialPerfumaria: CaseStudyText
+  meuCaixa: CaseStudyText
   residentEvil: CaseStudyText
   redesignNatva: CaseStudyText
   drakorysArcane: CaseStudyText

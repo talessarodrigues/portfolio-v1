@@ -16,6 +16,7 @@ import { redesignNatvaHeaderImages, redesignNatvaGallery, redesignNatvaBlockShap
 import { drakorysArcaneHeaderImages, drakorysArcaneGallery, drakorysArcaneBlockShapes } from './drakorysArcaneStructure'
 import { asteraDataBankHeaderImages, asteraDataBankGallery, asteraDataBankBlockShapes } from './asteraDataBankStructure'
 import { ironBankHeaderImages, ironBankGallery, ironBankBlockShapes } from './ironBankStructure'
+import { meuCaixaHeaderImages, meuCaixaGallery, meuCaixaBlockShapes } from './meuCaixaStructure'
 
 // Registro de detalhamentos disponíveis — cada entrada casa a estrutura
 // (imagens + tipo do bloco, mesma para todo idioma) com a chave do
@@ -106,6 +107,12 @@ export const detailRegistry = {
     gallery: ironBankGallery,
     blockShapes: ironBankBlockShapes,
     dictKey: 'ironBank' as const,
+  },
+  'meu-caixa-ux': {
+    headerImages: meuCaixaHeaderImages,
+    gallery: meuCaixaGallery,
+    blockShapes: meuCaixaBlockShapes,
+    dictKey: 'meuCaixa' as const,
   },
 }
 
