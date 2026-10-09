@@ -22,7 +22,7 @@ import imgUsfit from '../assets/projetos/figma/usfit.webp'
 import imgEssencialPerfumaria from '../assets/projetos/figma/essencial-perfumaria.webp'
 import imgEssencialPerfumariaPainel from '../assets/projetos/figma/essencial-perfumaria-painel.webp'
 import imgMeuCaixa from '../assets/projetos/figma/meu-caixa.webp'
-import imgMeuCaixaCaixa from '../assets/projetos/figma/meu-caixa-caixa.webp'
+import imgMeuCaixaInicio from '../assets/projetos/figma/meu-caixa-inicio.webp'
 import imgNexo from '../assets/projetos/figma/nexo.webp'
 import imgNexoSolicitacoes from '../assets/projetos/figma/nexo-solicitacoes.webp'
 import imgOrbit from '../assets/projetos/figma/orbit-creators.webp'
@@ -75,6 +75,7 @@ export interface Project {
 // desenhado e construído de ponta a ponta), em destaque de propósito.
 export const allProjects: Project[] = [
   { image: imgEssencialPerfumaria, hoverImage: imgEssencialPerfumariaPainel, title: 'Essencial Perfumaria', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard', 'ecommerce'], segments: ['b2c'], externalUrl: 'https://essencial-perfumaria.vercel.app' },
+  { image: imgMeuCaixa, hoverImage: imgMeuCaixaInicio, title: 'Meu Caixa', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['b2b'], detailSlug: 'meu-caixa-ux' },
   { image: imgCatalogoThaysa, hoverImage: imgCatalogoThaysaInicio, title: 'Catálogo Thaysa Ribeiro', categoryKey: 'ux-ui-design', kinds: ['app'], segments: ['b2c'], externalUrl: 'https://catalogo-thaysa.vercel.app', mobileOnly: true },
   { image: imgAtelieDiane, title: 'Ateliê Diane Almeida', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], segments: ['b2c'], detailSlug: 'atelie-diane-almeida-ui', hidden: true },
   { image: imgGestaoConecta360, hoverImage: imgGestaoConecta360Detalhe, title: 'Gestão Conecta 360º', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['b2b', 'saas'], detailSlug: 'conecta-360-ux' },
@@ -94,7 +95,6 @@ export const allProjects: Project[] = [
   { image: imgAura, hoverImage: imgAuraHome, title: 'Aura', categoryKey: 'ux-ui-design', kinds: ['app', 'ecommerce'], segments: ['b2c'] },
   { image: imgOrbit, hoverImage: imgOrbitCalendario, title: 'Orbit Creators', categoryKey: 'ux-ui-design', kinds: ['dashboard'] },
   { image: imgNexo, hoverImage: imgNexoSolicitacoes, title: 'Nexo', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['fintech', 'b2b'] },
-  { image: imgMeuCaixa, hoverImage: imgMeuCaixaCaixa, title: 'Meu Caixa', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['b2b'], detailSlug: 'meu-caixa-ux' },
 ]
 
 // Lista que o site mostra: tira os projetos escondidos. `allProjects` segue
