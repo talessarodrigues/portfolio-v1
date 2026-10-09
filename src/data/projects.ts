@@ -21,6 +21,8 @@ import imgMarionIa from '../assets/projetos/figma/marion-ia.webp'
 import imgUsfit from '../assets/projetos/figma/usfit.webp'
 import imgEssencialPerfumaria from '../assets/projetos/figma/essencial-perfumaria.webp'
 import imgEssencialPerfumariaPainel from '../assets/projetos/figma/essencial-perfumaria-painel.webp'
+import imgOrbit from '../assets/projetos/figma/orbit-creators.webp'
+import imgOrbitCalendario from '../assets/projetos/figma/orbit-creators-calendario.webp'
 import imgAura from '../assets/projetos/figma/aura.webp'
 import imgAuraHome from '../assets/projetos/figma/aura-home.webp'
 import imgCatalogoThaysa from '../assets/projetos/externos/catalogo-thaysa.webp'
@@ -80,6 +82,7 @@ export const allProjects: Project[] = [
   { image: imgRhRecruiter, hoverImage: imgRhRecruiterSite, title: 'RHRecruiter', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://rhrecruiter.com.br' },
   { image: imgCrimson, hoverImage: imgCrimsonExperiencia, title: 'Crimson Mind Tech', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://felipe-s-oliver.vercel.app' },
   { image: imgAura, hoverImage: imgAuraHome, title: 'Aura', categoryKey: 'ux-ui-design', kinds: ['app', 'ecommerce'] },
+  { image: imgOrbit, hoverImage: imgOrbitCalendario, title: 'Orbit Creators', categoryKey: 'ux-ui-design', kinds: ['dashboard'] },
 ]
 
 // Lista que o site mostra: tira os projetos escondidos. `allProjects` segue

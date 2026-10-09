@@ -348,6 +348,10 @@ export const es: Dictionary = {
       description: 'Portafolio de un ingeniero de software full stack, en tema oscuro con acento rojo. Colaboré en el diseño de la interfaz.',
       tags: ['UX/UI Design', 'portfolio'],
     },
+    'Orbit Creators': {
+      description: 'Panel para creadores de contenido para organizar campañas, calendario de entregas, contratos y finanzas en un solo lugar.',
+      tags: ['UX/UI Design', 'saas'],
+    },
     'Aura': {
       description: 'App de e-commerce de moda: vitrina de novedades, página de producto y bolsa de compras.',
       tags: ['UX/UI Design', 'mobile'],

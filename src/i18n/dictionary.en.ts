@@ -348,6 +348,10 @@ export const en: Dictionary = {
       description: 'Portfolio site for a full stack software engineer, in a dark theme with a red accent. I helped with the interface design.',
       tags: ['UX/UI Design', 'portfolio'],
     },
+    'Orbit Creators': {
+      description: 'Dashboard for content creators to manage campaigns, delivery calendar, contracts and finances in one place.',
+      tags: ['UX/UI Design', 'saas'],
+    },
     'Aura': {
       description: 'Fashion e-commerce app: new arrivals storefront, product page and shopping bag.',
       tags: ['UX/UI Design', 'mobile'],
