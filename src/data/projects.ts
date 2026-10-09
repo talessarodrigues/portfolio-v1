@@ -42,6 +42,11 @@ export type CategoryKey = 'ux-ui-design'
 export type ProjectKind = 'website' | 'app' | 'dashboard' | 'ecommerce'
 export const PROJECT_KINDS: ProjectKind[] = ['website', 'app', 'dashboard', 'ecommerce']
 
+// Mercado do produto, também filtro da home. Só entra o que dá pra afirmar pelo
+// projeto; quem não tem segmento claro (jogos, portfólio, comunidade) fica sem.
+export type ProjectSegment = 'b2b' | 'b2c' | 'saas' | 'fintech'
+export const PROJECT_SEGMENTS: ProjectSegment[] = ['b2b', 'b2c', 'saas', 'fintech']
+
 // Título fica igual nos 3 idiomas (nome do projeto) — é a chave usada
 // pra buscar description/tags traduzidos em t.projects[title].
 export interface Project {
@@ -51,6 +56,7 @@ export interface Project {
   title: string
   categoryKey: CategoryKey
   kinds: ProjectKind[]
+  segments?: ProjectSegment[]
   detailSlug?: string
   /**
    * Projetos que estão no ar: o card leva direto pro site em vez de
@@ -66,26 +72,26 @@ export interface Project {
 // Os dois primeiros são os projetos mais recentes e completos (produto
 // desenhado e construído de ponta a ponta), em destaque de propósito.
 export const allProjects: Project[] = [
-  { image: imgEssencialPerfumaria, hoverImage: imgEssencialPerfumariaPainel, title: 'Essencial Perfumaria', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard', 'ecommerce'], externalUrl: 'https://essencial-perfumaria.vercel.app' },
-  { image: imgCatalogoThaysa, hoverImage: imgCatalogoThaysaInicio, title: 'Catálogo Thaysa Ribeiro', categoryKey: 'ux-ui-design', kinds: ['app'], externalUrl: 'https://catalogo-thaysa.vercel.app', mobileOnly: true },
-  { image: imgAtelieDiane, title: 'Ateliê Diane Almeida', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], detailSlug: 'atelie-diane-almeida-ui', hidden: true },
-  { image: imgGestaoConecta360, hoverImage: imgGestaoConecta360Detalhe, title: 'Gestão Conecta 360º', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'conecta-360-ux' },
-  { image: imgUsfit, title: 'USFit', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'usfit-home-dieta-ux', hidden: true },
-  { image: imgCertify, hoverImage: imgCertifyModelos, title: 'Certify', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'certify-ux' },
+  { image: imgEssencialPerfumaria, hoverImage: imgEssencialPerfumariaPainel, title: 'Essencial Perfumaria', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard', 'ecommerce'], segments: ['b2c'], externalUrl: 'https://essencial-perfumaria.vercel.app' },
+  { image: imgCatalogoThaysa, hoverImage: imgCatalogoThaysaInicio, title: 'Catálogo Thaysa Ribeiro', categoryKey: 'ux-ui-design', kinds: ['app'], segments: ['b2c'], externalUrl: 'https://catalogo-thaysa.vercel.app', mobileOnly: true },
+  { image: imgAtelieDiane, title: 'Ateliê Diane Almeida', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], segments: ['b2c'], detailSlug: 'atelie-diane-almeida-ui', hidden: true },
+  { image: imgGestaoConecta360, hoverImage: imgGestaoConecta360Detalhe, title: 'Gestão Conecta 360º', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['b2b', 'saas'], detailSlug: 'conecta-360-ux' },
+  { image: imgUsfit, title: 'USFit', categoryKey: 'ux-ui-design', kinds: ['app'], segments: ['b2c'], detailSlug: 'usfit-home-dieta-ux', hidden: true },
+  { image: imgCertify, hoverImage: imgCertifyModelos, title: 'Certify', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['b2b', 'saas'], detailSlug: 'certify-ux' },
   { image: imgJornadaJunior, hoverImage: imgJornadaJuniorDS, title: 'Jornada Júnior', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], detailSlug: 'jornada-junior-ux' },
-  { image: imgLeanLearn, title: 'LeanLearn', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'lean-learn-ui', hidden: true },
-  { image: imgGestaoEasyCar, title: 'Gestão Easy Car', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'gestao-easy-car-ux', hidden: true },
-  { image: imgRedesignNatva, hoverImage: imgRedesignNatvaHome, title: 'Redesign Natva', categoryKey: 'ux-ui-design', kinds: ['website', 'ecommerce'], detailSlug: 'redesign-natva-ui' },
-  { image: imgMarionIa, title: 'Marion IA', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'marion-ia-ui', hidden: true },
+  { image: imgLeanLearn, title: 'LeanLearn', categoryKey: 'ux-ui-design', kinds: ['website'], segments: ['b2b'], detailSlug: 'lean-learn-ui', hidden: true },
+  { image: imgGestaoEasyCar, title: 'Gestão Easy Car', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['b2b'], detailSlug: 'gestao-easy-car-ux', hidden: true },
+  { image: imgRedesignNatva, hoverImage: imgRedesignNatvaHome, title: 'Redesign Natva', categoryKey: 'ux-ui-design', kinds: ['website', 'ecommerce'], segments: ['b2c'], detailSlug: 'redesign-natva-ui' },
+  { image: imgMarionIa, title: 'Marion IA', categoryKey: 'ux-ui-design', kinds: ['app'], segments: ['b2b'], detailSlug: 'marion-ia-ui', hidden: true },
   { image: imgAsteraDataBank, hoverImage: imgAsteraDataBankBestiario, title: 'Astera Data Bank', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'astera-data-bank-ui' },
   { image: imgResidentEvil, hoverImage: imgResidentEvilPersonagens, title: 'Resident Evil', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'resident-evil-ui' },
   { image: imgDrakorysArcane, hoverImage: imgDrakorysArcanePersonagens, title: 'Drakorys Arcane', categoryKey: 'ux-ui-design', kinds: ['website'] },
-  { image: imgIronBank, hoverImage: imgIronBankHome, title: 'Iron Bank', categoryKey: 'ux-ui-design', kinds: ['app'] },
-  { image: imgRhRecruiter, hoverImage: imgRhRecruiterSite, title: 'RHRecruiter', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://rhrecruiter.com.br' },
+  { image: imgIronBank, hoverImage: imgIronBankHome, title: 'Iron Bank', categoryKey: 'ux-ui-design', kinds: ['app'], segments: ['fintech', 'b2c'] },
+  { image: imgRhRecruiter, hoverImage: imgRhRecruiterSite, title: 'RHRecruiter', categoryKey: 'ux-ui-design', kinds: ['website'], segments: ['b2b', 'saas'], externalUrl: 'https://rhrecruiter.com.br' },
   { image: imgCrimson, hoverImage: imgCrimsonExperiencia, title: 'Crimson Mind Tech', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://felipe-s-oliver.vercel.app' },
-  { image: imgAura, hoverImage: imgAuraHome, title: 'Aura', categoryKey: 'ux-ui-design', kinds: ['app', 'ecommerce'] },
+  { image: imgAura, hoverImage: imgAuraHome, title: 'Aura', categoryKey: 'ux-ui-design', kinds: ['app', 'ecommerce'], segments: ['b2c'] },
   { image: imgOrbit, hoverImage: imgOrbitCalendario, title: 'Orbit Creators', categoryKey: 'ux-ui-design', kinds: ['dashboard'] },
-  { image: imgNexo, hoverImage: imgNexoSolicitacoes, title: 'Nexo', categoryKey: 'ux-ui-design', kinds: ['dashboard'] },
+  { image: imgNexo, hoverImage: imgNexoSolicitacoes, title: 'Nexo', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['fintech', 'b2b'] },
 ]
 
 // Lista que o site mostra: tira os projetos escondidos. `allProjects` segue

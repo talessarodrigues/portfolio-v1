@@ -200,7 +200,7 @@ export interface Dictionary {
     cursorVer: string
     cursorSite: string
     /** Filtros da grade de projetos (home). */
-    filtros: { all: string; website: string; app: string; dashboard: string; ecommerce: string }
+    filtros: { all: string; website: string; app: string; dashboard: string; ecommerce: string; b2b: string; b2c: string; saas: string; fintech: string }
     buscarProjeto: string
     nenhumProjeto: string
     /** SEO: rótulo do case no título da aba/busca. {categoria} vira a categoria. */

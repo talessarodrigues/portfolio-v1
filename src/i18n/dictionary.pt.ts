@@ -328,7 +328,7 @@ export const pt: Dictionary = {
     voltarInicio: 'Voltar para o início',
     cursorVer: 'Ver projeto',
     cursorSite: 'Ver site',
-    filtros: { all: 'Tudo', website: 'Websites', app: 'Aplicativos', dashboard: 'Painéis', ecommerce: 'E-commerce' },
+    filtros: { all: 'Tudo', website: 'Websites', app: 'Aplicativos', dashboard: 'Painéis', ecommerce: 'E-commerce', b2b: 'B2B', b2c: 'B2C', saas: 'SaaS', fintech: 'Fintech' },
     buscarProjeto: 'Pesquisar projeto…',
     nenhumProjeto: 'Nenhum projeto encontrado. Tente outro termo ou filtro.',
     seoCase: 'Case de {categoria}',

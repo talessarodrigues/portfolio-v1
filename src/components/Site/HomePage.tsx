@@ -3,8 +3,8 @@ import { HugeiconsIcon } from '@hugeicons/react'
 import { Cancel01FreeIcons, Search01FreeIcons } from '@hugeicons/core-free-icons'
 import styles from './Site.module.css'
 import imgAvatar from '../../assets/sobre/perfil-talessa.webp'
-import { visibleProjects, PROJECT_KINDS } from '../../data/projects'
-import type { ProjectKind } from '../../data/projects'
+import { visibleProjects, PROJECT_KINDS, PROJECT_SEGMENTS } from '../../data/projects'
+import type { ProjectKind, ProjectSegment } from '../../data/projects'
 import { useTranslation } from '../../i18n/LanguageContext'
 import { pt } from '../../i18n/dictionary.pt'
 import { en } from '../../i18n/dictionary.en'
@@ -15,7 +15,7 @@ import { CaseCard } from './CaseCard'
 import { SiteLink } from './SiteLink'
 import { caseHref, latestCase } from './projectInfo'
 
-type Filter = 'all' | ProjectKind
+type Filter = 'all' | ProjectKind | ProjectSegment
 
 // Busca sem diferenciar maiúscula, acento nem pontuação ("paineis" acha
 // "Painéis", "ecommerce" acha "E-commerce").
@@ -25,8 +25,8 @@ const normalize = (s: string) =>
 // O texto de busca de cada projeto junta nome, descrição e tipos nos três
 // idiomas: quem digita em português numa tela em inglês também acha.
 const DICTS = [pt, en, es]
-const searchText = (title: string, kinds: ProjectKind[]) =>
-  normalize([title, ...DICTS.flatMap(d => [d.projects[title]?.description ?? '', ...kinds.map(k => d.site.filtros[k])])].join(' '))
+const searchText = (title: string, labels: (ProjectKind | ProjectSegment)[]) =>
+  normalize([title, ...DICTS.flatMap(d => [d.projects[title]?.description ?? '', ...labels.map(k => d.site.filtros[k])])].join(' '))
 
 export function HomePage() {
   const { t } = useTranslation()
@@ -40,9 +40,10 @@ export function HomePage() {
   const projects = useMemo(() => {
     const terms = normalize(query).split(/\s+/).filter(Boolean)
     return visibleProjects.filter(p => {
-      if (filter !== 'all' && !p.kinds.includes(filter)) return false
+      const labels = [...p.kinds, ...(p.segments ?? [])]
+      if (filter !== 'all' && !labels.includes(filter)) return false
       if (terms.length === 0) return true
-      const haystack = searchText(p.title, p.kinds)
+      const haystack = searchText(p.title, labels)
       return terms.every(term => haystack.includes(term))
     })
   }, [filter, query])
@@ -74,7 +75,7 @@ export function HomePage() {
       <section id="projetos" className={styles.work} aria-label={t.site.projetos}>
         <div className={styles.toolbar}>
           <div className={styles.filters}>
-            {(['all', ...PROJECT_KINDS] as Filter[]).map(f => (
+            {(['all', ...PROJECT_KINDS, ...PROJECT_SEGMENTS] as Filter[]).map(f => (
               <button
                 key={f}
                 type="button"
