@@ -1,4 +1,5 @@
 import imgRedesignNatva from '../assets/projetos/figma/redesign-natva.webp'
+import imgRedesignNatvaHome from '../assets/projetos/figma/redesign-natva-home.webp'
 import imgResidentEvil from '../assets/projetos/figma/resident-evil.webp'
 import imgResidentEvilPersonagens from '../assets/projetos/figma/resident-evil-personagens.webp'
 import imgDrakorysArcane from '../assets/projetos/figma/drakorys-arcane.webp'
@@ -70,7 +71,7 @@ export const allProjects: Project[] = [
   { image: imgJornadaJunior, hoverImage: imgJornadaJuniorDS, title: 'Jornada Júnior', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], detailSlug: 'jornada-junior-ux' },
   { image: imgLeanLearn, title: 'LeanLearn', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'lean-learn-ui', hidden: true },
   { image: imgGestaoEasyCar, title: 'Gestão Easy Car', categoryKey: 'ux-ui-design', kinds: ['dashboard'], detailSlug: 'gestao-easy-car-ux', hidden: true },
-  { image: imgRedesignNatva, title: 'Redesign Natva', categoryKey: 'ux-ui-design', kinds: ['website', 'ecommerce'], detailSlug: 'redesign-natva-ui', hidden: true },
+  { image: imgRedesignNatva, hoverImage: imgRedesignNatvaHome, title: 'Redesign Natva', categoryKey: 'ux-ui-design', kinds: ['website', 'ecommerce'], detailSlug: 'redesign-natva-ui' },
   { image: imgMarionIa, title: 'Marion IA', categoryKey: 'ux-ui-design', kinds: ['app'], detailSlug: 'marion-ia-ui', hidden: true },
   { image: imgAsteraDataBank, hoverImage: imgAsteraDataBankBestiario, title: 'Astera Data Bank', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'astera-data-bank-ui' },
   { image: imgResidentEvil, hoverImage: imgResidentEvilPersonagens, title: 'Resident Evil', categoryKey: 'ux-ui-design', kinds: ['website'], detailSlug: 'resident-evil-ui' },
