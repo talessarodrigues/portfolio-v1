@@ -16,7 +16,15 @@ export function startSmoothScroll(): () => void {
   const html = document.documentElement
   // O scroll-behavior: smooth do index.css brigaria com a inércia do Lenis.
   html.style.scrollBehavior = 'auto'
-  lenis = new Lenis({ duration: 1.15, easing: t => 1 - Math.pow(1 - t, 4), smoothWheel: true })
+  // Mesmos parâmetros do site de referência (design.fajri.com): Lenis com
+  // lerp 0.2, duração de 1,4 s e saída exponencial.
+  lenis = new Lenis({
+    lerp: 0.2,
+    duration: 1.4,
+    wheelMultiplier: 1,
+    smoothWheel: true,
+    easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+  })
   let frame = requestAnimationFrame(function loop(time) {
     lenis?.raf(time)
     frame = requestAnimationFrame(loop)

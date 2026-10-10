@@ -499,34 +499,24 @@
   .card:hover .media img { transition: none; transform: none; }
 }
 
-/* ── Vinheta antes da grade ──────────────────────────────── */
-/* O título fica parado no meio da tela e some com a rolagem (--p, de 0 a 1,
-   vem do HomePage); quando ele acaba, a grade já está logo abaixo. */
-.reveal {
-  --p: 0;
-  position: relative;
-  height: 120vh;
-  margin-top: 24px;
-}
-.revealStage {
-  position: sticky;
-  top: 0;
-  height: 100vh;
+/* ── Título grande acima da grade ────────────────────────── */
+/* Cada linha acende quando o título sobe na tela (useWordReveal). */
+.worksTitle {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  margin: 24px 0 64px;
   text-align: center;
-  pointer-events: none;
-}
-.revealTitle {
-  font: 500 clamp(44px, 6.5vw, 96px)/1.05 var(--font-article);
+  font: 500 clamp(52px, 8.5vw, 132px)/1.02 var(--font-article);
   letter-spacing: -0.02em;
-  color: var(--site-ink);
-  opacity: clamp(0, calc(1.4 - var(--p) * 1.8), 1);
-  transform: translateY(calc(var(--p) * -36px));
-  will-change: opacity, transform;
 }
-.revealAccent { color: var(--site-accent); }
+.worksWord {
+  color: var(--site-ink);
+  opacity: 0.16;
+  transition: opacity 0.45s ease;
+}
+.worksWord[data-lit="true"] { opacity: 1; }
+.worksWord:last-child { color: var(--site-accent); }
 
 /* ── Faixa de capas que passa sozinha ────────────────────── */
 .strip {
@@ -566,9 +556,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { height: auto; padding: 56px 0; }
-  .revealStage { position: static; height: auto; }
-  .revealTitle { opacity: 1; transform: none; }
+  .worksWord { opacity: 1; transition: none; }
   .stripRow { overflow-x: auto; mask-image: none; }
   .stripTrack { animation: none; }
 }

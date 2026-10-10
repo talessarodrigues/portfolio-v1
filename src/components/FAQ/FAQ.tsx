@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import styles from './FAQ.module.css'
 import { useTranslation } from '../../i18n/LanguageContext'
 import { CONTACTS } from '../../data/contacts'
+import { useWordReveal } from '../Site/useWordReveal'
 
 const IconMail = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -16,34 +17,6 @@ const IconArrow = () => (
   </svg>
 )
 
-// Cada palavra do título acende conforme a seção entra na tela.
-function useWordReveal(total: number) {
-  const ref = useRef<HTMLElement>(null)
-  const reduced = typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  const [lit, setLit] = useState(0)
-  useEffect(() => {
-    const el = ref.current
-    if (!el || reduced) return
-    let frame = 0
-    const update = () => {
-      frame = 0
-      const rect = el.getBoundingClientRect()
-      const p = (window.innerHeight * 0.8 - rect.top) / (rect.height * 0.45)
-      setLit(Math.round(Math.min(1, Math.max(0, p)) * total))
-    }
-    const onScroll = () => { if (!frame) frame = requestAnimationFrame(update) }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-      if (frame) cancelAnimationFrame(frame)
-    }
-  }, [total, reduced])
-  return { ref, lit: reduced ? total : lit }
-}
-
 export function FAQ() {
   const { t } = useTranslation()
   const [openIdx, setOpenIdx] = useState<number | null>(0)
@@ -54,14 +27,14 @@ export function FAQ() {
     ...t.faq.titleHighlight.split(' ').map(w => ({ w, accent: true })),
     ...t.faq.titleSuffix.split(' ').map(w => ({ w, accent: false })),
   ].filter(x => x.w)
-  const { ref, lit } = useWordReveal(words.length)
+  const { ref, lit } = useWordReveal<HTMLHeadingElement>(words.length)
 
   return (
-    <section id="faq" ref={ref} className={styles.section}>
+    <section id="faq" className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.head}>
           <span className={styles.eyebrow}>FAQ</span>
-          <h2 className={styles.title} aria-label={`${t.faq.title} ${t.faq.titleHighlight} ${t.faq.titleSuffix}`}>
+          <h2 ref={ref} className={styles.title} aria-label={`${t.faq.title} ${t.faq.titleHighlight} ${t.faq.titleSuffix}`}>
             {words.map((x, i) => (
               <span
                 key={i}
