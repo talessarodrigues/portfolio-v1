@@ -199,6 +199,8 @@ export interface Dictionary {
     /** Rótulo do cursor sobre um card de case / de site publicado. */
     cursorVer: string
     cursorSite: string
+    /** Balões que aparecem junto do cursor sobre os cards: etiqueta do papel + perguntas. */
+    cursorBaloes: { papel: string; tipo: 'produto' | 'engenharia' | 'negocio'; perguntas: string[] }[]
     /** Filtros da grade de projetos (home). */
     filtros: { all: string; website: string; app: string; dashboard: string; ecommerce: string; b2b: string; b2c: string; saas: string; fintech: string }
     buscarProjeto: string

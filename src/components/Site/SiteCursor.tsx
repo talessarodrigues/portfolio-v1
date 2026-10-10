@@ -4,26 +4,34 @@ import styles from './SiteCursor.module.css'
 // Cursor personalizado do site da Rodrigues Design (versão "v3"): ponto
 // que acompanha o mouse, anel que vem atrás com leve atraso, anel maior em
 // links, pílula com rótulo onde houver data-cursor (ex.: "View project" nos
-// cards) e anel que se deforma no clique. Só com mouse (hover + pointer
+// cards), balão de conversa (etiqueta do papel + pergunta, no estilo dos
+// cursores colaborativos) onde houver data-cursor-fala e anel que se deforma
+// no clique. Só com mouse (hover + pointer
 // fine) e sem prefers-reduced-motion; fora disso fica o cursor do sistema.
 export function SiteCursor() {
   const rootRef = useRef<HTMLDivElement>(null)
   const dotRef = useRef<HTMLSpanElement>(null)
   const ringRef = useRef<HTMLSpanElement>(null)
   const labelRef = useRef<HTMLElement>(null)
+  const bubbleRef = useRef<HTMLDivElement>(null)
+  const tagRef = useRef<HTMLSpanElement>(null)
+  const msgRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
     const root = rootRef.current
     const dot = dotRef.current
     const ring = ringRef.current
     const label = labelRef.current
+    const bubble = bubbleRef.current
+    const tag = tagRef.current
+    const msg = msgRef.current
     const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (!root || !dot || !ring || !label || !fine || reduce) return
+    if (!root || !dot || !ring || !label || !bubble || !tag || !msg || !fine || reduce) return
 
     const html = document.documentElement
     html.classList.add('has-cursor')
-    let x = -100, y = -100, rx = -100, ry = -100
+    let x = -100, y = -100, rx = -100, ry = -100, bx = -100, by = -100
 
     const onMove = (e: MouseEvent) => {
       x = e.clientX
@@ -35,6 +43,13 @@ export function SiteCursor() {
       const text = t?.closest('input:not([type="file"]), textarea, select')
       const link = t?.closest('a, button, summary, label, [role="tab"], [role="button"], [role="menuitemradio"]')
       const txt = labeled?.dataset.cursor ?? ''
+      const chat = t?.closest<HTMLElement>('[data-cursor-fala]')
+      if (chat) {
+        if (msg.textContent !== chat.dataset.cursorFala) msg.textContent = chat.dataset.cursorFala ?? ''
+        if (tag.textContent !== chat.dataset.cursorPapel) tag.textContent = chat.dataset.cursorPapel ?? ''
+        bubble.dataset.tipo = chat.dataset.cursorTipo ?? ''
+      }
+      root.classList.toggle(styles.hasBubble, !!chat)
       if (label.textContent !== txt) label.textContent = txt
       root.classList.toggle(styles.hasLabel, !!labeled)
       root.classList.toggle(styles.isText, !!text)
@@ -51,6 +66,15 @@ export function SiteCursor() {
       ry += (y - ry) * 0.18
       ring.style.setProperty('--rx', `${rx.toFixed(1)}px`)
       ring.style.setProperty('--ry', `${ry.toFixed(1)}px`)
+      // O balão flutua um pouco atrás do ponto e vai para o outro lado quando
+      // não cabe na tela.
+      const w = bubble.offsetWidth, h = bubble.offsetHeight
+      const tx = x + 30 + w > window.innerWidth - 12 ? x - 30 - w : x + 30
+      const ty = y + 52 + h > window.innerHeight - 12 ? y - 40 - h : y + 52
+      bx += (tx - bx) * 0.14
+      by += (ty - by) * 0.14
+      bubble.style.setProperty('--bx', `${bx.toFixed(1)}px`)
+      bubble.style.setProperty('--by', `${by.toFixed(1)}px`)
       frame = requestAnimationFrame(loop)
     })
 
@@ -74,6 +98,10 @@ export function SiteCursor() {
         <em ref={labelRef} className={styles.label} />
       </span>
       <span ref={dotRef} className={styles.dot} />
+      <div ref={bubbleRef} className={styles.bubble}>
+        <span ref={tagRef} className={styles.tag} />
+        <span ref={msgRef} className={styles.msg} />
+      </div>
     </div>
   )
 }

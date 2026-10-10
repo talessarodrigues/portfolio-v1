@@ -328,6 +328,11 @@ export const pt: Dictionary = {
     voltarInicio: 'Voltar para o início',
     cursorVer: 'Ver projeto',
     cursorSite: 'Ver site',
+    cursorBaloes: [
+      { papel: 'Produto', tipo: 'produto', perguntas: ['Qual problema estamos resolvendo?', 'Quem vai usar isso no dia a dia?', 'O que fica de fora da primeira versão?'] },
+      { papel: 'Engenharia', tipo: 'engenharia', perguntas: ['Dá para construir assim?', 'Isso escala com mais usuários?', 'Quanto tempo leva para entregar?'] },
+      { papel: 'Negócio', tipo: 'negocio', perguntas: ['Qual o impacto na conversão?', 'Isso reduz custo ou aumenta receita?', 'Como a gente mede o resultado?'] },
+    ],
     filtros: { all: 'Tudo', website: 'Websites', app: 'Aplicativos', dashboard: 'Painéis', ecommerce: 'E-commerce', b2b: 'B2B', b2c: 'B2C', saas: 'SaaS', fintech: 'Fintech' },
     buscarProjeto: 'Pesquisar projeto…',
     tudoQueFiz: 'Tudo o que já fiz, passando',

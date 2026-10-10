@@ -20,6 +20,16 @@ export function CaseCard({ project, eager = false }: CaseCardProps) {
   const year = projectYear(project, t)
   const meta = [...project.kinds.map(k => t.site.filtros[k]), year].filter(Boolean).join(' · ')
   const href = caseHref(project)
+  // Cada card "conversa" com o cursor: um papel (Produto, Engenharia ou
+  // Negócio) e uma pergunta, escolhidos pelo nome do projeto para serem
+  // sempre os mesmos.
+  const seed = [...project.title].reduce((n, c) => (n * 31 + c.charCodeAt(0)) >>> 0, 7)
+  const balao = t.site.cursorBaloes[seed % t.site.cursorBaloes.length]
+  const chat = {
+    'data-cursor-papel': balao.papel,
+    'data-cursor-tipo': balao.tipo,
+    'data-cursor-fala': balao.perguntas[Math.floor(seed / 7) % balao.perguntas.length],
+  }
   const badge = project.externalUrl
     ? (project.mobileOnly ? t.projectsHero.somenteMobile : t.projectsHero.verSite)
     : null
@@ -48,11 +58,11 @@ export function CaseCard({ project, eager = false }: CaseCardProps) {
   // Projeto no ar abre o site; projeto com case abre a página dele.
   if (project.externalUrl) {
     return (
-      <a className={styles.card} href={project.externalUrl} target="_blank" rel="noopener noreferrer" data-cursor={t.site.cursorSite}>
+      <a className={styles.card} href={project.externalUrl} target="_blank" rel="noopener noreferrer" data-cursor={t.site.cursorSite} {...chat}>
         {content}
       </a>
     )
   }
-  if (href) return <SiteLink to={href} className={styles.card} data-cursor={t.site.cursorVer}>{content}</SiteLink>
-  return <div className={styles.card}>{content}</div>
+  if (href) return <SiteLink to={href} className={styles.card} data-cursor={t.site.cursorVer} {...chat}>{content}</SiteLink>
+  return <div className={styles.card} {...chat}>{content}</div>
 }
