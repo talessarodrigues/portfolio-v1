@@ -1,5 +1,6 @@
-/* Mesmo painel de Experiências, agora fechado dos quatro lados: as duas
-   seções deixaram de ser vizinhas quando viraram modais separados. */
+/* Depoimentos em carrossel, no desenho da referência: título grande e fino à
+   esquerda, texto de apoio à direita, cartões planos lado a lado com a fala
+   em itálico, setas nas laterais e pontinhos embaixo. */
 .section {
   padding: 10px;
   width: 100%;
@@ -14,62 +15,57 @@
   margin: 0 auto;
   background: var(--panel);
   border-radius: 24px;
-  padding: 8px 32px;
+  padding: 40px 32px 48px;
   box-sizing: border-box;
 }
 
-/* Mesma decisão de Experiências: sem caixa, direto no fundo.
-   `overflow: hidden` fica porque o marquee depende dele. */
 .container {
   max-width: 1440px;
   margin: 0 auto;
-  overflow: hidden;
-  padding: 16px 0 24px;
 }
 
 /* ── Header ── */
 .header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 28px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  margin-bottom: 56px;
   padding: 0 40px;
 }
 
-.headerLeft {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  min-width: 0;
+.title {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(36px, 4.4vw, 68px);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--panel-text);
 }
 
-/* Título e botão dividem a mesma linha e nenhum dos dois quebra. */
-.title {
-  font-family: var(--font-body);
-  font-size: min(2.4vw, 26px);
-  font-weight: 700;
-  color: var(--panel-text);
-  margin: 0;
-  white-space: nowrap;
+.headerRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
 }
 
 .subtitle {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 400;
-  color: var(--panel-text-muted);
   margin: 0;
-  line-height: 1.4;
+  max-width: 620px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--panel-text-muted);
 }
 
 .linkedinBtn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   padding: 10px 18px;
   border-radius: 999px;
-  border: none;
   background: var(--gradient-cta);
   color: #ffffff;
   font-family: var(--font-body);
@@ -77,119 +73,152 @@
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
-  flex-shrink: 0;
   transition: opacity 0.2s;
 }
-.linkedinBtn:hover {
-  opacity: 0.88;
+.linkedinBtn:hover { opacity: 0.88; }
+
+@media (min-width: 900px) {
+  .header {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 64px;
+  }
 }
 
-/* ── Marquee ── */
-.marqueeOuter {
-  overflow: hidden;
-  mask-image: linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%);
-  padding: 0 40px;
-}
-
-.marqueeInner {
+/* ── Carrossel ── */
+.carousel {
   display: flex;
+  align-items: center;
   gap: 16px;
-  width: max-content;
-  animation: marqueeScroll 70s linear infinite;
+  padding: 0 8px;
 }
 
-.marqueeOuter:hover .marqueeInner {
-  animation-play-state: paused;
+.track {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  /* Os dois cartões ficam da mesma altura, a do maior. */
+  align-items: stretch;
 }
+.track::-webkit-scrollbar { display: none; }
 
-@keyframes marqueeScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
-}
-
-/* ── Card ── */
-.card {
-  width: 290px;
+.arrow {
   flex-shrink: 0;
-  /* Mesmo fundo do cartão de workshops: o lilás encosta só no canto
-     direito (círculo com o centro fora do cartão). */
-  background:
-    radial-gradient(circle at 104% 50%, var(--card-soft-glow) 0%, transparent 38%),
-    var(--card-soft-bg);
-  border: 1px solid var(--card-soft-border);
-  border-radius: 14px;
-  padding: 18px;
-  position: relative;
-  overflow: hidden;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--panel-text);
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+.arrow:hover:not(:disabled) { background: rgba(127, 127, 127, 0.18); }
+.arrow:disabled { opacity: 0.25; cursor: default; }
+
+.card {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  justify-content: space-between;
+  gap: 32px;
+  margin: 0;
+  padding: 28px 24px 24px;
+  box-sizing: border-box;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
 }
-
-.cardTop {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.avatar {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: var(--gradient-cta);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 600;
-  color: #ffffff;
-  flex-shrink: 0;
-}
-
-.name {
-  font-family: var(--font-body);
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--panel-text);
-  line-height: 1.3;
-}
-
-.role {
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 400;
-  color: var(--panel-text-muted);
-  line-height: 1.4;
+@media (min-width: 900px) {
+  .card { flex-basis: calc((100% - 12px) / 2); }
 }
 
 .text {
-  font-family: var(--font-body);
-  font-size: 12.5px;
-  font-weight: 400;
-  color: var(--panel-text-muted);
-  line-height: 1.6;
   margin: 0;
-  flex: 1;
+  font-family: var(--font-body);
+  font-size: clamp(18px, 1.6vw, 23px);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--panel-text-muted);
 }
 
-/* ── Mobile ── */
-@media (max-width: 768px) {
-  .section {
-    padding: 0 0 48px;
-  }
+.author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
 
-  .header {
-    flex-direction: column;
-    gap: 12px;
-    padding: 0 20px;
-  }
+.avatar {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent-purple);
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 700;
+}
 
-  .marqueeOuter {
-    padding: 0 20px;
-  }
+.name,
+.role {
+  display: block;
+}
+.name {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--panel-text);
+}
+.role {
+  margin-top: 2px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--panel-text);
+}
 
-  .card {
-    flex: 0 0 calc(100vw - 80px);
-  }
+/* ── Pontinhos ── */
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+}
+.dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--panel-text-muted);
+  opacity: 0.35;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.dot[data-active='true'] {
+  opacity: 1;
+  transform: scale(1.25);
+  background: var(--panel-text);
+}
+
+@media (max-width: 640px) {
+  .outer { padding: 28px 16px 36px; }
+  .header { padding: 0 8px; margin-bottom: 36px; }
+  .carousel { padding: 0; gap: 4px; }
+  .arrow { width: 36px; height: 36px; }
+  .card { padding: 22px 18px 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track { scroll-behavior: auto; }
 }
