@@ -330,6 +330,7 @@ export const en: Dictionary = {
     cursorSite: 'Visit site',
     filtros: { all: 'All', website: 'Websites', app: 'Apps', dashboard: 'Dashboards', ecommerce: 'E-commerce', b2b: 'B2B', b2c: 'B2C', saas: 'SaaS', fintech: 'Fintech' },
     buscarProjeto: 'Search projects…',
+    trabalhosSelecionados: ['Selected', 'works'],
     tudoQueFiz: 'Everything I have made, rolling by',
     nenhumProjeto: 'No projects found. Try another term or filter.',
     seoCase: '{categoria} case study',
