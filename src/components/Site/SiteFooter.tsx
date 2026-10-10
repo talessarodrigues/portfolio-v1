@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { HugeiconsIcon } from '@hugeicons/react'
 import {
-  Behance02FreeIcons,
   Copy01FreeIcons,
   Linkedin02FreeIcons,
   Tick02FreeIcons,
@@ -16,7 +15,6 @@ import { SiteLink } from './SiteLink'
 
 const SOCIALS = [
   { href: CONTACTS.linkedin, icon: Linkedin02FreeIcons, label: 'LinkedIn', canal: 'linkedin' as const },
-  { href: CONTACTS.behance, icon: Behance02FreeIcons, label: 'Behance', canal: 'behance' as const },
   { href: CONTACTS.whatsapp, icon: WhatsappFreeIcons, label: 'WhatsApp', canal: 'whatsapp' as const },
 ]
 

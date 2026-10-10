@@ -11,7 +11,7 @@ import { track } from '@vercel/analytics'
 // A medição nunca pode atrapalhar o clique: `track` é disparado e
 // esquecido, e qualquer erro dele é engolido. O link abre do mesmo jeito.
 
-type Canal = 'whatsapp' | 'linkedin' | 'behance' | 'email' | 'github' | 'agenda'
+type Canal = 'whatsapp' | 'linkedin' | 'email' | 'github' | 'agenda'
 
 // De onde a pessoa clicou. Serve para descobrir qual ponto de contato do
 // site puxa mais conversa — e quais só ocupam espaço.

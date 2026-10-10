@@ -5,7 +5,6 @@ export const CONTACTS = {
   // só dígitos. O link antigo (w.app/talessarodriguesdesign) não abria.
   whatsapp: 'https://wa.me/5535998074669',
   linkedin: 'https://www.linkedin.com/in/talessamayara/',
-  behance: 'https://www.behance.net/talessamayara',
   // Só a linha de redes do mobile usa o GitHub.
   github: 'https://github.com/talessarodrigues',
   // Vira um link mailto: no dock do desktop e na linha de redes do mobile.

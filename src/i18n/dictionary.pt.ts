@@ -330,6 +330,8 @@ export const pt: Dictionary = {
     cursorSite: 'Ver site',
     filtros: { all: 'Tudo', website: 'Websites', app: 'Aplicativos', dashboard: 'Painéis', ecommerce: 'E-commerce', b2b: 'B2B', b2c: 'B2C', saas: 'SaaS', fintech: 'Fintech' },
     buscarProjeto: 'Pesquisar projeto…',
+    trabalhosSelecionados: ['Projetos', 'selecionados'],
+    tudoQueFiz: 'Tudo o que já fiz, passando',
     nenhumProjeto: 'Nenhum projeto encontrado. Tente outro termo ou filtro.',
     seoCase: 'Case de {categoria}',
     seoSobre: 'Trajetória, experiências, formação e recomendações de Talessa Rodrigues, Product Designer & AI Engineer que une UX/UI e desenvolvimento com IA.',

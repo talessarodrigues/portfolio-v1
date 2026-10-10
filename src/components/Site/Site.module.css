@@ -498,3 +498,86 @@
   .media img,
   .card:hover .media img { transition: none; transform: none; }
 }
+
+/* ── Vinheta antes da grade ──────────────────────────────── */
+/* O título fica parado no meio da tela e some com a rolagem (--p, de 0 a 1,
+   vem do HomePage); quando ele acaba, a grade já está logo abaixo. */
+.reveal {
+  --p: 0;
+  position: relative;
+  height: 150vh;
+  margin-top: 24px;
+}
+.revealStage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+  pointer-events: none;
+}
+.revealCount {
+  font: 600 14px/1 var(--font-body);
+  letter-spacing: 0.08em;
+  color: var(--site-muted);
+  opacity: clamp(0, calc(1.3 - var(--p) * 1.6), 1);
+}
+.revealTitle {
+  font: 500 clamp(56px, 11vw, 168px)/0.98 var(--font-article);
+  letter-spacing: -0.02em;
+  color: var(--site-ink);
+  opacity: clamp(0, calc(1.3 - var(--p) * 1.6), 1);
+  transform: translateY(calc(var(--p) * -60px)) scale(calc(1 - var(--p) * 0.08));
+  filter: blur(calc(var(--p) * 10px));
+  will-change: opacity, transform, filter;
+}
+.revealAccent { color: var(--site-accent); }
+
+/* ── Faixa de capas que passa sozinha ────────────────────── */
+.strip {
+  margin-top: 96px;
+  padding-bottom: 24px;
+}
+.stripLabel {
+  margin-bottom: 20px;
+  font: 600 13px/1.2 var(--font-body);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--site-muted);
+}
+.stripRow {
+  overflow: hidden;
+  margin-top: 8px;
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+.stripTrack {
+  display: flex;
+  width: max-content;
+  animation: stripMove 80s linear infinite;
+}
+.stripTrackReverse { animation-direction: reverse; }
+.stripRow:hover .stripTrack { animation-play-state: paused; }
+.stripSet {
+  display: flex;
+  gap: 8px;
+  padding-right: 8px;
+}
+.stripItem {
+  flex: none;
+  width: clamp(240px, 26vw, 400px);
+}
+@keyframes stripMove {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { height: auto; padding: 56px 0; }
+  .revealStage { position: static; height: auto; }
+  .revealTitle, .revealCount { opacity: 1; transform: none; filter: none; }
+  .stripRow { overflow-x: auto; mask-image: none; }
+  .stripTrack { animation: none; }
+}

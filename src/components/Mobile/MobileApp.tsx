@@ -32,7 +32,6 @@ import { useTheme } from '../../theme/ThemeContext'
 import { HugeiconsIcon } from '@hugeicons/react'
 import {
   ArrowRightDoubleFreeIcons,
-  Behance02FreeIcons,
   Github01FreeIcons,
   Linkedin02FreeIcons,
   Mail01FreeIcons,
@@ -86,10 +85,9 @@ export function MobileApp() {
     setDetailSlug(p.detailSlug)
   }
 
-  // Ordem: Behance, LinkedIn, GitHub, E-mail.
+  // Ordem: LinkedIn, GitHub, E-mail.
   // WhatsApp continua no botão "Contato" e no dock.
   const SOCIALS = [
-    { href: LINKS.behance, icon: Behance02FreeIcons, label: 'Behance', canal: 'behance' as const },
     { href: LINKS.linkedin, icon: Linkedin02FreeIcons, label: 'LinkedIn', canal: 'linkedin' as const },
     { href: LINKS.github, icon: Github01FreeIcons, label: 'GitHub', canal: 'github' as const },
     { href: LINKS.email ? `mailto:${LINKS.email}` : '', icon: Mail01FreeIcons, label: 'E-mail', canal: 'email' as const },

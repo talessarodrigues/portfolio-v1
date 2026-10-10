@@ -202,6 +202,10 @@ export interface Dictionary {
     /** Filtros da grade de projetos (home). */
     filtros: { all: string; website: string; app: string; dashboard: string; ecommerce: string; b2b: string; b2c: string; saas: string; fintech: string }
     buscarProjeto: string
+    /** Título da vinheta que antecede a grade de projetos (home). */
+    trabalhosSelecionados: [string, string]
+    /** Legenda da faixa de capas depois da grade. */
+    tudoQueFiz: string
     nenhumProjeto: string
     /** SEO: rótulo do case no título da aba/busca. {categoria} vira a categoria. */
     seoCase: string
