@@ -499,25 +499,6 @@
   .card:hover .media img { transition: none; transform: none; }
 }
 
-/* ── Título grande acima da grade ────────────────────────── */
-/* Cada linha acende quando o título sobe na tela (useWordReveal). */
-.worksTitle {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 24px 0 64px;
-  text-align: center;
-  font: 500 clamp(52px, 8.5vw, 132px)/1.02 var(--font-article);
-  letter-spacing: -0.02em;
-}
-.worksWord {
-  color: var(--site-ink);
-  opacity: 0.16;
-  transition: opacity 0.45s ease;
-}
-.worksWord[data-lit="true"] { opacity: 1; }
-.worksWord:last-child { color: var(--site-accent); }
-
 /* ── Faixa de capas que passa sozinha ────────────────────── */
 .strip {
   margin-top: 96px;
@@ -556,7 +537,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .worksWord { opacity: 1; transition: none; }
   .stripRow { overflow-x: auto; mask-image: none; }
   .stripTrack { animation: none; }
 }

@@ -14,7 +14,6 @@ import { trackContato } from '../../analytics'
 import { CaseCard } from './CaseCard'
 import { SiteLink } from './SiteLink'
 import { caseHref, latestCase } from './projectInfo'
-import { useWordReveal } from './useWordReveal'
 
 type Filter = 'all' | ProjectKind | ProjectSegment
 
@@ -59,8 +58,6 @@ function ProjectsStrip() {
 
 export function HomePage() {
   const { t } = useTranslation()
-  const titleWords = t.site.trabalhosSelecionados
-  const { ref: titleRef, lit } = useWordReveal<HTMLHeadingElement>(titleWords.length)
   // Sem nenhum case com ano entre os visíveis, o botão leva ao primeiro projeto (que pode ser um site no ar).
   const latest = latestCase(t) ?? visibleProjects[0] ?? null
   const latestHref = latest ? caseHref(latest) : null
@@ -104,12 +101,6 @@ export function HomePage() {
       </header>
 
       <section id="projetos" className={styles.work} aria-label={t.site.projetos}>
-        <h2 ref={titleRef} className={styles.worksTitle} aria-label={titleWords.join(' ')}>
-          {titleWords.map((w, i) => (
-            <span key={w} aria-hidden="true" className={styles.worksWord} data-lit={i < lit}>{w}</span>
-          ))}
-        </h2>
-
         <div className={styles.toolbar}>
           <div className={styles.filters}>
             {(['all', ...PROJECT_KINDS, ...PROJECT_SEGMENTS] as Filter[]).map(f => (
