@@ -499,35 +499,6 @@
   .card:hover .media img { transition: none; transform: none; }
 }
 
-/* ── Vinheta antes da grade ──────────────────────────────── */
-/* O título fica parado no meio da tela e some com a rolagem (--p, de 0 a 1,
-   vem do HomePage); quando ele acaba, a grade já está logo abaixo. */
-.reveal {
-  --p: 0;
-  position: relative;
-  height: 120vh;
-  margin-top: 24px;
-}
-.revealStage {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  pointer-events: none;
-}
-.revealTitle {
-  font: 500 clamp(44px, 6.5vw, 96px)/1.05 var(--font-article);
-  letter-spacing: -0.02em;
-  color: var(--site-ink);
-  opacity: clamp(0, calc(1.4 - var(--p) * 1.8), 1);
-  transform: translateY(calc(var(--p) * -36px));
-  will-change: opacity, transform;
-}
-.revealAccent { color: var(--site-accent); }
-
 /* ── Faixa de capas que passa sozinha ────────────────────── */
 .strip {
   margin-top: 96px;
@@ -566,9 +537,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal { height: auto; padding: 56px 0; }
-  .revealStage { position: static; height: auto; }
-  .revealTitle { opacity: 1; transform: none; }
   .stripRow { overflow-x: auto; mask-image: none; }
   .stripTrack { animation: none; }
 }

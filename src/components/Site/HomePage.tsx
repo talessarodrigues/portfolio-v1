@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { Cancel01FreeIcons, Search01FreeIcons } from '@hugeicons/core-free-icons'
 import styles from './Site.module.css'
@@ -27,34 +27,6 @@ const normalize = (s: string) =>
 const DICTS = [pt, en, es]
 const searchText = (title: string, labels: (ProjectKind | ProjectSegment)[]) =>
   normalize([title, ...DICTS.flatMap(d => [d.projects[title]?.description ?? '', ...labels.map(k => d.site.filtros[k])])].join(' '))
-
-// Vinheta antes da grade: o título fica parado no meio da tela e some com a
-// rolagem (--p vai de 0 a 1), deixando os projetos aparecerem.
-function useScrollProgress<T extends HTMLElement>() {
-  const ref = useRef<T>(null)
-  useEffect(() => {
-    const el = ref.current
-    if (!el || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    let frame = 0
-    const update = () => {
-      frame = 0
-      const rect = el.getBoundingClientRect()
-      const range = rect.height - window.innerHeight
-      const p = range > 0 ? Math.min(1, Math.max(0, -rect.top / range)) : 0
-      el.style.setProperty('--p', p.toFixed(3))
-    }
-    const onScroll = () => { if (!frame) frame = requestAnimationFrame(update) }
-    update()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    window.addEventListener('resize', onScroll)
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      window.removeEventListener('resize', onScroll)
-      if (frame) cancelAnimationFrame(frame)
-    }
-  }, [])
-  return ref
-}
 
 // Faixa que passa sozinha com as capas de todos os projetos, em duas fileiras
 // que andam em sentidos opostos. O segundo conjunto de cada fileira só existe
@@ -86,7 +58,6 @@ function ProjectsStrip() {
 
 export function HomePage() {
   const { t } = useTranslation()
-  const revealRef = useScrollProgress<HTMLElement>()
   // Sem nenhum case com ano entre os visíveis, o botão leva ao primeiro projeto (que pode ser um site no ar).
   const latest = latestCase(t) ?? visibleProjects[0] ?? null
   const latestHref = latest ? caseHref(latest) : null
@@ -128,16 +99,6 @@ export function HomePage() {
           </a>
         </div>
       </header>
-
-      <section ref={revealRef} className={styles.reveal} aria-hidden="true">
-        <div className={styles.revealStage}>
-          <p className={styles.revealTitle}>
-            {t.site.trabalhosSelecionados[0]}
-            <br />
-            <span className={styles.revealAccent}>{t.site.trabalhosSelecionados[1]}</span>
-          </p>
-        </div>
-      </section>
 
       <section id="projetos" className={styles.work} aria-label={t.site.projetos}>
         <div className={styles.toolbar}>
