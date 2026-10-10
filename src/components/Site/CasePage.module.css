@@ -34,6 +34,41 @@
   color: var(--site-muted);
 }
 
+/* Painel (nome + dados) e conteúdo. Em telas estreitas empilham, com o painel
+   em cima; a partir de 1000px viram duas colunas e o painel acompanha a
+   rolagem, como no site de referência. */
+.layout { display: block; }
+.aside { min-width: 0; }
+.content { min-width: 0; }
+
+@media (min-width: 1000px) {
+  .page { width: var(--site-wide); }
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(280px, 4fr) minmax(0, 8fr);
+    gap: 72px;
+    align-items: start;
+  }
+  .aside {
+    position: sticky;
+    top: 112px;
+    max-height: calc(100vh - 136px);
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  .aside::-webkit-scrollbar { display: none; }
+  .title { font-size: 56px; }
+  .meta {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    margin-top: 36px;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+  .cover { margin-top: 0; }
+  .more { padding-top: 96px; }
+}
+
 /* Só a imagem do projeto, sem moldura de fundo: as capas já são arte pronta. */
 .cover {
   margin-top: 40px;

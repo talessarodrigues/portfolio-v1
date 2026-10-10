@@ -181,45 +181,53 @@ export function CasePage({ slug }: { slug: string }) {
       <SiteNav page="case" sections={sections} activeSection={active} />
 
       <main className={styles.page}>
-        <header className={styles.header}>
-          <span className={styles.eyebrow}>{eyebrow}</span>
-          <h1 className={styles.title}>{project.title}</h1>
-          {summary && <p className={styles.summary}>{summary}</p>}
-        </header>
+        {/* Em telas largas o painel com o nome e os dados do projeto fica
+            parado à esquerda enquanto as imagens e o texto rolam à direita. */}
+        <div className={styles.layout}>
+          <aside className={styles.aside}>
+            <header className={styles.header}>
+              <span className={styles.eyebrow}>{eyebrow}</span>
+              <h1 className={styles.title}>{project.title}</h1>
+              {summary && <p className={styles.summary}>{summary}</p>}
+            </header>
 
-        <div className={styles.cover}>
-          <img src={project.image} alt={project.title} />
-        </div>
-
-        <dl className={styles.meta}>
-          {meta.map(m => (
-            <div key={m.label} className={styles.metaItem}>
-              <dt>{m.label}</dt>
-              <dd>{m.value}</dd>
-            </div>
-          ))}
-          <div className={styles.metaItem}>
-            <dt>{t.likes.curtidas}</dt>
-            <dd><LikeButton projectKey={project.title} label={t.likes.curtir} /></dd>
-          </div>
-          {entry.protoUrl && (
-            <a className={styles.proto} href={entry.protoUrl} target="_blank" rel="noopener noreferrer">
-              {text.protoBtn || t.site.verPrototipo}
-              <HugeiconsIcon icon={ArrowUpRight01FreeIcons} size={16} strokeWidth={1.8} />
-            </a>
-          )}
-        </dl>
-
-        {sections.map(section => (
-          <section key={section.id} id={section.id} className={styles.section}>
-            <h2 className={styles.sectionLabel}>{section.label}</h2>
-            <div className={styles.sectionBody}>
-              {section.blocks.map((b, i) => (
-                <BlockView key={i} shape={b.shape} text={b.text} onZoom={setZoom} />
+            <dl className={styles.meta}>
+              {meta.map(m => (
+                <div key={m.label} className={styles.metaItem}>
+                  <dt>{m.label}</dt>
+                  <dd>{m.value}</dd>
+                </div>
               ))}
+              <div className={styles.metaItem}>
+                <dt>{t.likes.curtidas}</dt>
+                <dd><LikeButton projectKey={project.title} label={t.likes.curtir} /></dd>
+              </div>
+              {entry.protoUrl && (
+                <a className={styles.proto} href={entry.protoUrl} target="_blank" rel="noopener noreferrer">
+                  {text.protoBtn || t.site.verPrototipo}
+                  <HugeiconsIcon icon={ArrowUpRight01FreeIcons} size={16} strokeWidth={1.8} />
+                </a>
+              )}
+            </dl>
+          </aside>
+
+          <div className={styles.content}>
+            <div className={styles.cover}>
+              <img src={project.image} alt={project.title} />
             </div>
-          </section>
-        ))}
+
+            {sections.map(section => (
+              <section key={section.id} id={section.id} className={styles.section}>
+                <h2 className={styles.sectionLabel}>{section.label}</h2>
+                <div className={styles.sectionBody}>
+                  {section.blocks.map((b, i) => (
+                    <BlockView key={i} shape={b.shape} text={b.text} onZoom={setZoom} />
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+        </div>
 
         <section className={styles.more}>
           <h2 className={styles.moreTitle}>{t.site.exploreMais}</h2>

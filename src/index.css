@@ -205,6 +205,11 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
+/* `hidden` faz o body virar um contêiner de rolagem e quebra o position:
+   sticky de tudo que está dentro dele; `clip` corta do mesmo jeito sem isso. */
+@supports (overflow: clip) {
+  body { overflow-x: clip; }
+}
 
 /* Ligado pelo App enquanto a home (tela única) está no ar. */
 html.no-scroll,
