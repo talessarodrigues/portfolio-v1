@@ -131,7 +131,6 @@ export function HomePage() {
 
       <section ref={revealRef} className={styles.reveal} aria-hidden="true">
         <div className={styles.revealStage}>
-          <span className={styles.revealCount}>({visibleProjects.length})</span>
           <p className={styles.revealTitle}>
             {t.site.trabalhosSelecionados[0]}
             <br />
