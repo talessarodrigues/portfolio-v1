@@ -6,6 +6,7 @@ import imgAvatar from '../../assets/sobre/perfil-talessa.webp'
 import { visibleProjects, PROJECT_KINDS, PROJECT_SEGMENTS } from '../../data/projects'
 import type { ProjectKind, ProjectSegment } from '../../data/projects'
 import { useTranslation } from '../../i18n/LanguageContext'
+import { semViuva } from '../../i18n/text'
 import { pt } from '../../i18n/dictionary.pt'
 import { en } from '../../i18n/dictionary.en'
 import { es } from '../../i18n/dictionary.es'
@@ -107,15 +108,28 @@ export function HomePage() {
       <header className={styles.hero}>
         <h1 className={styles.heroTitle}>
           <span className={styles.heroName}>{t.site.saudacao}</span>
-          {t.site.heroTitulo} <em className={styles.heroAccent}>{t.site.heroDestaque}</em>
+          {semViuva(t.site.heroTitulo)} <em className={styles.heroAccent}>{semViuva(t.site.heroDestaque)}</em>
         </h1>
 
         <div className={styles.heroSide}>
           <p className={styles.heroText}>{t.site.bio}</p>
           <div className={styles.heroActions}>
-            <span className={styles.heroFaces} aria-hidden="true">
-              <img src={imgAvatar} alt="" />
-              <span>{visibleProjects.length}+</span>
+            <span className={styles.heroFaces}>
+              <a
+                className={styles.heroAvatar}
+                href={CONTACTS.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn de Talessa Rodrigues"
+                onClick={() => trackContato('linkedin', 'hero-avatar')}
+              >
+                <img src={imgAvatar} alt="Talessa Rodrigues" />
+                <span className={styles.heroTip} aria-hidden="true">
+                  <img src="/favicon.svg" alt="" />
+                  Talessa Rodrigues
+                </span>
+              </a>
+              <span className={styles.heroCount} aria-hidden="true">{visibleProjects.length}+</span>
             </span>
             {latestHref ? (
               <SiteLink to={latestHref} className={styles.btnPrimary}>{t.site.trabalhoRecente}</SiteLink>

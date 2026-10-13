@@ -169,9 +169,12 @@
 }
 
 .heroTitle {
-  font: 400 clamp(44px, 5.8vw, 100px)/1.03 'Instrument Sans', var(--font-article);
+  max-width: 11.2em;
+  font: 400 clamp(38px, 4.6vw, 82px)/1.08 Manrope, var(--font-article);
   letter-spacing: -0.035em;
   color: var(--site-ink);
+  /* Equilibra as linhas: nenhuma palavra fica sozinha na última. */
+  text-wrap: balance;
 }
 .heroName {
   display: block;
@@ -182,9 +185,9 @@
 }
 .heroAccent {
   padding-right: 0.08em;
-  font: italic 400 1.08em/1 'Instrument Serif', 'Crimson Pro', serif;
+  font: italic 400 1em/1 'Instrument Serif', 'Crimson Pro', serif;
   letter-spacing: -0.01em;
-  background: linear-gradient(95deg, #e5b1c9 0%, #c09bff 55%, #8f6df0 100%);
+  background: linear-gradient(100deg, #e5b1c9, #c08ed7 50%, #9a6ce5);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -201,7 +204,7 @@
   .heroSide { justify-self: end; }
 }
 .heroText {
-  font: 400 17px/1.6 'Instrument Sans', var(--font-body);
+  font: 400 17px/1.6 Manrope, var(--font-body);
   color: var(--site-muted);
 }
 .heroActions {
@@ -215,22 +218,71 @@
   align-items: center;
   margin-right: 6px;
 }
-.heroFaces img,
-.heroFaces span {
-  width: 46px;
-  height: 46px;
+.heroAvatar {
+  position: relative;
+  display: block;
   border-radius: 50%;
-  border: 2px solid var(--bg-light);
+  outline: none;
+}
+.heroAvatar:hover,
+.heroAvatar:focus-visible { z-index: 2; }
+.heroAvatar img,
+.heroCount {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 3px solid var(--bg-light);
   box-shadow: 0 0 0 1px var(--site-line);
 }
-.heroFaces img { object-fit: cover; }
-.heroFaces span {
+.heroAvatar img {
+  display: block;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.3s var(--ease, ease);
+}
+.heroAvatar:hover img,
+.heroAvatar:focus-visible img { transform: translateY(-2px); }
+.heroCount {
   display: grid;
   place-items: center;
   margin-left: -12px;
   background: var(--site-chip);
   font: 600 13px/1 var(--font-body);
   color: var(--site-accent);
+}
+/* Dica com o nome, no mesmo desenho da referência: pílula escura acima do rosto. */
+.heroTip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  padding: 8px 16px 8px 12px;
+  border-radius: 999px;
+  background: rgb(29, 23, 39);
+  color: #fff;
+  font: 500 13px/1 var(--font-body);
+  white-space: nowrap;
+  box-shadow: 0 12px 28px -10px rgba(40, 20, 70, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, 6px) scale(0.96);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.heroTip img {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+.heroAvatar:hover .heroTip,
+.heroAvatar:focus-visible .heroTip {
+  opacity: 1;
+  transform: translate(-50%, 0) scale(1);
 }
 
 /* ── Faixa com o nome dos projetos ───────────────────────── */

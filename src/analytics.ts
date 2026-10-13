@@ -16,6 +16,7 @@ type Canal = 'whatsapp' | 'linkedin' | 'email' | 'github' | 'agenda'
 // De onde a pessoa clicou. Serve para descobrir qual ponto de contato do
 // site puxa mais conversa — e quais só ocupam espaço.
 type Origem =
+  | 'hero-avatar'
   | 'hero-nav'
   | 'hero-cta'
   | 'hero-dock'
