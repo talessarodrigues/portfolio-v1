@@ -129,7 +129,6 @@ export function HomePage() {
                   Talessa Rodrigues
                 </span>
               </a>
-              <span className={styles.heroCount} aria-hidden="true">{visibleProjects.length}+</span>
             </span>
             {latestHref ? (
               <SiteLink to={latestHref} className={styles.btnPrimary}>{t.site.trabalhoRecente}</SiteLink>

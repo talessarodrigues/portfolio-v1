@@ -216,7 +216,6 @@
 .heroFaces {
   display: inline-flex;
   align-items: center;
-  margin-right: 6px;
 }
 .heroAvatar {
   position: relative;
@@ -226,30 +225,19 @@
 }
 .heroAvatar:hover,
 .heroAvatar:focus-visible { z-index: 2; }
-.heroAvatar img,
-.heroCount {
+.heroAvatar img {
+  display: block;
   width: 48px;
   height: 48px;
   border-radius: 50%;
   border: 3px solid var(--bg-light);
   box-shadow: 0 0 0 1px var(--site-line);
-}
-.heroAvatar img {
-  display: block;
   object-fit: cover;
   object-position: center 20%;
   transition: transform 0.3s var(--ease, ease);
 }
 .heroAvatar:hover img,
 .heroAvatar:focus-visible img { transform: translateY(-2px); }
-.heroCount {
-  display: grid;
-  place-items: center;
-  margin-left: -12px;
-  background: var(--site-chip);
-  font: 600 13px/1 var(--font-body);
-  color: var(--site-accent);
-}
 /* Dica com o nome, no mesmo desenho da referência: pílula escura acima do rosto. */
 .heroTip {
   position: absolute;
