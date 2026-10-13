@@ -197,6 +197,9 @@ export interface Dictionary {
     paginaNaoEncontrada: string
     voltarInicio: string
     /** Rótulo do cursor sobre um card de case / de site publicado. */
+    /** Título da home: trecho normal e trecho em destaque (serifa itálica com degradê). */
+    heroTitulo: string
+    heroDestaque: string
     cursorVer: string
     cursorSite: string
     /** Balões que aparecem junto do cursor sobre os cards: etiqueta do papel + perguntas. */

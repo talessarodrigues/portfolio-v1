@@ -326,6 +326,8 @@ export const es: Dictionary = {
     sobreTitulo: 'Sobre mí',
     paginaNaoEncontrada: 'Este case no existe (o cambió de dirección).',
     voltarInicio: 'Volver al inicio',
+    heroTitulo: 'Product Design, UX/UI e ingeniería con IA',
+    heroDestaque: 'para productos que la gente entiende',
     cursorVer: 'Ver proyecto',
     cursorSite: 'Ver sitio',
     cursorBaloes: [

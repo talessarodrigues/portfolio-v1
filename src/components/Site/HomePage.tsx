@@ -56,6 +56,32 @@ function ProjectsStrip() {
   )
 }
 
+// Faixa com o nome de cada projeto passando devagar, entre duas linhas finas.
+// Cada nome leva ao projeto; o segundo conjunto só fecha o loop.
+function NameStrip() {
+  const { t } = useTranslation()
+  return (
+    <div className={styles.names} aria-label={t.site.projetos}>
+      <div className={styles.namesTrack}>
+        {[0, 1].map(copy => (
+          <div key={copy} className={styles.namesSet} inert={copy === 1} aria-hidden={copy === 1}>
+            {visibleProjects.map(p => {
+              const href = caseHref(p)
+              return p.externalUrl ? (
+                <a key={p.title} className={styles.name} href={p.externalUrl} target="_blank" rel="noopener noreferrer">{p.title}</a>
+              ) : href ? (
+                <SiteLink key={p.title} to={href} className={styles.name}>{p.title}</SiteLink>
+              ) : (
+                <span key={p.title} className={styles.name}>{p.title}</span>
+              )
+            })}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export function HomePage() {
   const { t } = useTranslation()
   // Sem nenhum case com ano entre os visíveis, o botão leva ao primeiro projeto (que pode ser um site no ar).
@@ -78,27 +104,38 @@ export function HomePage() {
 
   return (
     <>
-      <header className={styles.intro}>
-        <img src={imgAvatar} alt="Talessa Rodrigues" className={styles.introAvatar} />
-        <h1 className={styles.introName}>{t.site.saudacao}</h1>
-        <p className={styles.introBio}>{t.site.bio}</p>
-        <div className={styles.introCtas}>
-          {latestHref ? (
-            <SiteLink to={latestHref} className={styles.btnPrimary}>{t.site.trabalhoRecente}</SiteLink>
-          ) : latestExternal && (
-            <a className={styles.btnPrimary} href={latestExternal} target="_blank" rel="noopener noreferrer">{t.site.trabalhoRecente}</a>
-          )}
-          <a
-            className={styles.btnSoft}
-            href={CONTACTS.agenda}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackContato('agenda', 'hero-cta')}
-          >
-            {t.site.agendarChamada}
-          </a>
+      <header className={styles.hero}>
+        <h1 className={styles.heroTitle}>
+          <span className={styles.heroName}>{t.site.saudacao}</span>
+          {t.site.heroTitulo} <em className={styles.heroAccent}>{t.site.heroDestaque}</em>
+        </h1>
+
+        <div className={styles.heroSide}>
+          <p className={styles.heroText}>{t.site.bio}</p>
+          <div className={styles.heroActions}>
+            <span className={styles.heroFaces} aria-hidden="true">
+              <img src={imgAvatar} alt="" />
+              <span>{visibleProjects.length}+</span>
+            </span>
+            {latestHref ? (
+              <SiteLink to={latestHref} className={styles.btnPrimary}>{t.site.trabalhoRecente}</SiteLink>
+            ) : latestExternal && (
+              <a className={styles.btnPrimary} href={latestExternal} target="_blank" rel="noopener noreferrer">{t.site.trabalhoRecente}</a>
+            )}
+            <a
+              className={styles.btnSoft}
+              href={CONTACTS.agenda}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackContato('agenda', 'hero-cta')}
+            >
+              {t.site.agendarChamada}
+            </a>
+          </div>
         </div>
       </header>
+
+      <NameStrip />
 
       <section id="projetos" className={styles.work} aria-label={t.site.projetos}>
         <div className={styles.toolbar}>
