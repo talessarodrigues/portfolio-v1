@@ -253,6 +253,7 @@ export interface Dictionary {
   usfit: CaseStudyText
   essencialPerfumaria: CaseStudyText
   meuCaixa: CaseStudyText
+  nexo: CaseStudyText
   residentEvil: CaseStudyText
   redesignNatva: CaseStudyText
   drakorysArcane: CaseStudyText

@@ -223,3 +223,45 @@
   font-size: 18px;
   color: var(--site-muted);
 }
+
+/* Case em módulos (página longa do Figma): largura total, quadros colados um
+   no outro como uma página só. */
+.pageModules { width: min(1400px, 100% - 96px); }
+.metaRow {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding-bottom: 40px;
+}
+.modules {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: var(--surface);
+}
+.module {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+.module img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (min-width: 1000px) {
+  /* A regra da coluna do painel não vale aqui: o cabeçalho ocupa a largura toda. */
+  .pageModules { width: min(1400px, var(--site-wide)); }
+  .metaRow {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    margin-top: 32px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--site-line);
+  }
+}
+@media (max-width: 999px) {
+  .metaRow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

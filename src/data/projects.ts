@@ -76,6 +76,7 @@ export interface Project {
 export const allProjects: Project[] = [
   { image: imgEssencialPerfumaria, hoverImage: imgEssencialPerfumariaPainel, title: 'Essencial Perfumaria', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard', 'ecommerce'], segments: ['b2c'], externalUrl: 'https://essencial-perfumaria.vercel.app' },
   { image: imgMeuCaixa, hoverImage: imgMeuCaixaInicio, title: 'Meu Caixa', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['b2b'], detailSlug: 'meu-caixa-ux' },
+  { image: imgNexo, hoverImage: imgNexoSolicitacoes, title: 'Nexo', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['fintech', 'b2b'], detailSlug: 'nexo-ux' },
   { image: imgCatalogoThaysa, hoverImage: imgCatalogoThaysaInicio, title: 'Catálogo Thaysa Ribeiro', categoryKey: 'ux-ui-design', kinds: ['app'], segments: ['b2c'], externalUrl: 'https://catalogo-thaysa.vercel.app', mobileOnly: true },
   { image: imgAtelieDiane, title: 'Ateliê Diane Almeida', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], segments: ['b2c'], detailSlug: 'atelie-diane-almeida-ui', hidden: true },
   { image: imgGestaoConecta360, hoverImage: imgGestaoConecta360Detalhe, title: 'Gestão Conecta 360º', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['b2b', 'saas'], detailSlug: 'conecta-360-ux' },
@@ -94,7 +95,6 @@ export const allProjects: Project[] = [
   { image: imgCrimson, hoverImage: imgCrimsonExperiencia, title: 'Crimson Mind Tech', categoryKey: 'ux-ui-design', kinds: ['website'], externalUrl: 'https://felipe-s-oliver.vercel.app' },
   { image: imgAura, hoverImage: imgAuraHome, title: 'Aura', categoryKey: 'ux-ui-design', kinds: ['app', 'ecommerce'], segments: ['b2c'] },
   { image: imgOrbit, hoverImage: imgOrbitCalendario, title: 'Orbit Creators', categoryKey: 'ux-ui-design', kinds: ['dashboard'] },
-  { image: imgNexo, hoverImage: imgNexoSolicitacoes, title: 'Nexo', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['fintech', 'b2b'] },
 ]
 
 // Lista que o site mostra: tira os projetos escondidos. `allProjects` segue

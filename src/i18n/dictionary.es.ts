@@ -759,6 +759,20 @@ export const es: Dictionary = {
     ],
   },
 
+  nexo: {
+    headerTitle: '',
+    headerTagline: '',
+    metaCliente: 'Tipo',
+    metaServico: 'Entregables',
+    metaAno: 'Año',
+    metaClienteValue: 'Caso de UX/UI',
+    metaServicoValue: 'Investigación, UX/UI, design system y handoff',
+    metaAnoValue: '2026',
+    backBtn: 'Volver',
+    overviewLabel: 'Resumen:',
+    blocks: [],
+  },
+
   usfit: {
     headerTitle: '',
     headerTagline: '',

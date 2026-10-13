@@ -176,6 +176,58 @@ export function CasePage({ slug }: { slug: string }) {
   const others = visibleProjects.filter(p => p !== project)
   const more = others.slice(0, 2)
 
+  const moreCards = (
+    <section className={styles.more}>
+      <h2 className={styles.moreTitle}>{t.site.exploreMais}</h2>
+      <div className={siteStyles.grid}>
+        {more.map(p => <CaseCard key={p.title} project={p} />)}
+      </div>
+    </section>
+  )
+
+  // Case montado no Figma como página longa: um cabeçalho curto e os quadros
+  // exportados empilhados em largura total, como numa página do Behance.
+  if (entry.modules) {
+    return (
+      <>
+        <SiteNav page="case" sections={[]} />
+
+        <main className={`${styles.page} ${styles.pageModules}`}>
+          <header className={styles.header}>
+            <span className={styles.eyebrow}>{eyebrow}</span>
+            <h1 className={styles.title}>{project.title}</h1>
+            {summary && <p className={styles.summary}>{summary}</p>}
+          </header>
+
+          <dl className={`${styles.meta} ${styles.metaRow}`}>
+            {meta.map(m => (
+              <div key={m.label} className={styles.metaItem}>
+                <dt>{m.label}</dt>
+                <dd>{m.value}</dd>
+              </div>
+            ))}
+            <div className={styles.metaItem}>
+              <dt>{t.likes.curtidas}</dt>
+              <dd><LikeButton projectKey={project.title} label={t.likes.curtir} /></dd>
+            </div>
+          </dl>
+
+          <div className={styles.modules}>
+            {entry.modules.map((src, i) => (
+              <button key={src} type="button" className={styles.module} onClick={() => setZoom(src)}>
+                <img src={src} width={1400} height={entry.moduleHeights?.[i]} alt={`${project.title} · ${i + 1}/${entry.modules?.length}`} loading={i < 2 ? 'eager' : 'lazy'} />
+              </button>
+            ))}
+          </div>
+
+          {moreCards}
+        </main>
+
+        <ImageLightbox src={zoom} onClose={() => setZoom(null)} />
+      </>
+    )
+  }
+
   return (
     <>
       <SiteNav page="case" sections={sections} activeSection={active} />
@@ -229,12 +281,7 @@ export function CasePage({ slug }: { slug: string }) {
           </div>
         </div>
 
-        <section className={styles.more}>
-          <h2 className={styles.moreTitle}>{t.site.exploreMais}</h2>
-          <div className={siteStyles.grid}>
-            {more.map(p => <CaseCard key={p.title} project={p} />)}
-          </div>
-        </section>
+        {moreCards}
       </main>
 
       <ImageLightbox src={zoom} onClose={() => setZoom(null)} />

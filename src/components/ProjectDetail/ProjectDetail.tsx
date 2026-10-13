@@ -164,7 +164,7 @@ export function ProjectDetail({ currentSlug, onBack, hideBack = false }: Project
         )}
 
         <div className={styles.finalGallery}>
-          {entry.gallery.map((src, i) => (
+          {[...entry.gallery, ...('modules' in entry ? entry.modules : [])].map((src, i) => (
             <button type="button" key={i} className={styles.zoomable} onClick={() => setZoom(src)}>
               <img src={src} alt="" loading="lazy" />
             </button>

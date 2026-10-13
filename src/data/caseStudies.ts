@@ -17,6 +17,7 @@ import { drakorysArcaneHeaderImages, drakorysArcaneGallery, drakorysArcaneBlockS
 import { asteraDataBankHeaderImages, asteraDataBankGallery, asteraDataBankBlockShapes } from './asteraDataBankStructure'
 import { ironBankHeaderImages, ironBankGallery, ironBankBlockShapes } from './ironBankStructure'
 import { meuCaixaHeaderImages, meuCaixaGallery, meuCaixaBlockShapes } from './meuCaixaStructure'
+import { nexoHeaderImages, nexoGallery, nexoBlockShapes, nexoModules, nexoModuleHeights } from './nexoStructure'
 
 // Registro de detalhamentos disponíveis — cada entrada casa a estrutura
 // (imagens + tipo do bloco, mesma para todo idioma) com a chave do
@@ -108,6 +109,14 @@ export const detailRegistry = {
     blockShapes: ironBankBlockShapes,
     dictKey: 'ironBank' as const,
   },
+  'nexo-ux': {
+    headerImages: nexoHeaderImages,
+    gallery: nexoGallery,
+    blockShapes: nexoBlockShapes,
+    dictKey: 'nexo' as const,
+    modules: nexoModules,
+    moduleHeights: nexoModuleHeights,
+  },
   'meu-caixa-ux': {
     headerImages: meuCaixaHeaderImages,
     gallery: meuCaixaGallery,
@@ -122,6 +131,10 @@ export interface CaseEntry {
   blockShapes: DetailBlockShape[]
   dictKey: CaseDictKey
   protoUrl?: string
+  /** Case montado como página longa no Figma: quadros exportados, empilhados em largura total. */
+  modules?: string[]
+  /** Altura de cada módulo (largura fixa de 1400), para reservar o espaço antes de carregar. */
+  moduleHeights?: number[]
 }
 
 export function getCase(slug: string): CaseEntry | null {
