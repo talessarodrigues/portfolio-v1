@@ -30,34 +30,21 @@
     radial-gradient(closest-side at 30% 45%, rgba(229, 177, 201, 0.55), transparent),
     radial-gradient(closest-side at 62% 40%, rgba(154, 108, 229, 0.42), transparent),
     radial-gradient(closest-side at 82% 62%, rgba(34, 211, 238, 0.28), transparent);
-  filter: blur(40px);
   opacity: 0.9;
 }
 :global(html[data-theme='dark']) .glow { opacity: 0.35; }
 
-/* Segundo brilho, à esquerda, e um grão fino por cima de tudo: dá ao fundo
-   escuro a textura suave do desenho de referência. */
+/* Segundo brilho, à esquerda. Só degradê: nada de filter: blur nem camada de
+   mistura por cima da página, que pesam a cada quadro da rolagem. */
 .site::before {
   content: '';
   position: absolute;
-  top: 260px;
-  left: -260px;
-  width: 760px;
-  height: 640px;
+  top: 160px;
+  left: -300px;
+  width: 900px;
+  height: 760px;
   pointer-events: none;
-  background: radial-gradient(closest-side, rgba(120, 90, 230, 0.35), transparent);
-  filter: blur(60px);
-  opacity: 0.45;
-}
-.site::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.05;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+  background: radial-gradient(closest-side, rgba(120, 90, 230, 0.22), transparent);
 }
 
 .main {
@@ -286,7 +273,9 @@
   display: flex;
   width: max-content;
   animation: namesMove 80s linear infinite;
+  will-change: transform;
 }
+.names[data-paused='true'] .namesTrack { animation-play-state: paused; }
 .names:hover .namesTrack { animation-play-state: paused; }
 .namesSet {
   display: flex;
@@ -651,6 +640,9 @@
 .strip {
   margin-top: 96px;
   padding-bottom: 24px;
+  /* Não desenha a faixa enquanto ela está longe da tela. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 760px;
 }
 .stripLabel {
   margin-bottom: 20px;
@@ -668,7 +660,9 @@
   display: flex;
   width: max-content;
   animation: stripMove 80s linear infinite;
+  will-change: transform;
 }
+.strip[data-paused='true'] .stripTrack { animation-play-state: paused; }
 .stripTrackReverse { animation-direction: reverse; }
 .stripRow:hover .stripTrack { animation-play-state: paused; }
 .stripSet {

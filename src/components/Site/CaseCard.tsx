@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { ArrowUpRight01FreeIcons } from '@hugeicons/core-free-icons'
 import styles from './Site.module.css'
@@ -20,6 +21,10 @@ export function CaseCard({ project, eager = false }: CaseCardProps) {
   const year = projectYear(project, t)
   const meta = [...project.kinds.map(k => t.site.filtros[k]), year].filter(Boolean).join(' · ')
   const href = caseHref(project)
+  // A segunda imagem (hover) só é baixada quando alguém chega perto do card:
+  // com 16 projetos, carregar as 32 imagens de uma vez pesava na memória e na rolagem.
+  const [armed, setArmed] = useState(false)
+  const arm = { onPointerEnter: () => setArmed(true), onFocus: () => setArmed(true) }
   // Cada card "conversa" com o cursor: um papel (Produto, Engenharia ou
   // Negócio) e uma pergunta, escolhidos pelo nome do projeto para serem
   // sempre os mesmos.
@@ -37,9 +42,9 @@ export function CaseCard({ project, eager = false }: CaseCardProps) {
   const content = (
     <>
       <span className={styles.media}>
-        <img src={project.image} alt={project.title} loading={eager ? 'eager' : 'lazy'} />
-        {project.hoverImage && (
-          <img className={styles.mediaHover} src={project.hoverImage} alt="" loading="lazy" aria-hidden="true" />
+        <img src={project.image} alt={project.title} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+        {project.hoverImage && armed && (
+          <img className={styles.mediaHover} src={project.hoverImage} alt="" decoding="async" aria-hidden="true" />
         )}
       </span>
       {badge && (
@@ -58,11 +63,11 @@ export function CaseCard({ project, eager = false }: CaseCardProps) {
   // Projeto no ar abre o site; projeto com case abre a página dele.
   if (project.externalUrl) {
     return (
-      <a className={styles.card} href={project.externalUrl} target="_blank" rel="noopener noreferrer" data-cursor={t.site.cursorSite} {...chat}>
+      <a className={styles.card} href={project.externalUrl} target="_blank" rel="noopener noreferrer" data-cursor={t.site.cursorSite} {...chat} {...arm}>
         {content}
       </a>
     )
   }
-  if (href) return <SiteLink to={href} className={styles.card} data-cursor={t.site.cursorVer} {...chat}>{content}</SiteLink>
-  return <div className={styles.card} {...chat}>{content}</div>
+  if (href) return <SiteLink to={href} className={styles.card} data-cursor={t.site.cursorVer} {...chat} {...arm}>{content}</SiteLink>
+  return <div className={styles.card} {...chat} {...arm}>{content}</div>
 }

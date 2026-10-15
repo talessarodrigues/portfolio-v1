@@ -32,6 +32,8 @@ export function SiteCursor() {
     const html = document.documentElement
     html.classList.add('has-cursor')
     let x = -100, y = -100, rx = -100, ry = -100, bx = -100, by = -100
+    // Tamanho do balão: medido só quando o texto muda (medir a cada quadro força o navegador a recalcular o layout).
+    let bw = 0, bh = 0
 
     const onMove = (e: MouseEvent) => {
       x = e.clientX
@@ -45,9 +47,11 @@ export function SiteCursor() {
       const txt = labeled?.dataset.cursor ?? ''
       const chat = t?.closest<HTMLElement>('[data-cursor-fala]')
       if (chat) {
-        if (msg.textContent !== chat.dataset.cursorFala) msg.textContent = chat.dataset.cursorFala ?? ''
+        const changed = msg.textContent !== chat.dataset.cursorFala
+        if (changed) msg.textContent = chat.dataset.cursorFala ?? ''
         if (tag.textContent !== chat.dataset.cursorPapel) tag.textContent = chat.dataset.cursorPapel ?? ''
         bubble.dataset.tipo = chat.dataset.cursorTipo ?? ''
+        if (changed || !bw) { bw = bubble.offsetWidth; bh = bubble.offsetHeight }
       }
       root.classList.toggle(styles.hasBubble, !!chat)
       if (label.textContent !== txt) label.textContent = txt
@@ -55,28 +59,37 @@ export function SiteCursor() {
       root.classList.toggle(styles.isText, !!text)
       root.classList.toggle(styles.isLink, !!link && !labeled && !text)
       root.classList.remove(styles.isHidden)
+      start()
     }
     const onLeave = () => root.classList.add(styles.isHidden)
     const onDown = () => root.classList.add(styles.isDown)
     const onUp = () => root.classList.remove(styles.isDown)
 
-    // O anel segue o ponto com leve atraso.
-    let frame = requestAnimationFrame(function loop() {
+    // O anel e o balão seguem o ponto com leve atraso. O laço só roda enquanto
+    // algo ainda está se movendo; com o mouse parado ele para de vez.
+    let frame = 0
+    let running = false
+    const loop = () => {
       rx += (x - rx) * 0.18
       ry += (y - ry) * 0.18
       ring.style.setProperty('--rx', `${rx.toFixed(1)}px`)
       ring.style.setProperty('--ry', `${ry.toFixed(1)}px`)
-      // O balão flutua um pouco atrás do ponto e vai para o outro lado quando
-      // não cabe na tela.
-      const w = bubble.offsetWidth, h = bubble.offsetHeight
-      const tx = x + 30 + w > window.innerWidth - 12 ? x - 30 - w : x + 30
-      const ty = y + 52 + h > window.innerHeight - 12 ? y - 40 - h : y + 52
+      // O balão vai para o outro lado quando não cabe na tela.
+      const tx = x + 30 + bw > window.innerWidth - 12 ? x - 30 - bw : x + 30
+      const ty = y + 52 + bh > window.innerHeight - 12 ? y - 40 - bh : y + 52
       bx += (tx - bx) * 0.14
       by += (ty - by) * 0.14
       bubble.style.setProperty('--bx', `${bx.toFixed(1)}px`)
       bubble.style.setProperty('--by', `${by.toFixed(1)}px`)
+      const settled = Math.abs(x - rx) < 0.2 && Math.abs(y - ry) < 0.2 && Math.abs(tx - bx) < 0.3 && Math.abs(ty - by) < 0.3
+      if (settled) running = false
+      else frame = requestAnimationFrame(loop)
+    }
+    const start = () => {
+      if (running) return
+      running = true
       frame = requestAnimationFrame(loop)
-    })
+    }
 
     window.addEventListener('mousemove', onMove, { passive: true })
     document.addEventListener('mouseleave', onLeave)

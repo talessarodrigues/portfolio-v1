@@ -15,6 +15,7 @@ import { trackContato } from '../../analytics'
 import { CaseCard } from './CaseCard'
 import { SiteLink } from './SiteLink'
 import { caseHref, latestCase } from './projectInfo'
+import { useInView } from './useInView'
 
 type Filter = 'all' | ProjectKind | ProjectSegment
 
@@ -34,9 +35,10 @@ const searchText = (title: string, labels: (ProjectKind | ProjectSegment)[]) =>
 // pra o loop não ter emenda, por isso fica fora do foco e dos leitores de tela.
 function ProjectsStrip() {
   const { t } = useTranslation()
+  const { ref, inView } = useInView<HTMLElement>()
   const rows = [visibleProjects, [...visibleProjects].reverse()]
   return (
-    <section className={styles.strip} aria-label={t.site.tudoQueFiz}>
+    <section ref={ref} className={styles.strip} data-paused={!inView} aria-label={t.site.tudoQueFiz}>
       <p className={styles.stripLabel}>{t.site.tudoQueFiz}</p>
       {rows.map((row, r) => (
         <div key={r} className={styles.stripRow}>
@@ -61,8 +63,9 @@ function ProjectsStrip() {
 // Cada nome leva ao projeto; o segundo conjunto só fecha o loop.
 function NameStrip() {
   const { t } = useTranslation()
+  const { ref, inView } = useInView<HTMLDivElement>()
   return (
-    <div className={styles.names} aria-label={t.site.projetos}>
+    <div ref={ref} className={styles.names} data-paused={!inView} aria-label={t.site.projetos}>
       <div className={styles.namesTrack}>
         {[0, 1].map(copy => (
           <div key={copy} className={styles.namesSet} inert={copy === 1} aria-hidden={copy === 1}>
