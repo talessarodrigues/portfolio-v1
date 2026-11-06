@@ -1,31 +1,13 @@
 import { useEffect, useRef } from 'react'
 import styles from './SiteCursor.module.css'
 
-// Cursor personalizado: uma luva branca de desenho animado apontando, com a
-// ponta do dedo no lugar do mouse. Cresce em links, aperta no clique, mostra
-// uma etiqueta ao lado onde houver data-cursor (ex.: "Ver projeto" nos
-// cards, como na referência da Dymit) e um balão de conversa (papel +
-// pergunta, no estilo dos cursores colaborativos) onde houver
-// data-cursor-fala. Só com mouse (hover + pointer fine) e sem
-// prefers-reduced-motion; fora disso fica o cursor do sistema.
-// Luva de desenho animado, pequena e só de contorno: dedo indicador para
-// cima (a ponta é o ponto do mouse), três dedos dobrados, polegar e punho.
-function Glove() {
-  const line = { stroke: '#141414', strokeWidth: 2.2, strokeLinejoin: 'round' as const, strokeLinecap: 'round' as const }
-  return (
-    <svg width="22" height="25" viewBox="0 0 40 46" fill="none">
-      <rect x="13" y="16" width="7.5" height="11" rx="3.75" fill="#fff" {...line} />
-      <rect x="19.5" y="17" width="7.5" height="11" rx="3.75" fill="#fff" {...line} />
-      <rect x="26" y="19.5" width="7" height="11" rx="3.5" fill="#fff" {...line} />
-      <rect x="5.2" y="3.2" width="8.6" height="23" rx="4.3" fill="#fff" {...line} />
-      <rect x="5.5" y="17" width="27" height="20" rx="9" fill="#fff" {...line} />
-      <rect x="6.7" y="16" width="6" height="6" fill="#fff" />
-      <ellipse cx="5.5" cy="28" rx="4.6" ry="5.8" transform="rotate(-24 5.5 28)" fill="#fff" {...line} />
-      <rect x="9" y="36.5" width="21" height="7.5" rx="2.8" fill="#fff" {...line} />
-    </svg>
-  )
-}
-
+// Cursor personalizado do site da Rodrigues Design (versão "v3"): ponto
+// que acompanha o mouse, anel que vem atrás com leve atraso, anel maior em
+// links, pílula com rótulo onde houver data-cursor (ex.: "View project" nos
+// cards), balão de conversa (etiqueta do papel + pergunta, no estilo dos
+// cursores colaborativos) onde houver data-cursor-fala e anel que se deforma
+// no clique. Só com mouse (hover + pointer
+// fine) e sem prefers-reduced-motion; fora disso fica o cursor do sistema.
 export function SiteCursor() {
   const rootRef = useRef<HTMLDivElement>(null)
   const dotRef = useRef<HTMLSpanElement>(null)
@@ -93,8 +75,8 @@ export function SiteCursor() {
       ring.style.setProperty('--rx', `${rx.toFixed(1)}px`)
       ring.style.setProperty('--ry', `${ry.toFixed(1)}px`)
       // O balão vai para o outro lado quando não cabe na tela.
-      const tx = x + 22 + bw > window.innerWidth - 12 ? x - 22 - bw : x + 22
-      const ty = y + 34 + bh > window.innerHeight - 12 ? y - 24 - bh : y + 34
+      const tx = x + 30 + bw > window.innerWidth - 12 ? x - 30 - bw : x + 30
+      const ty = y + 52 + bh > window.innerHeight - 12 ? y - 40 - bh : y + 52
       bx += (tx - bx) * 0.14
       by += (ty - by) * 0.14
       bubble.style.setProperty('--bx', `${bx.toFixed(1)}px`)
@@ -128,9 +110,7 @@ export function SiteCursor() {
       <span ref={ringRef} className={styles.ring}>
         <em ref={labelRef} className={styles.label} />
       </span>
-      <span ref={dotRef} className={styles.glove}>
-        <Glove />
-      </span>
+      <span ref={dotRef} className={styles.dot} />
       <div ref={bubbleRef} className={styles.bubble}>
         <span ref={tagRef} className={styles.tag} />
         <span ref={msgRef} className={styles.msg} />
