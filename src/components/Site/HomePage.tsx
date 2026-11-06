@@ -71,12 +71,13 @@ function NameStrip() {
           <div key={copy} className={styles.namesSet} inert={copy === 1} aria-hidden={copy === 1}>
             {visibleProjects.map(p => {
               const href = caseHref(p)
+              const thumb = <img src={p.image} alt={p.title} loading="lazy" decoding="async" draggable={false} />
               return p.externalUrl ? (
-                <a key={p.title} className={styles.name} href={p.externalUrl} target="_blank" rel="noopener noreferrer">{p.title}</a>
+                <a key={p.title} className={styles.name} href={p.externalUrl} target="_blank" rel="noopener noreferrer" title={p.title}>{thumb}</a>
               ) : href ? (
-                <SiteLink key={p.title} to={href} className={styles.name}>{p.title}</SiteLink>
+                <SiteLink key={p.title} to={href} className={styles.name} title={p.title}>{thumb}</SiteLink>
               ) : (
-                <span key={p.title} className={styles.name}>{p.title}</span>
+                <span key={p.title} className={styles.name} title={p.title}>{thumb}</span>
               )
             })}
           </div>
