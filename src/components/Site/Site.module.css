@@ -136,6 +136,135 @@
   backdrop-filter: blur(16px);
 }
 
+/* ── Navegação das páginas gerais: barra no topo + pílula embaixo ── */
+
+.topbar {
+  position: absolute;
+  z-index: 50;
+  top: 20px;
+  /* Mesma largura e margem do conteúdo (--site-wide), centrada. */
+  left: 0;
+  right: 0;
+  width: var(--site-wide);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  transition: opacity 0.3s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.topbar[data-hidden='true'] { opacity: 0; transform: translateY(-14px); pointer-events: none; }
+.topGroup { display: flex; align-items: center; gap: 8px; }
+.topLinks, .dockLinks { display: flex; align-items: center; gap: 8px; }
+
+.logoBtn {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--site-line);
+  background: var(--site-nav-bg);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  transition: background 0.2s, scale 0.16s cubic-bezier(0.2, 0, 0, 1);
+}
+.logoBtn img { width: 22px; height: 22px; }
+.logoBtn:hover { background: var(--site-chip-hover); }
+.logoBtn:active { scale: 0.94; }
+
+/* Link do menu: pílula com borda e vidro no topo; solto (sem borda) na
+   pílula de baixo, onde o vidro já vem do conjunto. */
+.navLink {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--site-line);
+  background: var(--site-nav-bg);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  font: 500 14px/1 var(--font-body);
+  color: var(--site-ink);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s, scale 0.16s cubic-bezier(0.2, 0, 0, 1);
+}
+.navLink:hover { background: var(--site-chip-hover); }
+.navLink:active { scale: 0.97; }
+.navLink[aria-current='true'] { color: var(--site-accent); }
+
+.navCta {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 18px 0 20px;
+  border-radius: 14px;
+  background: #6b46e0;
+  box-shadow: 0 10px 24px -12px rgba(107, 70, 224, 0.8);
+  font: 500 14px/1 var(--font-body);
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s, scale 0.16s cubic-bezier(0.2, 0, 0, 1);
+}
+.navCta:hover { background: #5a37cf; }
+.navCta:active { scale: 0.97; }
+
+.topbar :global(button[aria-haspopup='menu']),
+.dock :global(button[aria-haspopup='menu']) {
+  width: 44px;
+  height: 44px;
+  background: var(--site-nav-bg);
+  backdrop-filter: blur(16px);
+}
+
+.dock {
+  position: fixed;
+  z-index: 50;
+  bottom: 20px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 26px;
+  border: 1px solid var(--site-line);
+  /* Mais opaca que o vidro do topo: embaixo ela passa sobre o painel
+     escuro da grade e precisa manter o contraste dos links. */
+  background: color-mix(in srgb, var(--bg-light) 92%, transparent);
+  box-shadow: 0 18px 40px -16px rgba(20, 10, 50, 0.45);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  transform: translateX(-50%);
+  transition: opacity 0.3s, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.dock[data-hidden='true'] { opacity: 0; transform: translateX(-50%) translateY(140%); pointer-events: none; }
+/* Dentro da pílula os itens perdem a borda e o vidro próprios. */
+.dock .logoBtn,
+.dock .navLink,
+.dock :global(button[aria-haspopup='menu']) {
+  border-color: transparent;
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.dock .logoBtn:hover,
+.dock .navLink:hover,
+.dock :global(button[aria-haspopup='menu']):hover { background: var(--site-chip-hover); }
+/* A pílula fica rente ao rodapé da tela: o menu de idiomas abre para cima. */
+.dock :global(div[role='menu']) { top: auto; bottom: calc(100% + 14px); right: -8px; }
+
+@media (max-width: 960px) {
+  .navLink { padding: 0 14px; }
+  .dockLinks .navLink:nth-child(n + 3) { display: none; }
+}
+
 /* ── Home: apresentação ──────────────────────────────────── */
 
 /* ── Hero ────────────────────────────────────────────────── */
@@ -329,6 +458,20 @@
   margin-top: 36px;
   /* A cápsula fixa cobre o topo quando o link "Projetos" rola até aqui. */
   scroll-margin-top: 88px;
+  /* Painel escuro, como a seção de cases da referência: a moldura branca
+     dos cards só aparece de verdade sobre o escuro. Os tokens abaixo valem
+     só aqui dentro (filtros, busca e textos seguem sozinhos). */
+  --site-accent: #B892FF;
+  --site-ink: #F3F0F8;
+  --site-muted: rgba(243, 240, 248, 0.62);
+  --site-line: rgba(255, 255, 255, 0.09);
+  --site-chip: rgba(255, 255, 255, 0.06);
+  --site-chip-hover: rgba(255, 255, 255, 0.11);
+  --site-nav-bg: rgba(20, 20, 29, 0.72);
+  padding: clamp(16px, 1.6vw, 28px);
+  border-radius: 36px;
+  background: #0a0a0f;
+  color: var(--site-ink);
 }
 
 /* Filtros + busca da grade: pílulas no mesmo desenho da cápsula do menu;
@@ -425,9 +568,10 @@
   .search { flex: 1 1 100%; }
 }
 
-/* Grade de projetos no formato da referência: duas colunas de imagem de
-   ponta a ponta, espaço pequeno entre elas e o nome só aparece por cima
-   da imagem ao passar o mouse. */
+/* Grade de projetos no formato da referência: duas colunas, espaço pequeno
+   entre os cards e dois formatos na mesma moldura (borda branca grossa,
+   cantos redondos): o completo, com texto embaixo da imagem, e o de
+   imagem de ponta a ponta, com o nome por cima ao passar o mouse. */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -436,8 +580,10 @@
 
 .card {
   position: relative;
-  display: block;
-  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  border: 3px solid #fff;
+  border-radius: 28px;
   overflow: hidden;
   background: var(--site-chip);
   color: inherit;
@@ -446,10 +592,15 @@
 }
 .card:focus-visible { outline: 2px solid var(--site-accent); outline-offset: 3px; }
 
+/* Card de imagem: preenche a altura da linha (que o card completo, ao
+   lado, pode esticar). */
+.cardImage .media { flex: 1; min-height: 0; }
+
 .media {
   position: relative;
   display: block;
   aspect-ratio: 1.28;
+  overflow: hidden;
 }
 .media img {
   width: 100%;
@@ -516,6 +667,64 @@
   font: 500 12px/1 var(--font-body);
   color: var(--site-ink);
 }
+
+/* Card completo: a imagem mais baixa em cima e o texto numa área branca. */
+.cardRich { background: #fff; color: #111; }
+.cardRich .media {
+  aspect-ratio: 2.1;
+  border-radius: 0 0 22px 22px;
+}
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(18px, 1.8vw, 28px);
+}
+.bodyTitle {
+  font: 500 clamp(22px, 1.9vw, 32px)/1.15 var(--font-body);
+  letter-spacing: -0.01em;
+}
+.bodyText {
+  font: 400 clamp(15px, 1.2vw, 19px)/1.5 var(--font-body);
+  color: rgba(17, 17, 17, 0.72);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.bodyFoot {
+  margin-top: auto;
+  padding-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 8px; min-width: 0; }
+.tag {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(17, 17, 17, 0.06);
+  font: 500 14px/1 var(--font-body);
+  color: rgba(17, 17, 17, 0.7);
+}
+.bodyBtn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 40px;
+  padding: 0 16px;
+  border-radius: 12px;
+  background: #5b4bff;
+  font: 500 15px/1 var(--font-body);
+  color: #fff;
+  transition: background 0.2s, translate 0.2s;
+}
+.cardRich:hover .bodyBtn { background: #4a3bf0; translate: 0 -1px; }
+/* O card completo já mostra o nome: sem véu de legenda por cima. */
+.cardRich .overlay { display: none; }
 
 /* ── Sobre ───────────────────────────────────────────────── */
 

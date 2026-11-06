@@ -11,16 +11,24 @@ interface CaseCardProps {
   project: Project
   /** Os primeiros cards aparecem sem rolar — esses não esperam o lazy. */
   eager?: boolean
+  /**
+   * Card completo (imagem em cima e, embaixo, título, descrição, tipos e
+   * botão) em vez de só a imagem. A grade alterna os dois, no ritmo da
+   * referência da Dymit.
+   */
+  rich?: boolean
 }
 
-// Card da grade no formato da referência: a imagem do projeto de ponta a
-// ponta e, ao passar o mouse, o nome à esquerda e "(tipos · ano)" à
-// direita, por cima da imagem.
-export function CaseCard({ project, eager = false }: CaseCardProps) {
+// Dois formatos de card dentro da mesma moldura (borda branca, cantos
+// redondos): o completo explica o projeto; o de imagem mostra só o mockup
+// e, ao passar o mouse, o nome à esquerda e "(tipos · ano)" à direita.
+export function CaseCard({ project, eager = false, rich = false }: CaseCardProps) {
   const { t } = useTranslation()
   const year = projectYear(project, t)
-  const meta = [...project.kinds.map(k => t.site.filtros[k]), year].filter(Boolean).join(' · ')
+  const kinds = project.kinds.map(k => t.site.filtros[k])
+  const meta = [...kinds, year].filter(Boolean).join(' · ')
   const href = caseHref(project)
+  const description = t.projects[project.title]?.description
   // A segunda imagem (hover) só é baixada quando alguém chega perto do card:
   // com 16 projetos, carregar as 32 imagens de uma vez pesava na memória e na rolagem.
   const [armed, setArmed] = useState(false)
@@ -35,21 +43,44 @@ export function CaseCard({ project, eager = false }: CaseCardProps) {
     'data-cursor-tipo': balao.tipo,
     'data-cursor-fala': balao.perguntas[Math.floor(seed / 7) % balao.perguntas.length],
   }
-  const badge = project.externalUrl
+  const action = project.externalUrl
     ? (project.mobileOnly ? t.projectsHero.somenteMobile : t.projectsHero.verSite)
-    : null
+    : t.site.cursorVer
 
-  const content = (
+  const media = (
+    <span className={styles.media}>
+      <img src={project.image} alt={project.title} loading={eager ? 'eager' : 'lazy'} decoding="async" />
+      {project.hoverImage && armed && (
+        <img className={styles.mediaHover} src={project.hoverImage} alt="" decoding="async" aria-hidden="true" />
+      )}
+    </span>
+  )
+
+  const content = rich ? (
     <>
-      <span className={styles.media}>
-        <img src={project.image} alt={project.title} loading={eager ? 'eager' : 'lazy'} decoding="async" />
-        {project.hoverImage && armed && (
-          <img className={styles.mediaHover} src={project.hoverImage} alt="" decoding="async" aria-hidden="true" />
-        )}
+      {media}
+      <span className={styles.body}>
+        <span className={styles.bodyTitle}>{project.title}</span>
+        {description && <span className={styles.bodyText}>{description}</span>}
+        <span className={styles.bodyFoot}>
+          <span className={styles.tags}>
+            {[...kinds, year].filter(Boolean).map(tag => (
+              <span key={tag} className={styles.tag}>{tag}</span>
+            ))}
+          </span>
+          <span className={styles.bodyBtn}>
+            {action}
+            <HugeiconsIcon icon={ArrowUpRight01FreeIcons} size={16} strokeWidth={2} />
+          </span>
+        </span>
       </span>
-      {badge && (
+    </>
+  ) : (
+    <>
+      {media}
+      {project.externalUrl && (
         <span className={styles.badge}>
-          {badge}
+          {action}
           <HugeiconsIcon icon={ArrowUpRight01FreeIcons} size={14} strokeWidth={2} />
         </span>
       )}
@@ -60,14 +91,16 @@ export function CaseCard({ project, eager = false }: CaseCardProps) {
     </>
   )
 
+  const cls = `${styles.card} ${rich ? styles.cardRich : styles.cardImage}`
+
   // Projeto no ar abre o site; projeto com case abre a página dele.
   if (project.externalUrl) {
     return (
-      <a className={styles.card} href={project.externalUrl} target="_blank" rel="noopener noreferrer" data-cursor={t.site.cursorSite} {...chat} {...arm}>
+      <a className={cls} href={project.externalUrl} target="_blank" rel="noopener noreferrer" data-cursor={t.site.cursorSite} {...chat} {...arm}>
         {content}
       </a>
     )
   }
-  if (href) return <SiteLink to={href} className={styles.card} data-cursor={t.site.cursorVer} {...chat} {...arm}>{content}</SiteLink>
-  return <div className={styles.card} {...chat} {...arm}>{content}</div>
+  if (href) return <SiteLink to={href} className={cls} data-cursor={t.site.cursorVer} {...chat} {...arm}>{content}</SiteLink>
+  return <div className={cls} {...chat} {...arm}>{content}</div>
 }

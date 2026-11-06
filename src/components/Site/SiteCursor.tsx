@@ -1,13 +1,32 @@
 import { useEffect, useRef } from 'react'
 import styles from './SiteCursor.module.css'
 
-// Cursor personalizado do site da Rodrigues Design (versão "v3"): ponto
-// que acompanha o mouse, anel que vem atrás com leve atraso, anel maior em
-// links, pílula com rótulo onde houver data-cursor (ex.: "View project" nos
-// cards), balão de conversa (etiqueta do papel + pergunta, no estilo dos
-// cursores colaborativos) onde houver data-cursor-fala e anel que se deforma
-// no clique. Só com mouse (hover + pointer
-// fine) e sem prefers-reduced-motion; fora disso fica o cursor do sistema.
+// Cursor personalizado: uma luva branca de desenho animado apontando, com a
+// ponta do dedo no lugar do mouse. Cresce em links, aperta no clique, mostra
+// uma etiqueta ao lado onde houver data-cursor (ex.: "Ver projeto" nos
+// cards, como na referência da Dymit) e um balão de conversa (papel +
+// pergunta, no estilo dos cursores colaborativos) onde houver
+// data-cursor-fala. Só com mouse (hover + pointer fine) e sem
+// prefers-reduced-motion; fora disso fica o cursor do sistema.
+// Luva de desenho animado: dedo indicador para cima (a ponta é o ponto do
+// mouse), três dedos dobrados, polegar, punho e três risquinhos nas costas.
+function Glove() {
+  const line = { stroke: '#141414', strokeWidth: 2.2, strokeLinejoin: 'round' as const, strokeLinecap: 'round' as const }
+  return (
+    <svg width="40" height="46" viewBox="0 0 40 46" fill="none">
+      <rect x="13" y="16" width="7.5" height="11" rx="3.75" fill="#fff" {...line} />
+      <rect x="19.5" y="17" width="7.5" height="11" rx="3.75" fill="#fff" {...line} />
+      <rect x="26" y="19.5" width="7" height="11" rx="3.5" fill="#fff" {...line} />
+      <rect x="5.2" y="3.2" width="8.6" height="23" rx="4.3" fill="#fff" {...line} />
+      <rect x="5.5" y="17" width="27" height="20" rx="9" fill="#fff" {...line} />
+      <rect x="6.7" y="16" width="6" height="6" fill="#fff" />
+      <ellipse cx="5.5" cy="28" rx="4.6" ry="5.8" transform="rotate(-24 5.5 28)" fill="#fff" {...line} />
+      <rect x="9" y="36.5" width="21" height="7.5" rx="2.8" fill="#fff" {...line} />
+      <path d="M16 26.5v4.2M20.5 26.8v4.4M25 27.5v4" {...line} strokeWidth={1.8} />
+    </svg>
+  )
+}
+
 export function SiteCursor() {
   const rootRef = useRef<HTMLDivElement>(null)
   const dotRef = useRef<HTMLSpanElement>(null)
@@ -110,7 +129,9 @@ export function SiteCursor() {
       <span ref={ringRef} className={styles.ring}>
         <em ref={labelRef} className={styles.label} />
       </span>
-      <span ref={dotRef} className={styles.dot} />
+      <span ref={dotRef} className={styles.glove}>
+        <Glove />
+      </span>
       <div ref={bubbleRef} className={styles.bubble}>
         <span ref={tagRef} className={styles.tag} />
         <span ref={msgRef} className={styles.msg} />

@@ -20,6 +20,8 @@ type Origem =
   | 'hero-nav'
   | 'hero-cta'
   | 'hero-dock'
+  | 'nav-topo'
+  | 'nav-dock'
   | 'mobile-perfil'
   | 'mobile-dock'
   | 'mobile-contato'
