@@ -569,9 +569,9 @@
 }
 
 /* Grade de projetos no formato da referência: duas colunas, espaço pequeno
-   entre os cards e dois formatos na mesma moldura (borda branca grossa,
-   cantos redondos): o completo, com texto embaixo da imagem, e o de
-   imagem de ponta a ponta, com o nome por cima ao passar o mouse. */
+   entre os cards, borda branca grossa e cantos redondos. Em repouso o card
+   é só a imagem; no hover a imagem sobe e a área branca com o texto sobe de
+   baixo (--reveal é a parte do card que a imagem mantém). */
 .grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -579,83 +579,121 @@
 }
 
 .card {
+  --reveal: 44%;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: block;
+  aspect-ratio: 1.28;
   border: 3px solid #fff;
   border-radius: 28px;
   overflow: hidden;
-  background: var(--site-chip);
-  color: inherit;
+  background: #fff;
+  color: #111;
   text-decoration: none;
   isolation: isolate;
 }
 .card:focus-visible { outline: 2px solid var(--site-accent); outline-offset: 3px; }
 
-/* Card de imagem: preenche a altura da linha (que o card completo, ao
-   lado, pode esticar). */
-.cardImage .media { flex: 1; min-height: 0; }
-
+/* A imagem ocupa o card todo e é recortada por baixo no hover. */
 .media {
-  position: relative;
+  position: absolute;
+  inset: 0;
   display: block;
-  aspect-ratio: 1.28;
-  overflow: hidden;
+  background: var(--site-chip);
+  clip-path: inset(0 0 0 0);
+  transition: clip-path 0.6s var(--ease);
 }
 .media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition: transform 0.6s var(--ease);
 }
-.card:hover .media img { transform: scale(1.03); }
 
-/* Segunda imagem (ex.: painel da Essencial) por cima da capa: aparece no
-   hover e some ao tirar o mouse. */
-.media img.mediaHover {
+/* Área branca: fica abaixo do card e sobe no hover. */
+.body {
   position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.5s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  inset: var(--reveal) 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(16px, 1.6vw, 26px);
+  background: #fff;
+  transform: translateY(101%);
+  transition: transform 0.6s var(--ease);
 }
-.card:hover .media img.mediaHover,
-.card:focus-visible .media img.mediaHover { opacity: 1; }
+.bodyTitle {
+  font: 500 clamp(20px, 1.7vw, 28px)/1.15 var(--font-body);
+  letter-spacing: -0.01em;
+}
+.bodyText {
+  font: 400 clamp(14px, 1.05vw, 17px)/1.45 var(--font-body);
+  color: rgba(17, 17, 17, 0.7);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.bodyFoot {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 6px; min-width: 0; }
+.tag {
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: rgba(17, 17, 17, 0.06);
+  font: 500 13px/1 var(--font-body);
+  color: rgba(17, 17, 17, 0.7);
+}
+.bodyBtn {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 10px;
+  background: #5b4bff;
+  font: 500 14px/1 var(--font-body);
+  color: #fff;
+}
 
-/* Nome e tipo/ano por cima da imagem, embaixo, ao passar o mouse. */
+@media (hover: hover) {
+  .card:hover .media,
+  .card:focus-visible .media { clip-path: inset(0 0 calc(100% - var(--reveal)) 0); }
+  .card:hover .media img,
+  .card:focus-visible .media img { transform: scale(1.04); }
+  .card:hover .body,
+  .card:focus-visible .body { transform: none; }
+}
+
+/* Telas de toque (sem hover): só a imagem, com o nome por cima. */
 .overlay {
   position: absolute;
   inset: auto 0 0 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 16px;
   padding: 56px 22px 18px;
   background: linear-gradient(to top, rgba(7, 7, 12, 0.78), rgba(7, 7, 12, 0));
   font: 600 12px/1.3 var(--font-body);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #fff;
-  opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.35s, transform 0.35s;
+  display: none;
 }
-.card:hover .overlay,
-.card:focus-visible .overlay { opacity: 1; transform: none; }
-.captionTitle { min-width: 0; }
-.overlayMeta {
-  flex-shrink: 0;
-  color: rgba(255, 255, 255, 0.72);
-}
-/* Telas de toque (sem hover) mostram o nome sempre. */
 @media (hover: none) {
-  .overlay { opacity: 1; transform: none; }
+  .overlay { display: block; }
+  .body { display: none; }
 }
 
 .badge {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  z-index: 2;
+  top: 14px;
+  right: 14px;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -666,65 +704,16 @@
   backdrop-filter: blur(10px);
   font: 500 12px/1 var(--font-body);
   color: var(--site-ink);
+  transition: opacity 0.3s;
+}
+@media (hover: hover) {
+  .card:hover .badge,
+  .card:focus-visible .badge { opacity: 0; }
 }
 
-/* Card completo: a imagem mais baixa em cima e o texto numa área branca. */
-.cardRich { background: #fff; color: #111; }
-.cardRich .media {
-  aspect-ratio: 2.1;
-  border-radius: 0 0 22px 22px;
+@media (prefers-reduced-motion: reduce) {
+  .media, .media img, .body { transition: none; }
 }
-.body {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: clamp(18px, 1.8vw, 28px);
-}
-.bodyTitle {
-  font: 500 clamp(22px, 1.9vw, 32px)/1.15 var(--font-body);
-  letter-spacing: -0.01em;
-}
-.bodyText {
-  font: 400 clamp(15px, 1.2vw, 19px)/1.5 var(--font-body);
-  color: rgba(17, 17, 17, 0.72);
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.bodyFoot {
-  margin-top: auto;
-  padding-top: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-.tags { display: flex; flex-wrap: wrap; gap: 8px; min-width: 0; }
-.tag {
-  padding: 8px 14px;
-  border-radius: 999px;
-  background: rgba(17, 17, 17, 0.06);
-  font: 500 14px/1 var(--font-body);
-  color: rgba(17, 17, 17, 0.7);
-}
-.bodyBtn {
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 12px;
-  background: #5b4bff;
-  font: 500 15px/1 var(--font-body);
-  color: #fff;
-  transition: background 0.2s, translate 0.2s;
-}
-.cardRich:hover .bodyBtn { background: #4a3bf0; translate: 0 -1px; }
-/* O card completo já mostra o nome: sem véu de legenda por cima. */
-.cardRich .overlay { display: none; }
 
 /* ── Sobre ───────────────────────────────────────────────── */
 

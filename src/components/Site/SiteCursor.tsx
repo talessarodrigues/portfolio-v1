@@ -8,12 +8,12 @@ import styles from './SiteCursor.module.css'
 // pergunta, no estilo dos cursores colaborativos) onde houver
 // data-cursor-fala. Só com mouse (hover + pointer fine) e sem
 // prefers-reduced-motion; fora disso fica o cursor do sistema.
-// Luva de desenho animado: dedo indicador para cima (a ponta é o ponto do
-// mouse), três dedos dobrados, polegar, punho e três risquinhos nas costas.
+// Luva de desenho animado, pequena e só de contorno: dedo indicador para
+// cima (a ponta é o ponto do mouse), três dedos dobrados, polegar e punho.
 function Glove() {
   const line = { stroke: '#141414', strokeWidth: 2.2, strokeLinejoin: 'round' as const, strokeLinecap: 'round' as const }
   return (
-    <svg width="40" height="46" viewBox="0 0 40 46" fill="none">
+    <svg width="22" height="25" viewBox="0 0 40 46" fill="none">
       <rect x="13" y="16" width="7.5" height="11" rx="3.75" fill="#fff" {...line} />
       <rect x="19.5" y="17" width="7.5" height="11" rx="3.75" fill="#fff" {...line} />
       <rect x="26" y="19.5" width="7" height="11" rx="3.5" fill="#fff" {...line} />
@@ -22,7 +22,6 @@ function Glove() {
       <rect x="6.7" y="16" width="6" height="6" fill="#fff" />
       <ellipse cx="5.5" cy="28" rx="4.6" ry="5.8" transform="rotate(-24 5.5 28)" fill="#fff" {...line} />
       <rect x="9" y="36.5" width="21" height="7.5" rx="2.8" fill="#fff" {...line} />
-      <path d="M16 26.5v4.2M20.5 26.8v4.4M25 27.5v4" {...line} strokeWidth={1.8} />
     </svg>
   )
 }
@@ -94,8 +93,8 @@ export function SiteCursor() {
       ring.style.setProperty('--rx', `${rx.toFixed(1)}px`)
       ring.style.setProperty('--ry', `${ry.toFixed(1)}px`)
       // O balão vai para o outro lado quando não cabe na tela.
-      const tx = x + 30 + bw > window.innerWidth - 12 ? x - 30 - bw : x + 30
-      const ty = y + 52 + bh > window.innerHeight - 12 ? y - 40 - bh : y + 52
+      const tx = x + 22 + bw > window.innerWidth - 12 ? x - 22 - bw : x + 22
+      const ty = y + 34 + bh > window.innerHeight - 12 ? y - 24 - bh : y + 34
       bx += (tx - bx) * 0.14
       by += (ty - by) * 0.14
       bubble.style.setProperty('--bx', `${bx.toFixed(1)}px`)

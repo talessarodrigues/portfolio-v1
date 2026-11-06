@@ -189,9 +189,7 @@ export function HomePage() {
         {projects.length > 0 ? (
           <div className={styles.grid}>
             {projects.map((p, i) => (
-              // A cada três cards, o primeiro é o completo: o ritmo é completo,
-              // imagem / imagem, completo / imagem, imagem… como na referência.
-              <CaseCard key={p.title} project={p} eager={i < 2} rich={i % 3 === 0} />
+              <CaseCard key={p.title} project={p} eager={i < 2} />
             ))}
           </div>
         ) : (
