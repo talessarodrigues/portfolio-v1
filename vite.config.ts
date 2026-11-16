@@ -7,6 +7,7 @@ import react from '@vitejs/plugin-react'
 import { en } from './src/i18n/dictionary.en'
 import { caseSeo, sobreSeo } from './src/i18n/seo'
 import { readProjects } from './scripts/projects-meta.mjs'
+import { caseAlts } from './src/data/caseAlts'
 
 const SITE = 'https://www.talessarodriguesdesign.com.br'
 
@@ -28,6 +29,24 @@ interface SeoPage {
   image: string
   imageAlt: string
   type: 'website' | 'article'
+  /** Título e resumo em texto, no HTML estático (a SPA troca isso ao carregar). */
+  heading?: string
+  /** Um item por módulo do case, para quem lê o HTML sem rodar JavaScript. */
+  outline?: string[]
+}
+
+// Conteúdo mínimo dentro de <div id="root">: buscadores que não rodam
+// JavaScript, prévias de link e leitores de IA veem título, resumo e a lista
+// dos módulos do case em vez de uma página vazia. O React troca tudo isto
+// assim que o site carrega.
+function staticContent(page: SeoPage) {
+  if (!page.heading) return ''
+  const itens = (page.outline ?? []).map(t => `<li>${attr(t)}</li>`).join('')
+  return `<main style="max-width:760px;margin:0 auto;padding:32px 24px;font-family:system-ui,sans-serif;color:#f4f2fa">` +
+    `<h1>${attr(page.heading)}</h1><p>${attr(page.description)}</p>` +
+    `<p>By <a href="${SITE}/" style="color:inherit">Talessa Rodrigues</a>, Product Designer &amp; AI Engineer.</p>` +
+    (itens ? `<h2>Case study outline</h2><ol>${itens}</ol>` : '') +
+    `</main>`
 }
 
 function renderPage(base: string, page: SeoPage) {
@@ -49,6 +68,8 @@ function renderPage(base: string, page: SeoPage) {
     meta('name', 'twitter:image', page.image),
   ] as const
   let html = base
+  const conteudo = staticContent(page)
+  if (conteudo) html = swap(html, /<div id="root"><\/div>/, `<div id="root">${conteudo}</div>`)
   for (const [pattern, replacement] of swaps) html = swap(html, pattern, replacement)
 
   // Nos cases, diz ao Google que a página é um trabalho da Talessa (o
@@ -102,6 +123,8 @@ function seoPages(): Plugin {
           image: `${SITE}/og/${p.slug}.jpg`,
           imageAlt: `${p.title}, ${en.categories[p.categoryKey as keyof typeof en.categories]} case study by Talessa Rodrigues`,
           type: 'article',
+          heading: `${p.title}: UX/UI case study`,
+          outline: caseAlts[p.slug],
         })
       }
       for (const page of pages) {

@@ -5,6 +5,7 @@ import styles from './CasePage.module.css'
 import siteStyles from './Site.module.css'
 import { allProjects, visibleProjects } from '../../data/projects'
 import { getCase } from '../../data/caseStudies'
+import { caseAlts } from '../../data/caseAlts'
 import type { DetailBlockShape } from '../../data/conecta360Structure'
 import type { DetailTextBlock } from '../../i18n/types'
 import { useTranslation } from '../../i18n/LanguageContext'
@@ -232,7 +233,7 @@ export function CasePage({ slug }: { slug: string }) {
             {entry.modules.map((src, i) => (
               <Fragment key={src}>
                 <button type="button" className={styles.module} onClick={() => setZoom(src)}>
-                  <img src={src} width={1400} height={entry.moduleHeights?.[i]} alt={`${project.title} · ${i + 1}/${entry.modules?.length}`} loading={i < 2 ? 'eager' : 'lazy'} />
+                  <img src={src} width={1400} height={entry.moduleHeights?.[i]} alt={caseAlts[slug]?.[i] ?? `${project.title} · ${i + 1}/${entry.modules?.length}`} loading={i < 2 ? 'eager' : 'lazy'} />
                 </button>
                 {entry.videos?.filter(v => v.after === i + 1).map(v => (
                   <video
