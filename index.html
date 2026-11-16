@@ -14,6 +14,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
+    <!-- Google Analytics 4 (propriedade "Portfólio Talessa Rodrigues"). As
+         trocas de página dentro do site (SPA) são contadas sozinhas pela
+         medição otimizada do GA4; os cliques de contato e a abertura de
+         cases também vão para cá, via src/analytics.ts. -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y94YJV48BV"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-Y94YJV48BV');
+    </script>
+
     <!-- SEO e prévia de link. Cada tag fica numa linha só de propósito: o
          build gera uma cópia deste HTML para /sobre e para cada case com
          título, descrição e imagem próprios (ver plugin seoPages em

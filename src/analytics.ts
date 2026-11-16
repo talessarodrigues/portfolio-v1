@@ -31,6 +31,8 @@ type Origem =
 function enviar(nome: string, dados?: Record<string, string | number | boolean>) {
   try {
     track(nome, dados)
+    // O mesmo evento também vai para o Google Analytics (tag em index.html).
+    ;(window as unknown as { gtag?: (...args: unknown[]) => void }).gtag?.('event', nome, dados)
   } catch {
     // Medição quebrada não pode derrubar interação.
   }
