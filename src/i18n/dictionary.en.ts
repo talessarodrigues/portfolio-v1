@@ -21,6 +21,14 @@ export const en: Dictionary = {
   footer: {
     entreEmContato: 'Get in touch with me',
     copyright: 'TalessaRodriguesDesign© 2026. All rights reserved',
+    preferenciasCookies: 'Cookie preferences',
+  },
+
+  cookies: {
+    titulo: 'Cookies',
+    texto: 'I use measurement cookies (Google Analytics) to understand how the portfolio is visited. Nothing is collected until you accept, and you can change your mind in the footer.',
+    aceitar: 'Accept',
+    recusar: 'Decline',
   },
 
   hero: {

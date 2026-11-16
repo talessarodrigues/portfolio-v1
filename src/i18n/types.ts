@@ -69,6 +69,13 @@ export interface Dictionary {
   footer: {
     entreEmContato: string
     copyright: string
+    preferenciasCookies: string
+  }
+  cookies: {
+    titulo: string
+    texto: string
+    aceitar: string
+    recusar: string
   }
   hero: {
     contato: string

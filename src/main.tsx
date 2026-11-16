@@ -6,12 +6,15 @@ import './index.css'
 import App from './App.tsx'
 import { LanguageProvider } from './i18n/LanguageContext.tsx'
 import { ThemeProvider } from './theme/ThemeContext.tsx'
+import { CookieBanner } from './components/CookieBanner/CookieBanner.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <ThemeProvider>
       <LanguageProvider>
         <App />
+        {/* Aviso de cookies do Google Analytics (ver src/consent.ts). */}
+        <CookieBanner />
         {/* Medição da Vercel: quantas visitas, de onde vêm e quais botões
             de contato são clicados (ver src/analytics.ts). Não usa cookie
             nem identifica ninguém, então não exige aviso de consentimento.

@@ -11,6 +11,7 @@ import imgAvatar from '../../assets/sobre/perfil-talessa.webp'
 import { useTranslation } from '../../i18n/LanguageContext'
 import { CONTACTS } from '../../data/contacts'
 import { trackContato } from '../../analytics'
+import { abrirPreferenciasCookies } from '../../consent'
 import { SiteLink } from './SiteLink'
 
 const SOCIALS = [
@@ -95,7 +96,13 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
-      <p className={styles.copyright}>{t.footer.copyright}</p>
+      <p className={styles.copyright}>
+        {t.footer.copyright}
+        {' · '}
+        <button type="button" className={styles.cookiePrefs} onClick={abrirPreferenciasCookies}>
+          {t.footer.preferenciasCookies}
+        </button>
+      </p>
     </footer>
   )
 }

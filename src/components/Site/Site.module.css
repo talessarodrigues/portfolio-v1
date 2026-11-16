@@ -643,6 +643,18 @@
   font-size: 13px;
   color: var(--site-muted);
 }
+/* Link "Preferências de cookies": reabre o aviso (src/consent.ts). */
+.cookiePrefs {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.cookiePrefs:hover { color: var(--site-ink); }
 
 @media (prefers-reduced-motion: reduce) {
   .media img,

@@ -1,0 +1,61 @@
+/* Cartão fixo no canto, pequeno e discreto. No celular (até 1024px, onde o
+   site vira o app com dock flutuante) sobe acima do dock e ocupa a largura. */
+.banner {
+  position: fixed;
+  z-index: 90;
+  left: 24px;
+  bottom: 24px;
+  width: min(400px, calc(100vw - 48px));
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px 20px;
+  border-radius: 16px;
+  background: rgba(18, 16, 26, 0.94);
+  color: var(--text-on-dark);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  font: 400 13px/1.5 var(--font-body);
+}
+
+.texto { margin: 0; color: var(--text-on-dark-muted); }
+.titulo { display: block; margin-bottom: 4px; color: var(--text-on-dark); font-weight: 600; font-size: 14px; }
+
+.acoes { display: flex; gap: 10px; }
+
+.recusar,
+.aceitar {
+  flex: 1;
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font: 600 13px/1 var(--font-body);
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.recusar {
+  background: transparent;
+  color: var(--text-on-dark);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+.recusar:hover { border-color: rgba(255, 255, 255, 0.6); }
+.aceitar {
+  background: #fff;
+  color: #1a1a1a;
+  border: 1px solid #fff;
+}
+.aceitar:hover { background: #e9e6f2; }
+.recusar:focus-visible,
+.aceitar:focus-visible { outline: 2px solid var(--accent-cyan-2); outline-offset: 2px; }
+
+@media (max-width: 1024px) {
+  .banner {
+    left: 12px;
+    right: 12px;
+    width: auto;
+    /* acima do dock flutuante do app */
+    bottom: calc(96px + env(safe-area-inset-bottom));
+  }
+}
