@@ -462,14 +462,23 @@
 
 /* Segunda imagem (ex.: painel da Essencial) por cima da capa: aparece no
    hover e some ao tirar o mouse. */
-.media img.mediaHover {
+.media img.mediaHover,
+.media video.mediaHover {
   position: absolute;
   inset: 0;
   opacity: 0;
   transition: opacity 0.5s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
+.media video.mediaHover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
 .card:hover .media img.mediaHover,
-.card:focus-visible .media img.mediaHover { opacity: 1; }
+.card:focus-visible .media img.mediaHover,
+.card:hover .media video.mediaHover,
+.card:focus-visible .media video.mediaHover { opacity: 1; }
 
 /* Nome e tipo/ano por cima da imagem, embaixo, ao passar o mouse. */
 .overlay {

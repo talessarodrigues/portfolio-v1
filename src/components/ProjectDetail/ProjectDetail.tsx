@@ -163,6 +163,14 @@ export function ProjectDetail({ currentSlug, onBack, hideBack = false }: Project
           </article>
         )}
 
+        {/* Cases com motion (vindos do Figma): no celular os vídeos vêm antes dos quadros. */}
+        {'coverVideo' in entry && entry.coverVideo && (
+          <video className={styles.video} src={entry.coverVideo.src} poster={entry.coverVideo.poster} autoPlay muted loop playsInline preload="auto" />
+        )}
+        {'videos' in entry && entry.videos?.map(v => (
+          <video key={v.src} className={styles.video} src={v.src} poster={v.poster} controls muted loop playsInline preload="metadata" />
+        ))}
+
         <div className={styles.finalGallery}>
           {[...entry.gallery, ...('modules' in entry ? entry.modules : [])].map((src, i) => (
             <button type="button" key={i} className={styles.zoomable} onClick={() => setZoom(src)}>

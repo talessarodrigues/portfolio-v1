@@ -257,6 +257,7 @@ export interface Dictionary {
   essencialPerfumaria: CaseStudyText
   meuCaixa: CaseStudyText
   nexo: CaseStudyText
+  vertice: CaseStudyText
   residentEvil: CaseStudyText
   redesignNatva: CaseStudyText
   drakorysArcane: CaseStudyText

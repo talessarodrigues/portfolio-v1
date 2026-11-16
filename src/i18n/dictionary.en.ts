@@ -364,6 +364,10 @@ export const en: Dictionary = {
       description: 'UX case for a fintech: corporate card management, with usage rules, limits and request approvals.',
       tags: ['UX/UI Design', 'fintech'],
     },
+    'Vértice': {
+      description: 'UX case for a fintech: an investing app for beginners that explains what you own, how much it earns and how much risk it carries, with a simulator before you invest.',
+      tags: ['UX/UI Design', 'fintech'],
+    },
     'Orbit Creators': {
       description: 'Dashboard for content creators to manage campaigns, delivery calendar, contracts and finances in one place.',
       tags: ['UX/UI Design', 'saas'],
@@ -795,6 +799,20 @@ export const en: Dictionary = {
   },
 
   nexo: {
+    headerTitle: '',
+    headerTagline: '',
+    metaCliente: 'Type',
+    metaServico: 'Deliverables',
+    metaAno: 'Year',
+    metaClienteValue: 'UX/UI case study',
+    metaServicoValue: 'Research, UX/UI, design system and handoff',
+    metaAnoValue: '2026',
+    backBtn: 'Back',
+    overviewLabel: 'Overview:',
+    blocks: [],
+  },
+
+  vertice: {
     headerTitle: '',
     headerTagline: '',
     metaCliente: 'Type',

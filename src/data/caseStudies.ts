@@ -18,6 +18,10 @@ import { asteraDataBankHeaderImages, asteraDataBankGallery, asteraDataBankBlockS
 import { ironBankHeaderImages, ironBankGallery, ironBankBlockShapes } from './ironBankStructure'
 import { meuCaixaHeaderImages, meuCaixaGallery, meuCaixaBlockShapes } from './meuCaixaStructure'
 import { nexoHeaderImages, nexoGallery, nexoBlockShapes, nexoModules, nexoModuleHeights } from './nexoStructure'
+import {
+  verticeHeaderImages, verticeGallery, verticeBlockShapes, verticeModules, verticeModuleHeights,
+  verticeCoverVideo, verticeVideos,
+} from './verticeStructure'
 
 // Registro de detalhamentos disponíveis — cada entrada casa a estrutura
 // (imagens + tipo do bloco, mesma para todo idioma) com a chave do
@@ -117,6 +121,16 @@ export const detailRegistry = {
     modules: nexoModules,
     moduleHeights: nexoModuleHeights,
   },
+  'vertice-ux': {
+    headerImages: verticeHeaderImages,
+    gallery: verticeGallery,
+    blockShapes: verticeBlockShapes,
+    dictKey: 'vertice' as const,
+    modules: verticeModules,
+    moduleHeights: verticeModuleHeights,
+    coverVideo: verticeCoverVideo,
+    videos: verticeVideos,
+  },
   'meu-caixa-ux': {
     headerImages: meuCaixaHeaderImages,
     gallery: meuCaixaGallery,
@@ -135,6 +149,18 @@ export interface CaseEntry {
   modules?: string[]
   /** Altura de cada módulo (largura fixa de 1400), para reservar o espaço antes de carregar. */
   moduleHeights?: number[]
+  /** Vídeo de motion curto que abre a página do case, tocando em loop e sem som. */
+  coverVideo?: CaseVideo
+  /** Vídeos de motion no meio da página, logo depois do módulo `after` (1 = depois do primeiro). */
+  videos?: (CaseVideo & { after: number })[]
+}
+
+export interface CaseVideo {
+  src: string
+  poster?: string
+  /** Tamanho do vídeo, para reservar o espaço (a proporção) antes de carregar. */
+  width: number
+  height: number
 }
 
 export function getCase(slug: string): CaseEntry | null {

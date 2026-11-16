@@ -15,7 +15,8 @@ interface CaseCardProps {
 
 // Card da grade no formato da referência: a imagem do projeto de ponta a
 // ponta e, ao passar o mouse, o nome à esquerda e "(tipos · ano)" à
-// direita, por cima da imagem.
+// direita, por cima da imagem. No hover entra a segunda imagem ou, nos
+// projetos com motion, o vídeo.
 export function CaseCard({ project, eager = false }: CaseCardProps) {
   const { t } = useTranslation()
   const year = projectYear(project, t)
@@ -24,7 +25,15 @@ export function CaseCard({ project, eager = false }: CaseCardProps) {
   // A segunda imagem (hover) só é baixada quando alguém chega perto do card:
   // com 16 projetos, carregar as 32 imagens de uma vez pesava na memória e na rolagem.
   const [armed, setArmed] = useState(false)
-  const arm = { onPointerEnter: () => setArmed(true), onFocus: () => setArmed(true) }
+  // O vídeo de motion (quando o projeto tem) só existe enquanto o mouse ou o foco
+  // estão no card: sai da página ao tirar o mouse e não toca escondido.
+  const [playing, setPlaying] = useState(false)
+  const arm = {
+    onPointerEnter: () => { setArmed(true); setPlaying(true) },
+    onPointerLeave: () => setPlaying(false),
+    onFocus: () => { setArmed(true); setPlaying(true) },
+    onBlur: () => setPlaying(false),
+  }
   // Cada card "conversa" com o cursor: um papel (Produto, Engenharia ou
   // Negócio) e uma pergunta, escolhidos pelo nome do projeto para serem
   // sempre os mesmos.
@@ -45,6 +54,19 @@ export function CaseCard({ project, eager = false }: CaseCardProps) {
         <img src={project.image} alt={project.title} loading={eager ? 'eager' : 'lazy'} decoding="async" />
         {project.hoverImage && armed && (
           <img className={styles.mediaHover} src={project.hoverImage} alt="" decoding="async" aria-hidden="true" />
+        )}
+        {project.hoverVideo && playing && (
+          <video
+            className={styles.mediaHover}
+            src={project.hoverVideo}
+            poster={project.hoverImage}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            aria-hidden="true"
+          />
         )}
       </span>
       {badge && (

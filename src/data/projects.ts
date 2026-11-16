@@ -25,6 +25,8 @@ import imgMeuCaixa from '../assets/projetos/figma/meu-caixa.webp'
 import imgMeuCaixaInicio from '../assets/projetos/figma/meu-caixa-inicio.webp'
 import imgNexo from '../assets/projetos/figma/nexo.webp'
 import imgNexoSolicitacoes from '../assets/projetos/figma/nexo-solicitacoes.webp'
+import imgVertice from '../assets/projetos/figma/vertice.webp'
+import imgVerticeSimulador from '../assets/projetos/figma/vertice-simulador.webp'
 import imgOrbit from '../assets/projetos/figma/orbit-creators.webp'
 import imgOrbitCalendario from '../assets/projetos/figma/orbit-creators-calendario.webp'
 import imgAura from '../assets/projetos/figma/aura.webp'
@@ -55,6 +57,11 @@ export interface Project {
   image: string
   /** Segunda imagem do card da grade: aparece no hover e some ao tirar o mouse. */
   hoverImage?: string
+  /**
+   * Vídeo de motion curto que toca no card enquanto o mouse está em cima
+   * (carrega só nessa hora). `hoverImage` fica como a imagem de espera dele.
+   */
+  hoverVideo?: string
   title: string
   categoryKey: CategoryKey
   kinds: ProjectKind[]
@@ -76,6 +83,7 @@ export interface Project {
 export const allProjects: Project[] = [
   { image: imgNexo, hoverImage: imgNexoSolicitacoes, title: 'Nexo', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['fintech', 'b2b'], detailSlug: 'nexo-ux' },
   { image: imgEssencialPerfumaria, hoverImage: imgEssencialPerfumariaPainel, title: 'Essencial Perfumaria', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard', 'ecommerce'], segments: ['b2c'], externalUrl: 'https://essencial-perfumaria.vercel.app' },
+  { image: imgVertice, hoverImage: imgVerticeSimulador, hoverVideo: '/videos/vertice-deck.mp4', title: 'Vértice', categoryKey: 'ux-ui-design', kinds: ['app', 'dashboard'], segments: ['fintech', 'b2c'], detailSlug: 'vertice-ux' },
   { image: imgMeuCaixa, hoverImage: imgMeuCaixaInicio, title: 'Meu Caixa', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['b2b'], detailSlug: 'meu-caixa-ux' },
   { image: imgCatalogoThaysa, hoverImage: imgCatalogoThaysaInicio, title: 'Catálogo Thaysa Ribeiro', categoryKey: 'ux-ui-design', kinds: ['app'], segments: ['b2c'], externalUrl: 'https://catalogo-thaysa.vercel.app', mobileOnly: true },
   { image: imgAtelieDiane, title: 'Ateliê Diane Almeida', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], segments: ['b2c'], detailSlug: 'atelie-diane-almeida-ui', hidden: true },

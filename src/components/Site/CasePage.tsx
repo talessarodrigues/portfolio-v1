@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { Fragment, useEffect, useMemo, useState } from 'react'
 import { HugeiconsIcon } from '@hugeicons/react'
 import { ArrowUpRight01FreeIcons } from '@hugeicons/core-free-icons'
 import styles from './CasePage.module.css'
@@ -212,11 +212,43 @@ export function CasePage({ slug }: { slug: string }) {
             </div>
           </dl>
 
+          {/* Motion curto que abre a página: toca sozinho, sem som e em loop, como um GIF. */}
+          {entry.coverVideo && (
+            <video
+              className={styles.coverVideo}
+              src={entry.coverVideo.src}
+              poster={entry.coverVideo.poster}
+              style={{ aspectRatio: `${entry.coverVideo.width} / ${entry.coverVideo.height}` }}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-label={project.title}
+            />
+          )}
+
           <div className={styles.modules}>
             {entry.modules.map((src, i) => (
-              <button key={src} type="button" className={styles.module} onClick={() => setZoom(src)}>
-                <img src={src} width={1400} height={entry.moduleHeights?.[i]} alt={`${project.title} · ${i + 1}/${entry.modules?.length}`} loading={i < 2 ? 'eager' : 'lazy'} />
-              </button>
+              <Fragment key={src}>
+                <button type="button" className={styles.module} onClick={() => setZoom(src)}>
+                  <img src={src} width={1400} height={entry.moduleHeights?.[i]} alt={`${project.title} · ${i + 1}/${entry.modules?.length}`} loading={i < 2 ? 'eager' : 'lazy'} />
+                </button>
+                {entry.videos?.filter(v => v.after === i + 1).map(v => (
+                  <video
+                    key={v.src}
+                    className={styles.moduleVideo}
+                    src={v.src}
+                    poster={v.poster}
+                    style={{ aspectRatio: `${v.width} / ${v.height}` }}
+                    controls
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                  />
+                ))}
+              </Fragment>
             ))}
           </div>
 

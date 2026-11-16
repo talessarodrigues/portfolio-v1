@@ -231,6 +231,23 @@
   grid-template-columns: repeat(4, minmax(0, 1fr));
   padding-bottom: 40px;
 }
+/* Motion que abre a página (cartão de capa): largura total, cantos como os quadros. */
+.coverVideo {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  border-radius: 20px;
+  background: #000;
+}
+/* Vídeo no meio da página: encosta nos quadros e usa os controles para ligar o som. */
+.moduleVideo {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #000;
+}
 .modules {
   display: flex;
   flex-direction: column;
