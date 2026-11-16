@@ -469,11 +469,15 @@
   opacity: 0;
   transition: opacity 0.5s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
+/* O vídeo é 16:9 e o card é 4:3: em vez de cortar as laterais (cover), mostra
+   o quadro inteiro e pinta as faixas de cima e de baixo com a cor das bordas
+   do próprio vídeo (rosa claro em cima, branco embaixo). */
 .media video.mediaHover {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
+  background: linear-gradient(to bottom, #fce6ea 50%, #fdf8f8 50%);
 }
 .card:hover .media img.mediaHover,
 .card:focus-visible .media img.mediaHover,
