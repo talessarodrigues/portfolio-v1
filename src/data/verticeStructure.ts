@@ -15,8 +15,8 @@ export const verticeModules: string[] = Object.keys(modules)
 // Altura de cada quadro (todos têm 1400 de largura): reserva o espaço antes da
 // imagem carregar, para a página não pular enquanto as imagens chegam.
 export const verticeModuleHeights: number[] = [
-  788, 788, 692, 786, 940, 825, 526, 763, 975, 2149, 1060, 980,
-  1130, 1159, 1093, 1099, 557, 1941, 725, 995, 864, 692, 617, 788,
+  788, 788, 692, 786, 940, 825, 526, 763, 975, 2149, 1060, 1100,
+  1130, 1159, 1093, 1099, 557, 1781, 725, 995, 864, 692, 617, 788,
 ]
 
 // Os dois vídeos de motion vêm das animações nativas do Figma (página "Motion —

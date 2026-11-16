@@ -15,7 +15,7 @@ export const nexoModules: string[] = Object.keys(modules)
 // Altura de cada quadro (todos têm 1400 de largura): reserva o espaço antes da
 // imagem carregar, para a página não pular enquanto as imagens chegam.
 export const nexoModuleHeights: number[] = [
-  788, 788, 1000, 788, 1180, 1280, 1080, 930, 1100, 1060, 1800, 1330, 1330, 1060, 1060, 1330,
+  788, 788, 1000, 788, 1180, 1280, 1080, 930, 1100, 1060, 1866, 1330, 1330, 1060, 1060, 1330,
   1330, 1330, 1330, 1060, 1060, 1060, 600, 2457, 1240, 1060, 1180, 1100, 876, 700, 788,
 ]
 

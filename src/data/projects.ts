@@ -81,9 +81,9 @@ export interface Project {
 // Os dois primeiros são os projetos mais recentes e completos (produto
 // desenhado e construído de ponta a ponta), em destaque de propósito.
 export const allProjects: Project[] = [
+  { image: imgVertice, hoverImage: imgVerticeSimulador, hoverVideo: '/videos/vertice-deck.mp4', title: 'Vértice', categoryKey: 'ux-ui-design', kinds: ['app', 'dashboard'], segments: ['fintech', 'b2c'], detailSlug: 'vertice-ux' },
   { image: imgNexo, hoverImage: imgNexoSolicitacoes, title: 'Nexo', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['fintech', 'b2b'], detailSlug: 'nexo-ux' },
   { image: imgEssencialPerfumaria, hoverImage: imgEssencialPerfumariaPainel, title: 'Essencial Perfumaria', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard', 'ecommerce'], segments: ['b2c'], externalUrl: 'https://essencial-perfumaria.vercel.app' },
-  { image: imgVertice, hoverImage: imgVerticeSimulador, hoverVideo: '/videos/vertice-deck.mp4', title: 'Vértice', categoryKey: 'ux-ui-design', kinds: ['app', 'dashboard'], segments: ['fintech', 'b2c'], detailSlug: 'vertice-ux' },
   { image: imgMeuCaixa, hoverImage: imgMeuCaixaInicio, title: 'Meu Caixa', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['b2b'], detailSlug: 'meu-caixa-ux' },
   { image: imgCatalogoThaysa, hoverImage: imgCatalogoThaysaInicio, title: 'Catálogo Thaysa Ribeiro', categoryKey: 'ux-ui-design', kinds: ['app'], segments: ['b2c'], externalUrl: 'https://catalogo-thaysa.vercel.app', mobileOnly: true },
   { image: imgAtelieDiane, title: 'Ateliê Diane Almeida', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard'], segments: ['b2c'], detailSlug: 'atelie-diane-almeida-ui', hidden: true },
