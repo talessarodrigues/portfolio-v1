@@ -368,6 +368,10 @@ export const es: Dictionary = {
       description: 'Sistema de control de caja de una tienda, en aplicación de escritorio: ventas, fichas a plazo, caja por turno, supervisión y respaldo automático.',
       tags: ['UX/UI Design', 'desktop'],
     },
+    'RHDPeople': {
+      description: 'Caso en equipo: landing page de una plataforma de RR. HH. y DP para pequeñas y medianas empresas, del discovery al design system, en desktop y mobile, en temas claro y oscuro.',
+      tags: ['UX/UI Design', 'saas'],
+    },
     'Nexo': {
       description: 'Caso de UX para fintech: gestión de tarjetas corporativas, con reglas de uso, límites y aprobación de solicitudes.',
       tags: ['UX/UI Design', 'fintech'],
@@ -798,6 +802,20 @@ export const es: Dictionary = {
     metaAnoValue: '2026',
     backBtn: 'Volver',
     overviewLabel: 'Resumen:',
+    blocks: [],
+  },
+
+  rhdpeople: {
+    headerTitle: '',
+    headerTagline: '',
+    metaCliente: 'Cliente',
+    metaServico: 'Entregas',
+    metaAno: 'Año',
+    metaClienteValue: 'RHRecruiter Labs',
+    metaServicoValue: 'Investigación, UX/UI, design system y handoff, en equipo',
+    metaAnoValue: '2026',
+    backBtn: 'Volver',
+    overviewLabel: 'Overview:',
     blocks: [],
   },
 

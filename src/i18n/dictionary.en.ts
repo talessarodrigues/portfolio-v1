@@ -368,6 +368,10 @@ export const en: Dictionary = {
       description: 'Cash control system for a store, as a desktop app: sales, installment sheets, per-shift cash, supervision and automatic backup.',
       tags: ['UX/UI Design', 'desktop'],
     },
+    'RHDPeople': {
+      description: 'Team case study: the landing page of an HR and People Ops platform for small and mid-sized companies, from discovery to design system, on desktop and mobile, in light and dark themes.',
+      tags: ['UX/UI Design', 'saas'],
+    },
     'Nexo': {
       description: 'UX case for a fintech: corporate card management, with usage rules, limits and request approvals.',
       tags: ['UX/UI Design', 'fintech'],
@@ -828,6 +832,20 @@ export const en: Dictionary = {
     metaAno: 'Year',
     metaClienteValue: 'UX/UI case study',
     metaServicoValue: 'Research, UX/UI, design system and handoff',
+    metaAnoValue: '2026',
+    backBtn: 'Back',
+    overviewLabel: 'Overview:',
+    blocks: [],
+  },
+
+  rhdpeople: {
+    headerTitle: '',
+    headerTagline: '',
+    metaCliente: 'Client',
+    metaServico: 'Deliverables',
+    metaAno: 'Year',
+    metaClienteValue: 'RHRecruiter Labs',
+    metaServicoValue: 'Research, UX/UI, design system and handoff, as a team',
     metaAnoValue: '2026',
     backBtn: 'Back',
     overviewLabel: 'Overview:',

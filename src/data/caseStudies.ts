@@ -22,6 +22,9 @@ import {
   verticeHeaderImages, verticeGallery, verticeBlockShapes, verticeModules, verticeModuleHeights,
   verticeCoverVideo, verticeVideos,
 } from './verticeStructure'
+import {
+  rhdpeopleHeaderImages, rhdpeopleGallery, rhdpeopleBlockShapes, rhdpeopleModules, rhdpeopleModuleHeights,
+} from './rhdpeopleStructure'
 
 // Registro de detalhamentos disponíveis — cada entrada casa a estrutura
 // (imagens + tipo do bloco, mesma para todo idioma) com a chave do
@@ -130,6 +133,14 @@ export const detailRegistry = {
     moduleHeights: verticeModuleHeights,
     coverVideo: verticeCoverVideo,
     videos: verticeVideos,
+  },
+  'rhdpeople-ux': {
+    headerImages: rhdpeopleHeaderImages,
+    gallery: rhdpeopleGallery,
+    blockShapes: rhdpeopleBlockShapes,
+    dictKey: 'rhdpeople' as const,
+    modules: rhdpeopleModules,
+    moduleHeights: rhdpeopleModuleHeights,
   },
   'meu-caixa-ux': {
     headerImages: meuCaixaHeaderImages,

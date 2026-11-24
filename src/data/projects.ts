@@ -23,6 +23,8 @@ import imgEssencialPerfumaria from '../assets/projetos/figma/essencial-perfumari
 import imgEssencialPerfumariaPainel from '../assets/projetos/figma/essencial-perfumaria-painel.webp'
 import imgMeuCaixa from '../assets/projetos/figma/meu-caixa.webp'
 import imgMeuCaixaInicio from '../assets/projetos/figma/meu-caixa-inicio.webp'
+import imgRhdpeople from '../assets/projetos/figma/rhdpeople.webp'
+import imgRhdpeopleLanding from '../assets/projetos/figma/rhdpeople-landing.webp'
 import imgNexo from '../assets/projetos/figma/nexo.webp'
 import imgNexoSolicitacoes from '../assets/projetos/figma/nexo-solicitacoes.webp'
 import imgVertice from '../assets/projetos/figma/vertice.webp'
@@ -81,6 +83,7 @@ export interface Project {
 // Os dois primeiros são os projetos mais recentes e completos (produto
 // desenhado e construído de ponta a ponta), em destaque de propósito.
 export const allProjects: Project[] = [
+  { image: imgRhdpeople, hoverImage: imgRhdpeopleLanding, title: 'RHDPeople', categoryKey: 'ux-ui-design', kinds: ['website'], segments: ['b2b', 'saas'], detailSlug: 'rhdpeople-ux' },
   { image: imgVertice, hoverImage: imgVerticeSimulador, hoverVideo: '/videos/vertice-deck.mp4', title: 'Vértice', categoryKey: 'ux-ui-design', kinds: ['app', 'dashboard'], segments: ['fintech', 'b2c'], detailSlug: 'vertice-ux' },
   { image: imgNexo, hoverImage: imgNexoSolicitacoes, title: 'Nexo', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['fintech', 'b2b'], detailSlug: 'nexo-ux' },
   { image: imgEssencialPerfumaria, hoverImage: imgEssencialPerfumariaPainel, title: 'Essencial Perfumaria', categoryKey: 'ux-ui-design', kinds: ['website', 'dashboard', 'ecommerce'], segments: ['b2c'], externalUrl: 'https://essencial-perfumaria.vercel.app' },

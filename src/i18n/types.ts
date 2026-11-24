@@ -265,6 +265,7 @@ export interface Dictionary {
   meuCaixa: CaseStudyText
   nexo: CaseStudyText
   vertice: CaseStudyText
+  rhdpeople: CaseStudyText
   residentEvil: CaseStudyText
   redesignNatva: CaseStudyText
   drakorysArcane: CaseStudyText
