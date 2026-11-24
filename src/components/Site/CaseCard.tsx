@@ -58,6 +58,7 @@ export function CaseCard({ project, eager = false }: CaseCardProps) {
         {project.hoverVideo && playing && (
           <video
             className={styles.mediaHover}
+            style={project.hoverVideoBg ? { background: project.hoverVideoBg } : undefined}
             src={project.hoverVideo}
             poster={project.hoverImage}
             autoPlay

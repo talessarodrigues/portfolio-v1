@@ -66,6 +66,8 @@ export interface Project {
    * (carrega só nessa hora). `hoverImage` fica como a imagem de espera dele.
    */
   hoverVideo?: string
+  // Cor das faixas de cima e de baixo quando o vídeo (16:9) é menor que o card (4:3).
+  hoverVideoBg?: string
   title: string
   categoryKey: CategoryKey
   kinds: ProjectKind[]
@@ -85,7 +87,7 @@ export interface Project {
 // Os dois primeiros são os projetos mais recentes e completos (produto
 // desenhado e construído de ponta a ponta), em destaque de propósito.
 export const allProjects: Project[] = [
-  { image: imgPixConfere, hoverImage: imgPixConfereAlerta, title: 'Pix Confere', categoryKey: 'ux-ui-design', kinds: ['app'], segments: ['fintech', 'b2c'], detailSlug: 'pix-confere-ux' },
+  { image: imgPixConfere, hoverImage: imgPixConfereAlerta, hoverVideo: '/videos/pix-confere-hover.mp4', hoverVideoBg: '#f3f4f9', title: 'Pix Confere', categoryKey: 'ux-ui-design', kinds: ['app'], segments: ['fintech', 'b2c'], detailSlug: 'pix-confere-ux' },
   { image: imgRhdpeople, hoverImage: imgRhdpeopleLanding, title: 'RHDPeople', categoryKey: 'ux-ui-design', kinds: ['website'], segments: ['b2b', 'saas'], detailSlug: 'rhdpeople-ux' },
   { image: imgVertice, hoverImage: imgVerticeSimulador, hoverVideo: '/videos/vertice-deck.mp4', title: 'Vértice', categoryKey: 'ux-ui-design', kinds: ['app', 'dashboard'], segments: ['fintech', 'b2c'], detailSlug: 'vertice-ux' },
   { image: imgNexo, hoverImage: imgNexoSolicitacoes, title: 'Nexo', categoryKey: 'ux-ui-design', kinds: ['dashboard'], segments: ['fintech', 'b2b'], detailSlug: 'nexo-ux' },
