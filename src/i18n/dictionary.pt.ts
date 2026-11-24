@@ -368,6 +368,10 @@ export const pt: Dictionary = {
       description: 'Sistema de controle de caixa de uma loja, em aplicativo de computador: vendas, fichas a prazo, caixa por turno, supervisão e backup automático.',
       tags: ['UX/UI Design', 'desktop'],
     },
+    'Pix Confere': {
+      description: 'Case conceitual de UX para fintech: como um banco pode interromper o golpe do falso parente no momento do Pix, usando o WhatsApp como prova. Pesquisa, service design, interface, design conversacional e motion.',
+      tags: ['UX/UI Design', 'fintech'],
+    },
     'RHDPeople': {
       description: 'Case em equipe: landing page de uma plataforma de RH e DP para pequenas e médias empresas, do discovery ao design system, em desktop e mobile, nos temas claro e escuro.',
       tags: ['UX/UI Design', 'saas'],
@@ -796,6 +800,20 @@ export const pt: Dictionary = {
     metaAno: 'Ano',
     metaClienteValue: 'RHRecruiter Labs',
     metaServicoValue: 'Pesquisa, UX/UI, design system e handoff, em equipe',
+    metaAnoValue: '2026',
+    backBtn: 'Voltar',
+    overviewLabel: 'Overview:',
+    blocks: [],
+  },
+
+  pixConfere: {
+    headerTitle: '',
+    headerTagline: '',
+    metaCliente: 'Tipo',
+    metaServico: 'Entregas',
+    metaAno: 'Ano',
+    metaClienteValue: 'Case conceitual e independente',
+    metaServicoValue: 'Pesquisa, service design, UX/UI, design conversacional e motion',
     metaAnoValue: '2026',
     backBtn: 'Voltar',
     overviewLabel: 'Overview:',

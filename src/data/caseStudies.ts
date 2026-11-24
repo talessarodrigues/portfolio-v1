@@ -25,6 +25,9 @@ import {
 import {
   rhdpeopleHeaderImages, rhdpeopleGallery, rhdpeopleBlockShapes, rhdpeopleModules, rhdpeopleModuleHeights,
 } from './rhdpeopleStructure'
+import {
+  pixConfereHeaderImages, pixConfereGallery, pixConfereBlockShapes, pixConfereModules, pixConfereModuleHeights, pixConfereVideos,
+} from './pixConfereStructure'
 
 // Registro de detalhamentos disponíveis — cada entrada casa a estrutura
 // (imagens + tipo do bloco, mesma para todo idioma) com a chave do
@@ -133,6 +136,15 @@ export const detailRegistry = {
     moduleHeights: verticeModuleHeights,
     coverVideo: verticeCoverVideo,
     videos: verticeVideos,
+  },
+  'pix-confere-ux': {
+    headerImages: pixConfereHeaderImages,
+    gallery: pixConfereGallery,
+    blockShapes: pixConfereBlockShapes,
+    dictKey: 'pixConfere' as const,
+    modules: pixConfereModules,
+    moduleHeights: pixConfereModuleHeights,
+    videos: pixConfereVideos,
   },
   'rhdpeople-ux': {
     headerImages: rhdpeopleHeaderImages,
